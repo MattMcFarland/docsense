@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description":
     "WIP - Beautiful ES Doc generation with or without code comments",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "precommit": "lint-staged"
   },
