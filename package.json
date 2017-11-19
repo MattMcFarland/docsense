@@ -1,6 +1,6 @@
 {
   "name": "docsense",
-  "version": "0.0.0",
+  "version": "0.0.0-1",
   "description":
     "WIP - Beautiful ES Doc generation with or without code comments",
   "main": "lib/index.js",
