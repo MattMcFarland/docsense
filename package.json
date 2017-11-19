@@ -11,7 +11,7 @@
     "*.{js,json,docsenserc}": ["prettier --write", "git add"]
   },
   "keywords": [],
-  "author": "Matt McFarland<contact@mattmcfarland.com>",
+  "author": "Matt McFarland <contact@mattmcfarland.com>",
   "license": "MIT",
   "dependencies": {
     "cosmiconfig": "^3.1.0",
@@ -23,5 +23,16 @@
     "lint-staged": "^5.0.0",
     "pkg-ok": "^1.1.0",
     "prettier": "^1.8.2"
-  }
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MattMcFarland/docsense.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MattMcFarland/docsense/issues"
+  },
+  "homepage": "https://github.com/MattMcFarland/docsense#readme"
 }
