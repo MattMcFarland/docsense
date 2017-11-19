@@ -1,0 +1,27 @@
+{
+  "name": "docsense",
+  "version": "0.0.0",
+  "description":
+    "WIP - Beautiful ES Doc generation with or without code comments",
+  "main": "index.js",
+  "scripts": {
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,json,docsenserc}": ["prettier --write", "git add"]
+  },
+  "keywords": [],
+  "author": "Matt McFarland<contact@mattmcfarland.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cosmiconfig": "^3.1.0",
+    "npmlog": "^4.1.2"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.59.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^5.0.0",
+    "pkg-ok": "^1.1.0",
+    "prettier": "^1.8.2"
+  }
+}
