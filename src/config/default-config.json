@@ -1,3 +1,6 @@
 {
-  "parser": "babylon"
+  "parser": "babylon",
+  "parseOptions": {
+    "tokens": true
+  }
 }

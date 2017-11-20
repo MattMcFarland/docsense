@@ -1,6 +1,9 @@
 [include]
 ./lib/*
 
+[lints]
+all=warn
+
 [ignore]
 .*/docs/.*
 ./src/logger.js
