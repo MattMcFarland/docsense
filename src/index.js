@@ -20,14 +20,11 @@ const parseFiles = config => {
     .then(filepaths =>
       readFiles(filepaths).then(filesData =>
         Promise.all(
-          filesData.map((data, index) => {
-            const filepath = filepaths[index]
-            const fullpath = resolvePathFromCWD(filepath)
-            return {
-              [filepath]: { ast: parser.parse(data, parseOptions) },
-              fullpath,
-            }
-          })
+          filesData.map((data, index) => ({
+            relPath: filepaths[index],
+            fullPath: resolvePathFromCWD(filepaths[index]),
+            ast: parser.parse(data, parseOptions),
+          }))
         )
       )
     )
