@@ -11,7 +11,7 @@
       }
     },
     {
-      "files": ["*.json", ".babelrc", ".syndoxrc", ""],
+      "files": ["*.json", ".babelrc", ".docsenserc", ""],
       "options": {
         "parser": "json"
       }
