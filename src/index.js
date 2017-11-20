@@ -1,16 +1,19 @@
 // @flow
 import './logger'
 import getConfig from './config'
-import { flatten, dedupe, fatalError, logMap } from './utils/common'
+import { flatten, dedupe, fatalError } from './utils/common'
 import {
   processAllGlobPatterns,
   resolvePathFromCWD,
   readFiles,
 } from './utils/file'
 
-const parseASTs = files => Promise.all(files.map())
-
-const parseFiles = config => {
+/**
+ * Parse files using config options
+ * @param {DocSenseConfig} config options
+ * @returns {Promise<FileRecord[]>} Array of filerecord objects
+ */
+const parseFiles = (config: DocSenseConfig): Promise<FileRecord[]> => {
   const parser = module.require(config.parser)
   const parseOptions = config.parseOptions
 
@@ -20,7 +23,7 @@ const parseFiles = config => {
     .then(filepaths =>
       readFiles(filepaths).then(filesData =>
         Promise.all(
-          filesData.map((data, index) => ({
+          filesData.map((data, index): FileRecord => ({
             relPath: filepaths[index],
             fullPath: resolvePathFromCWD(filepaths[index]),
             ast: parser.parse(data, parseOptions),
