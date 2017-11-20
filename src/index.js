@@ -2,7 +2,11 @@
 
 import getConfig from './config'
 import { flatten, dedupe, fatalError } from './utils/common'
-import { processAllGlobPatterns } from './utils/file'
+import {
+  processAllGlobPatterns,
+  resolveAllFilePathsFromCWD,
+  readFiles,
+} from './utils/file'
 
 const parseASTs = files => Promise.all(files.map())
 
@@ -12,11 +16,13 @@ const parseFiles = config => {
 
   return processAllGlobPatterns(config.files)
     .then(flatten)
+    .then(resolveAllFilePathsFromCWD)
     .then(dedupe)
-    .then(files => {
+    .then(readFiles)
+    .then(filesData => {
       return Promise.all(
-        files.map(file => {
-          return parser.parse(file, parseOptions)
+        filesData.map(data => {
+          return parser.parse(data, parseOptions)
         })
       )
     })
@@ -24,5 +30,7 @@ const parseFiles = config => {
 
 getConfig()
   .then(parseFiles)
-  .then(asts => {})
+  .then(asts => {
+    console.log(asts)
+  })
   .catch(fatalError)
