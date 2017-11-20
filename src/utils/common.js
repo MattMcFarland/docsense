@@ -6,9 +6,17 @@
  * @returns {Passthrough} - context of the promise chain is unchanged.
  */
 export const status = (msg: string): Passthrough => (context: any): any => {
-  console.log('status', msg)
+  log.info('status', msg)
   return context
 }
+
+export const logMap = (prefix: string): Passthrough => (
+  items: string[]
+): string[] => {
+  items.forEach(item => log.info(prefix, item))
+  return items
+}
+
 /**
  * Changes context in promise chain
  * @param {*} newContext next thing in promise chain will focus on this
@@ -54,7 +62,7 @@ export const extractValuesFromEntries = (entries: entry[]): V[] =>
  * @returns {void}
  */
 export const fatalError = (err: Error): void => {
-  console.error(err)
+  log.error(err)
   process.exit(1)
 }
 /**
@@ -63,7 +71,7 @@ export const fatalError = (err: Error): void => {
  * @returns {*} context
  */
 export const logContext = (context: any): any => {
-  console.log('ctx', context)
+  log.info('ctx', context)
   return context
 }
 

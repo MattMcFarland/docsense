@@ -73,10 +73,10 @@ export const resolveFile = (filepath: string): Promise<string> => {
     fs.stat(filepath, (err, stats) => {
       if (err) return reject(err)
       if (stats.isFile()) {
-        console.log('resolve', filepath)
+        log.info('read', filepath)
         return resolve(filepath)
       }
-      console.warn('skip', filepath)
+      log.warn('skip', filepath)
       return
     })
   })

@@ -11,12 +11,13 @@
     "build": "babel src --out-dir lib --ignore spec.js,test.js --copy-files",
     "docs": "node lib/index.js **/*.js",
     "predebug": "yarn build",
-    "debug": "node lib/index.js **/*.js",
+    "debug": "node lib/index.js",
     "prepublishOnly": "yarn build && yarn docs && pkg-ok",
-    "prettier": "prettier --write src/*.{js,json,prettierrc,babelrc,docsenserc}"
+    "prettier":
+      "prettier --write src/**/*.{js,json,prettierrc,babelrc,docsenserc}"
   },
   "lint-staged": {
-    "*.{js,json,docsenserc}": ["prettier --write", "git add"]
+    "*.{js,json,prettierrc,babelrc,docsenserc}": ["prettier --write", "git add"]
   },
   "keywords": [],
   "author": "Matt McFarland <contact@mattmcfarland.com>",

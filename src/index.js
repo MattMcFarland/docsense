@@ -1,10 +1,10 @@
 // @flow
-
+import './logger'
 import getConfig from './config'
-import { flatten, dedupe, fatalError } from './utils/common'
+import { flatten, dedupe, fatalError, logMap } from './utils/common'
 import {
   processAllGlobPatterns,
-  resolveAllFilePathsFromCWD,
+  resolvePathFromCWD,
   readFiles,
 } from './utils/file'
 
@@ -16,15 +16,20 @@ const parseFiles = config => {
 
   return processAllGlobPatterns(config.files)
     .then(flatten)
-    .then(resolveAllFilePathsFromCWD)
     .then(dedupe)
-    .then(readFiles)
-    .then(filesData => {
-      return Promise.all(
-        filesData.map(data => {
-          return parser.parse(data, parseOptions)
-        })
-      )
+    .then(filepaths => {
+      return readFiles(filepaths).then(filesData => {
+        return Promise.all(
+          filesData.map((data, index) => {
+            const filepath = filepaths[index]
+            const fullpath = resolvePathFromCWD(filepath)
+            return {
+              [filepath]: { ast: parser.parse(data, parseOptions) },
+              fullpath,
+            }
+          })
+        )
+      })
     })
 }
 
