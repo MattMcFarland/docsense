@@ -1,0 +1,7 @@
+{
+  "files": ["./lib/**/*.js", "./lib/parse.js", "./lib/index.js"],
+  "parseOptions": {
+    "sourceType": "unambiguous",
+    "plugins": ["flow", "objectRestSpread"]
+  }
+}

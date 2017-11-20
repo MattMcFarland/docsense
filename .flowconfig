@@ -1,0 +1,10 @@
+[include]
+./lib/*
+
+[ignore]
+.*/docs/.*
+./src/logger.js
+
+[libs]
+flow-typed
+.*/node_modules/.*

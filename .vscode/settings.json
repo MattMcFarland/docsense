@@ -1,0 +1,11 @@
+{
+  "javascript.validate.enable": false,
+  "flow.enabled": true,
+  "flow.useNPMPackagedFlow": true,
+  "editor.tabSize": 2,
+  "prettier.ignorePath": ".gitignore",
+  "files.associations": {
+    ".docsenserc": "json",
+    ".prettierrc": "json"
+  }
+}
