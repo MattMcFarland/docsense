@@ -17,9 +17,9 @@ const parseFiles = config => {
   return processAllGlobPatterns(config.files)
     .then(flatten)
     .then(dedupe)
-    .then(filepaths => {
-      return readFiles(filepaths).then(filesData => {
-        return Promise.all(
+    .then(filepaths =>
+      readFiles(filepaths).then(filesData =>
+        Promise.all(
           filesData.map((data, index) => {
             const filepath = filepaths[index]
             const fullpath = resolvePathFromCWD(filepath)
@@ -29,8 +29,8 @@ const parseFiles = config => {
             }
           })
         )
-      })
-    })
+      )
+    )
 }
 
 getConfig()
