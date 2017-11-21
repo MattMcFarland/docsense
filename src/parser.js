@@ -6,17 +6,34 @@ import traverse from 'traverse'
 const tagRegex = /(@\w+)([\t \S]*{[\s]*(\w+)[\s]*}[\t \S](\[[\t \S]+\]|\b\S+\b))?[\s]+(.*)[\r\n]/gi
 
 /**
- * A Parser that emits events named after the node types that are in the AST
- * e.g., parser.on('VariableDeclaration', (node) => console.log(node))
+ * @class Parser
+ * @extends {EventEmitter} Event Emitter
+ *
  */
 export default class Parser extends EventEmitter {
+  /**
+   * @private {*} parser
+   */
   parser: { parse: (data: string, parseOptions: any) => AST }
+  /**
+   * @private {*} parseOptions
+   */
   parseOptions: any
+  /**
+   * A parser that emits events, so we can have Big O Constant time
+   * with increased complexity. (goal anyway)
+   * @param {*} parser - parser to use (like babylon, flow, etc)
+   * @param {*} parseOptions - options to pass to the parser
+   */
   constructor(parser: string, parseOptions: any) {
     super()
     this.parser = module.require(parser)
     this.parseOptions = parseOptions
   }
+  /**
+   * Perform parse of the AST string, emits events when each node is parsed
+   * @param {string} data
+   */
   parse(data: string) {
     const ast = this.parser.parse(data, this.parseOptions)
     const self = this
