@@ -7,7 +7,14 @@ import {
   resolvePathFromCWD,
   readFiles,
 } from './utils/file'
+import path from 'path'
 import Parser from './parser'
+
+const plugins = ['variable-declaration']
+  .map(name => path.resolve(__dirname, 'rules', name))
+  .map(modulePath => module.require(modulePath))
+
+console.log(plugins)
 
 /**
  * Parse files using config options
@@ -21,17 +28,12 @@ const parseFiles = (config: DocSenseConfig): Promise<FileRecord[]> => {
     .then(filepaths =>
       readFiles(filepaths).then(filesData => {
         const parser = new Parser(config.parser, config.parseOptions)
-        // TODO: Create some interface for dealing with this emitter, probably
-        // should be passed in via promise chain.
-        // e.g. an array of plugins with instructions to subscribe could be passed in
-        parser.on('VariableDeclaration', node =>
-          console.log(
-            'VariableDeclaration',
-            node.kind,
-            node.declarations[0].id.name,
-            '..SEE TODO COMMENT..'
-          )
-        )
+        const store = new Map()
+
+        plugins.forEach((plugin: DocSensePlugin) => {
+          plugin(parser, store)
+        })
+
         return Promise.all(
           filesData.map((data, index): FileRecord => {
             log.info('parse', filepaths[index])
