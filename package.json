@@ -27,7 +27,8 @@
     "cosmiconfig": "^3.1.0",
     "deepmerge": "^2.0.1",
     "glob": "^7.1.2",
-    "npmlog": "^4.1.2"
+    "npmlog": "^4.1.2",
+    "traverse": "^0.6.6"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.32",
