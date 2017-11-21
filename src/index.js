@@ -20,10 +20,7 @@ const parseFiles = (config: DocSenseConfig): Promise<FileRecord[]> => {
     .then(dedupe)
     .then(filepaths =>
       readFiles(filepaths).then(filesData => {
-        const parser = new Parser(
-          module.require(config.parser),
-          config.parseOptions
-        )
+        const parser = new Parser(config.parser, config.parseOptions)
         // TODO: Create some interface for dealing with this emitter, probably
         // should be passed in via promise chain.
         // e.g. an array of plugins with instructions to subscribe could be passed in
@@ -41,7 +38,7 @@ const parseFiles = (config: DocSenseConfig): Promise<FileRecord[]> => {
             const result = {
               relPath: filepaths[index],
               fullPath: resolvePathFromCWD(filepaths[index]),
-              ast: parser.parse(data),
+              ast: parser.parse(data.toString()),
             }
             log.log('success', 'parse', filepaths[index])
             return result
