@@ -36,11 +36,16 @@ const parseFiles = (config: DocSenseConfig): Promise<FileRecord[]> => {
           )
         )
         return Promise.all(
-          filesData.map((data, index): FileRecord => ({
-            relPath: filepaths[index],
-            fullPath: resolvePathFromCWD(filepaths[index]),
-            ast: parser.parse(data),
-          }))
+          filesData.map((data, index): FileRecord => {
+            log.info('parse', filepaths[index])
+            const result = {
+              relPath: filepaths[index],
+              fullPath: resolvePathFromCWD(filepaths[index]),
+              ast: parser.parse(data),
+            }
+            log.log('success', 'parse', filepaths[index])
+            return result
+          })
         )
       })
     )
