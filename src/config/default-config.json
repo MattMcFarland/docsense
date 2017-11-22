@@ -1,6 +1,7 @@
 {
   "parser": "babylon",
   "parseOptions": {
-    "tokens": true
-  }
+    "tokens": false
+  },
+  "useCorePlugins": true
 }
