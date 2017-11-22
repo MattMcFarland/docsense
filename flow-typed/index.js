@@ -1,7 +1,7 @@
 // @flow
 
-/** @typedef {string} K the key of a value in a key-value pair*/
-type K = string
+/** @typedef {any} K the key of a value in a key-value pair*/
+type K = any
 /** @typedef {any} V the value in a key-value pair*/
 type V = any
 /** @typedef {[K, V]} entry A key value pair specified in a tuple array [0,1] = [K,V] */
