@@ -1,7 +1,9 @@
-module.exports = function(engine, store) {
-  // engine.on('File', (node, value) => {
-  //   console.log(require('util').inspect(value.loc, true, 1, true))
-  // })
-  store.set('category', 'files')
-  return store
+module.exports = function(engine, db) {
+  db.set('files', []).write()
+  engine.on('File', (state, value) => {
+    db
+      .get('files')
+      .push({ id: state.getFileName() })
+      .write()
+  })
 }

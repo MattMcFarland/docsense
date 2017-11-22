@@ -11,4 +11,5 @@ type DocSenseConfig = {
   /** @property {any} parseOptions - options passed as options to parser */
   parseOptions: any,
   userCorePlugins: boolean,
+  out: string,
 }

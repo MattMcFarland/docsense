@@ -1,5 +1,6 @@
 import EventEmitter from 'events'
 import traverse from 'traverse'
+import withSelectors from './selectors'
 
 // created this using regex101, work is here: https://regex101.com/r/jrLmHj/4/
 const tagRegex = /(@\w+)([\t \S]*{[\s]*(\w+)[\s]*}[\t \S](\[[\t \S]+\]|\b\S+\b))?[\s]+(.*)[\r\n]/gi
@@ -25,7 +26,8 @@ export default class ParseEngine extends EventEmitter {
     const parseEngine = this
     traverse(ast).forEach(function(value: AST) {
       if (value && value.type) {
-        parseEngine.emit(value.type, this, value)
+        maybeInjectTags(value)
+        parseEngine.emit(value.type, withSelectors(this), value)
       }
     })
   }
@@ -53,20 +55,6 @@ class Identifier {
     return this
   }
 }
-
-// if (Array.isArray(value.leadingComments)) {
-//   value.__doc_tags__ = value.leadingComments.reduce(
-//     (acc, leadingComment, index) => {
-//       if (leadingComment.type === 'CommentBlock') {
-//         return [].concat(
-//           createCommentTagMeta(leadingComment, leadingComment.loc),
-//           acc
-//         )
-//       }
-//     },
-//     []
-//   )
-// }
 
 function maybeInjectTags(node) {
   if (node && node.type) {

@@ -14,8 +14,9 @@ import {
   readFiles,
 } from './utils/file'
 import path from 'path'
-import ParseEngine from './ParseEngine'
+import ParseEngine from './parser/ParseEngine'
 import fs from 'fs'
+import { create } from './db'
 
 /**
  * Parse files using config options
@@ -39,11 +40,10 @@ const parseFiles = ({
     .then(filepaths =>
       readFiles(filepaths).then(filesData => {
         const parser = new ParseEngine(config.parser, config.parseOptions)
-        const stores = new Map()
+        const db = create(config.out)
 
         plugins.forEach((plugin: DocSensePlugin) => {
-          stores.set(plugin.id, new Map())
-          plugin.exec(parser, stores.get(plugin.id))
+          plugin.exec(parser, db)
         })
 
         filesData.forEach((data, index) => {
@@ -52,7 +52,8 @@ const parseFiles = ({
           log.log('success', 'parse', filepaths[index])
         })
 
-        return stores
+        parser.emit('done')
+        return db
       })
     )
 }
@@ -65,7 +66,9 @@ const setupCorePlugins = (config: DocSenseConfig): Promise<any> => {
         .map(file => path.join('./core-plugins', file))
         .map(filepath => ({
           id: filepath,
-          exec: module.require('./' + filepath),
+          exec:
+            module.require('./' + filepath).default ||
+            module.require('./' + filepath),
         }))
       return resolve({ config, plugins })
     })
@@ -79,6 +82,4 @@ const reconcileStores = stores => {
 getConfig()
   .then(setupCorePlugins)
   .then(parseFiles)
-  .then(reconcileStores)
-  .then(logContext)
   .catch(fatalError)
