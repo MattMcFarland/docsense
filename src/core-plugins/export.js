@@ -6,16 +6,16 @@
 module.exports = function(engine, db) {
   const filesToAppend = []
   const appendToFiles = () => {
-    filesToAppend.forEach(({ id, value }) => {
-      const vars =
+    filesToAppend.forEach(({ key, id, value }) => {
+      const args =
         db
           .get('files')
           .find({ id })
-          .value().vars || []
+          .value()[key] || []
       db
         .get('files')
         .find({ id })
-        .assign({ vars: [value, ...vars] })
+        .assign({ [key]: [value, ...args] })
         .write()
     })
   }
@@ -28,9 +28,13 @@ module.exports = function(engine, db) {
     const params = _p && _p.map(param => param.name)
     filesToAppend.push({
       id: state.getFileName(),
+      key: 'namedExports',
       value: {
         exportName,
         params,
+        importHint: `import { ${exportName} } from '${state.getFileName()}'`,
+        signature: `${exportName}(${params ? params.join(', ') : ''})`,
+        tags: state.node.__doc_tags__,
       },
     })
   })
