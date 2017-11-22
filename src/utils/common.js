@@ -62,6 +62,7 @@ export const extractValuesFromEntries = (entries: entry[]): V[] =>
  * @returns {void}
  */
 export const fatalError = (err: Error): void => {
+  console.log(err)
   log.error(err)
   process.exit(1)
 }
@@ -89,3 +90,7 @@ export const dedupe = (arr: Array<any>): Array<any> =>
  * @returns {Array} deduped
  */
 export const flatten = (arr: Array<any>): Array<any> => [].concat(...arr)
+
+export const when = (predicate: Predicate, fn: Fn): Passthrough => (
+  context: any
+): any => (predicate() ? fn(context) : context)
