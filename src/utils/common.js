@@ -1,7 +1,4 @@
 // @flow
-type Contextual = string | number | Array<string> | Array<number> | void
-
-type Context = Contextual | ((...args: Array<any>) => Contextual)
 
 /**
  * Send a status message while in a promise chain

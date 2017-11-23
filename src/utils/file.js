@@ -1,6 +1,6 @@
 // @flow
 
-import { resolve as resolvePath } from 'path'
+import { resolve as resolvePath, join as joinPath } from 'path'
 import { promisify } from 'util'
 import fs from 'fs'
 import glob from 'glob'
@@ -11,22 +11,20 @@ const readFile = promisify(fs.readFile)
  * Processes a glob pattern to an array of files
  * @param {string} pattern pattern to resolve
  * @returns {Promise<string>} all matches found from the pattern
- * @throws {Error} If nothing is found
  * @see processAllGlobPatterns
  */
 export const processGlobPattern = (pattern: string): Promise<string[]> =>
-  new Promise((resolve, reject) => {
-    glob((pattern: string), (err: Error, matches: string[]) => {
-      if (err) return reject(err)
-      return resolve(matches)
-    })
-  })
+  new Promise((resolve, reject) =>
+    glob(
+      (pattern: string),
+      (err, matches) => (err ? reject(err) : resolve(matches))
+    )
+  )
 
 /**
  * Processes an array of glob patterns to an array of files
  * @param {string} pattern pattern to resolve
  * @returns {Promise<string[]>} all matches found from the pattern
- * @throws {Error} If nothing is found
  * @uses processGlobPattern
  */
 export const processAllGlobPatterns = (
@@ -100,8 +98,37 @@ export const openFileForReading = (filepath: string): Promise<string> =>
 export const readFiles = (filesArray: string[]): Promise<string[]> =>
   Promise.all(filesArray.map(safelyReadFile))
 
+/**
+ * Given an array of directory items (typically from fs.readdir), reduce it
+ * down to just js files
+ * @param {string[]} directory
+ */
 export const reduceDirectoryToJSFiles = (directory: string[]) =>
   directory.reduce((validFiles: string[], name: string) => {
     if (name.indexOf('.js') > -1) validFiles.push(name)
     return validFiles
   }, [])
+
+/**
+ * scan a directory using fs.readdir
+ * @param {string} directoryPath
+ */
+export const scanDirectory = (directoryPath: string) => (): Promise<string[]> =>
+  new Promise((resolve, reject) => {
+    fs.readdir(directoryPath, (err, directory) => {
+      if (err) return reject(err)
+      return resolve(directory)
+    })
+  })
+
+/**
+ * Given the current promise chain context, resolve the paths from the relativePath
+ * arguments
+ * @param {arguments} relativePath
+ */
+export const resolveContextRelativePaths = (...relativePath: string[]) => (
+  filenames: string[]
+): string[] =>
+  filenames.map((filename: string): string =>
+    joinPath(...relativePath, filename)
+  )
