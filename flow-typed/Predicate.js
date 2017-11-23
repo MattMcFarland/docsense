@@ -1,1 +1,1 @@
-type Predicate = (...args: Array<any>) => boolean
+declare type Predicate = (...args: Array<any>) => boolean

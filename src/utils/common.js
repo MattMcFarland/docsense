@@ -1,18 +1,19 @@
 // @flow
+type Contextual = string | number | Array<string> | Array<number> | void
+
+type Context = Contextual | ((...args: Array<any>) => Contextual)
 
 /**
  * Send a status message while in a promise chain
  * @param {string} msg
  * @returns {Passthrough} - context of the promise chain is unchanged.
  */
-export const status = (msg: string): Passthrough => (context: any): any => {
+export const status = (msg: string) => (context: Context): any => {
   log.info('status', msg)
   return context
 }
 
-export const logMap = (prefix: string): Passthrough => (
-  items: string[]
-): string[] => {
+export const logMap = (prefix: string) => (items: string[]): string[] => {
   items.forEach(item => log.info(prefix, item))
   return items
 }
@@ -21,7 +22,7 @@ export const logMap = (prefix: string): Passthrough => (
  * Changes context in promise chain
  * @param {*} newContext next thing in promise chain will focus on this
  */
-export const setContext = (newContext: any) => (): Promise<any> =>
+export const setContext = (newContext: Context) => (): Promise<any> =>
   Promise.resolve(newContext)
 
 /**
@@ -35,7 +36,7 @@ export const voidContext = setContext(undefined)
  * @param {string} key
  * @returns {entry}
  */
-export const contextAsEntry = (key: K): Fn => (context: V): entry => [
+export const contextAsEntry = <K, V>(key: K) => (context: V): Entry<K, V> => [
   key,
   context,
 ]
@@ -45,16 +46,19 @@ export const contextAsEntry = (key: K): Fn => (context: V): entry => [
  * @param {entry[]} entries
  * @returns {POJO} converted entries
  */
-export const convertEntriesToObject = (entries: entry[]): POJO =>
-  entries.reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {})
+export const convertEntriesToObject = <K, V>(entries: Entry<K, V>[]) =>
+  entries.reduce(
+    (obj, [key, value]) => Object.defineProperty(obj, key, { value }),
+    {}
+  )
 
 /**
  * Extracts values from entries
  * @param {entry[]} entries
  * @returns {V[]} values
  */
-export const extractValuesFromEntries = (entries: entry[]): V[] =>
-  entries.map(([key, value]) => value)
+export const extractValuesFromEntries = <K, V>(entries: Entry<K, V>[]): V[] =>
+  entries.map(([, value]: Entry<K, V>) => (value: V))
 
 /**
  * Logs error, exits 1
@@ -62,8 +66,7 @@ export const extractValuesFromEntries = (entries: entry[]): V[] =>
  * @returns {void}
  */
 export const fatalError = (err: Error): void => {
-  console.log(err)
-  log.error(err)
+  log.error('ERR', err)
   process.exit(1)
 }
 /**
@@ -71,7 +74,7 @@ export const fatalError = (err: Error): void => {
  * @param {*} context log this
  * @returns {*} context
  */
-export const logContext = (context: any): any => {
+export const logContext = (context: Context): any => {
   log.info('ctx', context)
   return context
 }
@@ -90,7 +93,3 @@ export const dedupe = (arr: Array<any>): Array<any> =>
  * @returns {Array} deduped
  */
 export const flatten = (arr: Array<any>): Array<any> => [].concat(...arr)
-
-export const when = (predicate: Predicate, fn: Fn): Passthrough => (
-  context: any
-): any => (predicate() ? fn(context) : context)

@@ -14,9 +14,9 @@ const readFile = promisify(fs.readFile)
  * @throws {Error} If nothing is found
  * @see processAllGlobPatterns
  */
-export const processGlobPattern = (pattern: string): Promise<string> =>
+export const processGlobPattern = (pattern: string): Promise<string[]> =>
   new Promise((resolve, reject) => {
-    glob(pattern, (err, matches) => {
+    glob((pattern: string), (err: Error, matches: string[]) => {
       if (err) return reject(err)
       return resolve(matches)
     })
@@ -29,8 +29,9 @@ export const processGlobPattern = (pattern: string): Promise<string> =>
  * @throws {Error} If nothing is found
  * @uses processGlobPattern
  */
-export const processAllGlobPatterns = (patterns: string[]): Promise<string[]> =>
-  Promise.all(patterns.map(processGlobPattern))
+export const processAllGlobPatterns = (
+  patterns: string[]
+): Promise<Array<string[]>> => Promise.all(patterns.map(processGlobPattern))
 
 /**
  * Converts resolves the full path of the filepath relative to the current working directory.
@@ -58,7 +59,7 @@ export const resolveAllFilePathsFromCWD = (relativePaths: string[]): string[] =>
  * @uses openFileForReading
  * @uses contextAsEntry
  */
-export const safelyReadFile = (filepath: string): Promise<entry> =>
+export const safelyReadFile = (filepath: string): Promise<string> =>
   resolveFile(filepath).then(openFileForReading)
 
 /**
@@ -87,7 +88,7 @@ export const resolveFile = (filepath: string): Promise<string> => {
  * @param {string} filepath - fs.readfile this
  * @returns {string} utf-8 content
  */
-export const openFileForReading = (filepath: string) =>
+export const openFileForReading = (filepath: string): Promise<string> =>
   readFile(filepath, 'utf-8')
 
 /**
@@ -96,5 +97,11 @@ export const openFileForReading = (filepath: string) =>
  * @returns {Promise<entry[]>} - A promise when all files have been read
  * @uses safelyReadFile
  */
-export const readFiles = (filesArray: string[]): Promise<entry[]> =>
+export const readFiles = (filesArray: string[]): Promise<string[]> =>
   Promise.all(filesArray.map(safelyReadFile))
+
+export const reduceDirectoryToJSFiles = (directory: string[]) =>
+  directory.reduce((validFiles: string[], name: string) => {
+    if (name.indexOf('.js') > -1) validFiles.push(name)
+    return validFiles
+  }, [])

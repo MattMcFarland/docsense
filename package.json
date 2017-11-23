@@ -6,6 +6,7 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "jest",
+    "flow": "flow stop ; flow",
     "precommit": "flow && lint-staged",
     "clean": "rm -rf out docs lib && mkdir docs lib",
     "prebuild": "flow && yarn clean",
