@@ -1,3 +1,4 @@
+//@flow
 import logger from 'npmlog'
 import pkg from '../package.json'
 

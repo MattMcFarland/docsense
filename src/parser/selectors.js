@@ -1,7 +1,8 @@
-import { path, flip, partialRight } from 'ramda'
+//@flow
+import { path } from 'ramda'
 
-const dotget = dotpath => path(dotpath.split('.'))
-export default ctx => {
+const dotget = (dotpath: string): any => path(dotpath.split('.'))
+export default (ctx: any): any => {
   const node = ctx.node
   ctx.getFileName = () => dotget('loc.filename')(node)
   ctx.getRoot = () => (ctx.isRoot ? node : dotget('parents.0.node')(node))
