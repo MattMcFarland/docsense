@@ -1,4 +1,4 @@
-const { testPlugin, registerPlugin } = require('./utils/testPlugin')
+const { testPlugin } = require('./utils/testPlugin')
 const exportPlugin = require('../export')
 const namedExports = [
   'export { name1, name2, name3 };',

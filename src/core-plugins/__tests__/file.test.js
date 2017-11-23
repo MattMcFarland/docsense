@@ -1,4 +1,4 @@
-const { testPlugin, registerPlugin } = require('./utils/testPlugin')
+const { testPlugin } = require('./utils/testPlugin')
 const filePlugin = require('../file')
 
 describe('Core Plugin: file', () => {
