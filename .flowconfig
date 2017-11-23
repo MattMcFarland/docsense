@@ -1,13 +1,13 @@
 [include]
-./lib/*
+./src/*
 
 [lints]
 all=warn
 
 [ignore]
 .*/docs/.*
-./src/logger.js
+
 
 [libs]
 flow-typed
-.*/node_modules/.*
+

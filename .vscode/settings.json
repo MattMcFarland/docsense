@@ -7,5 +7,6 @@
   "files.associations": {
     ".docsenserc": "json",
     ".prettierrc": "json"
-  }
+  },
+  "editor.rulers": [80]
 }

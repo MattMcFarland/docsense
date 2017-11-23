@@ -531,7 +531,7 @@ export interface Lowdb$Options {
   writeOnChange?: boolean;
 }
 
-declare export class Lowdb {
+declare export class Lowdb extends LoDashWrapper<LowEntryClass> {
   constructor(filePath: string, options?: Lowdb$Options): this;
 
   /**
@@ -569,8 +569,4 @@ declare export class Lowdb {
    * @param source The source location.
    */
   read(source?: string): Lowdb$PromiseLike<any>;
-}
-
-declare module 'lowdb' {
-  declare export default typeof Lowdb$Lowdb
 }

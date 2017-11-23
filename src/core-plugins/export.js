@@ -1,5 +1,8 @@
-module.exports = function(engine, db) {
-  db.set('export_collection', []).write()
+// @flow
+import type ParseEngine from '../parser/ParseEngine'
+
+module.exports = function(engine: ParseEngine, db: Lowdb): void {
+  ;(db.set('export_collection', []): Lowdb).write()
   const push = data => {
     db
       .get('export_collection')

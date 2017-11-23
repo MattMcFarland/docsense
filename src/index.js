@@ -29,27 +29,27 @@ const parseFiles = ({
 }: {
   config: DocSenseConfig,
   plugins: DocSensePlugin[],
-}): Promise<any> => {
-  if (config.packages) {
-    console.log('packages are not yet supported')
-    process.exit(1)
-  }
+}): Promise<Lowdb> => {
   return processAllGlobPatterns(config.files)
     .then(flatten)
     .then(dedupe)
-    .then(filepaths =>
-      readFiles(filepaths).then(filesData => {
-        const parser = new ParseEngine(config.parser, config.parseOptions)
-        const db = create(config.out)
+    .then((filepaths: string[]) =>
+      readFiles(filepaths).then((filesData: any) => {
+        const parser: ParseEngine = new ParseEngine(
+          config.parser,
+          config.parseOptions
+        )
+        const db: Lowdb = create(config.out)
 
-        plugins.forEach((plugin: DocSensePlugin) => {
+        plugins.forEach((plugin: PluginAPI) => {
           plugin.exec(parser, db)
         })
 
         filesData.forEach((data, index) => {
-          log.info('parse', filepaths[index])
-          parser.addFile(filepaths[index], data.toString())
-          log.log('success', 'parse', filepaths[index])
+          const filepath: string = filepaths[index]
+          log.info('parse', filepath)
+          parser.addFile(filepath, data.toString())
+          log.log('success', 'parse', filepath)
         })
 
         parser.emit('done')
@@ -58,29 +58,29 @@ const parseFiles = ({
     )
 }
 
-const setupCorePlugins = (config: DocSenseConfig): Promise<any> => {
+const setupCorePlugins = (
+  config: DocSenseConfig
+): Promise<{ config: DocSenseConfig, plugins: PluginAPI[] }> => {
   return new Promise((resolve, reject) => {
-    fs.readdir(path.resolve(__dirname, 'core-plugins'), (err, files) => {
-      if (err) return reject(err)
-      const plugins = files
-        .reduce((acc, name) => {
-          if (name.indexOf('.js') > -1) acc.push(name)
-          return acc
-        }, [])
-        .map(file => path.join('./core-plugins', file))
-        .map(filepath => ({
-          id: filepath,
-          exec:
-            module.require('./' + filepath).default ||
-            module.require('./' + filepath),
-        }))
-      return resolve({ config, plugins })
-    })
+    fs.readdir(
+      path.resolve(__dirname, 'core-plugins'),
+      (err, files: string[]) => {
+        if (err) return reject(err)
+        const plugins: PluginAPI[] = files
+          .reduce((acc: string[], name: string) => {
+            if (name.indexOf('.js') > -1) acc.push(name)
+            return acc
+          }, [])
+          .map((file: string) => path.join('./core-plugins', file))
+          .map((filepath: string): PluginAPI => ({
+            id: filepath,
+            exec: ((module.require('./' + filepath).default ||
+              module.require('./' + filepath): any): DocSensePlugin),
+          }))
+        return resolve({ config, plugins })
+      }
+    )
   })
-}
-
-const reconcileStores = stores => {
-  return convertEntriesToObject(Array.of(...stores))
 }
 
 getConfig()
