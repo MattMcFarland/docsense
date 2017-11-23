@@ -1,9 +1,7 @@
 import EventEmitter from 'events'
 import traverse from 'traverse'
 import withSelectors from './selectors'
-
-// created this using regex101, work is here: https://regex101.com/r/jrLmHj/4/
-const tagRegex = /(@\w+)([\t \S]*{[\s]*(\w+)[\s]*}[\t \S](\[[\t \S]+\]|\b\S+\b))?[\s]+(.*)[\r\n]/gi
+import doctrine from 'doctrine'
 
 export default class ParseEngine extends EventEmitter {
   constructor(parserName: string, parseOptions?: any = {}) {
@@ -14,7 +12,6 @@ export default class ParseEngine extends EventEmitter {
   }
   addFile(fileName: string, data: string) {
     const ast = this.parse(data, { sourceFilename: fileName })
-    ast.__id__ = new Identifier(fileName, ast.start, ast.end)
     this.emitNodes(ast)
   }
   parse(data: string, options?: any = {}) {
@@ -33,29 +30,6 @@ export default class ParseEngine extends EventEmitter {
   }
 }
 
-class Identifier {
-  type: string
-  start: number
-  end: number
-  loc: {
-    start: number,
-    end: number,
-    identifierName: string,
-  }
-  name: string
-  constructor(name: string, start: number, end: number) {
-    this.name = name
-    this.start = start
-    this.end = end
-    this.loc = {
-      start,
-      end,
-      identifierName: name,
-    }
-    return this
-  }
-}
-
 function maybeInjectTags(node) {
   if (node && node.type) {
     if (Array.isArray(node.leadingComments)) {
@@ -63,7 +37,10 @@ function maybeInjectTags(node) {
         (acc, leadingComment, index) => {
           if (leadingComment.type === 'CommentBlock') {
             return [].concat(
-              createCommentTagMeta(leadingComment, leadingComment.loc),
+              doctrine.parse(leadingComment.value, {
+                unwrap: true,
+                sloppy: true,
+              }),
               acc
             )
           }
@@ -72,20 +49,4 @@ function maybeInjectTags(node) {
       )
     }
   }
-}
-
-function createCommentTagMeta({ value = '' }: { value: string }, loc) {
-  let matches = []
-  const result = []
-
-  value.replace(tagRegex, (match, tagName, _, tagType, label, description) => {
-    if (tagName) {
-      const tag: DocTag = { tagName }
-      if (tagType) tag.tagType = tagType
-      if (label) tag.label = label
-      if (description) tag.description = description
-      result.push(tag)
-    }
-  })
-  return result
 }

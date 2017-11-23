@@ -5,10 +5,12 @@
     "WIP - Beautiful ES Doc generation with or without code comments",
   "main": "lib/index.js",
   "scripts": {
+    "test": "jest",
     "precommit": "flow && lint-staged",
     "clean": "rm -rf out docs lib && mkdir docs lib",
     "prebuild": "flow && yarn clean",
-    "build": "babel src --out-dir lib --ignore spec.js,test.js --copy-files",
+    "build":
+      "babel src --out-dir lib --ignore __tests__,spec.js,test.js --copy-files",
     "docs": "node lib/index.js **/*.js",
     "predebug": "yarn build",
     "debug": "node lib/index.js",
@@ -19,6 +21,10 @@
   "lint-staged": {
     "*.{js,json,prettierrc,babelrc,docsenserc}": ["prettier --write", "git add"]
   },
+  "jest": {
+    "testMatch": ["**/__tests__/**/*.test.js"],
+    "testPathIgnorePatterns": ["/lib/", "/node_modules/"]
+  },
   "keywords": [],
   "author": "Matt McFarland <contact@mattmcfarland.com>",
   "license": "MIT",
@@ -26,6 +32,7 @@
     "babylon": "7.0.0-beta.32",
     "cosmiconfig": "^3.1.0",
     "deepmerge": "^2.0.1",
+    "doctrine": "^2.0.0",
     "glob": "^7.1.2",
     "lowdb": "^1.0.0",
     "npmlog": "^4.1.2",
@@ -37,8 +44,10 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.32",
     "@babel/preset-env": "^7.0.0-beta.32",
     "@babel/preset-flow": "^7.0.0-beta.32",
+    "babel-jest": "^21.2.0",
     "flow-bin": "^0.59.0",
     "husky": "^0.14.3",
+    "jest": "^21.2.1",
     "lint-staged": "^5.0.0",
     "pkg-ok": "^1.1.0",
     "prettier": "^1.8.2"

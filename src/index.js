@@ -63,6 +63,10 @@ const setupCorePlugins = (config: DocSenseConfig): Promise<any> => {
     fs.readdir(path.resolve(__dirname, 'core-plugins'), (err, files) => {
       if (err) return reject(err)
       const plugins = files
+        .reduce((acc, name) => {
+          if (name.indexOf('.js') > -1) acc.push(name)
+          return acc
+        }, [])
         .map(file => path.join('./core-plugins', file))
         .map(filepath => ({
           id: filepath,
