@@ -3,8 +3,7 @@
 import { EventEmitter } from 'events'
 import traverse from 'traverse'
 import withSelectors from './selectors'
-import Doctrine, { Syntax } from 'doctrine'
-import Babylon from 'babylon'
+import Doctrine from 'doctrine'
 
 /**
  * Parser
