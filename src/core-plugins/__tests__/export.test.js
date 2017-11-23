@@ -16,20 +16,42 @@ const defaultExports = [
 ]
 const exportAll = 'export * from "baz"'
 
-describe('core-plugin - export', () => {
+describe('Core Plugin: export', () => {
   describe('Named Exports', () => {
     namedExports.forEach(namedExport => {
       test(namedExport, async () => {
-        const initialState = { files: [{ id: '__TEST__' }] }
-        state = await testPlugin(initialState, exportPlugin, namedExport)
-        const actual = state.files[0].exports
+        const runTest = testPlugin({}, '__TEST__')
+        const state = await runTest(exportPlugin, namedExport)
+        const actual = state.export_collection
         const expected = [
-          { exportName: 'name1' },
-          { exportName: 'name2' },
-          { exportName: 'name3' },
+          { export_id: 'name1', file_id: '__TEST__' },
+          { export_id: 'name2', file_id: '__TEST__' },
+          { export_id: 'name3', file_id: '__TEST__' },
         ]
         expect(actual).toEqual(expected)
       })
+    })
+  })
+  describe('Default Exports', () => {
+    defaultExports.forEach(defaultExport => {
+      test(defaultExport, async () => {
+        const runTest = testPlugin({}, '__TEST__')
+        const state = await runTest(exportPlugin, defaultExport)
+        const actual = state.export_collection
+        const expected = [{ export_id: 'default', file_id: '__TEST__' }]
+        expect(actual).toEqual(expected)
+      })
+    })
+  })
+  describe('Export All', () => {
+    test(exportAll, async () => {
+      const runTest = testPlugin({}, '__TEST__')
+      const state = await runTest(exportPlugin, exportAll)
+      const actual = state.export_collection
+      const expected = [
+        { export_id: 'all', file_id: '__TEST__', source_id: 'baz' },
+      ]
+      expect(actual).toEqual(expected)
     })
   })
 })

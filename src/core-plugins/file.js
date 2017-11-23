@@ -1,9 +1,9 @@
 module.exports = function(engine, db) {
-  db.set('files', []).write()
+  db.set('file_collection', []).write()
   engine.on('File', (state, value) => {
     db
-      .get('files')
-      .push({ id: state.getFileName() })
+      .get('file_collection')
+      .push({ file_id: state.getFileName() })
       .write()
   })
 }
