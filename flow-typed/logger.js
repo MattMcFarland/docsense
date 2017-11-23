@@ -1,1 +1,1 @@
-declare function log(prefix: string, ...args: any): void
+declare function log(prefix: string, ...args: Array<any>): void

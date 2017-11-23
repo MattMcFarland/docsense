@@ -8,8 +8,6 @@ type V = any
 type entry = [K, V]
 /** @typedef POJO Plain old Javascript Object, AKA Object Literal */
 type POJO = { [K]: V }
-/** @typedef AST Abstract Syntax Tree */
-type AST = { ...AST }
 /** @typedef Passthrough returns the original context */
 
 type Passthrough = (any: any) => any

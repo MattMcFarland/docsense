@@ -9,7 +9,7 @@ type DocSenseConfig = {
   /** @property {string} parser - module name that will parse the AST, this will be "required" in and use parser.parse */
   parser: string,
   /** @property {any} parseOptions - options passed as options to parser */
-  parseOptions: any,
+  parseOptions: ParseOptions,
   userCorePlugins: boolean,
   out: string,
 }
