@@ -6,15 +6,13 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "jest",
-    "flow": "flow stop ; flow",
-    "precommit": "flow && lint-staged",
+    "precommit": "lint-staged",
     "clean": "rm -rf out docs lib && mkdir docs lib",
-    "prebuild": "flow && yarn clean",
+    "prebuild": "flow check && yarn clean",
     "build":
       "babel src --out-dir lib --ignore __tests__,spec.js,test.js --copy-files",
     "docs": "node lib/index.js **/*.js",
-    "predebug": "yarn build",
-    "debug": "node lib/index.js",
+    "debug": "node -r @babel/register src/index.js --inspect",
     "prepublishOnly": "yarn build && yarn docs && pkg-ok",
     "prettier":
       "prettier --write src/**/*.{js,json,prettierrc,babelrc,docsenserc}"
@@ -30,7 +28,6 @@
   "author": "Matt McFarland <contact@mattmcfarland.com>",
   "license": "MIT",
   "dependencies": {
-    "@types/doctrine": "^0.0.3",
     "babylon": "7.0.0-beta.32",
     "cosmiconfig": "^3.1.0",
     "deepmerge": "^2.0.1",
@@ -47,6 +44,8 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.32",
     "@babel/preset-env": "^7.0.0-beta.32",
     "@babel/preset-flow": "^7.0.0-beta.32",
+    "@babel/register": "^7.0.0-beta.32",
+    "@types/doctrine": "^0.0.3",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^21.2.0",
     "flow-bin": "^0.59.0",
