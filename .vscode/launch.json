@@ -7,8 +7,11 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "debug",
+      "name": "Debug",
+      "cwd": "${workspaceFolder}",
       "runtimeExecutable": "yarn",
+      "protocol": "inspector",
+      "program": "${workspaceFolder}/src/index.js",
       "runtimeArgs": ["debug"],
       "port": 9229
     }
