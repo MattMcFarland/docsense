@@ -50,14 +50,6 @@ export const convertEntriesToObject = <K, V>(entries: Entry<K, V>[]) =>
   )
 
 /**
- * Extracts values from entries
- * @param {entry[]} entries
- * @returns {V[]} values
- */
-export const extractValuesFromEntries = <K, V>(entries: Entry<K, V>[]): V[] =>
-  entries.map(([, value]: Entry<K, V>) => (value: V))
-
-/**
  * Logs error, exits 1
  * @param {Error} err error object
  * @returns {void}
@@ -90,3 +82,11 @@ export const dedupe = (arr: Array<any>): Array<any> =>
  * @returns {Array} deduped
  */
 export const flatten = (arr: Array<any>): Array<any> => [].concat(...arr)
+
+/**
+ * Extracts values from entries
+ * @param {entry[]} entries
+ * @returns {V[]} values
+ */
+export const extractValuesFromEntries = <K, V>(entries: Entry<K, V>[]): V[] =>
+  entries.map(([, value]: Entry<K, V>) => (value: V))
