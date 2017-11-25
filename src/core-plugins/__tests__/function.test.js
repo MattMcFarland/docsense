@@ -221,10 +221,105 @@ describe('Core Plugin: function', () => {
         const expected = [
           {
             file_id: '__TEST__',
-            function_id: 'name',
-            location_id: '1:17',
+            function_id: 'anonymous',
+            location_id: '1:10',
           },
         ]
+        expect(actual).toEqual(expected)
+      })
+    })
+  })
+  describe('Complex Functions', () => {
+    const complex = {
+      'function Foo () { return () => ({})}': [
+        {
+          file_id: '__TEST__',
+          function_id: 'Foo',
+          location_id: '1:0',
+        },
+        {
+          file_id: '__TEST__',
+          function_id: 'anonymous',
+          location_id: '1:25',
+        },
+      ],
+      'const foo = () => { return () => ({})}': [
+        {
+          file_id: '__TEST__',
+          function_id: 'foo',
+          location_id: '1:12',
+        },
+        {
+          file_id: '__TEST__',
+          function_id: 'anonymous',
+          location_id: '1:27',
+        },
+      ],
+      'module.exports.foo = foo(()=>{})': [
+        {
+          file_id: '__TEST__',
+          function_id: 'anonymous',
+          location_id: '1:25',
+        },
+      ],
+      'module.exports.foo = function () {}': [
+        {
+          file_id: '__TEST__',
+          function_id: 'foo',
+          location_id: '1:21',
+        },
+      ],
+      'exports.foo = function bar () {}': [
+        {
+          file_id: '__TEST__',
+          function_id: 'foo',
+          location_id: '1:14',
+        },
+      ],
+      'module.exports.foo = () => bar': [
+        {
+          file_id: '__TEST__',
+          function_id: 'foo',
+          location_id: '1:21',
+        },
+      ],
+      'exports.foo.bar = () => bar': [
+        {
+          file_id: '__TEST__',
+          function_id: 'bar',
+          location_id: '1:18',
+        },
+      ],
+      'exports = { foo: () => bar, bar: () => baz }': [
+        {
+          file_id: '__TEST__',
+          function_id: 'foo',
+          location_id: '1:17',
+        },
+        {
+          file_id: '__TEST__',
+          function_id: 'bar',
+          location_id: '1:33',
+        },
+      ],
+      'module.exports = { foo: () => bar, bar: () => baz }': [
+        {
+          file_id: '__TEST__',
+          function_id: 'foo',
+          location_id: '1:24',
+        },
+        {
+          file_id: '__TEST__',
+          function_id: 'bar',
+          location_id: '1:40',
+        },
+      ],
+    }
+    Object.entries(complex).forEach(([fn, expected]) => {
+      test(fn, async () => {
+        const runTest = testPlugin({}, '__TEST__')
+        const state = await runTest(functionPlugin, fn)
+        const actual = state.function_collection
         expect(actual).toEqual(expected)
       })
     })
