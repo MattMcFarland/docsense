@@ -33,6 +33,7 @@
     "deepmerge": "^2.0.1",
     "doctrine": "^2.0.0",
     "glob": "^7.1.2",
+    "json-query": "^2.2.2",
     "lowdb": "^1.0.0",
     "npmlog": "^4.1.2",
     "ramda": "^0.25.0",
