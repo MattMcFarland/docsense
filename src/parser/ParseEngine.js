@@ -80,9 +80,22 @@ export default class ParseEngine extends EventEmitter {
     // so we dont use an arrow function, and we alias parseEngine
     const parseEngine = this
     traverse(ast).forEach(function(value: ASTNode) {
+      const contextSymbol = Symbol('ContextSymbol')
+      this[contextSymbol] = 'ContextSymbol'
       if (value && value.type) {
-        parseEngine.maybeInjectTags(value)
-        parseEngine.emit(value.type, withSelectors(this), value)
+        const ctx = this
+        ctx.pathByType = ctx.path.map((id, index) => {
+          const cursor = ctx.parents[index]
+          cursor[contextSymbol] = 'ContextSymbol'
+          if (cursor && cursor.node) {
+            if (Array.isArray(cursor.node)) {
+              return cursor.node[parseInt(id)].type
+            }
+            return cursor.node.type
+          }
+          return id
+        })
+        parseEngine.emit(value.type, withSelectors(ctx, contextSymbol), value)
       }
     })
   }
