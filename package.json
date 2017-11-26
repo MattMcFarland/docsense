@@ -6,6 +6,8 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "jest",
+    "test:debug":
+      "node -r @babel/register --inspect-brk=9229 --nolazy node_modules/.bin/jest",
     "precommit": "lint-staged",
     "clean": "rm -rf out docs lib && mkdir docs lib",
     "prebuild": "flow check && yarn clean",

@@ -11,8 +11,17 @@
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "yarn",
       "protocol": "inspector",
-      "program": "${workspaceFolder}/src/index.js",
       "runtimeArgs": ["debug"],
+      "port": 9229
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Test:Debug",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "yarn",
+      "protocol": "inspector",
+      "runtimeArgs": ["test:debug"],
       "port": 9229
     }
   ]
