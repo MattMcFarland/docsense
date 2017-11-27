@@ -19,21 +19,16 @@ module.exports = function(engine: ParseEngine, db: Lowdb): void {
     return handleFn(ctx, 'FunctionDeclaration')
   })
   function handleFn(ctx, nodeType) {
-    const function_id = getFunctionId(ctx, nodeType)
     const file_id = ctx.getFileName()
     const line = ctx.get('loc.start.line')
     const column = ctx.get('loc.start.column')
     const location_id = `${line}:${column}`
+    const function_id = (ctx.get('id.name') || 'anonymous') + '@' + location_id
+    const var_id = ctx.maybeVariableDeclaration()
     return push({
       function_id,
       file_id,
-      location_id,
+      var_id,
     })
-  }
-  function getFunctionId(ctx, nodeType) {
-    if (ctx.get('id.name')) {
-      return ctx.get('id.name')
-    }
-    return 'anonymous'
   }
 }

@@ -89,7 +89,8 @@ export default class ParseEngine extends EventEmitter {
           cursor[contextSymbol] = 'ContextSymbol'
           if (cursor && cursor.node) {
             if (Array.isArray(cursor.node)) {
-              return cursor.node[parseInt(id)].type
+              if (cursor.node[parseInt(id)])
+                return cursor.node[parseInt(id)].type
             }
             return cursor.node.type
           }

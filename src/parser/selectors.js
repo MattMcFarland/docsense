@@ -28,11 +28,28 @@ const selectors = (ctx: any, contextSymbol: any): any => {
     }, [])
   }
   ctx.closest = typeSelector => {
-    ctx.pathByType.forEach(parent => {
-      if (parent.node && parent.node.type === typeSelector) {
-        return selectors(parent)
+    let result = undefined
+    ctx.parents.reverse().forEach(parent => {
+      if (parent && parent.node && parent.node.type === typeSelector) {
+        result = selectors(parent)
       }
     })
+    return result
+  }
+  ctx.isDeclaration = () => Boolean(ctx.closest('VariableDeclaration'))
+  ctx.closestFunction = () =>
+    ctx.closest('ArrowFunctionExpression') ||
+    ctx.closest('FunctionExpression') ||
+    ctx.closest('FunctionDeclaration')
+  ctx.maybeVariableDeclaration = () => {
+    const declarations = ctx.closest('VariableDeclaration')
+    if (!declarations) return undefined
+    const closestFunction = ctx.closestFunction()
+    if (closestFunction && closestFunction.level > declarations.level) {
+      return undefined
+    }
+    const nodeName = declarations.get('declarations.0.id.name')
+    if (nodeName) return nodeName
   }
   return ctx
 }
