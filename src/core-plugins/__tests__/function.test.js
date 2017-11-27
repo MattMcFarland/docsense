@@ -62,9 +62,8 @@ describe('Core Plugin: function', () => {
         const actual = state.function_collection
         const expected = [
           {
-            export_id: 'default',
             file_id: '__TEST__',
-            function_id: 'default',
+            function_id: 'anonymous',
             location_id: '1:15',
           },
         ]
@@ -72,7 +71,24 @@ describe('Core Plugin: function', () => {
       })
     })
   })
-  describe('Function Expressions', () => {
+  describe('Export Named Function', () => {
+    exportFns.forEach(fn => {
+      test(fn, async () => {
+        const runTest = testPlugin({}, '__TEST__')
+        const state = await runTest(functionPlugin, fn)
+        const actual = state.function_collection
+        const expected = [
+          {
+            file_id: '__TEST__',
+            function_id: 'anonymous',
+            location_id: '1:20',
+          },
+        ]
+        expect(actual).toEqual(expected)
+      })
+    })
+  })
+  describe.only('Function Expressions', () => {
     expressIFFEs.forEach(fn => {
       test(fn, async () => {
         const runTest = testPlugin({}, '__TEST__')
@@ -96,7 +112,7 @@ describe('Core Plugin: function', () => {
         const expected = [
           {
             file_id: '__TEST__',
-            function_id: 'name',
+            function_id: 'anonymous',
             location_id: '1:13',
           },
         ]
@@ -111,7 +127,7 @@ describe('Core Plugin: function', () => {
         const expected = [
           {
             file_id: '__TEST__',
-            function_id: 'name',
+            function_id: 'anonymous',
             location_id: '1:20',
           },
         ]
@@ -125,10 +141,9 @@ describe('Core Plugin: function', () => {
         const actual = state.function_collection
         const expected = [
           {
-            export_id: 'name',
             file_id: '__TEST__',
-            function_id: 'name',
-            location_id: '1:20',
+            function_id: 'anonymous',
+            location_id: '1:17',
           },
         ]
         expect(actual).toEqual(expected)
@@ -141,17 +156,16 @@ describe('Core Plugin: function', () => {
         const actual = state.function_collection
         const expected = [
           {
-            export_id: 'name',
             file_id: '__TEST__',
-            function_id: 'name',
-            location_id: '1:20',
+            function_id: 'anonymous',
+            location_id: '1:10',
           },
         ]
         expect(actual).toEqual(expected)
       })
     })
   })
-  describe('Arrow Expressions', () => {
+  describe.only('Arrow Expressions', () => {
     arrowVars.forEach(fn => {
       test(fn, async () => {
         const runTest = testPlugin({}, '__TEST__')
@@ -160,7 +174,7 @@ describe('Core Plugin: function', () => {
         const expected = [
           {
             file_id: '__TEST__',
-            function_id: 'name',
+            function_id: 'anonymous',
             location_id: '1:13',
           },
         ]
@@ -175,7 +189,7 @@ describe('Core Plugin: function', () => {
         const expected = [
           {
             file_id: '__TEST__',
-            function_id: 'name',
+            function_id: 'anonymous',
             location_id: '1:20',
           },
         ]
@@ -189,9 +203,8 @@ describe('Core Plugin: function', () => {
         const actual = state.function_collection
         const expected = [
           {
-            export_id: 'name',
             file_id: '__TEST__',
-            function_id: 'name',
+            function_id: 'anonymous',
             location_id: '1:20',
           },
         ]
@@ -206,7 +219,7 @@ describe('Core Plugin: function', () => {
         const expected = [
           {
             file_id: '__TEST__',
-            function_id: 'name',
+            function_id: 'anonymous',
             location_id: '1:17',
           },
         ]
@@ -225,101 +238,6 @@ describe('Core Plugin: function', () => {
             location_id: '1:10',
           },
         ]
-        expect(actual).toEqual(expected)
-      })
-    })
-  })
-  describe('Complex Functions', () => {
-    const complex = {
-      'function Foo () { return () => ({})}': [
-        {
-          file_id: '__TEST__',
-          function_id: 'Foo',
-          location_id: '1:0',
-        },
-        {
-          file_id: '__TEST__',
-          function_id: 'anonymous',
-          location_id: '1:25',
-        },
-      ],
-      'const foo = () => { return () => ({})}': [
-        {
-          file_id: '__TEST__',
-          function_id: 'foo',
-          location_id: '1:12',
-        },
-        {
-          file_id: '__TEST__',
-          function_id: 'anonymous',
-          location_id: '1:27',
-        },
-      ],
-      'module.exports.foo = foo(()=>{})': [
-        {
-          file_id: '__TEST__',
-          function_id: 'anonymous',
-          location_id: '1:25',
-        },
-      ],
-      'module.exports.foo = function () {}': [
-        {
-          file_id: '__TEST__',
-          function_id: 'foo',
-          location_id: '1:21',
-        },
-      ],
-      'exports.foo = function bar () {}': [
-        {
-          file_id: '__TEST__',
-          function_id: 'foo',
-          location_id: '1:14',
-        },
-      ],
-      'module.exports.foo = () => bar': [
-        {
-          file_id: '__TEST__',
-          function_id: 'foo',
-          location_id: '1:21',
-        },
-      ],
-      'exports.foo.bar = () => bar': [
-        {
-          file_id: '__TEST__',
-          function_id: 'bar',
-          location_id: '1:18',
-        },
-      ],
-      'exports = { foo: () => bar, bar: () => baz }': [
-        {
-          file_id: '__TEST__',
-          function_id: 'foo',
-          location_id: '1:17',
-        },
-        {
-          file_id: '__TEST__',
-          function_id: 'bar',
-          location_id: '1:33',
-        },
-      ],
-      'module.exports = { foo: () => bar, bar: () => baz }': [
-        {
-          file_id: '__TEST__',
-          function_id: 'foo',
-          location_id: '1:24',
-        },
-        {
-          file_id: '__TEST__',
-          function_id: 'bar',
-          location_id: '1:40',
-        },
-      ],
-    }
-    Object.entries(complex).forEach(([fn, expected]) => {
-      test(fn, async () => {
-        const runTest = testPlugin({}, '__TEST__')
-        const state = await runTest(functionPlugin, fn)
-        const actual = state.function_collection
         expect(actual).toEqual(expected)
       })
     })
