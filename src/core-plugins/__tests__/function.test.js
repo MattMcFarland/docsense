@@ -58,6 +58,56 @@ const suites = {
       },
     ],
   },
+  'Object Functions': {
+    'const foo = { bar: () => {} }': [
+      {
+        file_id: '__TEST__',
+        object_key: 'bar',
+        object_id: 'foo',
+        function_id: 'anonymous@1:19',
+      },
+    ],
+    'const obj = { foo: () => {}, bar: function () {}, baz: function Baz () {} }': [
+      {
+        file_id: '__TEST__',
+        object_key: 'foo',
+        object_id: 'obj',
+        function_id: 'anonymous@1:19',
+      },
+      {
+        file_id: '__TEST__',
+        object_key: 'bar',
+        object_id: 'obj',
+        function_id: 'anonymous@1:34',
+      },
+      {
+        file_id: '__TEST__',
+        object_key: 'baz',
+        object_id: 'obj',
+        function_id: 'Baz@1:55',
+      },
+    ],
+    'namespace.obj = { foo: () => {}, bar: function () {}, baz: function Baz () {} }': [
+      {
+        file_id: '__TEST__',
+        object_key: 'foo',
+        object_id: 'obj',
+        function_id: 'anonymous@1:19',
+      },
+      {
+        file_id: '__TEST__',
+        object_key: 'bar',
+        object_id: 'obj',
+        function_id: 'anonymous@1:34',
+      },
+      {
+        file_id: '__TEST__',
+        object_key: 'baz',
+        object_id: 'obj',
+        function_id: 'Baz@1:55',
+      },
+    ],
+  },
 }
 
 describe.only('Core Plugin: function', () => {

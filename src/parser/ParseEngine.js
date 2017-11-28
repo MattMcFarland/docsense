@@ -1,9 +1,8 @@
 // @flow
 
 import { EventEmitter } from 'events'
-import traverse from 'traverse'
-import withSelectors from './selectors'
 import Doctrine from 'doctrine'
+import traverse from '@babel/traverse'
 
 /**
  * Parser
@@ -76,40 +75,26 @@ export default class ParseEngine extends EventEmitter {
    * @param {File} ast
    */
   emitNodes(ast: File) {
-    // traverse uses keyword 'this' for context to the node itself,
-    // so we dont use an arrow function, and we alias parseEngine
-    const parseEngine = this
-    traverse(ast).forEach(function(value: ASTNode) {
-      const contextSymbol = Symbol('ContextSymbol')
-      this[contextSymbol] = 'ContextSymbol'
-      if (value && value.type) {
-        const ctx = this
-        ctx.pathByType = ctx.path.map((id, index) => {
-          const cursor = ctx.parents[index]
-          cursor[contextSymbol] = 'ContextSymbol'
-          if (cursor && cursor.node) {
-            if (Array.isArray(cursor.node)) {
-              if (cursor.node[parseInt(id)])
-                return cursor.node[parseInt(id)].type
-            }
-            return cursor.node.type
-          }
-          return id
-        })
-        parseEngine.emit(value.type, withSelectors(ctx, contextSymbol), value)
-      }
+    const self = this
+    traverse(ast, {
+      enter(path) {
+        self.maybeInjectTags(path)
+        self.emit('enter:' + path.type, path)
+      },
+      exit(path) {
+        self.emit('exit:' + path.type, path)
+        self.emit(path.type, path)
+      },
     })
   }
 
   /**
    * Parse JSDoc and inject comment tags if applicable,
-   * @param {ASTNode} node
+   * @param {any} path
    */
-  maybeInjectTags(node: ASTNode): void {
-    if (node && node.type) {
-      if (Array.isArray(node.leadingComments)) {
-        node.__doc_tags__ = this.injectTags(node.leadingComments)
-      }
+  maybeInjectTags(path: any): void {
+    if (Array.isArray(path.node.leadingComments)) {
+      path.__doc_tags__ = this.injectTags(path.node.leadingComments)
     }
   }
 

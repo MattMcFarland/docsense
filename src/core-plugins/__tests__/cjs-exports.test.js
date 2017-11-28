@@ -66,7 +66,7 @@ const notExports = [
   'some.other.exports.foo = { exports }',
 ]
 
-describe('Core Plugin: cjs-exports', () => {
+describe.skip('Core Plugin: cjs-exports', () => {
   describe('default exports', () => {
     defaultExports.forEach(cjsExport => {
       test(cjsExport, async () => {

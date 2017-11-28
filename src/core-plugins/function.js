@@ -1,6 +1,6 @@
 // @flow
 import type ParseEngine from '../parser/ParseEngine'
-import path from 'path'
+import helpers from '../parser/helpers'
 module.exports = function(engine: ParseEngine, db: Lowdb): void {
   ;(db.set('function_collection', []): Lowdb).write()
   const push = data => {
@@ -18,17 +18,24 @@ module.exports = function(engine: ParseEngine, db: Lowdb): void {
   engine.on('FunctionDeclaration', ctx => {
     return handleFn(ctx, 'FunctionDeclaration')
   })
-  function handleFn(ctx, nodeType) {
-    const file_id = ctx.getFileName()
-    const line = ctx.get('loc.start.line')
-    const column = ctx.get('loc.start.column')
+  function handleFn(path, nodeType) {
+    const { getFileName } = helpers(path)
+    const file_id = getFileName()
+    const line = path.get('loc.start.line').node
+    const column = path.get('loc.start.column').node
+    const id = path.get('id').node
     const location_id = `${line}:${column}`
-    const function_id = (ctx.get('id.name') || 'anonymous') + '@' + location_id
-    const var_id = ctx.maybeVariableDeclaration()
+    const function_id =
+      (id ? path.get('id.name').node : 'anonymous') + '@' + location_id
     return push({
       function_id,
       file_id,
-      var_id,
     })
+    // console.log(file_id)
+    // const line = path.get('loc.start.line')
+    // const column = path.get('loc.start.column')
+    // const location_id = `${line}:${column}`
+    // const function_id = (path.get('id.name') || 'anonymous') + '@' + location_id
   }
+  function getParams(ctx) {}
 }
