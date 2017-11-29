@@ -1,8 +1,8 @@
 // @flow
 import type ParseEngine from '../parser/ParseEngine'
-import helpers from '../parser/helpers'
+import helpers, { getFunctionMeta } from '../parser/helpers'
 import type types from '@babel/types'
-import functionVisitor, { getFunctionMeta } from './visitors/functionVisitor'
+import functionVisitor from './visitors/functionVisitor'
 
 module.exports = function(engine: ParseEngine, db: Lowdb, types: types): any {
   ;(db.set('var_collection', []): Lowdb).write()

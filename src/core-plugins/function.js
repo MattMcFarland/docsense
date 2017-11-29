@@ -2,7 +2,6 @@
 import type ParseEngine from '../parser/ParseEngine'
 import helpers from '../parser/helpers'
 import type types from '@babel/types'
-import { getFunctionMeta } from './visitors/functionVisitor'
 module.exports = function(engine: ParseEngine, db: Lowdb, types: types): any {
   ;(db.set('function_collection', []): Lowdb).write()
   const push = data => {
@@ -19,10 +18,10 @@ module.exports = function(engine: ParseEngine, db: Lowdb, types: types): any {
     },
   }
   function handler(path, state) {
-    const { getFileName } = helpers(path)
+    const { getFileName, getFunctionMeta } = helpers(path)
     const file_id = getFileName()
     const var_id = getVariableId(path)
-    const { function_id, params, jsdoc } = getFunctionMeta(path, state)
+    const { function_id, params, jsdoc } = getFunctionMeta()
     return push({
       function_id,
       file_id,
