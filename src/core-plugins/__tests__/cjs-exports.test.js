@@ -1,6 +1,6 @@
 const testFactory = require('./utils/testFactory')
 const cjsExportsPlugin = require('../cjs-exports')
-const defaultExports = [
+const tests = [
   'module.exports = function () {}',
   'exports = function () {}',
   'module.exports = foo()',
@@ -18,8 +18,6 @@ const defaultExports = [
   'module.exports = fn.apply()',
   'exports = fn.apply()',
   '(function () { module.exports = foo })()',
-]
-const namedExports = [
   'module.exports.name = function () {}',
   'exports.name = function () {}',
   'module.exports.name = foo()',
@@ -33,11 +31,7 @@ const namedExports = [
   'module.exports.name = fn.apply()',
   'exports.name = fn.apply()',
 ]
-const objectExports = [
-  'module.exports = { name1, name2, name3 }',
-  'exports = { name1, name2, name3 }',
-]
-const notExports = [
+const emptyTests = [
   'var exports = 4',
   'let foo = { exports: 4}',
   'const foo = bar.exports',
@@ -66,12 +60,10 @@ const notExports = [
   'some.other.exports.foo = { exports }',
 ]
 const suites = {
-  defaultExports,
-  namedExports,
-  objectExports,
-  notExports,
+  OK: tests,
+  EMPTY: emptyTests,
 }
-describe('Core Plugin: Common.js Exports', () =>
+describe('Core: common.js', () =>
   testFactory({
     plugin: cjsExportsPlugin,
     suites,
