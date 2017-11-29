@@ -183,4 +183,8 @@ const suites = {
   ],
 }
 
-testFactory('Core Plugin: var', varPlugin, 'var_collection', suites)
+testFactory({
+  name: 'Core Plugin: Var',
+  plugin: varPlugin,
+  suites,
+})

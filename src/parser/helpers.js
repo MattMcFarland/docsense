@@ -7,6 +7,7 @@ export default (pathObj: any) => ({
   getFunctionMeta: () => getFunctionMeta(pathObj),
   getFunctionParams: () => getFunctionParams(pathObj),
   getDocTags: () => getDocTags(pathObj),
+  getVariableId: () => getVariableId(pathObj),
 })
 
 export const get = (path: any, value: string) => {
@@ -72,6 +73,17 @@ export const getFunctionParams = (path: any) => {
     }
   })
 }
+
 export function getDocTags(path: any) {
-  return path.getStatementParent().node.__doc_tags__ || path.parent.__doc_tags__
+  const tags =
+    path.node.__doc_tags__ ||
+    path.getStatementParent().node.__doc_tags__ ||
+    path.parent.__doc_tags__
+  return tags && tags.length ? tags : undefined
+}
+
+export function getVariableId(path: any) {
+  return path.parentPath.isVariableDeclarator()
+    ? path.parent.id.name
+    : undefined
 }

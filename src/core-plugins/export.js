@@ -1,42 +1,92 @@
 // @flow
 import type ParseEngine from '../parser/ParseEngine'
-import helpers, { getFileName } from '../parser/helpers'
+import helpers, { getFunctionMeta } from '../parser/helpers'
+import functionVisitor from './visitors/functionVisitor'
 
-module.exports = function(engine: ParseEngine, db: Lowdb): void {
-  ;(db.set('export_collection', []): Lowdb).write()
-  const push = data => {
+export const collectionName = 'export_collection'
+export default function(engine: ParseEngine, db: Lowdb): any {
+  ;(db.set(collectionName, []): Lowdb).write()
+  const createPush = path => data => {
     db
-      .get('export_collection')
+      .get(collectionName)
       .push(data)
       .write()
+    path.traverse(functionVisitor(onFunction), data.export_id)
   }
-  engine.on('ExportNamedDeclaration', path => {
+  const insert = export_id => data => {
+    db
+      .get(collectionName)
+      .find({ export_id })
+      .assign(data)
+      .write()
+  }
+  return {
+    visitor: {
+      ExportNamedDeclaration: handleExportNamedDeclaration,
+      ExportSpecifier: handleExportSpecifier,
+      ExportDefaultDeclaration: handleExportDefaultDeclaration,
+      ExportAllDeclaration: handleExportAllDeclaration,
+    },
+  }
+  function handleExportNamedDeclaration(path) {
+    const push = createPush(path)
     if (path.node.specifiers.length) return
-    const { select, getFileName } = helpers(path)
+    const { select, getFileName, getDocTags } = helpers(path)
     const declarations = select('declaration.declarations')
     if (declarations && typeof declarations.forEach === 'function') {
-      declarations.forEach(exportDeclaration => {
+      return declarations.forEach(exportDeclaration => {
         push({
           export_id: exportDeclaration.node.id.name,
           file_id: getFileName(),
+          jsdoc: getDocTags(),
         })
       })
     }
-  })
-  engine.on('ExportSpecifier', path => {
+    if (
+      path.node.declaration &&
+      path.node.declaration.type === 'FunctionDeclaration'
+    ) {
+      return push({
+        export_id: path.node.declaration.id.name,
+        file_id: getFileName(),
+        jsdoc: getDocTags(),
+      })
+    }
+    log.warn('export', 'skipped ExportNamedDeclaration', getFileName())
+  }
+  function handleExportSpecifier(path) {
+    const push = createPush(path)
+    const { getFileName, getDocTags } = helpers(path)
     push({
       export_id: path.get('exported.name').node,
-      file_id: getFileName(path),
+      file_id: getFileName(),
+      jsdoc: getDocTags(),
     })
-  })
-  engine.on('ExportDefaultDeclaration', path => {
-    push({ export_id: 'default', file_id: getFileName(path) })
-  })
-  engine.on('ExportAllDeclaration', path => {
+  }
+  function handleExportDefaultDeclaration(path) {
+    const push = createPush(path)
+    const { getFileName, getDocTags } = helpers(path)
     push({
-      export_id: 'all',
-      file_id: getFileName(path),
-      source_id: path.get('source.value').node,
+      export_id: 'default',
+      file_id: getFileName(),
+      jsdoc: getDocTags(),
     })
-  })
+  }
+  function handleExportAllDeclaration(path) {
+    const push = createPush(path)
+    const { getFileName, getDocTags } = helpers(path)
+    createPush(path)({
+      export_id: 'all',
+      file_id: getFileName(),
+      source_id: path.get('source.value').node,
+      jsdoc: getDocTags(),
+    })
+  }
+  function onFunction(path, export_id) {
+    if (!export_id) return
+    const { function_id, params, jsdoc } = getFunctionMeta(path)
+    insert(export_id)({
+      function_id,
+    })
+  }
 }

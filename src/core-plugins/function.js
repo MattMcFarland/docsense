@@ -2,11 +2,12 @@
 import type ParseEngine from '../parser/ParseEngine'
 import helpers from '../parser/helpers'
 import type types from '@babel/types'
-module.exports = function(engine: ParseEngine, db: Lowdb, types: types): any {
-  ;(db.set('function_collection', []): Lowdb).write()
+export const collectionName = 'function_collection'
+export default function(engine: ParseEngine, db: Lowdb, types: types): any {
+  ;(db.set(collectionName, []): Lowdb).write()
   const push = data => {
     db
-      .get('function_collection')
+      .get(collectionName)
       .push(data)
       .write()
   }

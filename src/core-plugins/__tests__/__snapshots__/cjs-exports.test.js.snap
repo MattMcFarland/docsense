@@ -1,0 +1,348 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Core Plugin: Common.js Exports defaultExports (function () { module.exports = foo })() 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "default",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports defaultExports exports = () => {} 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "default",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports defaultExports exports = [] 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "default",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports defaultExports exports = fn.apply() 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "default",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports defaultExports exports = fn.call() 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "default",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports defaultExports exports = foo() 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "default",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports defaultExports exports = function () {} 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "default",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports defaultExports exports = new Foo() 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "default",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports defaultExports exports = new a.b.c.Foo() 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "default",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports defaultExports module.exports = () => {} 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "default",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports defaultExports module.exports = [] 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "default",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports defaultExports module.exports = fn.apply() 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "default",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports defaultExports module.exports = fn.call() 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "default",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports defaultExports module.exports = foo() 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "default",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports defaultExports module.exports = function () {} 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "default",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports defaultExports module.exports = new Foo() 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "default",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports defaultExports module.exports = new a.b.c.Foo() 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "default",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports namedExports exports.name = () => {} 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "name",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports namedExports exports.name = [] 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "name",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports namedExports exports.name = fn.apply() 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "name",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports namedExports exports.name = fn.call() 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "name",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports namedExports exports.name = foo() 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "name",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports namedExports exports.name = function () {} 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "name",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports namedExports module.exports.name = () => {} 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "name",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports namedExports module.exports.name = [] 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "name",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports namedExports module.exports.name = fn.apply() 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "name",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports namedExports module.exports.name = fn.call() 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "name",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports namedExports module.exports.name = foo() 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "name",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports namedExports module.exports.name = function () {} 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "name",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports notExports const foo = bar.exports 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports const foo = bar.exports.baz 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports const foo = derp.exports 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports foo.map(exports => exports.module) 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports foo.map(module => module.exports = bar) 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports let foo = { exports: 4} 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports module.other.exports = { exports } 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports module.other.exports = bar 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports module.other.exports.foo = { exports } 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports module.other.exports.foo = bar 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports some.exports = baz 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports some.exports.foo = { exports } 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports some.exports.foo = baz 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports some.module.exports = { exports } 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports some.module.exports = baz 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports some.module.exports.foo = { exports } 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports some.module.exports.foo = baz 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports some.module.other.exports = { exports } 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports some.module.other.exports = bar 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports some.module.other.exports.foo = { exports } 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports some.module.other.exports.foo = baz 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports some.other.exports = { exports } 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports some.other.exports = bar 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports some.other.exports.foo = { exports } 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports some.other.exports.foo = baz 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports notExports var exports = 4 1`] = `Array []`;
+
+exports[`Core Plugin: Common.js Exports objectExports exports = { name1, name2, name3 } 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "name1",
+    "file_id": "__TEST__",
+  },
+  Object {
+    "cjsExports_id": "name2",
+    "file_id": "__TEST__",
+  },
+  Object {
+    "cjsExports_id": "name3",
+    "file_id": "__TEST__",
+  },
+]
+`;
+
+exports[`Core Plugin: Common.js Exports objectExports module.exports = { name1, name2, name3 } 1`] = `
+Array [
+  Object {
+    "cjsExports_id": "name1",
+    "file_id": "__TEST__",
+  },
+  Object {
+    "cjsExports_id": "name2",
+    "file_id": "__TEST__",
+  },
+  Object {
+    "cjsExports_id": "name3",
+    "file_id": "__TEST__",
+  },
+]
+`;

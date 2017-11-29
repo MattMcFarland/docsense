@@ -1,4 +1,4 @@
-const { testPlugin } = require('./utils/testPlugin')
+const testFactory = require('./utils/testFactory')
 const cjsExportsPlugin = require('../cjs-exports')
 const defaultExports = [
   'module.exports = function () {}',
@@ -65,54 +65,14 @@ const notExports = [
   'some.other.exports.foo = baz',
   'some.other.exports.foo = { exports }',
 ]
-
-describe('Core Plugin: cjs-exports', () => {
-  describe('default exports', () => {
-    defaultExports.forEach(cjsExport => {
-      test(cjsExport, async () => {
-        const runTest = testPlugin({}, '__TEST__')
-        const state = await runTest(cjsExportsPlugin, cjsExport)
-        const expected = [{ cjsExports_id: 'default', file_id: '__TEST__' }]
-        const actual = state.cjsExports_collection
-        expect(actual).toEqual(expected)
-      })
-    })
-  })
-  describe('named exports', () => {
-    namedExports.forEach(cjsExport => {
-      test(cjsExport, async () => {
-        const runTest = testPlugin({}, '__TEST__')
-        const state = await runTest(cjsExportsPlugin, cjsExport)
-        const expected = [{ cjsExports_id: 'name', file_id: '__TEST__' }]
-        const actual = state.cjsExports_collection
-        expect(actual).toEqual(expected)
-      })
-    })
-  })
-  describe('object literal exports', () => {
-    objectExports.forEach(cjsExport => {
-      test(cjsExport, async () => {
-        const runTest = testPlugin({}, '__TEST__')
-        const state = await runTest(cjsExportsPlugin, cjsExport)
-        const expected = [
-          { cjsExports_id: 'name1', file_id: '__TEST__' },
-          { cjsExports_id: 'name2', file_id: '__TEST__' },
-          { cjsExports_id: 'name3', file_id: '__TEST__' },
-        ]
-        const actual = state.cjsExports_collection
-        expect(actual).toEqual(expected)
-      })
-    })
-  })
-  describe('when exports is not commonjs', () => {
-    notExports.forEach(notExport => {
-      test(notExport, async () => {
-        const runTest = testPlugin({}, '__TEST__')
-        const state = await runTest(cjsExportsPlugin, notExport)
-        const expected = []
-        const actual = state.cjsExports_collection
-        expect(actual).toEqual(expected)
-      })
-    })
-  })
+const suites = {
+  defaultExports,
+  namedExports,
+  objectExports,
+  notExports,
+}
+testFactory({
+  name: 'Core Plugin: Common.js Exports',
+  plugin: cjsExportsPlugin,
+  suites,
 })

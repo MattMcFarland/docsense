@@ -191,4 +191,8 @@ const suites = {
   },
 }
 
-testFactory('Core Plugin: function', fnPlugin, 'function_collection', suites)
+testFactory({
+  name: 'Core Plugin: Function',
+  plugin: fnPlugin,
+  suites,
+})

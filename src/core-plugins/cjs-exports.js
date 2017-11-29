@@ -2,11 +2,12 @@
 import type ParseEngine from '../parser/ParseEngine'
 import helpers from '../parser/helpers'
 
-module.exports = function(engine: ParseEngine, db: Lowdb): void {
-  ;(db.set('cjsExports_collection', []): Lowdb).write()
+export const collectionName = 'cjsExports_collection'
+export default function(engine: ParseEngine, db: Lowdb): void {
+  ;(db.set(collectionName, []): Lowdb).write()
   const push = data => {
     db
-      .get('cjsExports_collection')
+      .get(collectionName)
       .push(data)
       .write()
   }

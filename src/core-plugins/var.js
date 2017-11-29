@@ -1,21 +1,26 @@
 // @flow
 import type ParseEngine from '../parser/ParseEngine'
-import helpers, { getFunctionMeta } from '../parser/helpers'
+import helpers, {
+  getFunctionMeta,
+  getDocTags,
+  getVariableId,
+} from '../parser/helpers'
 import type types from '@babel/types'
 import functionVisitor from './visitors/functionVisitor'
 
-module.exports = function(engine: ParseEngine, db: Lowdb, types: types): any {
-  ;(db.set('var_collection', []): Lowdb).write()
+export const collectionName = 'var_collection'
+export default function(engine: ParseEngine, db: Lowdb, types: types): any {
+  ;(db.set(collectionName, []): Lowdb).write()
   const createPush = path => data => {
     db
-      .get('var_collection')
+      .get(collectionName)
       .push(data)
       .write()
     path.traverse(functionVisitor(onFunction))
   }
   const insert = var_id => data => {
     db
-      .get('var_collection')
+      .get(collectionName)
       .find({ var_id })
       .assign(data)
       .write()
@@ -78,18 +83,4 @@ module.exports = function(engine: ParseEngine, db: Lowdb, types: types): any {
         break
     }
   }
-
-  function getDocTags(path) {
-    const tags =
-      path.node.__doc_tags__ ||
-      path.getStatementParent().node.__doc_tags__ ||
-      path.parent.__doc_tags__
-    return tags && tags.length ? tags : undefined
-  }
-}
-
-function getVariableId(path) {
-  return path.parentPath.isVariableDeclarator()
-    ? path.parent.id.name
-    : undefined
 }

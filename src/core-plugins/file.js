@@ -1,10 +1,11 @@
 import { getFileName } from '../parser/helpers'
 
-module.exports = function(engine, db) {
-  db.set('file_collection', []).write()
+export const collectionName = 'file_collection'
+export default function(engine, db) {
+  db.set(collectionName, []).write()
   engine.on('addFile', ({ fileName: file_id }) => {
     db
-      .get('file_collection')
+      .get(collectionName)
       .push({ file_id })
       .write()
   })

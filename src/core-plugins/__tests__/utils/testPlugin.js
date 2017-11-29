@@ -4,7 +4,7 @@ const fs = require('fs')
 const low = require('lowdb')
 const Memory = require('lowdb/adapters/Memory')
 const registerPlugin = require('../../../utils/plugin').registerPlugin
-
+const assert = require('assert')
 module.exports.testPlugin = (initialState, fileName) => (
   plugin,
   sourceCode
@@ -17,7 +17,9 @@ module.exports.testPlugin = (initialState, fileName) => (
     })
 
     db.setState(initialState)
-    plugin.exec = plugin
+    plugin.exec = plugin.default
+    assert(plugin.exec, 'plugin must have a default export')
+    assert(plugin.collectionName, 'plugin must export a collectionName')
     parser.on('done', () => resolve(db.getState()))
     registerPlugin(parser, plugin, db)
     parser.emit('addFile:before', db.getState())
