@@ -31,8 +31,8 @@ export default function(engine: ParseEngine, db: Lowdb): any {
   function handleExportNamedDeclaration(path) {
     const push = createPush(path)
     if (path.node.specifiers.length) return
-    const { select, getFileName, getDocTags } = helpers(path)
-    const declarations = select('declaration.declarations')
+    const { getFileName, getDocTags } = helpers(path)
+    const declarations = path.get('declaration.declarations')
     if (declarations && typeof declarations.forEach === 'function') {
       return declarations.forEach(exportDeclaration => {
         push({

@@ -63,7 +63,6 @@ export default class ParseEngine extends EventEmitter {
     traverse(ast, {
       enter(path) {
         self.maybeInjectTags(path)
-        self.emit(path.type, path)
       },
       exit(path) {
         if (path.type === 'Program') {
