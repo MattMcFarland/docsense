@@ -3,6 +3,7 @@ const defaultConfig = require('../../../config/default-config.json')
 const fs = require('fs')
 const low = require('lowdb')
 const Memory = require('lowdb/adapters/Memory')
+const registerPlugin = require('../../../utils/plugin').registerPlugin
 
 module.exports.testPlugin = (initialState, fileName) => (
   plugin,
@@ -16,9 +17,9 @@ module.exports.testPlugin = (initialState, fileName) => (
     })
 
     db.setState(initialState)
+    plugin.exec = plugin
     parser.on('done', () => resolve(db.getState()))
-
-    plugin(parser, db)
+    registerPlugin(parser, plugin, db)
 
     parser.addFile(fileName, sourceCode.toString())
     parser.emit('done')

@@ -7,6 +7,8 @@ import {
   scanDirectory,
   resolveContextRelativePaths,
 } from './file'
+import types from '@babel/types'
+import type ParseEngine from '../parser/ParseEngine'
 
 opaque type ConfigAndPlugins = Promise<{
   config: DocSenseConfig,
@@ -37,3 +39,27 @@ export const setupPlugin = (id: string): PluginAPI => ({
 
 export const setupPlugins = (filepaths: string[]): PluginAPI[] =>
   filepaths.map(filepath => setupPlugin(filepath))
+
+export const registerPlugin = (
+  parser: ParseEngine,
+  plugin: PluginAPI,
+  db: Lowdb
+) => {
+  const returnObj = plugin.exec(parser, db, types)
+  if (returnObj) {
+    if (typeof returnObj.pre === 'function') {
+      parser.on('before:addFile', returnObj.pre)
+    }
+    if (returnObj.visitor) {
+      parser.on(
+        'addFile',
+        ({ fileName, path, traverse, types, sourceCode }) => {
+          path.traverse(returnObj.visitor, db.getState())
+        }
+      )
+    }
+    if (typeof returnObj.post === 'function') {
+      parser.on('after:addFile', plugin.exec.post)
+    }
+  }
+}

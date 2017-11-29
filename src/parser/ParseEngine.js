@@ -3,6 +3,7 @@
 import { EventEmitter } from 'events'
 import Doctrine from 'doctrine'
 import traverse from '@babel/traverse'
+import types from '@babel/types'
 
 /**
  * Parser
@@ -52,13 +53,30 @@ export default class ParseEngine extends EventEmitter {
   }
 
   /**
-   * parses data under a filename, and emits events
+   * parses sourceCode under a filename, and emits events
    * @param {string} fileName of file to add
-   * @param {string} data read from fs.readFile, encoded at utf-8
+   * @param {string} sourceCode read from fs.readFile, encoded at utf-8
    */
-  addFile(fileName: string, data: string): void {
-    const ast: File = this.parse(data, { sourceFilename: fileName })
-    this.emitNodes(ast)
+  addFile(fileName: string, sourceCode: string): void {
+    const ast: File = this.parse(sourceCode, { sourceFilename: fileName })
+    const self = this
+    traverse(ast, {
+      enter(path) {
+        self.maybeInjectTags(path)
+        self.emit(path.type, path)
+      },
+      exit(path) {
+        if (path.type === 'Program') {
+          self.emit('addFile', {
+            fileName,
+            path,
+            traverse,
+            types,
+            sourceCode,
+          })
+        }
+      },
+    })
   }
 
   /**
@@ -74,19 +92,7 @@ export default class ParseEngine extends EventEmitter {
    * Traverses a generated AST and emits events when it walks over a node
    * @param {File} ast
    */
-  emitNodes(ast: File) {
-    const self = this
-    traverse(ast, {
-      enter(path) {
-        self.maybeInjectTags(path)
-        self.emit('enter:' + path.type, path)
-      },
-      exit(path) {
-        self.emit('exit:' + path.type, path)
-        self.emit(path.type, path)
-      },
-    })
-  }
+  parseComments(ast: any): any {}
 
   /**
    * Parse JSDoc and inject comment tags if applicable,
@@ -94,7 +100,7 @@ export default class ParseEngine extends EventEmitter {
    */
   maybeInjectTags(path: any): void {
     if (Array.isArray(path.node.leadingComments)) {
-      path.__doc_tags__ = this.injectTags(path.node.leadingComments)
+      path.node.__doc_tags__ = this.injectTags(path.node.leadingComments)
     }
   }
 

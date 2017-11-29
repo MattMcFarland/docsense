@@ -1,7 +1,9 @@
 // @flow
 import type ParseEngine from '../parser/ParseEngine'
 import helpers from '../parser/helpers'
-module.exports = function(engine: ParseEngine, db: Lowdb): void {
+import type types from '@babel/types'
+
+module.exports = function(engine: ParseEngine, db: Lowdb, types: types): any {
   ;(db.set('function_collection', []): Lowdb).write()
   const push = data => {
     db
@@ -9,16 +11,14 @@ module.exports = function(engine: ParseEngine, db: Lowdb): void {
       .push(data)
       .write()
   }
-  engine.on('ArrowFunctionExpression', ctx => {
-    return handleFn(ctx, 'ArrowFunctionExpression')
-  })
-  engine.on('FunctionExpression', ctx => {
-    return handleFn(ctx, 'FunctionExpression')
-  })
-  engine.on('FunctionDeclaration', ctx => {
-    return handleFn(ctx, 'FunctionDeclaration')
-  })
-  function handleFn(path, nodeType) {
+  return {
+    visitor: {
+      ArrowFunctionExpression: handleFn,
+      FunctionExpression: handleFn,
+      FunctionDeclaration: handleFn,
+    },
+  }
+  function handleFn(path) {
     const { getFileName } = helpers(path)
     const file_id = getFileName()
     const line = path.get('loc.start.line').node

@@ -2,10 +2,11 @@
 import getConfig from '../config'
 import { flatten, dedupe } from './common'
 import { processAllGlobPatterns, readFiles } from './file'
-import { setupCorePlugins } from './plugin'
+import { setupCorePlugins, registerPlugin } from './plugin'
 
 import ParseEngine from '../parser/ParseEngine'
 import { create } from '../db'
+import types from '@babel/types'
 
 /**
  * Parse files using config options
@@ -30,15 +31,17 @@ export const parseFiles = ({
         )
         const db: Lowdb = create(config.out)
 
-        plugins.forEach((plugin: PluginAPI) => {
-          plugin.exec(parser, db)
-        })
+        plugins.forEach((plugin: PluginAPI) =>
+          registerPlugin(parser, plugin, db)
+        )
 
         filesData.forEach((data: string, index) => {
+          parser.emit('before:addFile', db.getState())
           const filepath: string = filepaths[index]
           log.info('parse', filepath)
           parser.addFile(filepath, data.toString())
           log.log('success', 'parse', filepath)
+          parser.emit('after:addFile', db.getState())
         })
 
         parser.emit('done')
