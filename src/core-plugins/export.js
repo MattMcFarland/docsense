@@ -14,7 +14,7 @@ module.exports = function(engine: ParseEngine, db: Lowdb): void {
     if (path.node.specifiers.length) return
     const { select, getFileName } = helpers(path)
     const declarations = select('declaration.declarations')
-    if (declarations) {
+    if (declarations && typeof declarations.forEach === 'function') {
       declarations.forEach(exportDeclaration => {
         push({
           export_id: exportDeclaration.node.id.name,

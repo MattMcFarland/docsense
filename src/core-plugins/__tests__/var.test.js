@@ -12,12 +12,6 @@ const suites = {
         var_id: 'foo',
       },
     ],
-    'const foo = () => 1': [
-      {
-        file_id: '__TEST__',
-        var_id: 'foo',
-      },
-    ],
   },
   'Multiple Vars': {
     'var foo = 1, bar = 2, baz = 3': [
@@ -116,6 +110,73 @@ const suites = {
         {
           file_id: '__TEST__',
           var_id: 'foo',
+        },
+      ],
+    ],
+  ],
+  'With Functions': {
+    'const foo = function () {}': [
+      {
+        file_id: '__TEST__',
+        var_id: 'foo',
+        function_id: 'anonymous@1:12',
+      },
+    ],
+    'const foo = () => () => () => {}': [
+      {
+        file_id: '__TEST__',
+        var_id: 'foo',
+        function_id: 'anonymous@1:12',
+      },
+    ],
+  },
+  'With Commented Functions': [
+    [
+      `
+    /**
+     * Create Super Hero
+     * @param {object} param
+     * @param {string} param.name - the name of your super hero
+     * @param {string} param.ability - your hero's special ability
+     * @returns {SuperHero} your new super hero!!
+     */
+    const createSuperHero = ({name, ability}) => {}
+    `,
+      [
+        {
+          file_id: '__TEST__',
+          function_id: 'anonymous@9:28',
+          jsdoc: [
+            {
+              description: 'Create Super Hero',
+              tags: [
+                {
+                  description: null,
+                  name: 'param',
+                  title: 'param',
+                  type: { name: 'object', type: 'NameExpression' },
+                },
+                {
+                  description: 'the name of your super hero',
+                  name: 'param.name',
+                  title: 'param',
+                  type: { name: 'string', type: 'NameExpression' },
+                },
+                {
+                  description: "your hero's special ability",
+                  name: 'param.ability',
+                  title: 'param',
+                  type: { name: 'string', type: 'NameExpression' },
+                },
+                {
+                  description: 'your new super hero!!',
+                  title: 'returns',
+                  type: { name: 'SuperHero', type: 'NameExpression' },
+                },
+              ],
+            },
+          ],
+          var_id: 'createSuperHero',
         },
       ],
     ],
