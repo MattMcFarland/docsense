@@ -66,6 +66,7 @@ Array [
   Object {
     "cjsExports_id": "default",
     "file_id": "__TEST__",
+    "function_id": "anonymous@1:10",
   },
 ]
 `;
@@ -111,6 +112,7 @@ Array [
   Object {
     "cjsExports_id": "default",
     "file_id": "__TEST__",
+    "function_id": "anonymous@1:10",
   },
 ]
 `;
@@ -138,6 +140,7 @@ Array [
   Object {
     "cjsExports_id": "name",
     "file_id": "__TEST__",
+    "function_id": "anonymous@1:15",
   },
 ]
 `;
@@ -183,6 +186,7 @@ Array [
   Object {
     "cjsExports_id": "name",
     "file_id": "__TEST__",
+    "function_id": "anonymous@1:15",
   },
 ]
 `;
@@ -192,6 +196,7 @@ Array [
   Object {
     "cjsExports_id": "default",
     "file_id": "__TEST__",
+    "function_id": "anonymous@1:17",
   },
 ]
 `;
@@ -237,6 +242,7 @@ Array [
   Object {
     "cjsExports_id": "default",
     "file_id": "__TEST__",
+    "function_id": "anonymous@1:17",
   },
 ]
 `;
@@ -264,6 +270,7 @@ Array [
   Object {
     "cjsExports_id": "name",
     "file_id": "__TEST__",
+    "function_id": "anonymous@1:22",
   },
 ]
 `;
@@ -309,6 +316,7 @@ Array [
   Object {
     "cjsExports_id": "name",
     "file_id": "__TEST__",
+    "function_id": "anonymous@1:22",
   },
 ]
 `;

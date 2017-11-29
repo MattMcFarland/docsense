@@ -1,60 +1,81 @@
 // @flow
 import type ParseEngine from '../parser/ParseEngine'
-import helpers from '../parser/helpers'
+import helpers, { getFunctionMeta } from '../parser/helpers'
+import functionVisitor from './visitors/functionVisitor'
 
-export const collectionName = 'cjsExports_collection'
-export default function(engine: ParseEngine, db: Lowdb): void {
+export const pluginName = 'cjsExports'
+export const collectionName = pluginName + '_collection'
+export const entryId = pluginName + '_id'
+
+export default function(engine: ParseEngine, db: Lowdb): any {
   ;(db.set(collectionName, []): Lowdb).write()
-  const push = data => {
+  const createPush = path => data => {
     db
       .get(collectionName)
       .push(data)
       .write()
+    path.traverse(functionVisitor(onFunction), data[entryId])
   }
-  engine.on('Identifier', path => {
-    if (!validate(path)) return
-    const { getFileName } = helpers(path)
+  const insert = id_val => data => {
+    db
+      .get(collectionName)
+      .find({ [entryId]: id_val })
+      .assign(data)
+      .write()
+  }
+  return {
+    visitor: {
+      AssignmentExpression(path) {
+        if (!validate(path)) return
+        const push = createPush(path)
+        const { getFileName } = helpers(path)
+        const leftSide = path.get('left')
+        const rightSide = path.get('right')
 
-    // the expression
-    const assignment = path.findParent(path => path.isAssignmentExpression())
+        if (
+          rightSide.type === 'ObjectExpression' &&
+          rightSide.node.properties.length
+        ) {
+          return rightSide.properties.forEach(exportsProperty => {
+            push({
+              [entryId]: exportsProperty.key.name,
+              file_id: getFileName(),
+            })
+          })
+        }
+        // module.exports.foo = bar
+        const isNamedModuleExports =
+          looksLikeModule(leftSide.node) &&
+          leftSide.node.object.property &&
+          leftSide.node.object.property.name === 'exports' &&
+          leftSide.node.property
+        // exports.foo = bar
+        const isNamedExport =
+          leftSide.type === 'MemberExpression' &&
+          leftSide.node.object &&
+          leftSide.node.object.name === 'exports' &&
+          leftSide.node.property
 
-    const parent = path.parent
-    const leftNode = assignment.node.left
+        const cjsExports_id =
+          isNamedModuleExports || isNamedExport
+            ? leftSide.node.property.name
+            : 'default'
+        const file_id = getFileName()
 
-    const rightNode = assignment.node.right
-    if (!parent || !leftNode || !rightNode) {
-      return
-    }
-    if (rightNode.type === 'ObjectExpression' && rightNode.properties.length) {
-      return rightNode.properties.forEach(exportsProperty => {
         push({
-          cjsExports_id: exportsProperty.key.name,
-          file_id: getFileName(),
+          cjsExports_id,
+          file_id,
         })
-      })
-    }
-    // module.exports.foo = bar
-    const isNamedModuleExports =
-      looksLikeModule(leftNode) &&
-      leftNode.object.property &&
-      leftNode.object.property.name === 'exports' &&
-      leftNode.property
-    // exports.foo = bar
-    const isNamedExport =
-      leftNode.type === 'MemberExpression' &&
-      leftNode.object &&
-      leftNode.object.name === 'exports' &&
-      leftNode.property
-
-    const cjsExports_id =
-      isNamedModuleExports || isNamedExport ? leftNode.property.name : 'default'
-    const file_id = getFileName()
-
-    push({
-      cjsExports_id,
-      file_id,
+      },
+    },
+  }
+  function onFunction(path, id) {
+    if (!id) return
+    const { function_id, params, jsdoc } = getFunctionMeta(path)
+    insert(id)({
+      function_id,
     })
-  })
+  }
   function looksLikeModule(node) {
     if (!node) return
     return (
@@ -74,8 +95,6 @@ export default function(engine: ParseEngine, db: Lowdb): void {
     )
   }
   function validate(path) {
-    // abort if not common.js
-    if (path.node.name !== 'exports') return false
     // abort if module or exports are not found in global scope
     const root = path.findParent(path => path.isProgram())
     if (
@@ -86,42 +105,29 @@ export default function(engine: ParseEngine, db: Lowdb): void {
     ) {
       return
     }
-    // abort if not an assignment
-    const assignment = path.findParent(path => path.isAssignmentExpression())
-    if (!assignment) return false
-    const parent = path.parent
-    const leftNode = assignment.node.left
-    if (!parent || !leftNode) {
-      return
-    }
-    if (
-      parent.type === 'ArrowFunctionExpression' ||
-      parent.type === 'FunctionExpression' ||
-      parent.type === 'FunctionDeclaration'
-    ) {
-      return false
-    }
+    const leftSide = path.get('left')
+    const rightSide = path.get('right')
 
     if (
-      looksLikeModule(leftNode) &&
-      leftNode.object &&
-      leftNode.object.property &&
-      leftNode.object.property.name !== 'exports'
+      looksLikeModule(leftSide.node) &&
+      leftSide.node.object &&
+      leftSide.node.object.property &&
+      leftSide.node.object.property.name !== 'exports'
     ) {
       return false
     }
     if (
-      leftNode.object &&
-      leftNode.object.object &&
-      leftNode.object.object.name !== 'module'
+      leftSide.node.object &&
+      leftSide.node.object.object &&
+      leftSide.node.object.object.name !== 'module'
     ) {
       return false
     }
     if (
-      leftNode.object &&
-      leftNode.object.name &&
-      leftNode.object.name !== 'module' &&
-      leftNode.object.name !== 'exports'
+      leftSide.node.object &&
+      leftSide.node.object.name &&
+      leftSide.node.object.name !== 'module' &&
+      leftSide.node.object.name !== 'exports'
     ) {
       return false
     }
