@@ -31,6 +31,40 @@ const tests = [
   'module.exports.name = fn.apply()',
   'exports.name = fn.apply()',
 ]
+const withComments = [
+  `/**
+  * Create Super Hero
+  * @param {object} param
+  * @param {string} param.name - the name of your super hero
+  * @param {string} param.ability - your hero's special ability
+  * @returns {SuperHero} your new super hero!!
+  */
+ module.exports.createSuperHero = ({name, ability}) => {}`,
+  `/**
+ * Create Super Hero
+ * @param {object} param
+ * @param {string} param.name - the name of your super hero
+ * @param {string} param.ability - your hero's special ability
+ * @returns {SuperHero} your new super hero!!
+ */
+module.exports = ({name, ability}) => {}`,
+  `/**
+* Create Super Hero
+* @param {object} param
+* @param {string} param.name - the name of your super hero
+* @param {string} param.ability - your hero's special ability
+* @returns {SuperHero} your new super hero!!
+*/
+exports = ({name, ability}) => {}`,
+  `/**
+* Create Super Hero
+* @param {object} param
+* @param {string} param.name - the name of your super hero
+* @param {string} param.ability - your hero's special ability
+* @returns {SuperHero} your new super hero!!
+*/
+module.exports = function({name, ability}) {}`,
+]
 const emptyTests = [
   'var exports = 4',
   'let foo = { exports: 4}',
@@ -61,6 +95,7 @@ const emptyTests = [
 ]
 const suites = {
   OK: tests,
+  COMMENTS: withComments,
   EMPTY: emptyTests,
 }
 describe('Core: common.js', () =>

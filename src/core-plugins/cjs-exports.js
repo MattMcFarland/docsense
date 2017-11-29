@@ -28,7 +28,7 @@ export default function(engine: ParseEngine, db: Lowdb): any {
       AssignmentExpression(path) {
         if (!validate(path)) return
         const push = createPush(path)
-        const { getFileName } = helpers(path)
+        const { getFileName, getDocTags } = helpers(path)
         const leftSide = path.get('left')
         const rightSide = path.get('right')
 
@@ -40,6 +40,7 @@ export default function(engine: ParseEngine, db: Lowdb): any {
             push({
               [entryId]: exportsProperty.key.name,
               file_id: getFileName(),
+              jsdoc: getDocTags(),
             })
           })
         }
@@ -65,6 +66,7 @@ export default function(engine: ParseEngine, db: Lowdb): any {
         push({
           cjsExports_id,
           file_id,
+          jsdoc: getDocTags(),
         })
       },
     },
