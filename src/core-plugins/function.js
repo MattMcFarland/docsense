@@ -18,7 +18,7 @@ module.exports = function(engine: ParseEngine, db: Lowdb, types: types): any {
       FunctionDeclaration: handleFn,
     },
   }
-  function handleFn(path) {
+  function handleFn(path, state) {
     const { getFileName } = helpers(path)
     const file_id = getFileName()
     const line = path.get('loc.start.line').node
@@ -27,15 +27,57 @@ module.exports = function(engine: ParseEngine, db: Lowdb, types: types): any {
     const location_id = `${line}:${column}`
     const function_id =
       (id ? path.get('id.name').node : 'anonymous') + '@' + location_id
+    const var_id = getVariableId(path)
+    const params = getParams(path)
+    const jsdoc = getDocTags(path)
     return push({
       function_id,
       file_id,
+      var_id,
+      params: params.length ? params : undefined,
+      jsdoc,
     })
-    // console.log(file_id)
-    // const line = path.get('loc.start.line')
-    // const column = path.get('loc.start.column')
-    // const location_id = `${line}:${column}`
-    // const function_id = (path.get('id.name') || 'anonymous') + '@' + location_id
   }
-  function getParams(ctx) {}
+  function getVariableId(path) {
+    return path.parentPath.isVariableDeclarator()
+      ? path.parent.id.name
+      : undefined
+  }
+  function getObjectKey(path) {
+    return path.parentPath.isObjectProperty() ? path.parent.key.name : undefined
+  }
+  function getParams(path) {
+    return path.node.params.map(param => {
+      if (param.type === 'Identifier') {
+        return param.name
+      }
+      if (param.type === 'ObjectPattern') {
+        return param.properties.map(({ key, value }) => ({
+          key: key.name,
+          value: value.name,
+        }))
+      }
+      if (param.type === 'ArrayPattern') {
+        return param.elements.map(el => {
+          if (el) {
+            if (el.type === 'Identifier') {
+              return el.name
+            }
+            if (el.type === 'RestElement') {
+            }
+            return '...' + el.argument.name
+          }
+          return null
+        })
+      }
+      if (param.type === 'RestElement') {
+        return '...' + param.argument.name
+      }
+    })
+  }
+  function getDocTags(path) {
+    return (
+      path.getStatementParent().node.__doc_tags__ || path.parent.__doc_tags__
+    )
+  }
 }

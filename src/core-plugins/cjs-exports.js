@@ -1,5 +1,6 @@
 // @flow
 import type ParseEngine from '../parser/ParseEngine'
+import helpers from '../parser/helpers'
 
 module.exports = function(engine: ParseEngine, db: Lowdb): void {
   ;(db.set('cjsExports_collection', []): Lowdb).write()
@@ -9,19 +10,25 @@ module.exports = function(engine: ParseEngine, db: Lowdb): void {
       .push(data)
       .write()
   }
-  engine.on('Identifier', ctx => {
-    if (!validate(ctx)) return
+  engine.on('Identifier', path => {
+    if (!validate(path)) return
+    const { getFileName } = helpers(path)
 
     // the expression
-    const parent = ctx.parents[ctx.path.indexOf('left') - 1].node
-    const leftNode = ctx.parents[ctx.path.indexOf('left')].node.left
-    const rightNode = ctx.parents[ctx.path.indexOf('left')].node.right
+    const assignment = path.findParent(path => path.isAssignmentExpression())
 
+    const parent = path.parent
+    const leftNode = assignment.node.left
+
+    const rightNode = assignment.node.right
+    if (!parent || !leftNode || !rightNode) {
+      return
+    }
     if (rightNode.type === 'ObjectExpression' && rightNode.properties.length) {
       return rightNode.properties.forEach(exportsProperty => {
         push({
           cjsExports_id: exportsProperty.key.name,
-          file_id: ctx.getFileName(),
+          file_id: getFileName(),
         })
       })
     }
@@ -40,7 +47,7 @@ module.exports = function(engine: ParseEngine, db: Lowdb): void {
 
     const cjsExports_id =
       isNamedModuleExports || isNamedExport ? leftNode.property.name : 'default'
-    const file_id = ctx.getFileName()
+    const file_id = getFileName()
 
     push({
       cjsExports_id,
@@ -48,6 +55,7 @@ module.exports = function(engine: ParseEngine, db: Lowdb): void {
     })
   })
   function looksLikeModule(node) {
+    if (!node) return
     return (
       node.type === 'MemberExpression' &&
       node.object &&
@@ -64,15 +72,27 @@ module.exports = function(engine: ParseEngine, db: Lowdb): void {
       node.property.name === 'exports'
     )
   }
-  function validate(ctx) {
+  function validate(path) {
     // abort if not common.js
-    if (ctx.node.name !== 'exports') return false
+    if (path.node.name !== 'exports') return false
+    // abort if module or exports are not found in global scope
+    const root = path.findParent(path => path.isProgram())
+    if (
+      !path.scope.globals.exports &&
+      !path.scope.globals.module &&
+      !root.scope.globals.module &&
+      !root.scope.globals.exports
+    ) {
+      return
+    }
     // abort if not an assignment
-    if (!ctx.path.includes('left')) return false
-
-    const parent = ctx.parents[ctx.path.indexOf('left') - 1].node
-    const leftNode = ctx.parents[ctx.path.indexOf('left')].node.left
-
+    const assignment = path.findParent(path => path.isAssignmentExpression())
+    if (!assignment) return false
+    const parent = path.parent
+    const leftNode = assignment.node.left
+    if (!parent || !leftNode) {
+      return
+    }
     if (
       parent.type === 'ArrowFunctionExpression' ||
       parent.type === 'FunctionExpression' ||

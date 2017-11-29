@@ -54,7 +54,7 @@ export const registerPlugin = (
       parser.on(
         'addFile',
         ({ fileName, path, traverse, types, sourceCode }) => {
-          path.traverse(returnObj.visitor, db.getState())
+          path.traverse(returnObj.visitor, { sourceCode, state: db.getState() })
         }
       )
     }

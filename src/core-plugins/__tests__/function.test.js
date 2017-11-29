@@ -34,15 +34,15 @@ const suites = {
     'const bar = () => {}': [
       {
         file_id: '__TEST__',
-        var_id: 'bar',
         function_id: 'anonymous@1:12',
+        var_id: 'bar',
       },
     ],
     'const foo = () => () => () => () => {}': [
       {
         file_id: '__TEST__',
-        var_id: 'foo',
         function_id: 'anonymous@1:12',
+        var_id: 'foo',
       },
       {
         file_id: '__TEST__',
@@ -58,53 +58,134 @@ const suites = {
       },
     ],
   },
-  'Object Functions': {
-    'const foo = { bar: () => {} }': [
+  'Function with Params': {
+    'const fn = (foo, bar, baz) => {}': [
       {
         file_id: '__TEST__',
-        object_key: 'bar',
-        object_id: 'foo',
-        function_id: 'anonymous@1:19',
+        function_id: 'anonymous@1:11',
+        var_id: 'fn',
+        params: ['foo', 'bar', 'baz'],
       },
     ],
-    'const obj = { foo: () => {}, bar: function () {}, baz: function Baz () {} }': [
+    'const fn = ({foo, bar}, baz) => {}': [
       {
         file_id: '__TEST__',
-        object_key: 'foo',
-        object_id: 'obj',
-        function_id: 'anonymous@1:19',
-      },
-      {
-        file_id: '__TEST__',
-        object_key: 'bar',
-        object_id: 'obj',
-        function_id: 'anonymous@1:34',
-      },
-      {
-        file_id: '__TEST__',
-        object_key: 'baz',
-        object_id: 'obj',
-        function_id: 'Baz@1:55',
+        function_id: 'anonymous@1:11',
+        var_id: 'fn',
+        params: [
+          [{ key: 'foo', value: 'foo' }, { key: 'bar', value: 'bar' }],
+          'baz',
+        ],
       },
     ],
-    'namespace.obj = { foo: () => {}, bar: function () {}, baz: function Baz () {} }': [
+    'const fn = ({foo: fooey, bar: barey}, baz) => {}': [
       {
         file_id: '__TEST__',
-        object_key: 'foo',
-        object_id: 'obj',
-        function_id: 'anonymous@1:19',
+        function_id: 'anonymous@1:11',
+        var_id: 'fn',
+        params: [
+          [{ key: 'foo', value: 'fooey' }, { key: 'bar', value: 'barey' }],
+          'baz',
+        ],
       },
+    ],
+    'const fn = ({foo: fooey, bar: barey}, ...baz) => {}': [
       {
         file_id: '__TEST__',
-        object_key: 'bar',
-        object_id: 'obj',
-        function_id: 'anonymous@1:34',
+        function_id: 'anonymous@1:11',
+        var_id: 'fn',
+        params: [
+          [{ key: 'foo', value: 'fooey' }, { key: 'bar', value: 'barey' }],
+          '...baz',
+        ],
       },
+    ],
+    'foo.map(([, foo, bar, ...baz]) => foo + 1)': [
       {
         file_id: '__TEST__',
-        object_key: 'baz',
-        object_id: 'obj',
-        function_id: 'Baz@1:55',
+        function_id: 'anonymous@1:8',
+        params: [[null, 'foo', 'bar', '...baz']],
+      },
+    ],
+    '/** add two numbers\n*@param {number} a add a number\n@param {number} b with this number\n@returns {number} a + b\n */\nconst add = (a, b) => a + b': [
+      {
+        file_id: '__TEST__',
+        function_id: 'anonymous@6:12',
+        params: ['a', 'b'],
+        var_id: 'add',
+        jsdoc: [
+          {
+            description: 'add two numbers',
+            tags: [
+              {
+                title: 'param',
+                description: 'add a number',
+                type: {
+                  type: 'NameExpression',
+                  name: 'number',
+                },
+                name: 'a',
+              },
+              {
+                title: 'param',
+                description: 'with this number',
+                type: {
+                  type: 'NameExpression',
+                  name: 'number',
+                },
+                name: 'b',
+              },
+              {
+                title: 'returns',
+                description: 'a + b',
+                type: {
+                  type: 'NameExpression',
+                  name: 'number',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    'const obj = { /** add two numbers\n * @param {number} a add a number\n * @param {number} b with this number\n@returns {number} a + b */ add: (a, b) => {}}': [
+      {
+        file_id: '__TEST__',
+        function_id: 'anonymous@4:32',
+        params: ['a', 'b'],
+        jsdoc: [
+          {
+            description: 'add two numbers',
+            tags: [
+              {
+                title: 'param',
+                description: 'add a number',
+                type: {
+                  type: 'NameExpression',
+                  name: 'number',
+                },
+                name: 'a',
+              },
+              {
+                title: 'param',
+                description: 'with this number',
+                type: {
+                  type: 'NameExpression',
+                  name: 'number',
+                },
+                name: 'b',
+              },
+              {
+                title: 'returns',
+                description: 'a + b',
+                type: {
+                  type: 'NameExpression',
+                  name: 'number',
+                },
+              },
+            ],
+          },
+        ],
       },
     ],
   },

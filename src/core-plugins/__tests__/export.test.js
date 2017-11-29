@@ -16,7 +16,7 @@ const defaultExports = [
 ]
 const exportAll = 'export * from "baz"'
 
-describe.skip('Core Plugin: export', () => {
+describe('Core Plugin: export', () => {
   describe('Named Exports', () => {
     namedExports.forEach(namedExport => {
       test(namedExport, async () => {
