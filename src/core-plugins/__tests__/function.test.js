@@ -1,5 +1,5 @@
-const { testPlugin } = require('./utils/testPlugin')
-const functionPlugin = require('../function')
+const testFactory = require('./utils/testFactory')
+const fnPlugin = require('../function')
 
 const suites = {
   'Declared Function': {
@@ -191,17 +191,4 @@ const suites = {
   },
 }
 
-describe.only('Core Plugin: function', () => {
-  Object.entries(suites).forEach(([suite, fns]) => {
-    describe(suite, () => {
-      Object.entries(fns).forEach(([fn, expected]) => {
-        test(fn, async () => {
-          const runTest = testPlugin({}, '__TEST__')
-          const state = await runTest(functionPlugin, fn)
-          const actual = state.function_collection
-          expect(actual).toEqual(expected)
-        })
-      })
-    })
-  })
-})
+testFactory('Core Plugin: function', fnPlugin, 'function_collection', suites)
