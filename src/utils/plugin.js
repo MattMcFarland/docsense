@@ -48,7 +48,7 @@ export const registerPlugin = (
   const returnObj = plugin.exec(parser, db, types)
   if (returnObj) {
     if (typeof returnObj.pre === 'function') {
-      parser.on('before:addFile', returnObj.pre)
+      parser.on('addFile:before', returnObj.pre)
     }
     if (returnObj.visitor) {
       parser.on(
@@ -59,7 +59,7 @@ export const registerPlugin = (
       )
     }
     if (typeof returnObj.post === 'function') {
-      parser.on('after:addFile', plugin.exec.post)
+      parser.on('addFile:after', returnObj.post)
     }
   }
 }

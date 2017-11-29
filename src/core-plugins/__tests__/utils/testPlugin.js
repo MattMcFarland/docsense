@@ -20,8 +20,11 @@ module.exports.testPlugin = (initialState, fileName) => (
     plugin.exec = plugin
     parser.on('done', () => resolve(db.getState()))
     registerPlugin(parser, plugin, db)
+    parser.emit('addFile:before', db.getState())
 
     parser.addFile(fileName, sourceCode.toString())
+    parser.emit('addFile:after', db.getState())
+
     parser.emit('done')
   })
 }

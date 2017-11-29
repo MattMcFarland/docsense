@@ -36,12 +36,12 @@ export const parseFiles = ({
         )
 
         filesData.forEach((data: string, index) => {
-          parser.emit('before:addFile', db.getState())
+          parser.emit('addFile:before', db.getState())
           const filepath: string = filepaths[index]
           log.info('parse', filepath)
           parser.addFile(filepath, data.toString())
           log.log('success', 'parse', filepath)
-          parser.emit('after:addFile', db.getState())
+          parser.emit('addFile:after', db.getState())
         })
 
         parser.emit('done')
