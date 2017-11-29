@@ -183,8 +183,9 @@ const suites = {
   ],
 }
 
-testFactory({
-  name: 'Core Plugin: Var',
-  plugin: varPlugin,
-  suites,
+describe('Core Plugin: Var', () => {
+  testFactory({
+    plugin: varPlugin,
+    suites,
+  })
 })

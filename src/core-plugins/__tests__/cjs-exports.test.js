@@ -71,8 +71,8 @@ const suites = {
   objectExports,
   notExports,
 }
-testFactory({
-  name: 'Core Plugin: Common.js Exports',
-  plugin: cjsExportsPlugin,
-  suites,
-})
+describe('Core Plugin: Common.js Exports', () =>
+  testFactory({
+    plugin: cjsExportsPlugin,
+    suites,
+  }))

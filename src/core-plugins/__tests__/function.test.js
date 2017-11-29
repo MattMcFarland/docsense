@@ -190,9 +190,9 @@ const suites = {
     ],
   },
 }
-
-testFactory({
-  name: 'Core Plugin: Function',
-  plugin: fnPlugin,
-  suites,
+describe('Core Plugin: Function', () => {
+  testFactory({
+    plugin: fnPlugin,
+    suites,
+  })
 })

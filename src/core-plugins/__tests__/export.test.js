@@ -146,5 +146,6 @@ const suites = {
     ],
   ],
 }
-
-testFactory({ name: 'Core Plugin: export', plugin: exportPlugin, suites })
+describe('Core Plugin: export', () => {
+  testFactory({ plugin: exportPlugin, suites })
+})
