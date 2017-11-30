@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest",
     "test:debug":
-      "node -r @babel/register --inspect-brk=9229 --nolazy node_modules/.bin/jest",
+      "node -r @babel/register --inspect-brk=9229 --nolazy node_modules/jest/bin/jest.js",
     "precommit": "lint-staged",
     "clean": "rm -rf out docs lib && mkdir docs lib",
     "prebuild": "flow check && yarn clean",
@@ -24,7 +24,8 @@
   },
   "jest": {
     "testMatch": ["**/__tests__/**/*.test.js"],
-    "testPathIgnorePatterns": ["/lib/", "/node_modules/"]
+    "testPathIgnorePatterns": ["/lib/", "/node_modules/"],
+    "reporters": ["jest-tap-reporter"]
   },
   "keywords": [],
   "author": "Matt McFarland <contact@mattmcfarland.com>",
@@ -38,8 +39,7 @@
     "json-query": "^2.2.2",
     "lowdb": "^1.0.0",
     "npmlog": "^4.1.2",
-    "ramda": "^0.25.0",
-    "traverse": "^0.6.6"
+    "ramda": "^0.25.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.32",
@@ -54,6 +54,7 @@
     "flow-bin": "^0.59.0",
     "husky": "^0.14.3",
     "jest": "^21.2.1",
+    "jest-tap-reporter": "^1.7.0",
     "lint-staged": "^5.0.0",
     "pkg-ok": "^1.1.0",
     "prettier": "^1.8.2"
