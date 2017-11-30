@@ -88,7 +88,7 @@ export default function(engine: ParseEngine, db: Lowdb): any {
     })
   }
   function onFunction(path, export_id) {
-    if (!export_id) return
+    if (typeof export_id !== 'string') return
     const { function_id }: FunctionMeta = getFunctionMeta(path)
     insert(export_id)({
       function_id,
