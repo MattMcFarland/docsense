@@ -1,4 +1,5 @@
 {
+  "licenser.projectName": "DocSense",
   "javascript.validate.enable": false,
   "typescript.validate.enable": false,
   "flow.enabled": true,
@@ -6,7 +7,6 @@
   // Turns auto fix on save on or off.
   "eslint.autoFixOnSave": true,
   "eslint.packageManager": "yarn",
-
   "files.associations": {
     ".docsenserc": "json",
     ".prettierrc": "json"
