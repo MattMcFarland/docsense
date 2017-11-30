@@ -12,6 +12,14 @@ insert_final_newline = true
 indent_style = space
 indent_size = 2
 
-[{package.json,.babelrc, .docsenserc, .prettierrc}]
+[flow-typed/**.js]
+indent_style = space
+indent_size = 2
+
+[.vscode/**.json]
+indent_style = space
+indent_size = 2
+
+[{package.json,.babelrc, .docsenserc, .prettierrc, .eslintrc}]
 indent_style = space
 indent_size = 2
