@@ -1,6 +1,7 @@
 // @flow
 import type ParseEngine from '../parser/ParseEngine'
 import helpers from '../parser/helpers'
+import type { FunctionMeta } from '../parser/helpers'
 import type types from '@babel/types'
 export const collectionName = 'function_collection'
 export default function(engine: ParseEngine, db: Lowdb, types: types): any {
@@ -22,7 +23,7 @@ export default function(engine: ParseEngine, db: Lowdb, types: types): any {
     const { getFileName, getFunctionMeta } = helpers(path)
     const file_id = getFileName()
     const var_id = getVariableId(path)
-    const { function_id, params, jsdoc } = getFunctionMeta()
+    const { function_id, params, jsdoc }: FunctionMeta = getFunctionMeta()
     return push({
       function_id,
       file_id,

@@ -1,12 +1,17 @@
 // @flow
 import type ParseEngine from '../parser/ParseEngine'
-import helpers, { getFunctionMeta } from '../parser/helpers'
+import helpers, { FunctionMeta, getFunctionMeta } from '../parser/helpers'
 import functionVisitor from './visitors/functionVisitor'
-
 export const collectionName = 'export_collection'
+interface ExportItem {
+  export_id: string;
+  file_id?: string;
+  jsdoc?: any;
+  source_id?: string;
+}
 export default function(engine: ParseEngine, db: Lowdb): any {
   (db.set(collectionName, []): Lowdb).write()
-  const createPush = path => data => {
+  const createPush = (path: any) => (data: ExportItem): void => {
     db
       .get(collectionName)
       .push(data)
@@ -84,7 +89,7 @@ export default function(engine: ParseEngine, db: Lowdb): any {
   }
   function onFunction(path, export_id) {
     if (!export_id) return
-    const { function_id /* params, jsdoc */ } = getFunctionMeta(path)
+    const { function_id }: FunctionMeta = getFunctionMeta(path)
     insert(export_id)({
       function_id,
     })

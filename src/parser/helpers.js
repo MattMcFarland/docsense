@@ -1,17 +1,22 @@
 // @flow
 
 export default (pathObj: any) => ({
-  getFileName: () => getFileName(pathObj),
-  getFunctionMeta: () => getFunctionMeta(pathObj),
-  getFunctionParams: () => getFunctionParams(pathObj),
-  getDocTags: () => getDocTags(pathObj),
-  getVariableId: () => getVariableId(pathObj),
+  getFileName: (): string => getFileName(pathObj),
+  getFunctionMeta: (): FunctionMeta => getFunctionMeta(pathObj),
+  getFunctionParams: (): ?Array<any> => getFunctionParams(pathObj),
+  getDocTags: (): ?any => getDocTags(pathObj),
+  getVariableId: (): ?string => getVariableId(pathObj),
 })
 
-export const getFileName = (path: any) =>
+export const getFileName = (path: any): string =>
   path.node && path.node.loc && path.node.loc.filename
 
-export function getFunctionMeta(path: any) {
+export interface FunctionMeta {
+  function_id: string;
+  params: ?(any[]);
+  jsdoc: any;
+}
+export function getFunctionMeta(path: any): FunctionMeta {
   const line = path.get('loc.start.line').node
   const column = path.get('loc.start.column').node
   const id = path.get('id').node
@@ -22,12 +27,12 @@ export function getFunctionMeta(path: any) {
   const jsdoc = getDocTags(path)
   return {
     function_id,
-    params: params.length ? params : undefined,
+    params: params && params.length ? params : undefined,
     jsdoc,
   }
 }
 
-export const getFunctionParams = (path: any) => {
+export const getFunctionParams = (path: any): ?Array<any> => {
   return path.node.params.map(param => {
     if (param.type === 'Identifier') {
       return param.name
@@ -57,7 +62,7 @@ export const getFunctionParams = (path: any) => {
   })
 }
 
-export function getDocTags(path: any) {
+export function getDocTags(path: any): ?any {
   const tags =
     path.node.__doc_tags__ ||
     path.getStatementParent().node.__doc_tags__ ||
@@ -65,7 +70,7 @@ export function getDocTags(path: any) {
   return tags && tags.length ? tags : undefined
 }
 
-export function getVariableId(path: any) {
+export function getVariableId(path: any): ?string {
   return path.parentPath.isVariableDeclarator()
     ? path.parent.id.name
     : undefined
