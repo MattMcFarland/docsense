@@ -1,5 +1,5 @@
-import { Visitor } from 'babel-traverse'
-import ParseEngine from 'src/parser/ParseEngine'
+import { Visitor } from 'babel-traverse';
+import ParseEngine from 'src/parser/ParseEngine';
 
 /**
  * The returned object when a plugin module has been evaluated,
@@ -18,7 +18,7 @@ export interface Command {
  * @interface Command
  * @namespace Plugin
  */
-export type Module = (engine: ParseEngine, db: Lowdb) => void | Command
+export type Module = (engine: ParseEngine, db: Lowdb) => void | Command;
 
 /**
  * Plugins are queued up for evaluation by a simple interface

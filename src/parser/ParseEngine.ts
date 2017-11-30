@@ -1,12 +1,12 @@
-import { EventEmitter } from 'events'
-import { parse as docParse, Annotation } from 'doctrine'
-import traverse from '@babel/traverse'
-import types, { Node, Comment, CommentBlock } from 'babel-types'
+import { EventEmitter } from 'events';
+import { parse as docParse, Annotation } from 'doctrine';
+import traverse from '@babel/traverse';
+import types, { Node, Comment, CommentBlock } from 'babel-types';
 
 interface withDocTags {
   __doc_tags__: Annotation[];
 }
-export type AST = Node & withDocTags
+export type AST = Node & withDocTags;
 
 /** @interface ParseOptions parseOptions */
 export interface ParseOptions {
@@ -52,10 +52,10 @@ export default class ParseEngine extends EventEmitter {
    * @param {ParseOptions} parseOptions options passed to the parser module
    */
   constructor(parserName: string, parseOptions: ParseOptions = {}) {
-    super()
-    this.parserName = parserName
-    this.parser = module.require(parserName)
-    this.parseOptions = parseOptions
+    super();
+    this.parserName = parserName;
+    this.parser = module.require(parserName);
+    this.parseOptions = parseOptions;
   }
 
   /**
@@ -64,11 +64,11 @@ export default class ParseEngine extends EventEmitter {
    * @param {string} sourceCode read from fs.readFile, encoded at utf-8
    */
   addFile(fileName: string, sourceCode: string): void {
-    const ast: any = this.parse(sourceCode, { sourceFilename: fileName })
-    const self = this
+    const ast: any = this.parse(sourceCode, { sourceFilename: fileName });
+    const self = this;
     traverse(ast, {
       enter(path) {
-        self.maybeInjectTags(path.node)
+        self.maybeInjectTags(path.node);
       },
       exit(path) {
         if (path.type === 'Program') {
@@ -78,10 +78,10 @@ export default class ParseEngine extends EventEmitter {
             traverse,
             types,
             sourceCode,
-          })
+          });
         }
       },
-    })
+    });
   }
 
   /**
@@ -90,7 +90,7 @@ export default class ParseEngine extends EventEmitter {
    * @param {ParseOptions} options
    */
   parse(data: string, options?: ParseOptions): AST {
-    return this.parser.parse(data, { ...options, ...this.parseOptions })
+    return this.parser.parse(data, { ...options, ...this.parseOptions });
   }
 
   /**
@@ -99,7 +99,7 @@ export default class ParseEngine extends EventEmitter {
    */
   maybeInjectTags(node: AST): void {
     if (Array.isArray(node.leadingComments)) {
-      node.__doc_tags__ = this.injectTags(node.leadingComments)
+      node.__doc_tags__ = this.injectTags(node.leadingComments);
     }
   }
 
@@ -112,7 +112,7 @@ export default class ParseEngine extends EventEmitter {
       docParse(content, {
         unwrap: true,
         sloppy: true,
-      })
+      });
     const tagInjectReducer = (
       acc: Annotation[],
       leadingComment: Comment & CommentBlock
@@ -120,8 +120,8 @@ export default class ParseEngine extends EventEmitter {
       (leadingComment.type &&
         leadingComment.type === 'CommentBlock' &&
         [].concat(parseCommentTags(leadingComment.value), acc)) ||
-      acc
+      acc;
 
-    return leadingComments.reduce(tagInjectReducer, [])
+    return leadingComments.reduce(tagInjectReducer, []);
   }
 }

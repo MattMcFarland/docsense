@@ -1,5 +1,5 @@
-const testFactory = require('./utils/testFactory')
-const fnPlugin = require('../function')
+const testFactory = require('./utils/testFactory');
+const fnPlugin = require('../function');
 
 const suites = {
   'Declared Function': {
@@ -189,10 +189,10 @@ const suites = {
       },
     ],
   },
-}
+};
 describe('Core Plugin: Function', () => {
   testFactory({
     plugin: fnPlugin,
     suites,
-  })
-})
+  });
+});

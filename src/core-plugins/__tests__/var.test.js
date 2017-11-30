@@ -1,5 +1,5 @@
-const testFactory = require('./utils/testFactory')
-const varPlugin = require('../var')
+const testFactory = require('./utils/testFactory');
+const varPlugin = require('../var');
 
 const suites = {
   'Single Vars': {
@@ -178,11 +178,11 @@ const suites = {
       ],
     ],
   ],
-}
+};
 
 describe('Core Plugin: Var', () => {
   testFactory({
     plugin: varPlugin,
     suites,
-  })
-})
+  });
+});

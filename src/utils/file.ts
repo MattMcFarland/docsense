@@ -1,11 +1,11 @@
-import { resolve as resolvePath, join as joinPath } from 'path'
-import { promisify } from 'util'
-import fs from 'fs'
-import glob from 'glob'
+import { resolve as resolvePath, join as joinPath } from 'path';
+import { promisify } from 'util';
+import fs from 'fs';
+import glob from 'glob';
 
-const log = global.log
+const log = global.log;
 
-const readFile = promisify(fs.readFile)
+const readFile = promisify(fs.readFile);
 
 /**
  * Processes a glob pattern to an array of files
@@ -16,7 +16,7 @@ const readFile = promisify(fs.readFile)
 export const processGlobPattern = (pattern: string): Promise<string[]> =>
   new Promise((resolve, reject) =>
     glob(pattern, (err, matches) => (err ? reject(err) : resolve(matches)))
-  )
+  );
 
 /**
  * Processes an array of glob patterns to an array of files
@@ -26,7 +26,7 @@ export const processGlobPattern = (pattern: string): Promise<string[]> =>
  */
 export const processAllGlobPatterns = (
   patterns: string[]
-): Promise<Array<string[]>> => Promise.all(patterns.map(processGlobPattern))
+): Promise<Array<string[]>> => Promise.all(patterns.map(processGlobPattern));
 
 /**
  * Converts resolves the full path of the filepath relative to the current working directory.
@@ -35,7 +35,7 @@ export const processAllGlobPatterns = (
  * @uses resolvePath
  */
 export const resolvePathFromCWD = (relativePath: string): string =>
-  resolvePath(process.cwd(), relativePath)
+  resolvePath(process.cwd(), relativePath);
 
 /**
  * Resolves the full path all file patterns relative to the current working directory.
@@ -44,7 +44,7 @@ export const resolvePathFromCWD = (relativePath: string): string =>
  * @uses resolvePathFromCWD
  */
 export const resolveAllFilePathsFromCWD = (relativePaths: string[]): string[] =>
-  relativePaths.map(resolvePathFromCWD)
+  relativePaths.map(resolvePathFromCWD);
 
 /**
  * Opens file, reads it, then creates an entry where the
@@ -55,7 +55,7 @@ export const resolveAllFilePathsFromCWD = (relativePaths: string[]): string[] =>
  * @uses contextAsEntry
  */
 export const safelyReadFile = (filepath: string): Promise<string> =>
-  resolveFile(filepath).then(openFileForReading)
+  resolveFile(filepath).then(openFileForReading);
 
 /**
  * Only attempts to read real files, discarding directories, etc.
@@ -67,15 +67,15 @@ export const safelyReadFile = (filepath: string): Promise<string> =>
 export const resolveFile = (filepath: string): Promise<string> => {
   return new Promise((resolve, reject) => {
     fs.stat(filepath, (err, stats) => {
-      if (err) return reject(err)
+      if (err) return reject(err);
       if (stats.isFile()) {
-        log.info('read', filepath)
-        return resolve(filepath)
+        log.info('read', filepath);
+        return resolve(filepath);
       }
-      log.warn('skip', filepath)
-    })
-  })
-}
+      log.warn('skip', filepath);
+    });
+  });
+};
 
 /**
  * performs fs.readfile at utf-8 encoding on the given filepath
@@ -83,7 +83,7 @@ export const resolveFile = (filepath: string): Promise<string> => {
  * @returns {string} utf-8 content
  */
 export const openFileForReading = (filepath: string): Promise<string> =>
-  readFile(filepath, 'utf-8')
+  readFile(filepath, 'utf-8');
 
 /**
  * Read the contents of all files in the given array
@@ -92,7 +92,7 @@ export const openFileForReading = (filepath: string): Promise<string> =>
  * @uses safelyReadFile
  */
 export const readFiles = (filesArray: string[]): Promise<string[]> =>
-  Promise.all(filesArray.map(safelyReadFile))
+  Promise.all(filesArray.map(safelyReadFile));
 
 /**
  * Given an array of directory items (typically from fs.readdir), reduce it
@@ -101,9 +101,9 @@ export const readFiles = (filesArray: string[]): Promise<string[]> =>
  */
 export const reduceDirectoryToJSFiles = (directory: string[]) =>
   directory.reduce((validFiles: string[], name: string) => {
-    if (name.indexOf('.js') > -1) validFiles.push(name)
-    return validFiles
-  }, [])
+    if (name.indexOf('.js') > -1) validFiles.push(name);
+    return validFiles;
+  }, []);
 
 /**
  * scan a directory using fs.readdir
@@ -112,10 +112,10 @@ export const reduceDirectoryToJSFiles = (directory: string[]) =>
 export const scanDirectory = (directoryPath: string) => (): Promise<string[]> =>
   new Promise((resolve, reject) => {
     fs.readdir(directoryPath, (err, directory) => {
-      if (err) return reject(err)
-      return resolve(directory)
-    })
-  })
+      if (err) return reject(err);
+      return resolve(directory);
+    });
+  });
 
 /**
  * Given the current promise chain context, resolve the paths from the relativePath
@@ -127,4 +127,4 @@ export const resolveContextRelativePaths = (...relativePath: string[]) => (
 ): string[] =>
   filenames.map((filename: string): string =>
     joinPath(...relativePath, filename)
-  )
+  );

@@ -1,5 +1,5 @@
-const testFactory = require('./utils/testFactory')
-const cjsExportsPlugin = require('../cjs-exports')
+const testFactory = require('./utils/testFactory');
+const cjsExportsPlugin = require('../cjs-exports');
 const tests = [
   'module.exports = function () {}',
   'exports = function () {}',
@@ -30,7 +30,7 @@ const tests = [
   'exports.name = fn.call()',
   'module.exports.name = fn.apply()',
   'exports.name = fn.apply()',
-]
+];
 const withComments = [
   `/**
   * Create Super Hero
@@ -64,7 +64,7 @@ exports = ({name, ability}) => {}`,
 * @returns {SuperHero} your new super hero!!
 */
 module.exports = function({name, ability}) {}`,
-]
+];
 const emptyTests = [
   'var exports = 4',
   'let foo = { exports: 4}',
@@ -92,14 +92,14 @@ const emptyTests = [
   'some.module.other.exports.foo = { exports }',
   'some.other.exports.foo = baz',
   'some.other.exports.foo = { exports }',
-]
+];
 const suites = {
   OK: tests,
   COMMENTS: withComments,
   EMPTY: emptyTests,
-}
+};
 describe('Core: common.js', () =>
   testFactory({
     plugin: cjsExportsPlugin,
     suites,
-  }))
+  }));

@@ -1,12 +1,12 @@
-const testFactory = require('./utils/testFactory')
-const exportPlugin = require('../export')
+const testFactory = require('./utils/testFactory');
+const exportPlugin = require('../export');
 
 const expectedNameExports = [
   { export_id: 'name1', file_id: '__TEST__' },
   { export_id: 'name2', file_id: '__TEST__' },
   { export_id: 'name3', file_id: '__TEST__' },
-]
-const expectedDefaultExports = [{ export_id: 'default', file_id: '__TEST__' }]
+];
+const expectedDefaultExports = [{ export_id: 'default', file_id: '__TEST__' }];
 const suites = {
   'Exporting local': {
     'export { name1, name2, name3 };': expectedNameExports,
@@ -136,7 +136,7 @@ const suites = {
       ],
     ],
   ],
-}
+};
 describe('Core Plugin: export', () => {
-  testFactory({ plugin: exportPlugin, suites })
-})
+  testFactory({ plugin: exportPlugin, suites });
+});
