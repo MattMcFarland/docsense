@@ -1,4 +1,3 @@
-// @flow
 import { flatten, dedupe } from './common'
 import { processAllGlobPatterns, readFiles } from './file'
 import { registerPlugin } from './plugin'
@@ -15,9 +14,9 @@ export const parseFiles = ({
   config,
   plugins,
 }: {
-  config: DocSenseConfig,
-  plugins: DocSensePlugin[],
-}): Promise<Lowdb> => {
+    config: DocSenseConfig,
+    plugins: DocSensePlugin[],
+  }): Promise<Lowdb> => {
   return processAllGlobPatterns(config.files)
     .then(flatten)
     .then(dedupe)

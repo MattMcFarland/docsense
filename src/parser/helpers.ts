@@ -1,11 +1,9 @@
-// @flow
-
 export default (pathObj: any) => ({
   getFileName: (): string => getFileName(pathObj),
   getFunctionMeta: (): FunctionMeta => getFunctionMeta(pathObj),
-  getFunctionParams: (): ?Array<any> => getFunctionParams(pathObj),
-  getDocTags: (): ?any => getDocTags(pathObj),
-  getVariableId: (): ?string => getVariableId(pathObj),
+  getFunctionParams: (): Array<any> => getFunctionParams(pathObj),
+  getDocTags: (): any => getDocTags(pathObj),
+  getVariableId: (): string => getVariableId(pathObj),
 })
 
 export const getFileName = (path: any): string =>
@@ -13,7 +11,7 @@ export const getFileName = (path: any): string =>
 
 export interface FunctionMeta {
   function_id: string;
-  params: ?(any[]);
+  params?: (any[]);
   jsdoc: any;
 }
 export function getFunctionMeta(path: any): FunctionMeta {
@@ -32,7 +30,7 @@ export function getFunctionMeta(path: any): FunctionMeta {
   }
 }
 
-export const getFunctionParams = (path: any): ?Array<any> => {
+export const getFunctionParams = (path: any): Array<any> => {
   return path.node.params.map(param => {
     if (param.type === 'Identifier') {
       return param.name
@@ -62,7 +60,7 @@ export const getFunctionParams = (path: any): ?Array<any> => {
   })
 }
 
-export function getDocTags(path: any): ?any {
+export function getDocTags(path: any): any {
   const tags =
     path.node.__doc_tags__ ||
     path.getStatementParent().node.__doc_tags__ ||
@@ -70,7 +68,7 @@ export function getDocTags(path: any): ?any {
   return tags && tags.length ? tags : undefined
 }
 
-export function getVariableId(path: any): ?string {
+export function getVariableId(path: any): string {
   return path.parentPath.isVariableDeclarator()
     ? path.parent.id.name
     : undefined

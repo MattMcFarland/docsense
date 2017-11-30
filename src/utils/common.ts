@@ -1,5 +1,3 @@
-// @flow
-
 /**
  * Send a status message while in a promise chain
  * @param {string} msg

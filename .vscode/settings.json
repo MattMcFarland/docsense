@@ -1,8 +1,6 @@
 {
   "javascript.implicitProjectConfig.checkJs": true,
   "licenser.projectName": "DocSense",
-  "javascript.validate.enable": false,
-  "typescript.validate.enable": false,
   "flow.enabled": true,
   "editor.tabSize": 2,
   // Turns auto fix on save on or off.
@@ -12,7 +10,9 @@
     ".docsenserc": "json",
     ".prettierrc": "json"
   },
-  "editor.rulers": [90],
+  "editor.rulers": [
+    90
+  ],
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,

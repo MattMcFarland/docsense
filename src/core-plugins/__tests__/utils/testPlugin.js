@@ -1,4 +1,4 @@
-const ParseEngine = require('../../../parser/ParseEngine').default
+const ParseEngine = require('../../../parser/ParseEngine.ts').default
 const defaultConfig = require('../../../config/default-config.json')
 const low = require('lowdb')
 const Memory = require('lowdb/adapters/Memory')

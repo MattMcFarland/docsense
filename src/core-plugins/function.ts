@@ -1,10 +1,6 @@
-// @flow
-import type ParseEngine from '../parser/ParseEngine'
 import helpers from '../parser/helpers'
-import type { FunctionMeta } from '../parser/helpers'
-import type types from '@babel/types'
 export const collectionName = 'function_collection'
-export default function(engine: ParseEngine, db: Lowdb, types: types): any {
+export default function (engine: ParseEngine, db: Lowdb, types: types): any {
   (db.set(collectionName, []): Lowdb).write()
   const push = data => {
     db

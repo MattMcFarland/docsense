@@ -1,7 +1,5 @@
-// @flow
-
 import { EventEmitter } from 'events'
-import Doctrine from 'doctrine'
+import { parse as docParse } from 'doctrine'
 import traverse from '@babel/traverse'
 import types from '@babel/types'
 
@@ -94,7 +92,7 @@ export default class ParseEngine extends EventEmitter {
    */
   injectTags(leadingComments: LeadingComment[]): Doctrine.Type[] {
     const parseCommentTags = (content: string): Doctrine.Type[] =>
-      Doctrine.parse(content, {
+      docParse(content, {
         unwrap: true,
         sloppy: true,
       })

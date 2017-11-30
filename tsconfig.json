@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "outDir": "./lib",
+    "allowJs": true,
+    "target": "es2015",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "isolatedModules": false,
+    "lib": [
+      "es2015",
+      "esnext"
+    ]
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "typeAcquisition": {
+    "enable": true
+  }
+}

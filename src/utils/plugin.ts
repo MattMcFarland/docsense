@@ -1,4 +1,3 @@
-// @flow
 
 import { resolve as resolvePath } from 'path'
 import {

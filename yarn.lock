@@ -216,10 +216,6 @@
   version "7.0.0-beta.32"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-async-generators/-/plugin-syntax-async-generators-7.0.0-beta.32.tgz#64eea83224be72f5b122829d96761a6b2a988d43"
 
-"@babel/plugin-syntax-flow@7.0.0-beta.32":
-  version "7.0.0-beta.32"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-flow/-/plugin-syntax-flow-7.0.0-beta.32.tgz#fa861f17f240ae5dac7e641a3d5aec20a102fb9e"
-
 "@babel/plugin-syntax-object-rest-spread@7.0.0-beta.32":
   version "7.0.0-beta.32"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-object-rest-spread/-/plugin-syntax-object-rest-spread-7.0.0-beta.32.tgz#fec4d07e8f9aa5df7a2ec5c4db636a18a0f7d35b"
@@ -227,6 +223,10 @@
 "@babel/plugin-syntax-optional-catch-binding@7.0.0-beta.32":
   version "7.0.0-beta.32"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-optional-catch-binding/-/plugin-syntax-optional-catch-binding-7.0.0-beta.32.tgz#414e871378d1a800f91997f98f8ab85743043b8d"
+
+"@babel/plugin-syntax-typescript@7.0.0-beta.32":
+  version "7.0.0-beta.32"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-typescript/-/plugin-syntax-typescript-7.0.0-beta.32.tgz#c2791ac1bd865ce3240493351be07e45b13122c2"
 
 "@babel/plugin-transform-arrow-functions@7.0.0-beta.32":
   version "7.0.0-beta.32"
@@ -276,12 +276,6 @@
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-exponentiation-operator/-/plugin-transform-exponentiation-operator-7.0.0-beta.32.tgz#e7d6c516d783b6479251b8b12020667f1d0b06f7"
   dependencies:
     "@babel/helper-builder-binary-assignment-operator-visitor" "7.0.0-beta.32"
-
-"@babel/plugin-transform-flow-strip-types@7.0.0-beta.32":
-  version "7.0.0-beta.32"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-flow-strip-types/-/plugin-transform-flow-strip-types-7.0.0-beta.32.tgz#a0d09112ed7229dcc5265ca9e2caed5bc0ccbaeb"
-  dependencies:
-    "@babel/plugin-syntax-flow" "7.0.0-beta.32"
 
 "@babel/plugin-transform-for-of@7.0.0-beta.32":
   version "7.0.0-beta.32"
@@ -369,6 +363,12 @@
   version "7.0.0-beta.32"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-typeof-symbol/-/plugin-transform-typeof-symbol-7.0.0-beta.32.tgz#f819960bcd339fa557ae16c28561852d7a6d1ce6"
 
+"@babel/plugin-transform-typescript@7.0.0-beta.32":
+  version "7.0.0-beta.32"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-typescript/-/plugin-transform-typescript-7.0.0-beta.32.tgz#f26a27addac7ecebee89dcbd5b058e7a864d0d49"
+  dependencies:
+    "@babel/plugin-syntax-typescript" "7.0.0-beta.32"
+
 "@babel/plugin-transform-unicode-regex@7.0.0-beta.32":
   version "7.0.0-beta.32"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-unicode-regex/-/plugin-transform-unicode-regex-7.0.0-beta.32.tgz#067f67f496e21e57c5944ce2dc9be986b4e43b2a"
@@ -418,11 +418,11 @@
     invariant "^2.2.2"
     semver "^5.3.0"
 
-"@babel/preset-flow@^7.0.0-beta.32":
+"@babel/preset-typescript@^7.0.0-beta.32":
   version "7.0.0-beta.32"
-  resolved "https://registry.yarnpkg.com/@babel/preset-flow/-/preset-flow-7.0.0-beta.32.tgz#d3235a530330df21fdf2d583a5206a7f8ea5bee2"
+  resolved "https://registry.yarnpkg.com/@babel/preset-typescript/-/preset-typescript-7.0.0-beta.32.tgz#699055734b588693dccd8f7ecd904eaccff62ad0"
   dependencies:
-    "@babel/plugin-transform-flow-strip-types" "7.0.0-beta.32"
+    "@babel/plugin-transform-typescript" "7.0.0-beta.32"
 
 "@babel/register@^7.0.0-beta.32":
   version "7.0.0-beta.32"
@@ -466,9 +466,9 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@types/doctrine@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@types/doctrine/-/doctrine-0.0.3.tgz#e892d293c92c9c1d3f9af72c15a554fbc7e0895a"
+"@types/node@^8.0.53":
+  version "8.0.53"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.53.tgz#396b35af826fa66aad472c8cb7b8d5e277f4e6d8"
 
 abab@^1.0.3:
   version "1.0.4"
@@ -571,7 +571,7 @@ anymatch@^1.3.0:
     micromatch "^2.1.5"
     normalize-path "^2.0.0"
 
-app-root-path@^2.0.0:
+app-root-path@2.0.1, app-root-path@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/app-root-path/-/app-root-path-2.0.1.tgz#cd62dcf8e4fd5a417efc664d2e5b10653c651b46"
 
@@ -741,6 +741,14 @@ babel-helpers@^6.24.1:
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
 
+babel-jest@20.0.3:
+  version "20.0.3"
+  resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-20.0.3.tgz#e4a03b13dc10389e140fc645d09ffc4ced301671"
+  dependencies:
+    babel-core "^6.0.0"
+    babel-plugin-istanbul "^4.0.0"
+    babel-preset-jest "^20.0.3"
+
 babel-jest@^21.2.0:
   version "21.2.0"
   resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-21.2.0.tgz#2ce059519a9374a2c46f2455b6fbef5ad75d863e"
@@ -762,6 +770,10 @@ babel-plugin-istanbul@^4.0.0:
     istanbul-lib-instrument "^1.7.5"
     test-exclude "^4.1.1"
 
+babel-plugin-jest-hoist@^20.0.3:
+  version "20.0.3"
+  resolved "https://registry.yarnpkg.com/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-20.0.3.tgz#afedc853bd3f8dc3548ea671fbe69d03cc2c1767"
+
 babel-plugin-jest-hoist@^21.2.0:
   version "21.2.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-21.2.0.tgz#2cef637259bd4b628a6cace039de5fcd14dbb006"
@@ -769,6 +781,12 @@ babel-plugin-jest-hoist@^21.2.0:
 babel-plugin-syntax-object-rest-spread@^6.13.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-object-rest-spread/-/babel-plugin-syntax-object-rest-spread-6.13.0.tgz#fd6536f2bce13836ffa3a5458c4903a597bb3bf5"
+
+babel-preset-jest@^20.0.3:
+  version "20.0.3"
+  resolved "https://registry.yarnpkg.com/babel-preset-jest/-/babel-preset-jest-20.0.3.tgz#cbacaadecb5d689ca1e1de1360ebfc66862c178a"
+  dependencies:
+    babel-plugin-jest-hoist "^20.0.3"
 
 babel-preset-jest@^21.2.0:
   version "21.2.0"
@@ -1308,12 +1326,6 @@ escodegen@^1.6.1:
   optionalDependencies:
     source-map "~0.5.6"
 
-eslint-plugin-flowtype@^2.39.1:
-  version "2.39.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-flowtype/-/eslint-plugin-flowtype-2.39.1.tgz#b5624622a0388bcd969f4351131232dcb9649cd5"
-  dependencies:
-    lodash "^4.15.0"
-
 eslint-scope@^3.7.1:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-3.7.1.tgz#3d63c3edfda02e06e01a452ad88caacc7cdcb6e8"
@@ -1570,10 +1582,6 @@ flat-cache@^1.2.1:
     del "^2.0.2"
     graceful-fs "^4.1.2"
     write "^0.2.1"
-
-flow-bin@^0.59.0:
-  version "0.59.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.59.0.tgz#8c151ee7f09f1deed9bf0b9d1f2e8ab9d470f1bb"
 
 for-in@^1.0.1:
   version "1.0.2"
@@ -2637,7 +2645,7 @@ lodash.unescape@4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/lodash.unescape/-/lodash.unescape-4.0.1.tgz#bf2249886ce514cda112fae9218cdc065211fc9c"
 
-lodash@4, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0:
+lodash@4, lodash@^4.14.0, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -3875,6 +3883,14 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
+typescript-babel-jest@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/typescript-babel-jest/-/typescript-babel-jest-1.0.5.tgz#5f5acffb7495cb050601f056e4ec07ac52c69445"
+  dependencies:
+    app-root-path "2.0.1"
+    babel-jest "20.0.3"
+    typescript "^2.4.1"
+
 typescript-eslint-parser@^8.0.0:
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/typescript-eslint-parser/-/typescript-eslint-parser-8.0.1.tgz#e8cac537d996e16c3dbb0d7c4d509799e67afe0c"
@@ -3882,7 +3898,7 @@ typescript-eslint-parser@^8.0.0:
     lodash.unescape "4.0.1"
     semver "5.4.1"
 
-typescript@^2.5.1:
+typescript@^2.4.1, typescript@^2.5.1, typescript@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.6.2.tgz#3c5b6fd7f6de0914269027f03c0946758f7673a4"
 

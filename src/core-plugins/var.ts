@@ -1,15 +1,12 @@
-// @flow
-import type ParseEngine from '../parser/ParseEngine'
 import helpers, {
   getFunctionMeta,
   getDocTags,
   getVariableId,
 } from '../parser/helpers'
-import type types from '@babel/types'
 import functionVisitor from './visitors/functionVisitor'
 
 export const collectionName = 'var_collection'
-export default function(engine: ParseEngine, db: Lowdb, types: types): any {
+export default function (engine: ParseEngine, db: Lowdb, types: types): any {
   (db.set(collectionName, []): Lowdb).write()
   const createPush = path => data => {
     db

@@ -1,7 +1,12 @@
 {
-  "files": ["src/**/*.js"],
+  "files": [
+    "src/**/*.ts"
+  ],
   "parseOptions": {
     "sourceType": "module",
-    "plugins": ["flow", "objectRestSpread"]
+    "plugins": [
+      "typescript",
+      "objectRestSpread"
+    ]
   }
 }

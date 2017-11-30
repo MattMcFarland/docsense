@@ -1,5 +1,3 @@
-// @flow
-
 import { resolve as resolvePath, join as joinPath } from 'path'
 import { promisify } from 'util'
 import fs from 'fs'

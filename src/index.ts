@@ -1,4 +1,3 @@
-// @flow
 import './logger'
 import getConfig from './config'
 import { fatalError, logContext } from './utils/common'
