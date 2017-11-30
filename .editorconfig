@@ -1,0 +1,17 @@
+# EditorConfig is awesome: http://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+[src/**.js]
+indent_style = space
+indent_size = 2
+
+[{package.json,.babelrc, .docsenserc, .prettierrc}]
+indent_style = space
+indent_size = 2
