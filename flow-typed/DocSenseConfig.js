@@ -3,7 +3,7 @@
 /**
  * @typedef {Object} DocSenseConfig
  */
-type DocSenseConfig = {
+declare type DocSenseConfig = {
   /** @property {string} files - files to parse  */
   files: string[],
   /** @property {string} parser - module name that will parse the AST, this will be "required" in and use parser.parse */

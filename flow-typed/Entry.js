@@ -1,3 +1,3 @@
 // @flow
 
-type Entry<K, V> = [K, V]
+declare type Entry<K, V> = [K, V]

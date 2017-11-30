@@ -1,5 +1,4 @@
 declare class String {
-  @@iterator(): Iterator<string>;
   anchor(name: string): string;
   charAt(pos: number): string;
   charCodeAt(index: number): number;
@@ -23,8 +22,7 @@ declare class String {
   repeat(count: number): string;
   replace(
     searchValue: string | RegExp,
-    replaceValue:
-      | string
+    replaceValue: | string
       | ((searchValue: string | RegExp, ...args: Array<any>) => string | void)
   ): string;
   search(regexp: string | RegExp): number;

@@ -1,4 +1,4 @@
-type DocTag = {
+declare type DocTag = {
   tagName: string,
   tagType?: string,
   label?: string,

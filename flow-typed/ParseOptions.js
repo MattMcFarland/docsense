@@ -1,7 +1,7 @@
 //@flow
 
 /** @typedef ParseOptions parseOptions */
-type ParseOptions = {
+declare type ParseOptions = {
   /** @property {boolean} allowImportExportEverywhere - By default, import and export declarations can only appear at a program's top level. Setting this option to true allows them anywhere where a statement is allowed. */
   allowImportExportEverywhere?: boolean,
   /** @property {boolean} allowImportExportEverywhere - By default, a return statement at the top level raises an error. Set this to true to accept such code. */
