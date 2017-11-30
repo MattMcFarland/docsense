@@ -4,7 +4,7 @@ import helpers from '../parser/helpers'
 import type types from '@babel/types'
 export const collectionName = 'function_collection'
 export default function(engine: ParseEngine, db: Lowdb, types: types): any {
-  ;(db.set(collectionName, []): Lowdb).write()
+  (db.set(collectionName, []): Lowdb).write()
   const push = data => {
     db
       .get(collectionName)
@@ -18,7 +18,7 @@ export default function(engine: ParseEngine, db: Lowdb, types: types): any {
       FunctionDeclaration: handler,
     },
   }
-  function handler(path, state) {
+  function handler(path) {
     const { getFileName, getFunctionMeta } = helpers(path)
     const file_id = getFileName()
     const var_id = getVariableId(path)

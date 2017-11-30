@@ -5,7 +5,7 @@ import functionVisitor from './visitors/functionVisitor'
 
 export const collectionName = 'export_collection'
 export default function(engine: ParseEngine, db: Lowdb): any {
-  ;(db.set(collectionName, []): Lowdb).write()
+  (db.set(collectionName, []): Lowdb).write()
   const createPush = path => data => {
     db
       .get(collectionName)
@@ -75,7 +75,7 @@ export default function(engine: ParseEngine, db: Lowdb): any {
   function handleExportAllDeclaration(path) {
     const push = createPush(path)
     const { getFileName, getDocTags } = helpers(path)
-    createPush(path)({
+    push({
       export_id: 'all',
       file_id: getFileName(),
       source_id: path.get('source.value').node,
@@ -84,7 +84,7 @@ export default function(engine: ParseEngine, db: Lowdb): any {
   }
   function onFunction(path, export_id) {
     if (!export_id) return
-    const { function_id, params, jsdoc } = getFunctionMeta(path)
+    const { function_id /* params, jsdoc */ } = getFunctionMeta(path)
     insert(export_id)({
       function_id,
     })

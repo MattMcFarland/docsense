@@ -1,15 +1,6 @@
 const testFactory = require('./utils/testFactory')
 const exportPlugin = require('../export')
 
-const defaultExports = [
-  'export default expression;',
-  'export { name1 as default };',
-]
-const exportAll = 'export * from "baz"'
-const exportDefaultFunction = [
-  'export (...args) => {}',
-  'export function (...args) => {}',
-]
 const expectedNameExports = [
   { export_id: 'name1', file_id: '__TEST__' },
   { export_id: 'name2', file_id: '__TEST__' },

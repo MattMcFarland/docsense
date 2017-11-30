@@ -10,7 +10,7 @@ import functionVisitor from './visitors/functionVisitor'
 
 export const collectionName = 'var_collection'
 export default function(engine: ParseEngine, db: Lowdb, types: types): any {
-  ;(db.set(collectionName, []): Lowdb).write()
+  (db.set(collectionName, []): Lowdb).write()
   const createPush = path => data => {
     db
       .get(collectionName)
@@ -33,21 +33,20 @@ export default function(engine: ParseEngine, db: Lowdb, types: types): any {
   function onFunction(path) {
     const var_id = getVariableId(path)
     if (!var_id) return
-    const { function_id, params, jsdoc } = getFunctionMeta(path)
+    const { function_id } = getFunctionMeta(path)
     insert(var_id)({
       function_id,
     })
   }
-  function handleDeclarator(path, state) {
+  function handleDeclarator(path) {
     const { getFileName } = helpers(path)
     const file_id = getFileName()
     const push = createPush(path)
     switch (path.node.id.type) {
       case 'Identifier':
-        const var_id = path.node.id.name
         push({
           file_id,
-          var_id,
+          var_id: path.node.id.name,
           jsdoc: getDocTags(path),
         })
         break
@@ -64,7 +63,6 @@ export default function(engine: ParseEngine, db: Lowdb, types: types): any {
       case 'ArrayPattern':
         path.node.id.elements.forEach(prop => {
           if (prop.type === 'Identifier') {
-            const var_id = prop.name
             push({
               file_id,
               var_id: prop.name,
@@ -72,7 +70,6 @@ export default function(engine: ParseEngine, db: Lowdb, types: types): any {
             })
           }
           if (prop.type === 'RestElement') {
-            const var_id = prop.argument.name
             push({
               file_id,
               var_id: prop.argument.name,

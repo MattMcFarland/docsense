@@ -76,7 +76,6 @@ export const resolveFile = (filepath: string): Promise<string> => {
         return resolve(filepath)
       }
       log.warn('skip', filepath)
-      return
     })
   })
 }

@@ -1,12 +1,10 @@
 // @flow
-import getConfig from '../config'
 import { flatten, dedupe } from './common'
 import { processAllGlobPatterns, readFiles } from './file'
-import { setupCorePlugins, registerPlugin } from './plugin'
+import { registerPlugin } from './plugin'
 
 import ParseEngine from '../parser/ParseEngine'
 import { create } from '../db'
-import types from '@babel/types'
 
 /**
  * Parse files using config options

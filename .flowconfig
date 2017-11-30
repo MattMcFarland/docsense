@@ -1,13 +1,6 @@
 [include]
 ./src/*
 
-[lints]
-all=warn
-
 [ignore]
 .*/docs/.*
-
-
-[libs]
-flow-typed
-
+.*/lib/.*

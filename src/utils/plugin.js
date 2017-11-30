@@ -1,7 +1,6 @@
-//@flow
+// @flow
 
-import { readdir } from 'fs'
-import { join as joinPath, resolve as resolvePath } from 'path'
+import { resolve as resolvePath } from 'path'
 import {
   reduceDirectoryToJSFiles,
   scanDirectory,
@@ -51,12 +50,9 @@ export const registerPlugin = (
       parser.on('addFile:before', returnObj.pre)
     }
     if (returnObj.visitor) {
-      parser.on(
-        'addFile',
-        ({ fileName, path, traverse, types, sourceCode }) => {
-          path.traverse(returnObj.visitor, { sourceCode, state: db.getState() })
-        }
-      )
+      parser.on('addFile', ({ path, sourceCode }) => {
+        path.traverse(returnObj.visitor, { sourceCode, state: db.getState() })
+      })
     }
     if (typeof returnObj.post === 'function') {
       parser.on('addFile:after', returnObj.post)

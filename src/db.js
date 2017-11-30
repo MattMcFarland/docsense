@@ -1,4 +1,4 @@
-//@flow
+// @flow
 
 import low from 'lowdb'
 import FileSync from 'lowdb/adapters/FileSync'

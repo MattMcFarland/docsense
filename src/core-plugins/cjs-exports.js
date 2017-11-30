@@ -8,7 +8,7 @@ export const collectionName = pluginName + '_collection'
 export const entryId = pluginName + '_id'
 
 export default function(engine: ParseEngine, db: Lowdb): any {
-  ;(db.set(collectionName, []): Lowdb).write()
+  (db.set(collectionName, []): Lowdb).write()
   const createPush = path => data => {
     db
       .get(collectionName)
@@ -73,7 +73,7 @@ export default function(engine: ParseEngine, db: Lowdb): any {
   }
   function onFunction(path, id) {
     if (!id) return
-    const { function_id, params, jsdoc } = getFunctionMeta(path)
+    const { function_id /* params, jsdoc */ } = getFunctionMeta(path)
     insert(id)({
       function_id,
     })
@@ -89,13 +89,7 @@ export default function(engine: ParseEngine, db: Lowdb): any {
       node.object.property
     )
   }
-  function looksLikeExports(node) {
-    return (
-      node.type === 'MemberExpression' &&
-      node.property &&
-      node.property.name === 'exports'
-    )
-  }
+
   function validate(path) {
     // abort if module or exports are not found in global scope
     const root = path.findParent(path => path.isProgram())
@@ -108,7 +102,6 @@ export default function(engine: ParseEngine, db: Lowdb): any {
       return
     }
     const leftSide = path.get('left')
-    const rightSide = path.get('right')
 
     if (
       looksLikeModule(leftSide.node) &&

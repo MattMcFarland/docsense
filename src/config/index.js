@@ -1,4 +1,4 @@
-//@flow
+// @flow
 
 import cosmic from 'cosmiconfig'
 import defaultConfig from './default-config.json'

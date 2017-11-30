@@ -1,9 +1,6 @@
 const testFactory = require('./utils/testFactory')
 const varPlugin = require('../var')
 
-const singleVars = ['const foo = 1', 'const foo = () => {}']
-const destructuredVars = ['const {var1, var2, var3}']
-
 const suites = {
   'Single Vars': {
     'const foo = 1': [

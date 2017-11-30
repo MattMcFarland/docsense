@@ -1,5 +1,3 @@
-import { getFileName } from '../parser/helpers'
-
 export const collectionName = 'file_collection'
 export default function(engine, db) {
   db.set(collectionName, []).write()

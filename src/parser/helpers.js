@@ -1,4 +1,4 @@
-//@flow
+// @flow
 
 export default (pathObj: any) => ({
   getFileName: () => getFileName(pathObj),
@@ -45,8 +45,8 @@ export const getFunctionParams = (path: any) => {
             return el.name
           }
           if (el.type === 'RestElement') {
+            return '...' + el.argument.name
           }
-          return '...' + el.argument.name
         }
         return null
       })

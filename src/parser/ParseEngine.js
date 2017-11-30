@@ -21,15 +21,6 @@ type LeadingComment = {
 }
 
 /**
- * @typedef ASTNode This is just a stub, will need to add more as we go
- */
-type ASTNode = {
-  type: string,
-  leadingComments: LeadingComment[],
-  __doc_tags__: Doctrine.Type[],
-}
-
-/**
  * A Parser that emit events when it traverses over a node in which plugins can listen to
  * @class ParseEngine
  * @extends EventEmitter
@@ -86,12 +77,6 @@ export default class ParseEngine extends EventEmitter {
   parse(data: string, options?: ParseOptions): File {
     return this.parser.parse(data, { ...options, ...this.parseOptions })
   }
-
-  /**
-   * Traverses a generated AST and emits events when it walks over a node
-   * @param {File} ast
-   */
-  parseComments(ast: any): any {}
 
   /**
    * Parse JSDoc and inject comment tags if applicable,
