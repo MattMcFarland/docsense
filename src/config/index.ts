@@ -4,13 +4,13 @@ import { ParseOptions } from '../parser/ParseEngine'
  */
 export interface IConfig {
   /** @property {string} files - files to parse  */
-  files: string[]
+  files: string[];
   /** @property {string} parser - module name that will parse the AST, this will be "required" in and use parser.parse */
-  parser: string
+  parser: string;
   /** @property {any} parseOptions - options passed as options to parser */
-  parseOptions: ParseOptions
-  userCorePlugins: boolean
-  out: string
+  parseOptions: ParseOptions;
+  userCorePlugins: boolean;
+  out: string;
 }
 
 import cosmic from 'cosmiconfig'

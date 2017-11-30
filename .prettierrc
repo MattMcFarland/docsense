@@ -1,17 +1,17 @@
 {
   "printWidth": 80,
-  "semi": false,
+  "semi": true,
   "singleQuote": true,
   "trailingComma": "es5",
   "overrides": [
     {
       "files": "*.js",
       "options": {
-        "parser": "flow"
+        "parser": "typescript"
       }
     },
     {
-      "files": ["*.json", ".babelrc", ".docsenserc"],
+      "files": ["*.json", ".babelrc", ".docsenserc", ".prettierrc"],
       "options": {
         "parser": "json"
       }

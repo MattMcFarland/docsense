@@ -8,9 +8,9 @@ import ParseEngine from 'src/parser/ParseEngine'
  * @namespace Plugin
  */
 export interface Command {
-  visitor: Visitor
-  pre?: (state: any) => void
-  post?: (state: any) => void
+  visitor: Visitor;
+  pre?: (state: any) => void;
+  post?: (state: any) => void;
 }
 
 /**
@@ -26,6 +26,6 @@ export type Module = (engine: ParseEngine, db: Lowdb) => void | Command
  * @namespace Plugin
  */
 export interface Record {
-  id: string
-  eval: Module
+  id: string;
+  eval: Module;
 }

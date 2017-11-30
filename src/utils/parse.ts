@@ -17,8 +17,8 @@ export const parseFiles = ({
   config,
   plugins,
 }: {
-  config: IConfig
-  plugins: Plugin.Record[]
+  config: IConfig;
+  plugins: Plugin.Record[];
 }): Promise<Lowdb> => {
   return processAllGlobPatterns(config.files)
     .then(flatten)

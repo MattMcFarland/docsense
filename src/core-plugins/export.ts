@@ -3,10 +3,10 @@ import functionVisitor from './visitors/functionVisitor'
 import ParseEngine from 'src/parser/ParseEngine'
 export const collectionName = 'export_collection'
 interface ExportItem {
-  export_id: string
-  file_id?: string
-  jsdoc?: any
-  source_id?: string
+  export_id: string;
+  file_id?: string;
+  jsdoc?: any;
+  source_id?: string;
 }
 export default function(engine: ParseEngine, db: Lowdb): any {
   db.set(collectionName, []).write()

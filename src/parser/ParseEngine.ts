@@ -4,35 +4,35 @@ import traverse from '@babel/traverse'
 import types, { Node, Comment, CommentBlock } from 'babel-types'
 
 interface withDocTags {
-  __doc_tags__: Annotation[]
+  __doc_tags__: Annotation[];
 }
 export type AST = Node & withDocTags
 
 /** @interface ParseOptions parseOptions */
 export interface ParseOptions {
   /** @property {boolean} allowImportExportEverywhere - By default, import and export declarations can only appear at a program's top level. Setting this option to true allows them anywhere where a statement is allowed. */
-  allowImportExportEverywhere?: boolean
+  allowImportExportEverywhere?: boolean;
   /** @property {boolean} allowImportExportEverywhere - By default, a return statement at the top level raises an error. Set this to true to accept such code. */
-  allowReturnOutsideFunction?: boolean
+  allowReturnOutsideFunction?: boolean;
   /** @property {SourceType} sourceType - Indicate the mode the code should be parsed in. Can be one of "script", "module", or "unambiguous". Defaults to "script". "unambiguous" will make Babylon attempt to guess, based on the presence of ES6 import or export statements. Files with ES6 imports and exports are considered "module" and are otherwise "script". */
-  sourceType?: 'script' | 'module' | 'unambiguous'
+  sourceType?: 'script' | 'module' | 'unambiguous';
   /** @property {string} sourceFilename - Correlate output AST nodes with their source filename. Useful when generating code and source maps from the ASTs of multiple input files.*/
-  sourceFilename?: string
+  sourceFilename?: string;
   /** @property {number} startLine -  By default, the first line of code parsed is treated as line 1. You can provide a line number to alternatively start with. Useful for integration with other source tools.*/
-  startLine?: number
+  startLine?: number;
   /** @property {string[]} plugins - Array containing the plugins that you want to enable. */
-  plugins?: string[]
+  plugins?: string[];
   /** @property {[number, number]} ranges - Adds a ranges property to each node: [node.start, node.end] */
-  ranges?: [number, number]
+  ranges?: [number, number];
   /** @property {boolean} tokens - Adds all parsed tokens to a tokens property on the File node */
-  tokens?: boolean
+  tokens?: boolean;
 }
 
 /**
  * Parser
  */
 export interface Parser {
-  parse(str: string, options: ParseOptions): AST
+  parse(str: string, options: ParseOptions): AST;
 }
 
 /**
@@ -41,10 +41,10 @@ export interface Parser {
  * @extends EventEmitter
  */
 export default class ParseEngine extends EventEmitter {
-  parser: Parser
-  parserName: string
-  parseOptions: ParseOptions
-  doctrine: typeof docParse
+  parser: Parser;
+  parserName: string;
+  parseOptions: ParseOptions;
+  doctrine: typeof docParse;
 
   /**
    * @constructor

@@ -9,8 +9,8 @@ import * as Plugin from '../types/Plugin'
 import { IConfig } from 'src/config'
 
 type ConfigAndPlugins = Promise<{
-  config: IConfig
-  plugins: Plugin.Record[]
+  config: IConfig;
+  plugins: Plugin.Record[];
 }>
 
 export const setupCorePlugins = (config: IConfig): ConfigAndPlugins =>
