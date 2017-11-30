@@ -1,4 +1,15 @@
 import { ParseOptions } from '../parser/ParseEngine';
+import cosmic from 'cosmiconfig';
+import defaultConfig from './default-config';
+import merge from 'deepmerge';
+/**
+ * @returns {Promise<IConfig>}
+ */
+export default (): Promise<IConfig> =>
+  cosmic('docsense')
+    .load(process.cwd())
+    .then(({ config }) => merge(defaultConfig, config));
+
 /**
  * @typedef {Object} IConfig
  */
@@ -12,14 +23,3 @@ export interface IConfig {
   userCorePlugins: boolean;
   out: string;
 }
-
-import cosmic from 'cosmiconfig';
-import defaultConfig from './default-config.json';
-import merge from 'deepmerge';
-/**
- * @returns {Promise<IConfig>}
- */
-export default (): Promise<IConfig> =>
-  cosmic('docsense')
-    .load(process.cwd())
-    .then(({ config }) => merge(defaultConfig, config));
