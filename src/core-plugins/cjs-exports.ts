@@ -1,12 +1,12 @@
 import helpers, { getFunctionMeta } from '../parser/helpers'
 import functionVisitor from './visitors/functionVisitor'
-
+import ParseEngine from '../parser/ParseEngine'
 export const pluginName = 'cjsExports'
 export const collectionName = pluginName + '_collection'
 export const entryId = pluginName + '_id'
 
-export default function (engine: ParseEngine, db: Lowdb): any {
-  (db.set(collectionName, []): Lowdb).write()
+export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
+  db.set(collectionName, []).write()
   const createPush = path => data => {
     db
       .get(collectionName)

@@ -1,18 +1,16 @@
 {
   "javascript.implicitProjectConfig.checkJs": true,
   "licenser.projectName": "DocSense",
-  "flow.enabled": true,
   "editor.tabSize": 2,
   // Turns auto fix on save on or off.
   "eslint.autoFixOnSave": true,
   "eslint.packageManager": "yarn",
+  "eslint.validate": ["typescript", "javascript"],
   "files.associations": {
     ".docsenserc": "json",
     ".prettierrc": "json"
   },
-  "editor.rulers": [
-    90
-  ],
+  "editor.rulers": [90],
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,

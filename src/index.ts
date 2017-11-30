@@ -1,8 +1,10 @@
-import './logger'
 import getConfig from './config'
 import { fatalError, logContext } from './utils/common'
 import { setupCorePlugins } from './utils/plugin'
 import { parseFiles } from './utils/parse'
+import { init as initializeLogger } from './utils/logger'
+
+initializeLogger()
 
 getConfig()
   .then(setupCorePlugins)

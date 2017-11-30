@@ -1,14 +1,15 @@
 import helpers, { FunctionMeta, getFunctionMeta } from '../parser/helpers'
 import functionVisitor from './visitors/functionVisitor'
+import ParseEngine from 'src/parser/ParseEngine'
 export const collectionName = 'export_collection'
 interface ExportItem {
-  export_id: string;
-  file_id?: string;
-  jsdoc?: any;
-  source_id?: string;
+  export_id: string
+  file_id?: string
+  jsdoc?: any
+  source_id?: string
 }
-export default function (engine: ParseEngine, db: Lowdb): any {
-  (db.set(collectionName, []): Lowdb).write()
+export default function(engine: ParseEngine, db: Lowdb): any {
+  db.set(collectionName, []).write()
   const createPush = (path: any) => (data: ExportItem): void => {
     db
       .get(collectionName)
@@ -55,7 +56,7 @@ export default function (engine: ParseEngine, db: Lowdb): any {
         jsdoc: getDocTags(),
       })
     }
-    log.warn('export', 'skipped ExportNamedDeclaration', getFileName())
+    global.log.warn('export', 'skipped ExportNamedDeclaration', getFileName())
   }
   function handleExportSpecifier(path) {
     const push = createPush(path)

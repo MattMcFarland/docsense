@@ -1,20 +1,17 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./lib",
     "allowJs": true,
-    "target": "es2015",
-    "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
-    "isolatedModules": false,
-    "lib": [
-      "es2015",
-      "esnext"
-    ]
+    "isolatedModules": true,
+    "lib": ["es2015", "es2016", "es2017", "esnext"],
+    "allowSyntheticDefaultImports": true,
+    "newLine": "LF",
+    "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "./src/**/*"
-  ],
+  "include": ["./src/**/*"],
   "typeAcquisition": {
     "enable": true
   }

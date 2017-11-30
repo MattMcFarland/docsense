@@ -1,7 +1,10 @@
-import helpers from '../parser/helpers'
+import ParseEngine from '../parser/ParseEngine'
+import helpers, { FunctionMeta } from '../parser/helpers'
+import { Command } from 'src/types/Plugin'
 export const collectionName = 'function_collection'
-export default function (engine: ParseEngine, db: Lowdb, types: types): any {
-  (db.set(collectionName, []): Lowdb).write()
+
+export default function(engine: ParseEngine, db: Lowdb): Command {
+  db.set(collectionName, []).write()
   const push = data => {
     db
       .get(collectionName)

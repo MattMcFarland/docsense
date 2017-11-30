@@ -3,6 +3,8 @@ import { promisify } from 'util'
 import fs from 'fs'
 import glob from 'glob'
 
+const log = global.log
+
 const readFile = promisify(fs.readFile)
 
 /**
@@ -13,10 +15,7 @@ const readFile = promisify(fs.readFile)
  */
 export const processGlobPattern = (pattern: string): Promise<string[]> =>
   new Promise((resolve, reject) =>
-    glob(
-      (pattern: string),
-      (err, matches) => (err ? reject(err) : resolve(matches))
-    )
+    glob(pattern, (err, matches) => (err ? reject(err) : resolve(matches)))
   )
 
 /**

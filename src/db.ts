@@ -1,11 +1,10 @@
-// @flow
-
 import FileSync from 'lowdb/adapters/FileSync'
-import path from 'path'
-import lowdb from 'lowdb'
+import { resolve } from 'path'
 
 export const create = (outDir: string): Lowdb => {
-  const adapter: any = new FileSync(path.resolve(outDir, 'db.json'))
+  const low: any = require('lowdb')
+  const adapter: any = new FileSync(resolve(outDir, 'db.json'))
   const db: Lowdb = low(adapter)
+
   return db
 }

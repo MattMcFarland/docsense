@@ -1,9 +1,12 @@
+const log = global.log
+
+type Entry = [string, any]
 /**
  * Send a status message while in a promise chain
  * @param {string} msg
  * @returns {Passthrough} - context of the promise chain is unchanged.
  */
-export const status = (msg: string) => (context: Context): any => {
+export const status = (msg: string) => (context: any): any => {
   log.info('status', msg)
   return context
 }
@@ -17,7 +20,7 @@ export const logMap = (prefix: string) => (items: string[]): string[] => {
  * Changes context in promise chain
  * @param {*} newContext next thing in promise chain will focus on this
  */
-export const setContext = (newContext: Context) => (): Promise<any> =>
+export const setContext = (newContext: any) => (): Promise<any> =>
   Promise.resolve(newContext)
 
 /**
@@ -31,7 +34,7 @@ export const voidContext = setContext(undefined)
  * @param {string} key
  * @returns {entry}
  */
-export const contextAsEntry = <K, V>(key: K) => (context: V): Entry<K, V> => [
+export const contextAsEntry = (key: string) => (context: any): Entry => [
   key,
   context,
 ]
@@ -41,7 +44,7 @@ export const contextAsEntry = <K, V>(key: K) => (context: V): Entry<K, V> => [
  * @param {entry[]} entries
  * @returns {POJO} converted entries
  */
-export const convertEntriesToObject = <K, V>(entries: Entry<K, V>[]) =>
+export const convertEntriesToObject = (entries: Entry[]) =>
   entries.reduce(
     (obj, [key, value]) => Object.defineProperty(obj, key, { value }),
     {}
@@ -61,7 +64,7 @@ export const fatalError = (err: Error): void => {
  * @param {*} context log this
  * @returns {*} context
  */
-export const logContext = (context: Context): any => {
+export const logContext = (context: any): any => {
   log.info('ctx', context)
   return context
 }
@@ -80,11 +83,3 @@ export const dedupe = (arr: Array<any>): Array<any> =>
  * @returns {Array} deduped
  */
 export const flatten = (arr: Array<any>): Array<any> => [].concat(...arr)
-
-/**
- * Extracts values from entries
- * @param {entry[]} entries
- * @returns {V[]} values
- */
-export const extractValuesFromEntries = <K, V>(entries: Entry<K, V>[]): V[] =>
-  entries.map(([, value]: Entry<K, V>) => (value: V))

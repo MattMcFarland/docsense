@@ -4,19 +4,22 @@ import { registerPlugin } from './plugin'
 
 import ParseEngine from '../parser/ParseEngine'
 import { create } from '../db'
+import { IConfig } from 'src/config'
+import * as Plugin from 'src/types/Plugin'
+
+const log = global.log
 
 /**
  * Parse files using config options
  * @param {DocSenseConfig} config options
- * @returns {Promise<FileRecord[]>} Array of filerecord objects
  */
 export const parseFiles = ({
   config,
   plugins,
 }: {
-    config: DocSenseConfig,
-    plugins: DocSensePlugin[],
-  }): Promise<Lowdb> => {
+  config: IConfig
+  plugins: Plugin.Record[]
+}): Promise<Lowdb> => {
   return processAllGlobPatterns(config.files)
     .then(flatten)
     .then(dedupe)
@@ -28,7 +31,7 @@ export const parseFiles = ({
         )
         const db: Lowdb = create(config.out)
 
-        plugins.forEach((plugin: PluginAPI) =>
+        plugins.forEach((plugin: Plugin.Record) =>
           registerPlugin(parser, plugin, db)
         )
 

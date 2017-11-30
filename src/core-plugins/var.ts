@@ -4,10 +4,12 @@ import helpers, {
   getVariableId,
 } from '../parser/helpers'
 import functionVisitor from './visitors/functionVisitor'
+import { Command } from 'src/types/Plugin'
+import ParseEngine from 'src/parser/ParseEngine'
 
 export const collectionName = 'var_collection'
-export default function (engine: ParseEngine, db: Lowdb, types: types): any {
-  (db.set(collectionName, []): Lowdb).write()
+export default function(engine: ParseEngine, db: Lowdb.Lowdb): Command {
+  db.set(collectionName, []).write()
   const createPush = path => data => {
     db
       .get(collectionName)
