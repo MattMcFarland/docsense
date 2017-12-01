@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig",
   "compilerOptions": {
-    "outDir": "./dist_esm",
-    "target": "es2015"
+    "outDir": "./dist_common",
+    "target": "es5"
   }
 }
