@@ -7,7 +7,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "Run Docs",
       "program": "${workspaceFolder}/src/index.ts",
       "preLaunchTask": "build",
       "outFiles": ["${workspaceFolder}/dist_common/**/*.js"],
@@ -17,7 +17,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Test:Debug",
+      "name": "Run Jest",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "yarn",
       "protocol": "inspector",
