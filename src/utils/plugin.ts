@@ -10,7 +10,7 @@ import {
 
 type ConfigAndPlugins = Promise<{
   config: IConfig;
-  plugins: Plugin.Record[];
+  plugins: Plugin.IRecord[];
 }>;
 
 export const setupCorePlugins = (config: IConfig): ConfigAndPlugins =>
@@ -18,7 +18,7 @@ export const setupCorePlugins = (config: IConfig): ConfigAndPlugins =>
     .then(reduceDirectoryToJSFiles)
     .then(resolveCorePluginPaths)
     .then(setupPlugins)
-    .then((plugins: Plugin.Record[]) => ({ config, plugins }));
+    .then((plugins: Plugin.IRecord[]) => ({ config, plugins }));
 
 export const resolveCorePluginPaths = resolveContextRelativePaths(
   '../core-plugins'
@@ -30,17 +30,17 @@ export const scanCorePluginDirectory = scanDirectory(
 export const resolvePluginModule = (id: string): Plugin.Module =>
   module.require(id).default || module.require(id);
 
-export const setupPlugin = (id: string): Plugin.Record => ({
+export const setupPlugin = (id: string): Plugin.IRecord => ({
   eval: resolvePluginModule(id),
   id,
 });
 
-export const setupPlugins = (filepaths: string[]): Plugin.Record[] =>
+export const setupPlugins = (filepaths: string[]): Plugin.IRecord[] =>
   filepaths.map(filepath => setupPlugin(filepath));
 
 export const registerPlugin = (
   parser: ParseEngine,
-  plugin: Plugin.Record,
+  plugin: Plugin.IRecord,
   db: Lowdb
 ) => {
   const pluginCommand = plugin.eval(parser, db);

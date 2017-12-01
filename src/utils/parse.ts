@@ -19,7 +19,7 @@ export const parseFiles = ({
   plugins,
 }: {
   config: IConfig;
-  plugins: Plugin.Record[];
+  plugins: Plugin.IRecord[];
 }): Promise<Lowdb> => {
   return processAllGlobPatterns(config.files)
     .then(flatten)
@@ -32,7 +32,7 @@ export const parseFiles = ({
         );
         const db: Lowdb = create(config.out);
 
-        plugins.forEach((plugin: Plugin.Record) =>
+        plugins.forEach((plugin: Plugin.IRecord) =>
           registerPlugin(parser, plugin, db)
         );
 
