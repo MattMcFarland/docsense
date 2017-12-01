@@ -2,30 +2,42 @@ import { Visitor } from 'babel-traverse';
 import ParseEngine from '../parser/ParseEngine';
 
 /**
+ * The signature of the plugin module which is evaluated at run time
+ */
+export type PluginModuleFn = (
+  engine: ParseEngine,
+  db: Lowdb
+) => void | IPluginCommand;
+
+export interface IObjectWithCollection {
+  collectionName: string;
+}
+export interface IObjectWithDefault {
+  default: PluginModuleFn;
+}
+
+export type IPluginModule = PluginModuleFn &
+  IObjectWithCollection &
+  IObjectWithDefault;
+
+/**
  * The returned object when a plugin module has been evaluated,
  * so the plugin can parse using the visitor api, etc.
- * @interface Command
- * @namespace Plugin
  */
-export interface ICommand {
+export interface IPluginCommand {
   visitor: Visitor;
   pre?: (state: any) => void;
   post?: (state: any) => void;
 }
 
 /**
- * The signature of the plugin module which is evaluated at run time
- * @type Module
- * @namespace Plugin
- */
-export type Module = (engine: ParseEngine, db: Lowdb) => void | ICommand;
-
-/**
  * Plugins are queued up for evaluation by a simple interface
- * @interface IRecord
- * @namespace Plugin
  */
-export interface IRecord {
+export interface IPluginRecord {
   id: string;
-  eval: Module;
+  eval: PluginModuleFn;
 }
+
+export type IPluginModuleAndRecord = IPluginRecord & IPluginModule;
+
+export default IPluginModule;

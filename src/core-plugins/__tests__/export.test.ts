@@ -9,12 +9,12 @@ const expectedNameExports = [
 const expectedDefaultExports = [{ export_id: 'default', file_id: '__TEST__' }];
 const suites = {
   'Exporting local': {
-    'export { name1, name2, name3 };': expectedNameExports,
-    'export let name1, name2, name3;': expectedNameExports,
-    'export { variable1 as name1, variable2 as name2, name3 };': expectedNameExports,
-    'export let name1 = foo, name2 = bar, name3;': expectedNameExports,
     'export default expression;': expectedDefaultExports,
     'export { name1 as default };': expectedDefaultExports,
+    'export { name1, name2, name3 };': expectedNameExports,
+    'export { variable1 as name1, variable2 as name2, name3 };': expectedNameExports,
+    'export let name1 = foo, name2 = bar, name3;': expectedNameExports,
+    'export let name1, name2, name3;': expectedNameExports,
   },
   'Exporting externals': {
     'export * from "baz"': [

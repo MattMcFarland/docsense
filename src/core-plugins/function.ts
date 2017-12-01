@@ -1,11 +1,12 @@
-import { ICommand } from '../types/Plugin';
+import { IPluginCommand } from '../types/Plugin';
 import helpers, { IFunctionMeta } from '../parser/helpers';
 import ParseEngine from '../parser/ParseEngine';
+import { NodePath } from 'babel-traverse';
 export const collectionName = 'function_collection';
 
-export default function(engine: ParseEngine, db: Lowdb): ICommand {
+export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
   db.set(collectionName, []).write();
-  const push = data => {
+  const push = (data: any) => {
     db
       .get(collectionName)
       .push(data)
@@ -18,7 +19,7 @@ export default function(engine: ParseEngine, db: Lowdb): ICommand {
       FunctionDeclaration: handler,
     },
   };
-  function handler(path) {
+  function handler(path: NodePath) {
     const { getFileName, getFunctionMeta } = helpers(path);
     const file_id = getFileName();
     const var_id = getVariableId(path);
@@ -33,7 +34,7 @@ export default function(engine: ParseEngine, db: Lowdb): ICommand {
   }
 }
 
-function getVariableId(path) {
+function getVariableId(path: NodePath) {
   return path.parentPath.isVariableDeclarator()
     ? path.parent.id.name
     : undefined;

@@ -1,9 +1,6 @@
-// tslint
 // Type definitions for npmlog ^4.1.2
 // Project: npm/npmlog
 // Definitions by: Matt McFarland
-
-/* tslint:disable */
 
 declare namespace NPMLog {
   export function log(level: string, prefix: string, ...message: any[]): void;
@@ -65,7 +62,7 @@ declare namespace NPMLog {
   export let maxRecordSize: number;
   export let prefixStyle: Style;
   export let headingStyle: Style;
-  export let heading: string;
+  export var heading: string;
   /** Force colors to be used on all messages, regardless of the output stream. */
   export function enableColor(): void;
   /** Disable colors on all messages. */
@@ -106,36 +103,36 @@ declare namespace NPMLog {
   export function addListener(
     event: string | symbol,
     listener: (...args: any[]) => void
-  );
+  ): void;
   /** @see EventEmitter */
   export function on(
     event: string | symbol,
     listener: (...args: any[]) => void
-  );
+  ): void;
   /** @see EventEmitter */
   export function once(
     event: string | symbol,
     listener: (...args: any[]) => void
-  );
+  ): void;
   /** @see EventEmitter */
   export function prependListener(
     event: string | symbol,
     listener: (...args: any[]) => void
-  );
+  ): void;
   /** @see EventEmitter */
   export function prependOnceListener(
     event: string | symbol,
     listener: (...args: any[]) => void
-  );
+  ): void;
   /** @see EventEmitter */
   export function removeListener(
     event: string | symbol,
     listener: (...args: any[]) => void
-  );
+  ): void;
   /** @see EventEmitter */
-  export function removeAllListeners(event?: string | symbol);
+  export function removeAllListeners(event?: string | symbol): void;
   /** @see EventEmitter */
-  export function setMaxListeners(n: number);
+  export function setMaxListeners(n: number): void;
   /** @see EventEmitter */
   export function getMaxListeners(): number;
   /** @see EventEmitter */
@@ -151,6 +148,6 @@ declare namespace NPMLog {
 /**
  * @module npmlog This logger is very basic. It does the logging for npm. It supports custom levels and colored output.
  */
-// declare module 'npmlog' {
-//   export = NPMLog;
-// }
+declare module 'npmlog' {
+  export = NPMLog;
+}

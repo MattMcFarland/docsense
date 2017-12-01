@@ -1,10 +1,10 @@
+import low = require('lowdb');
 import { resolve } from 'path';
 
 export const create = (outDir: string): Lowdb => {
   const FileSync = require('lowdb/adapters/FileSync');
-  const low: any = require('lowdb');
   const adapter: any = new FileSync(resolve(outDir, 'db.json'));
-  const db: Lowdb = low(adapter);
-
+  const db = new low(adapter);
+  const foo = 'bar';
   return db;
 };

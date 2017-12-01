@@ -95,9 +95,9 @@ const emptyTests = [
   'some.other.exports.foo = { exports }',
 ];
 const suites = {
-  OK: tests,
   COMMENTS: withComments,
   EMPTY: emptyTests,
+  OK: tests,
 };
 describe('Core: common.js', () =>
   testFactory({

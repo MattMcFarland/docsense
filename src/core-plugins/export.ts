@@ -2,7 +2,8 @@ import ParseEngine from '../parser/ParseEngine';
 import helpers, { getFunctionMeta, IFunctionMeta } from '../parser/helpers';
 import { log } from '../utils/logger';
 import functionVisitor from './visitors/functionVisitor';
-
+import { NodePath } from 'babel-traverse';
+import { IPluginCommand } from '../types/Plugin';
 export const collectionName = 'export_collection';
 interface IExportItem {
   export_id: string;
@@ -10,7 +11,7 @@ interface IExportItem {
   jsdoc?: any;
   source_id?: string;
 }
-export default function(engine: ParseEngine, db: Lowdb): any {
+export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
   db.set(collectionName, []).write();
   const createPush = (path: any) => (data: IExportItem): void => {
     db
@@ -19,7 +20,7 @@ export default function(engine: ParseEngine, db: Lowdb): any {
       .write();
     path.traverse(functionVisitor(onFunction), data.export_id);
   };
-  const insert = export_id => data => {
+  const insert = (export_id: string) => (data: any) => {
     db
       .get(collectionName)
       .find({ export_id })
@@ -34,7 +35,7 @@ export default function(engine: ParseEngine, db: Lowdb): any {
       ExportAllDeclaration: handleExportAllDeclaration,
     },
   };
-  function handleExportNamedDeclaration(path) {
+  function handleExportNamedDeclaration(path: NodePath) {
     const push = createPush(path);
     if (path.node.specifiers.length) {
       return;
@@ -42,7 +43,7 @@ export default function(engine: ParseEngine, db: Lowdb): any {
     const { getFileName, getDocTags } = helpers(path);
     const declarations = path.get('declaration.declarations');
     if (declarations && typeof declarations.forEach === 'function') {
-      return declarations.forEach(exportDeclaration => {
+      return declarations.forEach((exportDeclaration: NodePath) => {
         push({
           export_id: exportDeclaration.node.id.name,
           file_id: getFileName(),

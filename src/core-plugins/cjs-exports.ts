@@ -1,20 +1,21 @@
 import helpers, { getFunctionMeta } from '../parser/helpers';
 import ParseEngine from '../parser/ParseEngine';
 import functionVisitor from './visitors/functionVisitor';
+import { NodePath } from 'babel-traverse';
 export const pluginName = 'cjsExports';
 export const collectionName = pluginName + '_collection';
 export const entryId = pluginName + '_id';
 
 export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
   db.set(collectionName, []).write();
-  const createPush = path => data => {
+  const createPush = (path: NodePath) => (data: any) => {
     db
       .get(collectionName)
       .push(data)
       .write();
     path.traverse(functionVisitor(onFunction), data[entryId]);
   };
-  const insert = id_val => data => {
+  const insert = (id_val: string) => (data: any) => {
     db
       .get(collectionName)
       .find({ [entryId]: id_val })
@@ -71,7 +72,7 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
       },
     },
   };
-  function onFunction(path, id) {
+  function onFunction(path: NodePath, id: string) {
     if (!id) {
       return;
     }
@@ -80,7 +81,8 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
       function_id,
     });
   }
-  function looksLikeModule(node) {
+
+  function looksLikeModule(node: NodePath) {
     if (!node) {
       return;
     }
@@ -94,9 +96,9 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
     );
   }
 
-  function validate(path) {
+  function validate(path: NodePath) {
     // abort if module or exports are not found in global scope
-    const root = path.findParent(p => p.isProgram());
+    const root = path.findParent((p: NodePath) => p.isProgram());
     if (
       !path.scope.globals.exports &&
       !path.scope.globals.module &&

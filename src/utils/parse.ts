@@ -5,7 +5,7 @@ import { registerPlugin } from './plugin';
 import { IConfig } from '../config';
 import { create } from '../db';
 import ParseEngine from '../parser/ParseEngine';
-import * as Plugin from '../types/Plugin';
+import { IPluginRecord } from '../types/Plugin';
 import { log } from '../utils/logger';
 
 /**
@@ -18,7 +18,7 @@ export const parseFiles = ({
   plugins,
 }: {
   config: IConfig;
-  plugins: Plugin.IRecord[];
+  plugins: IPluginRecord[];
 }): Promise<Lowdb> => {
   return processAllGlobPatterns(config.files)
     .then(flatten)
@@ -31,7 +31,7 @@ export const parseFiles = ({
         );
         const db: Lowdb = create(config.out);
 
-        plugins.forEach((plugin: Plugin.IRecord) =>
+        plugins.forEach((plugin: IPluginRecord) =>
           registerPlugin(parser, plugin, db)
         );
 

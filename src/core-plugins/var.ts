@@ -1,23 +1,24 @@
 import ParseEngine from '../parser/ParseEngine';
-import { ICommand } from '../types/Plugin';
+import { IPluginCommand } from '../types/Plugin';
 import helpers, {
   getDocTags,
   getFunctionMeta,
   getVariableId,
 } from '../parser/helpers';
 import functionVisitor from './visitors/functionVisitor';
+import { NodePath } from 'babel-traverse';
 
 export const collectionName = 'var_collection';
-export default function(engine: ParseEngine, db: Lowdb.Lowdb): ICommand {
+export default function(engine: ParseEngine, db: Lowdb.Lowdb): IPluginCommand {
   db.set(collectionName, []).write();
-  const createPush = path => data => {
+  const createPush = (path: NodePath) => (data: any) => {
     db
       .get(collectionName)
       .push(data)
       .write();
     path.traverse(functionVisitor(onFunction));
   };
-  const insert = var_id => data => {
+  const insert = (var_id: string) => (data: any) => {
     db
       .get(collectionName)
       .find({ var_id })
@@ -29,7 +30,7 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): ICommand {
       VariableDeclarator: handleDeclarator,
     },
   };
-  function onFunction(path) {
+  function onFunction(path: any) {
     const var_id = getVariableId(path);
     if (!var_id) {
       return;
@@ -39,7 +40,7 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): ICommand {
       function_id,
     });
   }
-  function handleDeclarator(path) {
+  function handleDeclarator(path: any) {
     const { getFileName } = helpers(path);
     const file_id = getFileName();
     const push = createPush(path);
@@ -52,7 +53,7 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): ICommand {
         });
         break;
       case 'ObjectPattern':
-        path.node.id.properties.forEach(prop => {
+        path.node.id.properties.forEach((prop: any) => {
           const var_id = prop.value.name;
           push({
             file_id,
@@ -62,7 +63,7 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): ICommand {
         });
         break;
       case 'ArrayPattern':
-        path.node.id.elements.forEach(prop => {
+        path.node.id.elements.forEach((prop: any) => {
           if (prop.type === 'Identifier') {
             push({
               file_id,

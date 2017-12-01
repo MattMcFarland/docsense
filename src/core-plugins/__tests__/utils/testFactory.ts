@@ -1,7 +1,8 @@
-import * as assert from 'assert';
+import assert = require('assert');
 import testPlugin from './testPlugin';
+import { IPluginModuleAndRecord } from '../../../types/Plugin';
 
-export default ({ plugin, suites }) => {
+export default ({ plugin, suites }: ITestModule): void => {
   assert(plugin, 'testFactory missing plugin argument');
   assert(suites, 'testFactory missing suite argument');
   const collection = plugin.collectionName;
@@ -29,9 +30,14 @@ export default ({ plugin, suites }) => {
   });
 };
 
-function entries(objOrArray) {
+function entries(objOrArray: any): any[] {
   if (Array.isArray(objOrArray)) {
     return objOrArray;
   }
   return Object.entries(objOrArray);
+}
+
+export interface ITestModule {
+  plugin: IPluginModuleAndRecord;
+  suites: any;
 }
