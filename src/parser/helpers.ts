@@ -1,7 +1,7 @@
 export default (pathObj: any) => ({
   getFileName: (): string => getFileName(pathObj),
-  getFunctionMeta: (): FunctionMeta => getFunctionMeta(pathObj),
-  getFunctionParams: (): Array<any> => getFunctionParams(pathObj),
+  getFunctionMeta: (): IFunctionMeta => getFunctionMeta(pathObj),
+  getFunctionParams: (): any[] => getFunctionParams(pathObj),
   getDocTags: (): any => getDocTags(pathObj),
   getVariableId: (): string => getVariableId(pathObj),
 });
@@ -9,12 +9,12 @@ export default (pathObj: any) => ({
 export const getFileName = (path: any): string =>
   path.node && path.node.loc && path.node.loc.filename;
 
-export interface FunctionMeta {
+export interface IFunctionMeta {
   function_id: string;
   params?: any[];
   jsdoc: any;
 }
-export function getFunctionMeta(path: any): FunctionMeta {
+export function getFunctionMeta(path: any): IFunctionMeta {
   const line = path.get('loc.start.line').node;
   const column = path.get('loc.start.column').node;
   const id = path.get('id').node;
@@ -30,7 +30,7 @@ export function getFunctionMeta(path: any): FunctionMeta {
   };
 }
 
-export const getFunctionParams = (path: any): Array<any> => {
+export const getFunctionParams = (path: any): any[] => {
   return path.node.params.map(param => {
     if (param.type === 'Identifier') {
       return param.name;

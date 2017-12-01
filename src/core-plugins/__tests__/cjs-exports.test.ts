@@ -1,4 +1,5 @@
-const testFactory = require('./utils/testFactory');
+import { testFactory } from './utils';
+
 const cjsExportsPlugin = require('../cjs-exports');
 const tests = [
   'module.exports = function () {}',

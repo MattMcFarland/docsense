@@ -1,4 +1,4 @@
-const testFactory = require('./utils/testFactory');
+import testFactory from './utils/testFactory';
 const exportPlugin = require('../export');
 
 const expectedNameExports = [

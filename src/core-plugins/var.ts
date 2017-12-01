@@ -1,14 +1,14 @@
+import ParseEngine from 'src/parser/ParseEngine';
+import { ICommand } from 'src/types/Plugin';
 import helpers, {
-  getFunctionMeta,
   getDocTags,
+  getFunctionMeta,
   getVariableId,
 } from '../parser/helpers';
 import functionVisitor from './visitors/functionVisitor';
-import { Command } from 'src/types/Plugin';
-import ParseEngine from 'src/parser/ParseEngine';
 
 export const collectionName = 'var_collection';
-export default function(engine: ParseEngine, db: Lowdb.Lowdb): Command {
+export default function(engine: ParseEngine, db: Lowdb.Lowdb): ICommand {
   db.set(collectionName, []).write();
   const createPush = path => data => {
     db
@@ -31,7 +31,9 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): Command {
   };
   function onFunction(path) {
     const var_id = getVariableId(path);
-    if (!var_id) return;
+    if (!var_id) {
+      return;
+    }
     const { function_id } = getFunctionMeta(path);
     insert(var_id)({
       function_id,

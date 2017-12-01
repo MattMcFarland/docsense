@@ -1,17 +1,18 @@
-import { flatten, dedupe } from './common';
+import { dedupe, flatten } from './common';
 import { processAllGlobPatterns, readFiles } from './file';
 import { registerPlugin } from './plugin';
 
-import ParseEngine from '../parser/ParseEngine';
+import { IConfig } from '../config';
 import { create } from '../db';
-import { IConfig } from 'src/config';
-import * as Plugin from 'src/types/Plugin';
+import ParseEngine from '../parser/ParseEngine';
+import * as Plugin from '../types/Plugin';
 
 const log = global.log;
 
 /**
  * Parse files using config options
  * @param {DocSenseConfig} config options
+ * @returns {Promise<Lowdb>} Updated database
  */
 export const parseFiles = ({
   config,

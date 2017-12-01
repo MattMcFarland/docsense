@@ -1,6 +1,7 @@
-const { testPlugin } = require('./testPlugin');
-const assert = require('assert');
-module.exports = ({ plugin, suites }) => {
+import assert from 'assert';
+import testPlugin from './testPlugin';
+
+export default ({ plugin, suites }) => {
   assert(plugin, 'testFactory missing plugin argument');
   assert(suites, 'testFactory missing suite argument');
   const collection = plugin.collectionName;

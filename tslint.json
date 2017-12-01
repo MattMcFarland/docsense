@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "tslint:recommended",
+    "tslint-eslint-rules",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "no-var-requires": false,
+    "object-literal-sort-keys": false,
+    "variable-name": false
+  },
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "overrides": {
+    "files": ["*.test.ts"],
+    "env": {
+      "jest": true
+    }
+  }
+}

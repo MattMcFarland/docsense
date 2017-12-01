@@ -1,6 +1,5 @@
-const testFactory = require('./utils/testFactory');
+import testFactory from './utils/testFactory';
 const fnPlugin = require('../function');
-
 const suites = {
   'Declared Function': {
     'function name () {}': [

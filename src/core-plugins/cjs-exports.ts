@@ -1,6 +1,6 @@
 import helpers, { getFunctionMeta } from '../parser/helpers';
-import functionVisitor from './visitors/functionVisitor';
 import ParseEngine from '../parser/ParseEngine';
+import functionVisitor from './visitors/functionVisitor';
 export const pluginName = 'cjsExports';
 export const collectionName = pluginName + '_collection';
 export const entryId = pluginName + '_id';
@@ -24,7 +24,9 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
   return {
     visitor: {
       AssignmentExpression(path) {
-        if (!validate(path)) return;
+        if (!validate(path)) {
+          return;
+        }
         const push = createPush(path);
         const { getFileName, getDocTags } = helpers(path);
         const leftSide = path.get('left');
@@ -70,14 +72,18 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
     },
   };
   function onFunction(path, id) {
-    if (!id) return;
+    if (!id) {
+      return;
+    }
     const { function_id /* params, jsdoc */ } = getFunctionMeta(path);
     insert(id)({
       function_id,
     });
   }
   function looksLikeModule(node) {
-    if (!node) return;
+    if (!node) {
+      return;
+    }
     return (
       node.type === 'MemberExpression' &&
       node.object &&
@@ -90,7 +96,7 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
 
   function validate(path) {
     // abort if module or exports are not found in global scope
-    const root = path.findParent(path => path.isProgram());
+    const root = path.findParent(p => p.isProgram());
     if (
       !path.scope.globals.exports &&
       !path.scope.globals.module &&

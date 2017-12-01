@@ -1,8 +1,9 @@
-import helpers, { FunctionMeta, getFunctionMeta } from '../parser/helpers';
-import functionVisitor from './visitors/functionVisitor';
 import ParseEngine from 'src/parser/ParseEngine';
+import helpers, { getFunctionMeta, IFunctionMeta } from '../parser/helpers';
+import functionVisitor from './visitors/functionVisitor';
+
 export const collectionName = 'export_collection';
-interface ExportItem {
+interface IExportItem {
   export_id: string;
   file_id?: string;
   jsdoc?: any;
@@ -10,7 +11,7 @@ interface ExportItem {
 }
 export default function(engine: ParseEngine, db: Lowdb): any {
   db.set(collectionName, []).write();
-  const createPush = (path: any) => (data: ExportItem): void => {
+  const createPush = (path: any) => (data: IExportItem): void => {
     db
       .get(collectionName)
       .push(data)
@@ -34,7 +35,9 @@ export default function(engine: ParseEngine, db: Lowdb): any {
   };
   function handleExportNamedDeclaration(path) {
     const push = createPush(path);
-    if (path.node.specifiers.length) return;
+    if (path.node.specifiers.length) {
+      return;
+    }
     const { getFileName, getDocTags } = helpers(path);
     const declarations = path.get('declaration.declarations');
     if (declarations && typeof declarations.forEach === 'function') {
@@ -87,8 +90,10 @@ export default function(engine: ParseEngine, db: Lowdb): any {
     });
   }
   function onFunction(path, export_id) {
-    if (typeof export_id !== 'string') return;
-    const { function_id }: FunctionMeta = getFunctionMeta(path);
+    if (typeof export_id !== 'string') {
+      return;
+    }
+    const { function_id }: IFunctionMeta = getFunctionMeta(path);
     insert(export_id)({
       function_id,
     });

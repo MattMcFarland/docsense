@@ -1,7 +1,7 @@
-import { resolve as resolvePath, join as joinPath } from 'path';
-import { promisify } from 'util';
 import fs from 'fs';
 import glob from 'glob';
+import { join as joinPath, resolve as resolvePath } from 'path';
+import { promisify } from 'util';
 
 const log = global.log;
 
@@ -20,13 +20,13 @@ export const processGlobPattern = (pattern: string): Promise<string[]> =>
 
 /**
  * Processes an array of glob patterns to an array of files
- * @param {string} pattern pattern to resolve
+ * @param {string[]} patterns patterns to resolve
  * @returns {Promise<string[]>} all matches found from the pattern
  * @uses processGlobPattern
  */
 export const processAllGlobPatterns = (
   patterns: string[]
-): Promise<Array<string[]>> => Promise.all(patterns.map(processGlobPattern));
+): Promise<string[][]> => Promise.all(patterns.map(processGlobPattern));
 
 /**
  * Converts resolves the full path of the filepath relative to the current working directory.
@@ -67,7 +67,9 @@ export const safelyReadFile = (filepath: string): Promise<string> =>
 export const resolveFile = (filepath: string): Promise<string> => {
   return new Promise((resolve, reject) => {
     fs.stat(filepath, (err, stats) => {
-      if (err) return reject(err);
+      if (err) {
+        return reject(err);
+      }
       if (stats.isFile()) {
         log.info('read', filepath);
         return resolve(filepath);
@@ -101,7 +103,9 @@ export const readFiles = (filesArray: string[]): Promise<string[]> =>
  */
 export const reduceDirectoryToJSFiles = (directory: string[]) =>
   directory.reduce((validFiles: string[], name: string) => {
-    if (name.indexOf('.js') > -1) validFiles.push(name);
+    if (name.indexOf('.js') > -1) {
+      validFiles.push(name);
+    }
     return validFiles;
   }, []);
 
@@ -112,7 +116,9 @@ export const reduceDirectoryToJSFiles = (directory: string[]) =>
 export const scanDirectory = (directoryPath: string) => (): Promise<string[]> =>
   new Promise((resolve, reject) => {
     fs.readdir(directoryPath, (err, directory) => {
-      if (err) return reject(err);
+      if (err) {
+        return reject(err);
+      }
       return resolve(directory);
     });
   });

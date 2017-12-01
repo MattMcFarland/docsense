@@ -74,7 +74,7 @@ export const logContext = (context: any): any => {
  * @param {Array} arr dedupe this array
  * @returns {Array} deduped
  */
-export const dedupe = (arr: Array<any>): Array<any> =>
+export const dedupe = (arr: any[]): any[] =>
   arr.reduce((x, y) => (x.includes(y) ? x : [...x, y]), []);
 
 /**
@@ -82,4 +82,4 @@ export const dedupe = (arr: Array<any>): Array<any> =>
  * @param {Array} arr flatten this array
  * @returns {Array} deduped
  */
-export const flatten = (arr: Array<any>): Array<any> => [].concat(...arr);
+export const flatten = (arr: any[]): any[] => [].concat(...arr);

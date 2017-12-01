@@ -7,7 +7,7 @@ import ParseEngine from 'src/parser/ParseEngine';
  * @interface Command
  * @namespace Plugin
  */
-export interface Command {
+export interface ICommand {
   visitor: Visitor;
   pre?: (state: any) => void;
   post?: (state: any) => void;
@@ -15,17 +15,17 @@ export interface Command {
 
 /**
  * The signature of the plugin module which is evaluated at run time
- * @interface Command
+ * @type Module
  * @namespace Plugin
  */
-export type Module = (engine: ParseEngine, db: Lowdb) => void | Command;
+export type Module = (engine: ParseEngine, db: Lowdb) => void | ICommand;
 
 /**
  * Plugins are queued up for evaluation by a simple interface
- * @interface Command
+ * @interface IRecord
  * @namespace Plugin
  */
-export interface Record {
+export interface IRecord {
   id: string;
   eval: Module;
 }

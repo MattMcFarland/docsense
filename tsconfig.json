@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./lib",
+    "baseUrl": "./",
+    "pretty": true,
+    "declaration": true,
+    "declarationDir": "types",
     "allowJs": true,
     "moduleResolution": "node",
     "importHelpers": true,

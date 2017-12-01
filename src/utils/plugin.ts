@@ -1,12 +1,12 @@
 import { resolve as resolvePath } from 'path';
-import {
-  reduceDirectoryToJSFiles,
-  scanDirectory,
-  resolveContextRelativePaths,
-} from './file';
+import { IConfig } from '../config';
 import ParseEngine from '../parser/ParseEngine';
 import * as Plugin from '../types/Plugin';
-import { IConfig } from 'src/config';
+import {
+  reduceDirectoryToJSFiles,
+  resolveContextRelativePaths,
+  scanDirectory,
+} from './file';
 
 type ConfigAndPlugins = Promise<{
   config: IConfig;
@@ -31,8 +31,8 @@ export const resolvePluginModule = (id: string): Plugin.Module =>
   module.require(id).default || module.require(id);
 
 export const setupPlugin = (id: string): Plugin.Record => ({
-  id,
   eval: resolvePluginModule(id),
+  id,
 });
 
 export const setupPlugins = (filepaths: string[]): Plugin.Record[] =>

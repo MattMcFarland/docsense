@@ -1,6 +1,6 @@
+import assert from 'assert';
 import logger from 'npmlog';
 import pkg from '../package.json';
-import assert from 'assert';
 
 let initialized = false;
 
