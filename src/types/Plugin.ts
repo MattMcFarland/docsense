@@ -1,5 +1,5 @@
 import { Visitor } from 'babel-traverse';
-import ParseEngine from 'src/parser/ParseEngine';
+import ParseEngine from '../parser/ParseEngine';
 
 /**
  * The returned object when a plugin module has been evaluated,

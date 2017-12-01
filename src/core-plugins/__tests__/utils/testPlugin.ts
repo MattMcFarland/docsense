@@ -1,5 +1,5 @@
-import assert from 'assert';
-import Memory from 'lowdb/adapters/Memory';
+import * as assert from 'assert';
+import * as Memory from 'lowdb/adapters/Memory';
 import ParseEngine from '../../../parser/ParseEngine';
 import { registerPlugin } from '../../../utils/plugin';
 

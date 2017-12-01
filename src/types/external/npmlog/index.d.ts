@@ -147,10 +147,10 @@ declare namespace NPMLog {
   /** @see EventEmitter */
   export function listenerCount(type: string | symbol): number;
 }
-type NPMLOG = typeof NPMLog;
+
 /**
  * @module npmlog This logger is very basic. It does the logging for npm. It supports custom levels and colored output.
  */
-declare module 'npmlog' {
-  export default NPMLog;
-}
+// declare module 'npmlog' {
+//   export = NPMLog;
+// }

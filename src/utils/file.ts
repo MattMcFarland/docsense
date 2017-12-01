@@ -1,9 +1,8 @@
-import fs from 'fs';
-import glob from 'glob';
+import * as fs from 'fs';
+import * as glob from 'glob';
 import { join as joinPath, resolve as resolvePath } from 'path';
 import { promisify } from 'util';
-
-const log = global.log;
+import { log } from '../utils/logger';
 
 const readFile = promisify(fs.readFile);
 

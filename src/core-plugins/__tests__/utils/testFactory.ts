@@ -1,4 +1,4 @@
-import assert from 'assert';
+import * as assert from 'assert';
 import testPlugin from './testPlugin';
 
 export default ({ plugin, suites }) => {

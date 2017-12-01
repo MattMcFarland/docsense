@@ -6,8 +6,7 @@ import { IConfig } from '../config';
 import { create } from '../db';
 import ParseEngine from '../parser/ParseEngine';
 import * as Plugin from '../types/Plugin';
-
-const log = global.log;
+import { log } from '../utils/logger';
 
 /**
  * Parse files using config options

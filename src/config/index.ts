@@ -1,5 +1,5 @@
-import cosmic from 'cosmiconfig';
-import merge from 'deepmerge';
+import * as cosmic from 'cosmiconfig';
+import * as merge from 'deepmerge';
 import { IParseOptions } from '../parser/ParseEngine';
 import defaultConfig from './default-config';
 /**

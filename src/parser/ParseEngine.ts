@@ -1,7 +1,9 @@
 import traverse, { NodePath } from 'babel-traverse';
-import types, { Comment, CommentBlock, Node } from 'babel-types';
+import { Comment, CommentBlock, Node } from 'babel-types';
 import { Annotation, parse as docParse } from 'doctrine';
 import { EventEmitter } from 'events';
+
+const types = require('babel-types');
 
 /** @interface ParseOptions parseOptions */
 export interface IParseOptions {

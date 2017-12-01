@@ -1,4 +1,4 @@
-import { ICommand } from 'src/types/Plugin';
+import { ICommand } from '../types/Plugin';
 import helpers, { IFunctionMeta } from '../parser/helpers';
 import ParseEngine from '../parser/ParseEngine';
 export const collectionName = 'function_collection';

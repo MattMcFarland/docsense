@@ -1,4 +1,4 @@
-import { IConfig } from 'src/config';
+import { IConfig } from '../config';
 
 const DefaultConfig: IConfig = {
   out: 'docs',

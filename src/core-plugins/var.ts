@@ -1,5 +1,5 @@
-import ParseEngine from 'src/parser/ParseEngine';
-import { ICommand } from 'src/types/Plugin';
+import ParseEngine from '../parser/ParseEngine';
+import { ICommand } from '../types/Plugin';
 import helpers, {
   getDocTags,
   getFunctionMeta,

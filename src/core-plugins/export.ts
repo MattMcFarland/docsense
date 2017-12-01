@@ -1,5 +1,6 @@
-import ParseEngine from 'src/parser/ParseEngine';
+import ParseEngine from '../parser/ParseEngine';
 import helpers, { getFunctionMeta, IFunctionMeta } from '../parser/helpers';
+import { log } from '../utils/logger';
 import functionVisitor from './visitors/functionVisitor';
 
 export const collectionName = 'export_collection';
@@ -59,7 +60,7 @@ export default function(engine: ParseEngine, db: Lowdb): any {
         jsdoc: getDocTags(),
       });
     }
-    global.log.warn('export', 'skipped ExportNamedDeclaration', getFileName());
+    log.warn('export', 'skipped ExportNamedDeclaration', getFileName());
   }
   function handleExportSpecifier(path) {
     const push = createPush(path);

@@ -1,4 +1,4 @@
-const log = global.log;
+import { log } from '../utils/logger';
 
 type Entry = [string, any];
 /**
