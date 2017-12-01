@@ -102,7 +102,7 @@ export const readFiles = (filesArray: string[]): Promise<string[]> =>
  */
 export const reduceDirectoryToJSFiles = (directory: string[]) =>
   directory.reduce((validFiles: string[], name: string) => {
-    if (name.indexOf('.js') > -1) {
+    if (name.endsWith('.js')) {
       validFiles.push(name);
     }
     return validFiles;
