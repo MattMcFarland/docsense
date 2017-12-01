@@ -7,12 +7,12 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug",
-      "cwd": "${workspaceFolder}",
-      "runtimeExecutable": "yarn",
+      "name": "Launch Program",
+      "program": "${workspaceFolder}/src/index.ts",
+      "preLaunchTask": "build",
+      "outFiles": ["${workspaceFolder}/dist_common/**/*.js"],
       "protocol": "inspector",
-      "runtimeArgs": ["debug"],
-      "port": 9229
+      "sourceMaps": true
     },
     {
       "type": "node",
