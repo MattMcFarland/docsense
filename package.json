@@ -3,17 +3,19 @@
   "version": "0.0.0-1",
   "description":
     "WIP - Beautiful ES Doc generation with or without code comments",
-  "main": "lib/index.js",
+  "main": "dist/common/index.js",
+  "module": "dist/esm/index.js",
+  "files": ["dist/*"],
   "scripts": {
     "test": "jest",
     "test:debug":
-      "node -r @babel/register --inspect-brk=9229 --nolazy node_modules/jest/bin/jest.js",
+      "ts-node --inspect-brk=9229 --nolazy node_modules/jest/bin/jest.js",
     "precommit": "yarn lint && lint-staged",
     "clean": "rm -rf out docs lib && mkdir docs lib",
     "prebuild": "yarn clean",
     "build": "tsc",
     "docs": "node lib/index.js",
-    "debug": "node -r @babel/register --inspect-brk=9229 --nolazy src/index.js",
+    "debug": "ts-node --inspect-brk=9229 --nolazy src/index.ts",
     "prepublishOnly": "yarn build && yarn docs && pkg-ok",
     "prettier":
       "prettier --write src/**/*.{ts,js,json,prettierrc,babelrc,docsenserc}",
@@ -30,6 +32,8 @@
   "author": "Matt McFarland <contact@mattmcfarland.com>",
   "license": "MIT",
   "dependencies": {
+    "babel-traverse": "^6.26.0",
+    "babel-types": "^6.26.0",
     "babylon": "7.0.0-beta.32",
     "cosmiconfig": "^3.1.0",
     "deepmerge": "^2.0.1",
@@ -41,12 +45,15 @@
     "ramda": "^0.25.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.32",
+    "@babel/plugin-transform-typescript": "^7.0.0-beta.32",
+    "@babel/preset-es2015": "^7.0.0-beta.32",
+    "@babel/preset-typescript": "^7.0.0-beta.32",
+    "@babel/register": "^7.0.0-beta.32",
     "@types/babylon": "^6.16.2",
     "@types/jest": "^21.1.8",
     "@types/lowdb": "^0.15.0",
     "@types/node": "^8.0.53",
-    "babel-traverse": "^6.26.0",
-    "babel-types": "^6.26.0",
     "eslint": "^4.12.0",
     "husky": "^0.14.3",
     "jest": "^21.2.1",
@@ -56,6 +63,7 @@
     "prettier-eslint": "^8.2.2",
     "prettier-eslint-cli": "^4.4.0",
     "ts-jest": "^21.2.3",
+    "ts-node": "^3.3.0",
     "tslib": "^1.8.0",
     "tslint": "^5.8.0",
     "tslint-config-prettier": "^1.6.0",
@@ -69,9 +77,6 @@
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
     "testMatch": ["**/__tests__/*.ts"]
-  },
-  "directories": {
-    "lib": "lib"
   },
   "repository": {
     "type": "git",

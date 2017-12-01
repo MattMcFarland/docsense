@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "outDir": "./lib",
+    "outDir": "./dist/common",
     "pretty": true,
     "declaration": true,
     "moduleResolution": "node",
     "importHelpers": true,
     "lib": ["es2015", "es2016", "es2017", "esnext"],
     "newLine": "LF",
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true
   },
   "compileOnSave": true,
   "include": ["./src/**/*"],
