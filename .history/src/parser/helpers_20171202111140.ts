@@ -1,13 +1,13 @@
-import { NodePath } from 'babel-traverse';
 import {
   Identifier,
+  isObjectMember,
   isIdentifier,
   isMemberExpression,
-  isObjectMember,
   MemberExpression,
   Node,
   ObjectMember,
 } from 'babel-types';
+import { NodePath } from 'babel-traverse';
 
 export default (pathObj: any) => ({
   getFileName: (): string => getFileName(pathObj),

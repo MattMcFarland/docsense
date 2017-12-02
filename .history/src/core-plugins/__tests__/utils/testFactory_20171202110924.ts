@@ -1,7 +1,6 @@
 import * as assert from 'assert';
-
-import { IPluginModuleAndRecord } from '../../../types/Plugin';
 import testPlugin from './testPlugin';
+import { IPluginModuleAndRecord } from '../../../types/Plugin';
 
 export default ({ plugin, suites }: ITestModule): void => {
   assert(plugin, 'testFactory missing plugin argument');

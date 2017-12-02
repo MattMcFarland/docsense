@@ -7,7 +7,6 @@ import {
   VariableDeclaration,
   VariableDeclarator,
 } from 'babel-types';
-
 import helpers, {
   getFunctionMeta,
   IFunctionMeta,

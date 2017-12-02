@@ -5,20 +5,20 @@
     ".docsenserc": "json",
     ".prettierrc": "json"
   },
-  "editor.rulers": [
-    90
-  ],
+  "editor.rulers": [90],
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
     "**/node_modules/**": true,
     "**/dist/**": true,
-    "**/docs/**": true
+    "**/docs/**": true,
+    "**/.history/**": true
   },
   "search.exclude": {
     "**/node_modules": true,
     "**/bower_components": true,
-    "**/dist": true
+    "**/dist": true,
+    "**/.history/**": true
   },
   "files.exclude": {
     "**/.git": true,
@@ -26,7 +26,9 @@
     "**/.hg": true,
     "**/CVS": true,
     "**/.DS_Store": true,
-    "**/node_modules": true
+    "**/node_modules": true,
+    "**/.history/**": true,
+    "**/dist": true
   },
   "editor.formatOnSave": true,
   "tslint.enable": true,

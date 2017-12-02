@@ -1,5 +1,4 @@
 import ParseEngine from '../parser/ParseEngine';
-
 export const collectionName = 'file_collection';
 export default function(engine: ParseEngine, db: Lowdb) {
   db.set(collectionName, []).write();

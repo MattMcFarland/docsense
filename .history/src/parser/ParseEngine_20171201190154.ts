@@ -1,4 +1,4 @@
-import traverse, { Node, NodePath } from 'babel-traverse';
+import traverse, { NodePath, Node } from 'babel-traverse';
 import { Comment, CommentBlock } from 'babel-types';
 import { Annotation, parse as docParse } from 'doctrine';
 import { EventEmitter } from 'events';
@@ -62,13 +62,14 @@ export default class ParseEngine extends EventEmitter {
    */
   public addFile(fileName: string, sourceCode: string): void {
     const ast: any = this.parse(sourceCode, { sourceFilename: fileName });
+    const self = this;
     traverse(ast, {
       enter(path) {
-        this.maybeInjectTags(path.node);
+        self.maybeInjectTags(path.node);
       },
       exit(path) {
         if (path.type === 'Program') {
-          this.emit('addFile', {
+          self.emit('addFile', {
             fileName,
             path,
             traverse,

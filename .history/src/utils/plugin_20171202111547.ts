@@ -1,6 +1,4 @@
-import * as assert from 'assert';
 import { resolve as resolvePath } from 'path';
-
 import { IConfig } from '../config';
 import ParseEngine from '../parser/ParseEngine';
 import { IPluginModule, IPluginRecord } from '../types/Plugin';
@@ -9,6 +7,7 @@ import {
   resolveContextRelativePaths,
   scanDirectory,
 } from './file';
+import * as assert from 'assert';
 
 type ConfigAndPlugins = Promise<{
   config: IConfig;

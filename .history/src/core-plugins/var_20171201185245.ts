@@ -1,13 +1,12 @@
-import { NodePath } from 'babel-traverse';
-
+import ParseEngine from '../parser/ParseEngine';
+import { IPluginCommand } from '../types/Plugin';
 import helpers, {
   getDocTags,
   getFunctionMeta,
   getVariableId,
 } from '../parser/helpers';
-import ParseEngine from '../parser/ParseEngine';
-import { IPluginCommand } from '../types/Plugin';
 import functionVisitor from './visitors/functionVisitor';
+import { NodePath } from 'babel-traverse';
 
 export const collectionName = 'var_collection';
 export default function(engine: ParseEngine, db: Lowdb.Lowdb): IPluginCommand {

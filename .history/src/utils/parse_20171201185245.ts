@@ -1,11 +1,12 @@
+import { dedupe, flatten } from './common';
+import { processAllGlobPatterns, readFiles } from './file';
+import { registerPlugin } from './plugin';
+
 import { IConfig } from '../config';
 import { create } from '../db';
 import ParseEngine from '../parser/ParseEngine';
 import { IPluginRecord } from '../types/Plugin';
 import { log } from '../utils/logger';
-import { dedupe, flatten } from './common';
-import { processAllGlobPatterns, readFiles } from './file';
-import { registerPlugin } from './plugin';
 
 /**
  * Parse files using config options

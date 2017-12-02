@@ -1,12 +1,12 @@
 import { NodePath } from 'babel-traverse';
 import {
+  isObjectProperty,
   AssignmentExpression,
   Identifier,
-  isIdentifier,
-  isMemberExpression,
-  isObjectProperty,
   MemberExpression,
+  isMemberExpression,
   Node,
+  isIdentifier,
 } from 'babel-types';
 
 import helpers, { getFunctionMeta, isNamedIdentifier } from '../parser/helpers';

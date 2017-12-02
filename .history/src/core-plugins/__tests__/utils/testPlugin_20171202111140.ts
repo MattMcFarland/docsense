@@ -1,8 +1,7 @@
-import * as assert from 'assert';
-
 import ParseEngine from '../../../parser/ParseEngine';
 import { IPluginModuleAndRecord } from '../../../types/Plugin';
 import { registerPlugin } from '../../../utils/plugin';
+import * as assert from 'assert';
 
 export default (initialState: any, fileName: string) => (
   plugin: IPluginModuleAndRecord,

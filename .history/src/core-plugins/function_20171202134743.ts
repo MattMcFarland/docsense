@@ -1,9 +1,7 @@
-import { NodePath } from 'babel-traverse';
-
+import { IPluginCommand } from '../types/Plugin';
 import helpers, { IFunctionMeta } from '../parser/helpers';
 import ParseEngine from '../parser/ParseEngine';
-import { IPluginCommand } from '../types/Plugin';
-
+import { NodePath } from 'babel-traverse';
 export const collectionName = 'function_collection';
 
 export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {

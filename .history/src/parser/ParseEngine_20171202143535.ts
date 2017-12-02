@@ -1,4 +1,4 @@
-import traverse, { Node, NodePath } from 'babel-traverse';
+import traverse, { NodePath, Node } from 'babel-traverse';
 import { Comment, CommentBlock } from 'babel-types';
 import { Annotation, parse as docParse } from 'doctrine';
 import { EventEmitter } from 'events';
