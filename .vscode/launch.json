@@ -10,7 +10,9 @@
       "name": "Run Docs",
       "program": "${workspaceFolder}/src/index.ts",
       "preLaunchTask": "build",
-      "outFiles": ["${workspaceFolder}/dist_common/**/*.js"],
+      "outFiles": [
+        "${workspaceFolder}/dist/common/**/*.js"
+      ],
       "protocol": "inspector",
       "sourceMaps": true
     },
@@ -21,7 +23,9 @@
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "yarn",
       "protocol": "inspector",
-      "runtimeArgs": ["test:debug"],
+      "runtimeArgs": [
+        "test:debug"
+      ],
       "port": 9229
     }
   ]

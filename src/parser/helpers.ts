@@ -1,3 +1,14 @@
+import {
+  Identifier,
+  isObjectMember,
+  isIdentifier,
+  isMemberExpression,
+  MemberExpression,
+  Node,
+  ObjectMember,
+} from 'babel-types';
+import { NodePath } from 'babel-traverse';
+
 export default (pathObj: any) => ({
   getFileName: (): string => getFileName(pathObj),
   getFunctionMeta: (): IFunctionMeta => getFunctionMeta(pathObj),
@@ -73,3 +84,48 @@ export function getVariableId(path: any): string {
     ? path.parent.id.name
     : undefined;
 }
+
+export interface IModuleDotExports extends MemberExpression {
+  object: { name: 'module' } & Identifier;
+  property: { name: 'exports' } & Identifier;
+}
+
+export interface ISingleDotExpression extends MemberExpression {
+  object: Identifier;
+  property: Identifier;
+}
+
+export function isSingleDotExpression(
+  node: Node
+): node is ISingleDotExpression {
+  return (
+    isMemberExpression(node) &&
+    isIdentifier(node.object) &&
+    isIdentifier(node.property)
+  );
+}
+export function isModuleExports(node: Node): node is IModuleDotExports {
+  return (
+    isSingleDotExpression(node) &&
+    node.object.name === 'module' &&
+    node.property.name === 'exports'
+  );
+}
+
+export function isObjectWithKey(node: ObjectMember) {
+  return isObjectMember(node) && isIdentifier(node.key);
+}
+export interface IExportsIdentifier extends Identifier {
+  name: 'exports';
+}
+export function isExportsIdentifier(
+  path: NodePath<Node>
+): path is NodePath<IExportsIdentifier> {
+  return path.isIdentifier() && path.node.name === 'exports';
+}
+export const pushIfModuleExports = (p: NodePath<Node>, pushFn: any) => {
+  if (!p.isMemberExpression()) return;
+  if (isModuleExports(p.node)) return pushFn();
+
+  return pushIfModuleExports(p.get('object'), pushFn);
+};

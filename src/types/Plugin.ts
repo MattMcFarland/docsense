@@ -9,15 +9,16 @@ export type PluginModuleFn = (
   db: Lowdb
 ) => void | IPluginCommand;
 
-export interface IObjectWithCollection {
+export interface IPluginMetaData {
   collectionName: string;
+  pluginKey: string;
 }
 export interface IObjectWithDefault {
   default: PluginModuleFn;
 }
 
 export type IPluginModule = PluginModuleFn &
-  IObjectWithCollection &
+  IPluginMetaData &
   IObjectWithDefault;
 
 /**

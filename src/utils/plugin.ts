@@ -7,6 +7,7 @@ import {
   resolveContextRelativePaths,
   scanDirectory,
 } from './file';
+import * as assert from 'assert';
 
 type ConfigAndPlugins = Promise<{
   config: IConfig;
@@ -27,8 +28,12 @@ export const scanCorePluginDirectory = scanDirectory(
   resolvePath(__dirname, '../core-plugins')
 );
 
-export const resolvePluginModule = (id: string): IPluginModule =>
-  module.require(id).default || module.require(id);
+export const resolvePluginModule = (id: string): IPluginModule => {
+  const plugin: IPluginModule =
+    module.require(id).default || module.require(id);
+  assert(plugin.pluginKey, `Plugin "${id}" must export a pluginKey`);
+  return plugin;
+};
 
 export const setupPlugin = (id: string): IPluginRecord => ({
   eval: resolvePluginModule(id),
