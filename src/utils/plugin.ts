@@ -31,7 +31,7 @@ export const scanCorePluginDirectory = scanDirectory(
 export const resolvePluginModule = (id: string): IPluginModule => {
   const plugin: IPluginModule =
     module.require(id).default || module.require(id);
-  assert(plugin.pluginKey, `Plugin "${id}" must export a pluginKey`);
+  // assert(plugin.pluginKey, `Plugin "${id}" must export a pluginKey`);
   return plugin;
 };
 

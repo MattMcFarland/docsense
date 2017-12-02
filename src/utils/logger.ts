@@ -5,7 +5,7 @@ let initialized = false;
 
 export const init = () => {
   assert(!initialized, 'logger already initialized');
-  const info = require('../info.json');
+  const info = require('../../info.json');
   logger.heading = info.name;
   logger.info('using', `${info.name}@${info.version}`);
   logger.info('using', `sha:${info.sha}, built on ${info.date}`);
