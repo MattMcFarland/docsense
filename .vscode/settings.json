@@ -19,7 +19,8 @@
     "**/bower_components": true,
     "**/dist": true,
     "**/.history/**": true,
-    "**/types": true
+    "**/types": true,
+    "**/docs": true
   },
   "files.exclude": {
     "**/.git": true,
@@ -30,7 +31,10 @@
     "**/node_modules": true,
     "**/.history/**": true,
     "**/dist": true,
-    "**/types": true
+    "**/types": true,
+    "**/docs": true,
+    "yarn*": true,
+    ".gitattributes": true
   },
   "editor.formatOnSave": true,
   "tslint.enable": true,
