@@ -36,6 +36,6 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
 
 function getVariableId(path: NodePath) {
   if (path.parentPath.isVariableDeclarator()) {
-    return path.parentPath.get('id');
+    return path.parentPath.get('id').node;
   }
 }
