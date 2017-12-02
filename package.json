@@ -9,10 +9,10 @@
   "scripts": {
     "test": "jest",
     "test:debug":
-      "node -r ts-node/register --inspect-brk=9229 --nolazy node_modules/jest/bin/jest.js",
+      "node -r --inspect-brk=9229 --nolazy node_modules/jest/bin/jest.js",
     "precommit": "yarn lint && lint-staged",
     "clean": "rm -rf dist",
-    "prebuild": "yarn clean && yarn lint && mkdir dist",
+    "prebuild": "yarn clean && mkdir dist",
     "build:common": "tsc -p tsconfig.common.json",
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:info": "node scripts/build-info",
@@ -22,8 +22,7 @@
     "prepublishOnly": "yarn build && yarn docs && pkg-ok",
     "prettier":
       "prettier --write src/**/*.{ts,js,json,prettierrc,babelrc,docsenserc}",
-    "lint:syntax": "tsc --outDir /dev/null",
-    "lint": "yarn lint:syntax && tslint src/**/*.ts",
+    "lint": "tslint src/**/*.ts",
     "tslint-check": "tslint-config-prettier-check ./tslint.json"
   },
   "lint-staged": {

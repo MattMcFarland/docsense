@@ -13,9 +13,10 @@
     "noImplicitThis": false,
     "noUnusedLocals": false,
     "sourceMap": true,
-    "sourceRoot": "src",
     "suppressImplicitAnyIndexErrors": true,
-    "strictFunctionTypes": true
+    "strictFunctionTypes": true,
+    "inlineSourceMap": true,
+    "inlineSources": true
   },
   "exclude": ["node_modules", "src/**/*.test.ts"],
   "include": ["./src/**/*"],

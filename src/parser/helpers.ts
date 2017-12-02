@@ -111,21 +111,19 @@ export function isModuleExports(node: Node): node is IModuleDotExports {
     node.property.name === 'exports'
   );
 }
+export interface INamedIdentifier extends Identifier {
+  name: string;
+}
 
-export function isObjectWithKey(node: ObjectMember) {
-  return isObjectMember(node) && isIdentifier(node.key);
-}
-export interface IExportsIdentifier extends Identifier {
-  name: 'exports';
-}
-export function isExportsIdentifier(
-  path: NodePath<Node>
-): path is NodePath<IExportsIdentifier> {
-  return path.isIdentifier() && path.node.name === 'exports';
-}
-export const pushIfModuleExports = (p: NodePath<Node>, pushFn: any) => {
+export const pushIfModuleExports = (
+  p: NodePath<Node>,
+  pushFn: any,
+  id: string = 'default'
+) => {
+  const objNode = p.get('object').node;
+
   if (!p.isMemberExpression()) return;
   if (isModuleExports(p.node)) return pushFn();
 
-  return pushIfModuleExports(p.get('object'), pushFn);
+  return pushIfModuleExports(p.get('object'), () => pushFn(id), id);
 };
