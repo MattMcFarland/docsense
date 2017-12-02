@@ -1,9 +1,22 @@
 import ParseEngine from '../parser/ParseEngine';
-import helpers, { getFunctionMeta, IFunctionMeta } from '../parser/helpers';
+import helpers, {
+  getFunctionMeta,
+  IFunctionMeta,
+  isNamedIdentifier,
+} from '../parser/helpers';
 import { log } from '../utils/logger';
 import functionVisitor from './visitors/functionVisitor';
 import { NodePath } from 'babel-traverse';
 import { IPluginCommand } from '../types/Plugin';
+import {
+  ExportNamedDeclaration,
+  VariableDeclaration,
+  VariableDeclarator,
+} from 'babel-types';
+import { ExportSpecifier } from 'babel-types';
+import { ExportDefaultDeclaration } from 'babel-types';
+import { ExportAllDeclaration } from 'babel-types';
+
 export const collectionName = 'export_collection';
 interface IExportItem {
   export_id: string;
@@ -13,7 +26,7 @@ interface IExportItem {
 }
 export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
   db.set(collectionName, []).write();
-  const createPush = (path: any) => (data: IExportItem): void => {
+  const createPush = (path: any) => (data: any): void => {
     db
       .get(collectionName)
       .push(data)
@@ -35,21 +48,28 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
       ExportAllDeclaration: handleExportAllDeclaration,
     },
   };
-  function handleExportNamedDeclaration(path: NodePath) {
+  function handleExportNamedDeclaration(
+    path: NodePath<ExportNamedDeclaration>
+  ) {
     const push = createPush(path);
     if (path.node.specifiers.length) {
       return;
     }
     const { getFileName, getDocTags } = helpers(path);
-    const declarations = path.get('declaration.declarations');
-    if (declarations && typeof declarations.forEach === 'function') {
-      return declarations.forEach((exportDeclaration: NodePath) => {
-        push({
-          export_id: exportDeclaration.node.id.name,
-          file_id: getFileName(),
-          jsdoc: getDocTags(),
-        });
-      });
+    const declaration = path.get('declaration');
+
+    if (declaration.isVariableDeclaration()) {
+      return declaration.node.declarations.forEach(
+        (exportDeclaration: VariableDeclarator) => {
+          if (isNamedIdentifier(exportDeclaration.id)) {
+            push({
+              export_id: exportDeclaration.id.name,
+              file_id: getFileName(),
+              jsdoc: getDocTags(),
+            });
+          }
+        }
+      );
     }
     if (
       path.node.declaration &&
@@ -63,7 +83,7 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
     }
     log.warn('export', 'skipped ExportNamedDeclaration', getFileName());
   }
-  function handleExportSpecifier(path) {
+  function handleExportSpecifier(path: NodePath<ExportSpecifier>) {
     const push = createPush(path);
     const { getFileName, getDocTags } = helpers(path);
     push({
@@ -72,7 +92,9 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
       jsdoc: getDocTags(),
     });
   }
-  function handleExportDefaultDeclaration(path) {
+  function handleExportDefaultDeclaration(
+    path: NodePath<ExportDefaultDeclaration>
+  ) {
     const push = createPush(path);
     const { getFileName, getDocTags } = helpers(path);
     push({
@@ -81,7 +103,7 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
       jsdoc: getDocTags(),
     });
   }
-  function handleExportAllDeclaration(path) {
+  function handleExportAllDeclaration(path: NodePath<ExportAllDeclaration>) {
     const push = createPush(path);
     const { getFileName, getDocTags } = helpers(path);
     push({

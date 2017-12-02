@@ -127,3 +127,11 @@ export const pushIfModuleExports = (
 
   return pushIfModuleExports(p.get('object'), () => pushFn(id), id);
 };
+
+/**
+ * Because not all Identifiers can be named.
+ * @param node Node
+ */
+export function isNamedIdentifier(node: Node): node is INamedIdentifier {
+  return isIdentifier(node) && node.name !== undefined;
+}

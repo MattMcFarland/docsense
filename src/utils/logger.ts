@@ -1,5 +1,5 @@
-import assert = require('assert');
-import logger = require('npmlog');
+const assert = require('assert');
+const logger = require('npmlog');
 
 let initialized = false;
 

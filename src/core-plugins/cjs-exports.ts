@@ -9,7 +9,7 @@ import {
   isIdentifier,
 } from 'babel-types';
 
-import helpers, { getFunctionMeta } from '../parser/helpers';
+import helpers, { getFunctionMeta, isNamedIdentifier } from '../parser/helpers';
 import ParseEngine from '../parser/ParseEngine';
 import functionVisitor from './visitors/functionVisitor';
 
@@ -204,13 +204,5 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
         node.object.property.name === 'exports' &&
         node.property !== undefined
     );
-  }
-
-  /**
-   * Because not all Identifiers can be named.
-   * @param node Node
-   */
-  function isNamedIdentifier(node: Node): node is INamedIdentifier {
-    return isIdentifier(node) && node.name !== undefined;
   }
 }

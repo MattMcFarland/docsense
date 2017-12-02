@@ -12,11 +12,11 @@
     "noImplicitReturns": false,
     "noImplicitThis": false,
     "noUnusedLocals": false,
-    "sourceMap": true,
     "suppressImplicitAnyIndexErrors": true,
     "strictFunctionTypes": true,
     "inlineSourceMap": true,
-    "inlineSources": true
+    "inlineSources": true,
+    "skipLibCheck": true
   },
   "exclude": ["node_modules", "src/**/*.test.ts"],
   "include": ["./src/**/*"],

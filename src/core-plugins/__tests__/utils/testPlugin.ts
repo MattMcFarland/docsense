@@ -1,14 +1,14 @@
 import ParseEngine from '../../../parser/ParseEngine';
 import { IPluginModuleAndRecord } from '../../../types/Plugin';
 import { registerPlugin } from '../../../utils/plugin';
-import assert = require('assert');
-import Memory = require('lowdb/adapters/Memory');
+import * as assert from 'assert';
 
 export default (initialState: any, fileName: string) => (
   plugin: IPluginModuleAndRecord,
   sourceCode: string
 ) => {
   return new Promise(resolve => {
+    const Memory = require('lowdb/adapters/Memory');
     const low: any = require('lowdb');
     const db: Lowdb = low(new Memory());
 
