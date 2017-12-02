@@ -63,10 +63,10 @@ export default class ParseEngine extends EventEmitter {
   public addFile(fileName: string, sourceCode: string): void {
     const ast: any = this.parse(sourceCode, { sourceFilename: fileName });
     traverse(ast, {
-      enter(path) {
+      enter: path => {
         this.maybeInjectTags(path.node);
       },
-      exit(path) {
+      exit: path => {
         if (path.type === 'Program') {
           this.emit('addFile', {
             fileName,
