@@ -7,7 +7,7 @@
       "label": "Build",
       "identifier": "build",
       "type": "npm",
-      "script": "build",
+      "script": "build:common",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -19,7 +19,7 @@
       "group": {
         "kind": "test",
         "isDefault": true
-      },
+      }
     }
   ]
 }

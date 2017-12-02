@@ -5,7 +5,10 @@
     "WIP - Beautiful ES Doc generation with or without code comments",
   "main": "dist/common/index.js",
   "module": "dist/esm/index.js",
-  "files": ["dist"],
+  "unpkg": "dist/docsense.js",
+  "jsdelivr": "dist/docsense.js",
+  "typings": "types/index.d.ts",
+  "files": ["src", "dist/*.js", "types/*.d.ts"],
   "scripts": {
     "test": "jest",
     "test:debug":
@@ -15,6 +18,7 @@
     "prebuild": "yarn clean && mkdir dist",
     "build:common": "tsc -p tsconfig.common.json",
     "build:esm": "tsc -p tsconfig.esm.json",
+    "build:umd": "tsc -p tsconfig.umd.json",
     "build:info": "node scripts/build-info",
     "build": "yarn build:info && yarn build:common && yarn build:esm",
     "predocs": "rm -rf docs",

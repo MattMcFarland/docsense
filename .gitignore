@@ -2,6 +2,8 @@
 dist*
 docs
 .history
+umd
+types/*
 
 # Logs
 logs
