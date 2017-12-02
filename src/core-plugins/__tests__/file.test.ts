@@ -1,7 +1,7 @@
 const { testPlugin } = require('./utils');
 const filePlugin = require('../file');
 
-describe.skip('Core Plugin: file', () => {
+describe('Core Plugin: file', () => {
   test('file names are added as file_id', async () => {
     const runTest = testPlugin({}, '__TEST__');
     const state = await runTest(filePlugin, 'foo()');

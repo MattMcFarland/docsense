@@ -189,7 +189,7 @@ const suites = {
     ],
   },
 };
-describe.skip('Core Plugin: Function', () => {
+describe('Core Plugin: Function', () => {
   testFactory({
     plugin: fnPlugin,
     suites,

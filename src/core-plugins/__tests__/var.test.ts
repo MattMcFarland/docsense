@@ -180,7 +180,7 @@ const suites = {
   ],
 };
 
-describe.skip('Core Plugin: Var', () => {
+describe('Core Plugin: Var', () => {
   testFactory({
     plugin: varPlugin,
     suites,

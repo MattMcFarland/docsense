@@ -6,6 +6,8 @@ import {
   isObjectMember,
   MemberExpression,
   Node,
+  NodeTypes,
+  ObjectExpression,
   ObjectMember,
 } from 'babel-types';
 
@@ -40,7 +42,14 @@ export function getFunctionMeta(path: any): IFunctionMeta {
     jsdoc,
   };
 }
-
+export function getObjectData(path: NodePath<ObjectExpression>) {
+  if (path.parentPath.isAssignmentExpression()) {
+    // nothing
+  }
+  if (path.parentPath.isVariableDeclarator()) {
+    // nothing
+  }
+}
 export const getFunctionParams = (path: any): any[] => {
   return path.node.params.map(param => {
     if (param.type === 'Identifier') {
