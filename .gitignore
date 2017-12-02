@@ -1,6 +1,7 @@
 # App
 dist*
 docs
+.history
 
 # Logs
 logs
