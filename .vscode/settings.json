@@ -18,7 +18,8 @@
     "**/node_modules": true,
     "**/bower_components": true,
     "**/dist": true,
-    "**/.history/**": true
+    "**/.history/**": true,
+    "**/types": true
   },
   "files.exclude": {
     "**/.git": true,
@@ -28,7 +29,8 @@
     "**/.DS_Store": true,
     "**/node_modules": true,
     "**/.history/**": true,
-    "**/dist": true
+    "**/dist": true,
+    "**/types": true
   },
   "editor.formatOnSave": true,
   "tslint.enable": true,

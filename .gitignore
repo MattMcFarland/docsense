@@ -3,7 +3,7 @@ dist*
 docs
 .history
 umd
-types/*
+/types/
 
 # Logs
 logs
