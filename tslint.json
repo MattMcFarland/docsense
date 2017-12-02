@@ -1,18 +1,21 @@
 {
-  "extends": [
-    "tslint:recommended",
-    "tslint-eslint-rules",
-    "tslint-config-prettier"
-  ],
+  "extends": ["tslint:latest", "tslint-eslint-rules", "tslint-config-prettier"],
   "rules": {
     "no-var-requires": false,
     "object-literal-sort-keys": false,
     "variable-name": false,
-    "ordered-imports": false,
     "array-type": {
       "options": "array-simple",
       "severity": "error"
     },
+    "deprecation": true,
+    "typeof-compare": true,
+    "prefer-const": true,
+    "no-duplicate-imports": true,
+    "no-unnecessary-type-assertion": true,
+    "no-duplicate-variable": true,
+    "no-import-side-effect": true,
+    "no-submodule-imports": false,
     "curly": false
   },
   "env": {

@@ -1,21 +1,21 @@
-import ParseEngine from '../parser/ParseEngine';
+import { NodePath } from 'babel-traverse';
+import {
+  ExportAllDeclaration,
+  ExportDefaultDeclaration,
+  ExportNamedDeclaration,
+  ExportSpecifier,
+  VariableDeclaration,
+  VariableDeclarator,
+} from 'babel-types';
 import helpers, {
   getFunctionMeta,
   IFunctionMeta,
   isNamedIdentifier,
 } from '../parser/helpers';
+import ParseEngine from '../parser/ParseEngine';
+import { IPluginCommand } from '../types/Plugin';
 import { log } from '../utils/logger';
 import functionVisitor from './visitors/functionVisitor';
-import { NodePath } from 'babel-traverse';
-import { IPluginCommand } from '../types/Plugin';
-import {
-  ExportNamedDeclaration,
-  VariableDeclaration,
-  VariableDeclarator,
-} from 'babel-types';
-import { ExportSpecifier } from 'babel-types';
-import { ExportDefaultDeclaration } from 'babel-types';
-import { ExportAllDeclaration } from 'babel-types';
 
 export const collectionName = 'export_collection';
 interface IExportItem {
