@@ -20,20 +20,20 @@ export default (pathObj: any) => ({
   getVariableId: (): string | void => getVariableId(pathObj),
 });
 
-export const {
-  get: getFileName,
-  fromPath: getFileNameFromPath,
-  fromNode: getFileNameFromNode,
-} = createHelper<Node, string>((node: Node) => node.loc.filename);
+export const getFileName = createHelper<Node, string>(
+  (node: Node) => node.loc.filename
+);
 
-export const {
-  get: getVariableId,
-  fromPath: getVariableIdFromPath,
-  fromNode: getVariableIdFromNode,
-} = createHelper<Node, string>((node: Node) => {
-  if (isVariableDeclarator(node) && isIdentifier(node.id))
-    return getIdentifierName(node.id);
-});
+export const getVariableId = createHelper<Node, string | void>(
+  (node: Node) =>
+    isVariableDeclarator(node) && isIdentifier(node.id)
+      ? getIdentifierName(node.id)
+      : undefined
+);
+
+export const getIdentifierName = createHelper<Identifier, string | void>(
+  (node: Identifier) => (isNamedIdentifier(node) && node.name) || undefined
+);
 
 export function getFunctionMeta(path: any): IFunctionMeta {
   const line = path.get('loc.start.line').node;
@@ -94,14 +94,6 @@ export function getDocTags(path: any): any {
     path.getStatementParent().node.__doc_tags__ ||
     path.parent.__doc_tags__;
   return tags && tags.length ? tags : undefined;
-}
-
-export function getIdentifierName(node: Identifier) {
-  if (isNamedIdentifier(node)) return node.name;
-}
-
-export function getIdNameFromPath(path: NodePath<Identifier>): string {
-  return getIdentifierName(path.node);
 }
 
 export function isNamedIdentifier(node: Node): node is INamedIdentifier {
