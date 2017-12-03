@@ -23,7 +23,8 @@
     "no-this-assignment": true,
     "no-var-keyword": true,
     "check-else-if": true,
-    "cyclomatic-complexity": true
+    "cyclomatic-complexity": true,
+    "no-angle-bracket-type-assertion": false
   },
   "env": {
     "node": true,

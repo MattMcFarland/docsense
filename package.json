@@ -38,6 +38,7 @@
   "author": "Matt McFarland <contact@mattmcfarland.com>",
   "license": "MIT",
   "dependencies": {
+    "@typed/compose": "^1.0.0",
     "@typed/logic": "^2.3.0",
     "@typed/maybe": "^6.0.0",
     "babel-traverse": "^6.26.0",

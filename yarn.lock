@@ -356,6 +356,10 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
+"@typed/compose@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@typed/compose/-/compose-1.0.0.tgz#e4e5fc7132b84c701acb5346a361da28fad63081"
+
 "@typed/core@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@typed/core/-/core-2.1.0.tgz#9c0c303bbe83a9979464bd41d8e5e49073cde323"
