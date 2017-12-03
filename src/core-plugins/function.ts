@@ -1,6 +1,6 @@
 import { NodePath } from 'babel-traverse';
 
-import helpers, { IFunctionMeta } from '../parser/helpers';
+import helpers, { getVariableId, IFunctionMeta } from '../parser/helpers';
 import ParseEngine from '../parser/ParseEngine';
 import { IPluginCommand } from '../types/Plugin';
 
@@ -33,11 +33,5 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
       params: params && params.length ? params : undefined,
       jsdoc,
     });
-  }
-}
-
-function getVariableId(path: NodePath) {
-  if (path.parentPath.isVariableDeclarator()) {
-    return path.parentPath.get('id').node;
   }
 }

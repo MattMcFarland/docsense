@@ -31,7 +31,6 @@
     "**/node_modules": true,
     "**/.history/**": true,
     "**/dist": true,
-    "**/types": true,
     "**/docs": true,
     "yarn*": true,
     ".gitattributes": true
@@ -39,6 +38,5 @@
   "editor.formatOnSave": true,
   "tslint.enable": true,
   "tslint.packageManager": "yarn",
-  "typescript.referencesCodeLens.enabled": true,
   "typescript.useCodeSnippetsOnMethodSuggest": true
 }

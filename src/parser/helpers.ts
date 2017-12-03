@@ -1,4 +1,6 @@
-import { NodePath } from 'babel-traverse';
+import { cond } from '@typed/logic';
+
+import { NodePath, PathOrNode } from 'babel-traverse';
 import {
   Identifier,
   isIdentifier,
@@ -9,6 +11,7 @@ import {
   NodeTypes,
   ObjectExpression,
   ObjectMember,
+  VariableDeclarator,
 } from 'babel-types';
 
 export default (pathObj: any) => ({
@@ -16,7 +19,7 @@ export default (pathObj: any) => ({
   getFunctionMeta: (): IFunctionMeta => getFunctionMeta(pathObj),
   getFunctionParams: (): any[] => getFunctionParams(pathObj),
   getDocTags: (): any => getDocTags(pathObj),
-  getVariableId: (): string => getVariableId(pathObj),
+  getVariableId: (): string | void => getVariableId(pathObj),
 });
 
 export const getFileName = (path: any): string =>
@@ -87,11 +90,21 @@ export function getDocTags(path: any): any {
     path.parent.__doc_tags__;
   return tags && tags.length ? tags : undefined;
 }
-
-export function getVariableId(path: any): string {
-  return path.parentPath.isVariableDeclarator()
-    ? path.parent.id.name
-    : undefined;
+export function isPath(prop: PathOrNode): prop is NodePath {
+  return (prop as NodePath).node !== undefined;
+}
+export function isNode(prop: PathOrNode): prop is Node {
+  return (prop as Node).start !== undefined;
+}
+export function getVariableId(prop: PathOrNode): string | void {
+  if (isPath(prop)) return getVariableIdFromPath(prop);
+  if (isNode(prop)) return getVariableIdFromNode(prop);
+}
+export function getVariableIdFromNode(node: Node) {
+  return 'test';
+}
+export function getVariableIdFromPath(node: NodePath<Node>) {
+  return 'test';
 }
 
 export interface IModuleDotExports extends MemberExpression {
