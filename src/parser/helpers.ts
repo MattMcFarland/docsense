@@ -6,6 +6,7 @@ import {
   isIdentifier,
   isMemberExpression,
   isObjectMember,
+  isVariableDeclarator,
   MemberExpression,
   Node,
   NodeTypes,
@@ -90,21 +91,31 @@ export function getDocTags(path: any): any {
     path.parent.__doc_tags__;
   return tags && tags.length ? tags : undefined;
 }
+
 export function isPath(prop: PathOrNode): prop is NodePath {
-  return (prop as NodePath).node !== undefined;
+  return prop instanceof NodePath;
 }
 export function isNode(prop: PathOrNode): prop is Node {
   return (prop as Node).start !== undefined;
 }
+
 export function getVariableId(prop: PathOrNode): string | void {
   if (isPath(prop)) return getVariableIdFromPath(prop);
   if (isNode(prop)) return getVariableIdFromNode(prop);
 }
-export function getVariableIdFromNode(node: Node) {
-  return 'test';
+
+export function getVariableIdFromNode(node: Node): string {
+  if (isVariableDeclarator(node) && isIdentifier(node.id))
+    return getIdentifierName(node.id);
 }
-export function getVariableIdFromPath(node: NodePath<Node>) {
-  return 'test';
+export function getIdentifierName(node: Identifier) {
+  if (isNamedIdentifier(node)) return node.name;
+}
+export function getIdNameFromPath(path: NodePath<Identifier>): string {
+  return getIdentifierName(path.node);
+}
+export function getVariableIdFromPath(path: NodePath<Node>): string {
+  return getVariableIdFromNode(path.node);
 }
 
 export interface IModuleDotExports extends MemberExpression {
