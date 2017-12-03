@@ -9,7 +9,11 @@ import {
   Node,
 } from 'babel-types';
 
-import helpers, { getFunctionMeta, isNamedIdentifier } from '../parser/helpers';
+import helpers, {
+  FunctionType,
+  getFunctionMeta,
+  isNamedIdentifier,
+} from '../parser/helpers';
 import ParseEngine from '../parser/ParseEngine';
 import functionVisitor from './visitors/functionVisitor';
 
@@ -75,7 +79,7 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
     },
   };
 
-  function onFunction(path: NodePath, id: string) {
+  function onFunction(path: NodePath<FunctionType>, id: string) {
     if (!id) {
       return;
     }

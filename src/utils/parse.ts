@@ -28,7 +28,7 @@ export const parseFiles = ({
           config.parser,
           config.parseOptions
         );
-        const db: Lowdb = create(config.out);
+        const db: Lowdb = create(config.out || '');
 
         plugins.forEach((plugin: IPluginRecord) =>
           registerPlugin(parser, plugin, db)

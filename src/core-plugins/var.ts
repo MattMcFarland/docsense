@@ -1,6 +1,7 @@
 import { NodePath } from 'babel-traverse';
 
 import helpers, {
+  FunctionType,
   getDocTags,
   getFunctionMeta,
   getVariableId,
@@ -31,12 +32,12 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): IPluginCommand {
       VariableDeclarator: handleDeclarator,
     },
   };
-  function onFunction(path: NodePath) {
+  function onFunction(path: NodePath<FunctionType>) {
     const var_id = getVariableId(path.parentPath);
     if (!var_id) {
       return;
     }
-    const { function_id } = getFunctionMeta(path);
+    const { function_id } = getFunctionMeta(path.node);
     insert(var_id)({
       function_id,
     });

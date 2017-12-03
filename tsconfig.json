@@ -5,6 +5,7 @@
     "inlineSourceMap": true,
     "declarationDir": "types",
     "alwaysStrict": true,
+    "strict": true,
     "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,

@@ -35,25 +35,25 @@ export const getIdentifierName = createHelper<Identifier, string | void>(
   (node: Identifier) => (isNamedIdentifier(node) && node.name) || undefined
 );
 
+export const getFunctionMeta = createHelper<FunctionType, IFunctionMeta>(
+  (node: FunctionType) => {
+    const { line, column } = node.loc.start;
+    const idName = getIdentifierName(node.id);
+    const location_id = `${line}:${column}`;
+    const function_id = (idName ? idName : 'anonymous') + '@' + location_id;
+    const params = getFunctionParams(node);
+    const jsdoc = getDocTags(node);
+    return {
+      function_id,
+      params,
+      jsdoc,
+    };
+  }
+);
 //////////////////////////////////////////////////////////////////////////////////////////
 // TODO: Refactor "any" out of all the things below this line, use createHelper() too?
 //////////////////////////////////////////////////////////////////////////////////////////
 
-export function getFunctionMeta(path: any): IFunctionMeta {
-  const line = path.get('loc.start.line').node;
-  const column = path.get('loc.start.column').node;
-  const id = path.get('id').node;
-  const location_id = `${line}:${column}`;
-  const function_id =
-    (id ? path.get('id.name').node : 'anonymous') + '@' + location_id;
-  const params = getFunctionParams(path);
-  const jsdoc = getDocTags(path);
-  return {
-    function_id,
-    params: params && params.length ? params : undefined,
-    jsdoc,
-  };
-}
 export function getObjectData(path: NodePath<ObjectExpression>) {
   if (path.parentPath.isAssignmentExpression()) {
     // nothing
@@ -63,18 +63,20 @@ export function getObjectData(path: NodePath<ObjectExpression>) {
   }
 }
 export const getFunctionParams = (path: any): any[] => {
-  return path.node.params.map(param => {
+  return path.node.params.map((param: any) => {
     if (param.type === 'Identifier') {
       return param.name;
     }
     if (param.type === 'ObjectPattern') {
-      return param.properties.map(({ key, value }) => ({
-        key: key.name,
-        value: value.name,
-      }));
+      return param.properties.map(
+        ({ key, value }: { key: any; value: any }) => ({
+          key: key.name,
+          value: value.name,
+        })
+      );
     }
     if (param.type === 'ArrayPattern') {
-      return param.elements.map(el => {
+      return param.elements.map((el: any) => {
         if (el) {
           if (el.type === 'Identifier') {
             return el.name;

@@ -15,7 +15,7 @@ export default (): Promise<IConfig> =>
  */
 export interface IConfig {
   files: string[];
-  parser?: string;
+  parser: string;
   parseOptions?: IParseOptions;
   useCorePlugins?: boolean;
   out?: string;

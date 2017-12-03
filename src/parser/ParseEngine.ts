@@ -38,10 +38,10 @@ export interface IParser {
  * @extends EventEmitter
  */
 export default class ParseEngine extends EventEmitter {
-  public parser: IParser;
-  public parserName: string;
-  public parseOptions: IParseOptions;
-  public doctrine: typeof docParse;
+  private parser: IParser;
+  private parserName: string;
+  private parseOptions: IParseOptions;
+  private doctrine: typeof docParse;
 
   /**
    * @constructor
@@ -61,7 +61,7 @@ export default class ParseEngine extends EventEmitter {
    * @param {string} sourceCode read from fs.readFile, encoded at utf-8
    */
   public addFile(fileName: string, sourceCode: string): void {
-    const ast: any = this.parse(sourceCode, { sourceFilename: fileName });
+    const ast: Node = this.parse(sourceCode, { sourceFilename: fileName });
     traverse(ast, {
       enter: path => {
         this.maybeInjectTags(path.node);
@@ -85,7 +85,7 @@ export default class ParseEngine extends EventEmitter {
    * @param {string} data code
    * @param {IParseOptions} options
    */
-  public parse(data: string, options?: IParseOptions): Node {
+  private parse(data: string, options?: IParseOptions): Node {
     return this.parser.parse(data, { ...options, ...this.parseOptions });
   }
 
@@ -93,7 +93,7 @@ export default class ParseEngine extends EventEmitter {
    * Parse JSDoc and inject comment tags if applicable,
    * @param {any} path
    */
-  public maybeInjectTags(node: Node): void {
+  private maybeInjectTags(node: Node): void {
     if (Array.isArray(node.leadingComments)) {
       node.__doc_tags__ = this.injectTags(node.leadingComments);
     }
@@ -103,7 +103,7 @@ export default class ParseEngine extends EventEmitter {
    * Parse JSDoc and inject comment tags
    * @param { LeadingComment[]} leadingComments
    */
-  public injectTags(leadingComments: Comment[]): Annotation[] {
+  private injectTags(leadingComments: Comment[]): Annotation[] {
     const parseCommentTags = (content: string): Annotation =>
       docParse(content, {
         unwrap: true,
@@ -112,10 +112,12 @@ export default class ParseEngine extends EventEmitter {
     const tagInjectReducer = (
       acc: Annotation[],
       leadingComment: Comment | CommentBlock
-    ) =>
-      (isCommentBlock(leadingComment) &&
-        [].concat(parseCommentTags(leadingComment.value), acc)) ||
-      acc;
+    ) => {
+      if (isCommentBlock(leadingComment)) {
+        acc.push(parseCommentTags(leadingComment.value));
+      }
+      return acc;
+    };
 
     return leadingComments.reduce(tagInjectReducer, []);
   }

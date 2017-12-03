@@ -16,7 +16,14 @@
     "no-duplicate-variable": true,
     "no-import-side-effect": true,
     "no-submodule-imports": false,
-    "curly": false
+    "curly": false,
+    "no-unsafe-any": true,
+    "no-any": { "severity": "warn" },
+    "no-implicit-dependencies": true,
+    "no-this-assignment": true,
+    "no-var-keyword": true,
+    "check-else-if": true,
+    "cyclomatic-complexity": true
   },
   "env": {
     "node": true,

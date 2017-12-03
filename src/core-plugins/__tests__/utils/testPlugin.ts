@@ -7,7 +7,7 @@ import { registerPlugin } from '../../../utils/plugin';
 export default (initialState: any, fileName: string) => (
   plugin: IPluginModuleAndRecord,
   sourceCode: string
-) => {
+): Promise<any> => {
   return new Promise(resolve => {
     const Memory = require('lowdb/adapters/Memory');
     const low: any = require('lowdb');

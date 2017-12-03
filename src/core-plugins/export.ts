@@ -114,7 +114,7 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
       jsdoc: getDocTags(),
     });
   }
-  function onFunction(path, export_id) {
+  function onFunction(path: any, export_id: any) {
     if (typeof export_id !== 'string') {
       return;
     }
