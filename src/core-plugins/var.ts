@@ -31,8 +31,8 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): IPluginCommand {
       VariableDeclarator: handleDeclarator,
     },
   };
-  function onFunction(path: any) {
-    const var_id = getVariableId(path);
+  function onFunction(path: NodePath) {
+    const var_id = getVariableId(path.parentPath);
     if (!var_id) {
       return;
     }

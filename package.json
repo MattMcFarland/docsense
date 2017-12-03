@@ -11,8 +11,7 @@
   "files": ["src", "dist/*.js", "types/*.d.ts"],
   "scripts": {
     "test": "jest",
-    "test:debug":
-      "node -r --inspect-brk=9229 --nolazy node_modules/jest/bin/jest.js",
+    "test:debug": "node --inspect-brk --nolazy node_modules/jest/bin/jest.js",
     "precommit": "lint-staged",
     "clean": "rm -rf dist",
     "prebuild": "yarn clean && mkdir dist",
@@ -23,7 +22,7 @@
     "build": "yarn build:info && yarn build:common && yarn build:esm",
     "predocs": "rm -rf docs",
     "docs": "mkdir docs && node dist/common/index.js",
-    "debug": "ts-node --inspect-brk=9229 --nolazy src/index.ts",
+    "debug": "ts-node --inspect-brk --nolazy src/index.ts",
     "prepublishOnly": "yarn build && yarn docs && pkg-ok",
     "prettier":
       "prettier --write src/**/*.{ts,js,json,prettierrc,babelrc,docsenserc}",
@@ -93,6 +92,7 @@
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
     "testMatch": ["**/__tests__/*.ts"],
+    "testPathIgnorePatterns": ["/node_modules/", "/dist/", "/.history/"],
     "verbose": false,
     "reporters": ["jest-spec-reporter"]
   },

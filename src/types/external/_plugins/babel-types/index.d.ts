@@ -161,7 +161,9 @@ declare module 'babel-types' {
     end: number;
     loc: SourceLocation;
   }
-
+  export interface SourceLocation {
+    filename: string;
+  }
   export enum NodeTypes {
     'CommentBlock',
     'CommentLine',

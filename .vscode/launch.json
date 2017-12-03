@@ -10,23 +10,9 @@
       "name": "Run Docs",
       "program": "${workspaceFolder}/src/index.ts",
       "preLaunchTask": "build",
-      "outFiles": [
-        "${workspaceFolder}/dist/common/**/*.js"
-      ],
+      "outFiles": ["${workspaceFolder}/dist/common/**/*.js"],
       "protocol": "inspector",
       "sourceMaps": true
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Run Jest",
-      "cwd": "${workspaceFolder}",
-      "runtimeExecutable": "yarn",
-      "protocol": "inspector",
-      "runtimeArgs": [
-        "test:debug"
-      ],
-      "port": 9229
     }
   ]
 }

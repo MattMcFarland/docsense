@@ -24,7 +24,7 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
   function handler(path: NodePath) {
     const { getFileName, getFunctionMeta } = helpers(path);
     const file_id = getFileName();
-    const var_id = getVariableId(path);
+    const var_id = getVariableId(path.parent);
     const { function_id, params, jsdoc }: IFunctionMeta = getFunctionMeta();
     return push({
       function_id,

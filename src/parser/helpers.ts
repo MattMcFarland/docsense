@@ -1,19 +1,16 @@
-import { cond } from '@typed/logic';
-
 import { NodePath, PathOrNode } from 'babel-traverse';
 import {
+  ArrowFunctionExpression,
+  FunctionDeclaration,
+  FunctionExpression,
   Identifier,
   isIdentifier,
-  isMemberExpression,
-  isObjectMember,
   isVariableDeclarator,
-  MemberExpression,
   Node,
-  NodeTypes,
   ObjectExpression,
-  ObjectMember,
-  VariableDeclarator,
 } from 'babel-types';
+
+import { createHelper } from './HelperFactory';
 
 export default (pathObj: any) => ({
   getFileName: (): string => getFileName(pathObj),
@@ -23,14 +20,21 @@ export default (pathObj: any) => ({
   getVariableId: (): string | void => getVariableId(pathObj),
 });
 
-export const getFileName = (path: any): string =>
-  path.node && path.node.loc && path.node.loc.filename;
+export const {
+  get: getFileName,
+  fromPath: getFileNameFromPath,
+  fromNode: getFileNameFromNode,
+} = createHelper<Node, string>((node: Node) => node.loc.filename);
 
-export interface IFunctionMeta {
-  function_id: string;
-  params?: any[];
-  jsdoc: any;
-}
+export const {
+  get: getVariableId,
+  fromPath: getVariableIdFromPath,
+  fromNode: getVariableIdFromNode,
+} = createHelper<Node, string>((node: Node) => {
+  if (isVariableDeclarator(node) && isIdentifier(node.id))
+    return getIdentifierName(node.id);
+});
+
 export function getFunctionMeta(path: any): IFunctionMeta {
   const line = path.get('loc.start.line').node;
   const column = path.get('loc.start.column').node;
@@ -92,79 +96,29 @@ export function getDocTags(path: any): any {
   return tags && tags.length ? tags : undefined;
 }
 
-export function isPath(prop: PathOrNode): prop is NodePath {
-  return prop instanceof NodePath;
-}
-export function isNode(prop: PathOrNode): prop is Node {
-  return (prop as Node).start !== undefined;
-}
-
-export function getVariableId(prop: PathOrNode): string | void {
-  if (isPath(prop)) return getVariableIdFromPath(prop);
-  if (isNode(prop)) return getVariableIdFromNode(prop);
-}
-
-export function getVariableIdFromNode(node: Node): string {
-  if (isVariableDeclarator(node) && isIdentifier(node.id))
-    return getIdentifierName(node.id);
-}
 export function getIdentifierName(node: Identifier) {
   if (isNamedIdentifier(node)) return node.name;
 }
+
 export function getIdNameFromPath(path: NodePath<Identifier>): string {
   return getIdentifierName(path.node);
 }
-export function getVariableIdFromPath(path: NodePath<Node>): string {
-  return getVariableIdFromNode(path.node);
+
+export function isNamedIdentifier(node: Node): node is INamedIdentifier {
+  return isIdentifier(node) && node.name !== undefined;
 }
 
-export interface IModuleDotExports extends MemberExpression {
-  object: { name: 'module' } & Identifier;
-  property: { name: 'exports' } & Identifier;
-}
-
-export interface ISingleDotExpression extends MemberExpression {
-  object: Identifier;
-  property: Identifier;
-}
-
-export function isSingleDotExpression(
-  node: Node
-): node is ISingleDotExpression {
-  return (
-    isMemberExpression(node) &&
-    isIdentifier(node.object) &&
-    isIdentifier(node.property)
-  );
-}
-export function isModuleExports(node: Node): node is IModuleDotExports {
-  return (
-    isSingleDotExpression(node) &&
-    node.object.name === 'module' &&
-    node.property.name === 'exports'
-  );
-}
 export interface INamedIdentifier extends Identifier {
   name: string;
 }
 
-export const pushIfModuleExports = (
-  p: NodePath<Node>,
-  pushFn: any,
-  id: string = 'default'
-) => {
-  const objNode = p.get('object').node;
-
-  if (!p.isMemberExpression()) return;
-  if (isModuleExports(p.node)) return pushFn();
-
-  return pushIfModuleExports(p.get('object'), () => pushFn(id), id);
-};
-
-/**
- * Because not all Identifiers can be named.
- * @param node Node
- */
-export function isNamedIdentifier(node: Node): node is INamedIdentifier {
-  return isIdentifier(node) && node.name !== undefined;
+export interface IFunctionMeta {
+  function_id: string;
+  params?: any[];
+  jsdoc: any;
 }
+
+export type FunctionType =
+  | ArrowFunctionExpression
+  | FunctionExpression
+  | FunctionDeclaration;
