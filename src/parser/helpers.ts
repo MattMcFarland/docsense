@@ -35,6 +35,10 @@ export const getIdentifierName = createHelper<Identifier, string | void>(
   (node: Identifier) => (isNamedIdentifier(node) && node.name) || undefined
 );
 
+//////////////////////////////////////////////////////////////////////////////////////////
+// TODO: Refactor "any" out of all the things below this line, use createHelper() too?
+//////////////////////////////////////////////////////////////////////////////////////////
+
 export function getFunctionMeta(path: any): IFunctionMeta {
   const line = path.get('loc.start.line').node;
   const column = path.get('loc.start.column').node;
