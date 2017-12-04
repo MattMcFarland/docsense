@@ -29,7 +29,7 @@ interface IExportItem {
 }
 export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
   db.set(collectionName, []).write();
-  const createPush = (path: any) => (data: any): void => {
+  const createPush = (path: NodePath) => (data: any): void => {
     db
       .get(collectionName)
       .push(data)
