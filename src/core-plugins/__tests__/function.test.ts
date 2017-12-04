@@ -103,7 +103,7 @@ const suites = {
       {
         file_id: '__TEST__',
         function_id: 'anonymous@1:8',
-        params: [[null, 'foo', 'bar', '...baz']],
+        params: [['null', 'foo', 'bar', '...baz']],
       },
     ],
     '/** add two numbers\n*@param {number} a add a number\n@param {number} b with this number\n@returns {number} a + b\n */\nconst add = (a, b) => a + b': [

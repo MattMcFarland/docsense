@@ -19,5 +19,5 @@ export const createHelper = <T extends Node, R>(
 ) => (from: NodePath<T> | T) => {
   if (isPath(from)) return resolver(from.node);
   if (isNode(from)) return resolver(from);
-  throw new TypeError(`${from} is not Node, NodePath<Node>, or null`);
+  throw new TypeError(`${from} is not Node, NodePath<Node>`);
 };

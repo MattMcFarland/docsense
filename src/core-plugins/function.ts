@@ -1,6 +1,7 @@
 import { NodePath } from 'babel-traverse';
 
-import helpers, {
+import {
+  getFileName,
   getFunctionMeta,
   getVariableId,
   IFunctionMeta,
@@ -27,10 +28,9 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
     },
   };
   function handler(path: NodePath<FunctionType>) {
-    const { getFileName } = helpers(path);
-    const file_id = getFileName();
+    const file_id = getFileName(path);
     const var_id = getVariableId(path.parent);
-    const { function_id, params, jsdoc }: IFunctionMeta = getFunctionMeta(path);
+    const { function_id, params, jsdoc } = getFunctionMeta(path);
     return push({
       function_id,
       file_id,

@@ -9,8 +9,10 @@ import {
   Node,
 } from 'babel-types';
 
-import helpers, {
+import {
   FunctionType,
+  getDocTagsFromPath,
+  getFileName,
   getFunctionMeta,
   isNamedIdentifier,
 } from '../parser/helpers';
@@ -42,8 +44,7 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
     visitor: {
       AssignmentExpression(path: NodePath<AssignmentExpression>) {
         if (!validate(path)) return;
-
-        const { getFileName, getDocTags } = helpers(path);
+        const file_id = getFileName(path);
         const push = createPush(path);
         const leftSide = path.get('left');
         const rightSide = path.get('right');
@@ -57,8 +58,8 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
             ) {
               push({
                 [entryId]: exportsProperty.key.name,
-                file_id: getFileName(),
-                jsdoc: getDocTags(),
+                file_id: getFileName(path),
+                jsdoc: getDocTagsFromPath(path),
               });
             }
           });
@@ -68,12 +69,11 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
           isNamedModuleExports(leftSide.node) || isNamedExport(leftSide.node)
             ? leftSide.node.property.name
             : 'default';
-        const file_id = getFileName();
 
         push({
           cjsExports_id,
           file_id,
-          jsdoc: getDocTags(),
+          jsdoc: getDocTagsFromPath(path),
         });
       },
     },

@@ -1,7 +1,7 @@
 import { NodePath } from 'babel-traverse';
 import { ObjectExpression } from 'babel-types';
 
-import helpers, { IFunctionMeta } from '../parser/helpers';
+import { IFunctionMeta } from '../parser/helpers';
 import ParseEngine from '../parser/ParseEngine';
 import { IPluginCommand } from '../types/Plugin';
 

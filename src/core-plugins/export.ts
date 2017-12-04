@@ -7,8 +7,11 @@ import {
   VariableDeclaration,
   VariableDeclarator,
 } from 'babel-types';
+import { Annotation } from 'doctrine';
 
-import helpers, {
+import {
+  getDocTagsFromPath,
+  getFileName,
   getFunctionMeta,
   IFunctionMeta,
   isNamedIdentifier,
@@ -22,7 +25,7 @@ export const collectionName = 'export_collection';
 interface IExportItem {
   export_id: string;
   file_id?: string;
-  jsdoc?: any;
+  jsdoc?: Annotation[];
   source_id?: string;
 }
 export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
@@ -56,7 +59,6 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
     if (path.node.specifiers.length) {
       return;
     }
-    const { getFileName, getDocTags } = helpers(path);
     const declaration = path.get('declaration');
 
     if (declaration.isVariableDeclaration()) {
@@ -65,8 +67,8 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
           if (isNamedIdentifier(exportDeclaration.id)) {
             push({
               export_id: exportDeclaration.id.name,
-              file_id: getFileName(),
-              jsdoc: getDocTags(),
+              file_id: getFileName(path),
+              jsdoc: getDocTagsFromPath(path),
             });
           }
         }
@@ -78,47 +80,44 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
     ) {
       return push({
         export_id: path.node.declaration.id.name,
-        file_id: getFileName(),
-        jsdoc: getDocTags(),
+        file_id: getFileName(path),
+        jsdoc: getDocTagsFromPath(path),
       });
     }
-    log.warn('export', 'skipped ExportNamedDeclaration', getFileName());
+    log.warn('export', 'skipped ExportNamedDeclaration', getFileName(path));
   }
   function handleExportSpecifier(path: NodePath<ExportSpecifier>) {
     const push = createPush(path);
-    const { getFileName, getDocTags } = helpers(path);
     push({
       export_id: path.get('exported.name').node,
-      file_id: getFileName(),
-      jsdoc: getDocTags(),
+      file_id: getFileName(path),
+      jsdoc: getDocTagsFromPath(path),
     });
   }
   function handleExportDefaultDeclaration(
     path: NodePath<ExportDefaultDeclaration>
   ) {
     const push = createPush(path);
-    const { getFileName, getDocTags } = helpers(path);
     push({
       export_id: 'default',
-      file_id: getFileName(),
-      jsdoc: getDocTags(),
+      file_id: getFileName(path),
+      jsdoc: getDocTagsFromPath(path),
     });
   }
   function handleExportAllDeclaration(path: NodePath<ExportAllDeclaration>) {
     const push = createPush(path);
-    const { getFileName, getDocTags } = helpers(path);
     push({
       export_id: 'all',
-      file_id: getFileName(),
+      file_id: getFileName(path),
       source_id: path.get('source.value').node,
-      jsdoc: getDocTags(),
+      jsdoc: getDocTagsFromPath(path),
     });
   }
   function onFunction(path: any, export_id: any) {
     if (typeof export_id !== 'string') {
       return;
     }
-    const { function_id }: IFunctionMeta = getFunctionMeta(path);
+    const { function_id } = getFunctionMeta(path);
     insert(export_id)({
       function_id,
     });

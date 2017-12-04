@@ -7,52 +7,21 @@ import {
   FunctionExpression,
   Identifier,
   isIdentifier,
+  isMemberExpression,
+  isRestElement,
   isVariableDeclarator,
   Node,
   ObjectExpression,
   ObjectMethod,
   ObjectPattern,
   ObjectProperty,
+  RestElement,
   RestProperty,
 } from 'babel-types';
+import { Annotation } from 'doctrine';
 
 import { INamedIdentifier, Parameter } from '../types/AST';
 import { createHelper } from './HelperFactory';
-
-function NodeHelpers(nodePath: NodePath<Node>) {
-  return {
-    getFileName: () => getFileName(nodePath),
-    getDocTags: () => getDocTags(nodePath),
-    getVariableId: () => getVariableId(nodePath),
-  };
-}
-
-function FunctionHelpers(nodePath: NodePath<FunctionType>) {
-  return {
-    getFileName: () => getFileName(nodePath),
-    getFunctionMeta: () => getFunctionMeta(nodePath),
-    getFunctionParams: () => getFunctionParams(nodePath),
-    getDocTags: () => getDocTags(nodePath),
-    getVariableId: () => getVariableId(nodePath),
-  };
-}
-
-function pathWrapHelper(nodePath: NodePath<Node>) {
-  switch (nodePath.node.type) {
-    case 'FunctionDeclaration':
-    case 'ArrowFunctionExpression':
-    case 'FunctionExpression':
-    case 'ObjectMethod':
-    case 'ClassMethod':
-      return {
-        ...NodeHelpers(nodePath),
-        ...FunctionHelpers(nodePath as NodePath<FunctionType>),
-      };
-    default:
-      return NodeHelpers(nodePath);
-  }
-}
-export default pathWrapHelper;
 
 export const getFileName = createHelper<Node, string>(
   (node: Node) => node.loc.filename
@@ -69,20 +38,24 @@ export const getIdentifierName = createHelper<Identifier, string | void>(
   (node: Identifier) => (isNamedIdentifier(node) && node.name) || undefined
 );
 
-export const getFunctionMeta = createHelper<FunctionType, IFunctionMeta>(
-  (node: FunctionType) => {
-    const { line, column } = node.loc.start;
-    const location_id = `${line}:${column}`;
-    const id = isIdentifier(node.id) ? node.id.name : 'anonymous';
-    const function_id = id + '@' + location_id;
-    const params = getFunctionParams(node) || undefined;
-    const jsdoc = getDocTags(node);
-    return { function_id, params, jsdoc };
-  }
-);
-//////////////////////////////////////////////////////////////////////////////////////////
-// TODO: Refactor "any" out of all the things below this line, use createHelper() too?
-//////////////////////////////////////////////////////////////////////////////////////////
+export const getFunctionMeta = (path: NodePath<FunctionType>) => {
+  const node = path.node;
+  const { line, column } = node.loc.start;
+  const location_id = `${line}:${column}`;
+  const id = isIdentifier(node.id) ? node.id.name : 'anonymous';
+  const function_id = id + '@' + location_id;
+  const params = getFunctionParams(path);
+  const jsdoc = getDocTagsFromPath(path);
+  return { function_id, params, jsdoc };
+};
+
+export function getDocTagsFromPath(path: NodePath): Annotation[] | undefined {
+  const tags =
+    path.node.__doc_tags__ ||
+    path.getStatementParent().node.__doc_tags__ ||
+    path.parent.__doc_tags__;
+  return tags && tags.length ? tags : undefined;
+}
 
 export function getObjectData(path: NodePath<ObjectExpression>) {
   if (path.parentPath.isAssignmentExpression()) {
@@ -102,14 +75,16 @@ export const getFunctionParamsFromNode = (node: FunctionType): Param[] => {
         return getObjectPatternProperties(param);
       case 'ArrayPattern':
         return param.elements.map(
-          expression =>
-            // because expressions can be just about anything
-            isIdentifier(expression) ? expression.name : expression.type
+          expression => {
+            if (expression === null) return 'null';
+            if (isRestElement(expression))
+              return getRestElementProps(expression);
+            return isIdentifier(expression) ? expression.name : expression.type;
+          }
+          // because expressions can be just about anything
         );
       case 'RestElement':
-        return isIdentifier(param.argument)
-          ? `...${param.argument.name}`
-          : param.argument.type;
+        return getRestElementProps(param);
       case 'MemberExpression':
         return 'MemberExpression';
       case 'AssignmentPattern':
@@ -119,7 +94,24 @@ export const getFunctionParamsFromNode = (node: FunctionType): Param[] => {
     }
   });
 };
-
+export const getRestElementProps = (rest: RestElement) => {
+  switch (rest.argument.type) {
+    case 'MemberExpression':
+      return 'MemberExpression';
+    case 'Identifier':
+      return `...${rest.argument.name}`;
+    case 'RestElement':
+      return 'RestElement';
+    case 'AssignmentPattern':
+      return 'AssignmentPattern';
+    case 'ObjectPattern':
+      return 'ObjectPattern';
+    case 'ArrayPattern':
+      return 'ArrayPattern';
+    default:
+      return assertNever(rest.argument);
+  }
+};
 export const getFunctionParams = createHelper<
   FunctionType,
   Array<string | IKeyValueDescriptor[] | string[]>
@@ -152,14 +144,6 @@ export const getObjectPatternProp = (
   }
 };
 
-export function getDocTags(path: any): any {
-  const tags =
-    path.node.__doc_tags__ ||
-    path.getStatementParent().node.__doc_tags__ ||
-    path.parent.__doc_tags__;
-  return tags && tags.length ? tags : undefined;
-}
-
 export function isNamedIdentifier(node: Node): node is INamedIdentifier {
   return isIdentifier(node) && node.name !== undefined;
 }
@@ -171,7 +155,7 @@ function assertNever(x: never): never {
 export interface IFunctionMeta {
   function_id: string;
   params?: Param[];
-  jsdoc: any;
+  jsdoc: Annotation[];
 }
 
 export type FunctionType =

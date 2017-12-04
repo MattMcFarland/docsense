@@ -1,8 +1,9 @@
 import { NodePath } from 'babel-traverse';
 
-import helpers, {
+import {
   FunctionType,
-  getDocTags,
+  getDocTagsFromPath,
+  getFileName,
   getFunctionMeta,
   getVariableId,
 } from '../parser/helpers';
@@ -37,21 +38,20 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): IPluginCommand {
     if (!var_id) {
       return;
     }
-    const { function_id } = getFunctionMeta(path.node);
+    const { function_id } = getFunctionMeta(path);
     insert(var_id)({
       function_id,
     });
   }
   function handleDeclarator(path: any) {
-    const { getFileName } = helpers(path);
-    const file_id = getFileName();
+    const file_id = getFileName(path);
     const push = createPush(path);
     switch (path.node.id.type) {
       case 'Identifier':
         push({
           file_id,
           var_id: path.node.id.name,
-          jsdoc: getDocTags(path),
+          jsdoc: getDocTagsFromPath(path),
         });
         break;
       case 'ObjectPattern':
@@ -60,7 +60,7 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): IPluginCommand {
           push({
             file_id,
             var_id,
-            jsdoc: getDocTags(path.get('id')),
+            jsdoc: getDocTagsFromPath(path.get('id')),
           });
         });
         break;
@@ -70,14 +70,14 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): IPluginCommand {
             push({
               file_id,
               var_id: prop.name,
-              jsdoc: getDocTags(path.get('id')),
+              jsdoc: getDocTagsFromPath(path.get('id')),
             });
           }
           if (prop.type === 'RestElement') {
             push({
               file_id,
               var_id: prop.argument.name,
-              jsdoc: getDocTags(path.get('id')),
+              jsdoc: getDocTagsFromPath(path.get('id')),
             });
           }
         });
