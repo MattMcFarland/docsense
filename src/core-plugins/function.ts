@@ -3,7 +3,7 @@ import { NodePath } from 'babel-traverse';
 import ParseEngine from '../parser/ParseEngine';
 import { FunctionType } from '../types/AST';
 import { IPluginCommand } from '../types/Plugin';
-import { getFileName, getFunctionMeta, getVariableId } from './helpers/helpers';
+import { getFileName, getFunctionMeta, getVariableId } from './helpers/getters';
 
 export const collectionName = 'function_collection';
 

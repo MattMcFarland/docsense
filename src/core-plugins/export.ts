@@ -16,7 +16,8 @@ import {
   getFileName,
   getFunctionMeta,
   isNamedIdentifier,
-} from './helpers/helpers';
+} from './helpers/getters';
+import { FunctionType } from './helpers/types';
 import functionVisitor from './visitors/functionVisitor';
 
 export const collectionName = 'export_collection';
@@ -111,10 +112,7 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
       jsdoc: getDocTagsFromPath(path),
     });
   }
-  function onFunction(path: any, export_id: any) {
-    if (typeof export_id !== 'string') {
-      return;
-    }
+  function onFunction(path: NodePath<FunctionType>, export_id: string) {
     const { function_id } = getFunctionMeta(path);
     insert(export_id)({
       function_id,

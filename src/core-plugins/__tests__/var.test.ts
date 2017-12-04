@@ -52,7 +52,7 @@ const suites = {
       },
       {
         file_id: '__TEST__',
-        var_id: 'baz',
+        var_id: '...baz',
       },
     ],
     'const { a: foo, b: bar, c: baz } = spooky()': [

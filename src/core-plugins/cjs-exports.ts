@@ -10,12 +10,12 @@ import {
 
 import ParseEngine from '../parser/ParseEngine';
 import {
-  FunctionType,
   getDocTagsFromPath,
   getFileName,
   getFunctionMeta,
   isNamedIdentifier,
-} from './helpers/helpers';
+} from './helpers/getters';
+import { FunctionType } from './helpers/types';
 import functionVisitor from './visitors/functionVisitor';
 
 export const pluginName = 'cjsExports';
