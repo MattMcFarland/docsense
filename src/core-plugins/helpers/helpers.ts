@@ -1,4 +1,4 @@
-import { NodePath, PathOrNode } from 'babel-traverse';
+import { NodePath } from 'babel-traverse';
 import {
   ArrowFunctionExpression,
   AssignmentProperty,
@@ -7,20 +7,18 @@ import {
   FunctionExpression,
   Identifier,
   isIdentifier,
-  isMemberExpression,
   isRestElement,
   isVariableDeclarator,
   Node,
   ObjectExpression,
   ObjectMethod,
   ObjectPattern,
-  ObjectProperty,
   RestElement,
   RestProperty,
 } from 'babel-types';
 import { Annotation } from 'doctrine';
 
-import { INamedIdentifier, Parameter } from '../types/AST';
+import { INamedIdentifier, Parameter } from '../../types/AST';
 import { createHelper } from './HelperFactory';
 
 export const getFileName = createHelper<Node, string>(
@@ -74,15 +72,12 @@ export const getFunctionParamsFromNode = (node: FunctionType): Param[] => {
       case 'ObjectPattern':
         return getObjectPatternProperties(param);
       case 'ArrayPattern':
-        return param.elements.map(
-          expression => {
-            if (expression === null) return 'null';
-            if (isRestElement(expression))
-              return getRestElementProps(expression);
-            return isIdentifier(expression) ? expression.name : expression.type;
-          }
+        return param.elements.map(expression => {
           // because expressions can be just about anything
-        );
+          if (expression === null) return 'null';
+          if (isRestElement(expression)) return getRestElementProps(expression);
+          return isIdentifier(expression) ? expression.name : expression.type;
+        });
       case 'RestElement':
         return getRestElementProps(param);
       case 'MemberExpression':
@@ -101,6 +96,8 @@ export const getRestElementProps = (rest: RestElement) => {
     case 'Identifier':
       return `...${rest.argument.name}`;
     case 'RestElement':
+      // todo: recursion may apply here.
+      // return getRestElementProps(rest)
       return 'RestElement';
     case 'AssignmentPattern':
       return 'AssignmentPattern';
@@ -112,6 +109,7 @@ export const getRestElementProps = (rest: RestElement) => {
       return assertNever(rest.argument);
   }
 };
+
 export const getFunctionParams = createHelper<
   FunctionType,
   Array<string | IKeyValueDescriptor[] | string[]>
@@ -148,7 +146,7 @@ export function isNamedIdentifier(node: Node): node is INamedIdentifier {
   return isIdentifier(node) && node.name !== undefined;
 }
 
-function assertNever(x: never): never {
+export function assertNever(x: never): never {
   throw new Error('Unexpected object: ' + x);
 }
 

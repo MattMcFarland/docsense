@@ -1,14 +1,14 @@
 import { NodePath } from 'babel-traverse';
 
+import ParseEngine from '../parser/ParseEngine';
+import { IPluginCommand } from '../types/Plugin';
 import {
   FunctionType,
   getDocTagsFromPath,
   getFileName,
   getFunctionMeta,
   getVariableId,
-} from '../parser/helpers';
-import ParseEngine from '../parser/ParseEngine';
-import { IPluginCommand } from '../types/Plugin';
+} from './helpers/helpers';
 import functionVisitor from './visitors/functionVisitor';
 
 export const collectionName = 'var_collection';

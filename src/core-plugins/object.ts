@@ -1,9 +1,4 @@
-import { NodePath } from 'babel-traverse';
-import { ObjectExpression } from 'babel-types';
-
-import { IFunctionMeta } from '../parser/helpers';
 import ParseEngine from '../parser/ParseEngine';
-import { IPluginCommand } from '../types/Plugin';
 
 export const collectionName = 'object_collection';
 

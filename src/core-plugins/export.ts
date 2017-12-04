@@ -4,21 +4,19 @@ import {
   ExportDefaultDeclaration,
   ExportNamedDeclaration,
   ExportSpecifier,
-  VariableDeclaration,
   VariableDeclarator,
 } from 'babel-types';
 import { Annotation } from 'doctrine';
 
+import ParseEngine from '../parser/ParseEngine';
+import { IPluginCommand } from '../types/Plugin';
+import { log } from '../utils/logger';
 import {
   getDocTagsFromPath,
   getFileName,
   getFunctionMeta,
-  IFunctionMeta,
   isNamedIdentifier,
-} from '../parser/helpers';
-import ParseEngine from '../parser/ParseEngine';
-import { IPluginCommand } from '../types/Plugin';
-import { log } from '../utils/logger';
+} from './helpers/helpers';
 import functionVisitor from './visitors/functionVisitor';
 
 export const collectionName = 'export_collection';

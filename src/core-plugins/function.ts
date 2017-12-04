@@ -1,14 +1,9 @@
 import { NodePath } from 'babel-traverse';
 
-import {
-  getFileName,
-  getFunctionMeta,
-  getVariableId,
-  IFunctionMeta,
-} from '../parser/helpers';
 import ParseEngine from '../parser/ParseEngine';
 import { FunctionType } from '../types/AST';
 import { IPluginCommand } from '../types/Plugin';
+import { getFileName, getFunctionMeta, getVariableId } from './helpers/helpers';
 
 export const collectionName = 'function_collection';
 

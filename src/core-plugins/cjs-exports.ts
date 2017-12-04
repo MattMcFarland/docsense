@@ -2,21 +2,20 @@ import { NodePath } from 'babel-traverse';
 import {
   AssignmentExpression,
   Identifier,
-  isIdentifier,
   isMemberExpression,
   isObjectProperty,
   MemberExpression,
   Node,
 } from 'babel-types';
 
+import ParseEngine from '../parser/ParseEngine';
 import {
   FunctionType,
   getDocTagsFromPath,
   getFileName,
   getFunctionMeta,
   isNamedIdentifier,
-} from '../parser/helpers';
-import ParseEngine from '../parser/ParseEngine';
+} from './helpers/helpers';
 import functionVisitor from './visitors/functionVisitor';
 
 export const pluginName = 'cjsExports';
