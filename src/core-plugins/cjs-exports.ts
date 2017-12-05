@@ -9,6 +9,7 @@ import {
 } from 'babel-types';
 
 import ParseEngine from '../parser/ParseEngine';
+import Store from '../store';
 import {
   getDocTagsFromPath,
   getFileName,
@@ -18,36 +19,18 @@ import {
 import { FunctionType } from './helpers/types';
 import functionVisitor from './visitors/functionVisitor';
 
-export const pluginName = 'cjsExports';
-export const collectionName = pluginName + '_collection';
-export const entryId = pluginName + '_id';
+export const key = 'cjsExports';
 
-export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
-  db.set(collectionName, []).write();
-  const createPush = (path: NodePath) => (data: any) => {
-    db
-      .get(collectionName)
-      .push(data)
-      .write();
-    path.traverse(functionVisitor(onFunction), data[entryId]);
-  };
-  const insert = (id_val: string) => (data: any) => {
-    db
-      .get(collectionName)
-      .find({ [entryId]: id_val })
-      .assign(data)
-      .write();
-  };
-
+export default function(engine: ParseEngine, store: Store): any {
   return {
     visitor: {
       AssignmentExpression(path: NodePath<AssignmentExpression>) {
         if (!validate(path)) return;
         const file_id = getFileName(path);
-        const push = createPush(path);
+        const push = store.createPush(path);
         const leftSide = path.get('left');
         const rightSide = path.get('right');
-
+        const afterPush = () => path.traverse(functionVisitor(onFunction));
         // TODO - once object parsing is finished, we can just re-use object traversal.
         if (rightSide.isObjectExpression()) {
           return rightSide.node.properties.forEach(exportsProperty => {
@@ -56,24 +39,24 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
               isNamedIdentifier(exportsProperty.key)
             ) {
               push({
-                [entryId]: exportsProperty.key.name,
+                [store.entryId]: exportsProperty.key.name,
                 file_id: getFileName(path),
                 jsdoc: getDocTagsFromPath(path),
-              });
+              }).then(afterPush);
             }
           });
         }
 
-        const cjsExports_id =
+        const entryId =
           isNamedModuleExports(leftSide.node) || isNamedExport(leftSide.node)
             ? leftSide.node.property.name
             : 'default';
 
         push({
-          cjsExports_id,
+          [store.entryId]: entryId,
           file_id,
           jsdoc: getDocTagsFromPath(path),
-        });
+        }).then(afterPush);
       },
     },
   };
@@ -83,7 +66,7 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
       return;
     }
     const { function_id /* params, jsdoc */ } = getFunctionMeta(path);
-    insert(id)({
+    store.insert(id)({
       function_id,
     });
   }
