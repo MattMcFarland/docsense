@@ -26,10 +26,11 @@ interface IExportItem {
   file_id?: string;
   jsdoc?: Annotation[];
   source_id?: string;
+  function_id?: string;
 }
 export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
   db.set(collectionName, []).write();
-  const createPush = (path: NodePath) => (data: any): void => {
+  const createPush = (path: NodePath) => (data: IExportItem): void => {
     db
       .get(collectionName)
       .push(data)
@@ -88,7 +89,7 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
   function handleExportSpecifier(path: NodePath<ExportSpecifier>) {
     const push = createPush(path);
     push({
-      export_id: path.get('exported.name').node,
+      export_id: path.node.exported.name,
       file_id: getFileName(path),
       jsdoc: getDocTagsFromPath(path),
     });
@@ -108,7 +109,7 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
     push({
       export_id: 'all',
       file_id: getFileName(path),
-      source_id: path.get('source.value').node,
+      source_id: path.node.source.value,
       jsdoc: getDocTagsFromPath(path),
     });
   }
