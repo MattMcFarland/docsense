@@ -1,20 +1,14 @@
 import { NodePath } from 'babel-traverse';
 
+import { FunctionType } from '../_types/AST';
+import { IPluginCommand } from '../_types/Plugin';
 import ParseEngine from '../parser/ParseEngine';
-import { FunctionType } from '../types/AST';
-import { IPluginCommand } from '../types/Plugin';
+import Store from '../store';
 import { getFileName, getFunctionMeta, getVariableId } from './helpers/getters';
 
-export const collectionName = 'function_collection';
+export const key = 'function';
 
-export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
-  db.set(collectionName, []).write();
-  const push = (data: any) => {
-    db
-      .get(collectionName)
-      .push(data)
-      .write();
-  };
+export default function(engine: ParseEngine, store: Store): IPluginCommand {
   return {
     visitor: {
       ArrowFunctionExpression: handler,
@@ -26,8 +20,8 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
     const file_id = getFileName(path);
     const var_id = getVariableId(path.parent);
     const { function_id, params, jsdoc } = getFunctionMeta(path);
-    return push({
-      function_id,
+    store.createPush(path)({
+      [store.entryId]: function_id,
       file_id,
       var_id,
       params: params && params.length ? params : undefined,

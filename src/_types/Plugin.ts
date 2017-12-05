@@ -1,23 +1,26 @@
 import { Visitor } from 'babel-traverse';
 import ParseEngine from '../parser/ParseEngine';
+import Store from '../store';
 
 /**
  * The signature of the plugin module which is evaluated at run time
  */
-export type PluginModuleFn = (
-  engine: ParseEngine,
-  db: Lowdb
-) => void | IPluginCommand;
+export interface IPluginModuleFn {
+  // tslint:disable-next-line:callable-types
+  (engine: ParseEngine, db: Lowdb | Store): void | IPluginCommand;
+  key: string;
+}
 
 export interface IPluginMetaData {
   collectionName: string;
+  key: string;
   pluginKey: string;
 }
 export interface IObjectWithDefault {
-  default: PluginModuleFn;
+  default: IPluginModuleFn;
 }
 
-export type IPluginModule = PluginModuleFn &
+export type IPluginModule = IPluginModuleFn &
   IPluginMetaData &
   IObjectWithDefault;
 
@@ -36,7 +39,7 @@ export interface IPluginCommand {
  */
 export interface IPluginRecord {
   id: string;
-  eval: PluginModuleFn;
+  eval: IPluginModuleFn;
 }
 
 export type IPluginModuleAndRecord = IPluginRecord & IPluginModule;

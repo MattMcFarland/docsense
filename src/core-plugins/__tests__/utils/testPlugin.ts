@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 
+import { IPluginModuleAndRecord } from '../../../_types/Plugin';
 import ParseEngine from '../../../parser/ParseEngine';
-import { IPluginModuleAndRecord } from '../../../types/Plugin';
 import { registerPlugin } from '../../../utils/plugin';
 
 export default (initialState: any, fileName: string) => (
@@ -18,9 +18,8 @@ export default (initialState: any, fileName: string) => (
     });
 
     db.setState(initialState);
-    plugin.eval = plugin.default;
+    plugin.eval = plugin;
     assert(plugin.eval, 'plugin must have a default export');
-    assert(plugin.collectionName, 'plugin must export a collectionName');
     parser.on('done', () => resolve(db.getState()));
     registerPlugin(parser, plugin, db);
     parser.emit('addFile:before', db.getState());

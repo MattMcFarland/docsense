@@ -1,9 +1,10 @@
 import * as assert from 'assert';
 import { resolve as resolvePath } from 'path';
 
+import { IPluginModule, IPluginRecord } from '../_types/Plugin';
 import { IConfig } from '../config';
 import ParseEngine from '../parser/ParseEngine';
-import { IPluginModule, IPluginRecord } from '../types/Plugin';
+import Store from '../store';
 import {
   reduceDirectoryToJSFiles,
   resolveContextRelativePaths,
@@ -30,8 +31,7 @@ export const scanCorePluginDirectory = scanDirectory(
 );
 
 export const resolvePluginModule = (id: string): IPluginModule => {
-  const plugin: IPluginModule =
-    module.require(id).default || module.require(id);
+  const plugin: IPluginModule = module.require(id);
   // assert(plugin.pluginKey, `Plugin "${id}" must export a pluginKey`);
   return plugin;
 };
@@ -49,7 +49,13 @@ export const registerPlugin = (
   plugin: IPluginRecord,
   db: Lowdb
 ) => {
-  const pluginCommand = plugin.eval(parser, db);
+  const pluginExec = plugin.eval as IPluginModule;
+  const store = pluginExec.key ? new Store(db, pluginExec.key) : undefined;
+  const runPlugin = pluginExec.default ? pluginExec.default : pluginExec;
+  const pluginCommand = store
+    ? runPlugin(parser, store)
+    : runPlugin(parser, db);
+
   if (pluginCommand) {
     if (typeof pluginCommand.pre === 'function') {
       parser.on('addFile:before', pluginCommand.pre);

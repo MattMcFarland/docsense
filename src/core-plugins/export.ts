@@ -9,8 +9,8 @@ import {
 } from 'babel-types';
 import { Annotation } from 'doctrine';
 
+import { IPluginCommand } from '../_types/Plugin';
 import ParseEngine from '../parser/ParseEngine';
-import { IPluginCommand } from '../types/Plugin';
 import { log } from '../utils/logger';
 import { logSkipped } from './helpers/effects';
 import {

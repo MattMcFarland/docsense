@@ -1,7 +1,7 @@
+import { IPluginRecord } from '../_types/Plugin';
 import { IConfig } from '../config';
 import { create } from '../db';
 import ParseEngine from '../parser/ParseEngine';
-import { IPluginRecord } from '../types/Plugin';
 import { log } from '../utils/logger';
 import { dedupe, flatten } from './common';
 import { processAllGlobPatterns, readFiles } from './file';

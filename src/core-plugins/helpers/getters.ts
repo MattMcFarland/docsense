@@ -2,7 +2,7 @@ import { NodePath } from 'babel-traverse';
 import * as t from 'babel-types';
 import { Annotation } from 'doctrine';
 
-import { INamedIdentifier, Parameter } from '../../types/AST';
+import { INamedIdentifier, Parameter } from '../../_types/AST';
 import { createHelper } from './HelperFactory';
 import { FunctionType, IKeyValueDescriptor, Param, VarIDNode } from './types';
 

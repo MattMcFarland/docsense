@@ -1,12 +1,14 @@
 import * as assert from 'assert';
 
-import { IPluginModuleAndRecord } from '../../../types/Plugin';
+import { IPluginModuleAndRecord } from '../../../_types/Plugin';
 import testPlugin from './testPlugin';
 
 export default ({ plugin, suites }: ITestModule): void => {
   assert(plugin, 'testFactory missing plugin argument');
   assert(suites, 'testFactory missing suite argument');
-  const collection = plugin.collectionName;
+  const collection = plugin.key
+    ? plugin.key + '_collection'
+    : plugin.collectionName;
   entries(suites).forEach(([suite, fns]) => {
     describe(suite, () => {
       entries(fns).forEach(entryOrSnapshotTest => {

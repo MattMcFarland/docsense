@@ -1,4 +1,5 @@
 import testFactory from './utils/testFactory';
+
 const fnPlugin = require('../function');
 const suites = {
   'Declared Function': {

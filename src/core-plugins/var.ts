@@ -12,8 +12,9 @@ import {
   VariableDeclarator,
 } from 'babel-types';
 
+import { IPluginCommand } from '../_types/Plugin';
 import ParseEngine from '../parser/ParseEngine';
-import { IPluginCommand } from '../types/Plugin';
+import Store from '../store';
 import { log } from '../utils/logger';
 import { logSkipped } from './helpers/effects';
 import {
@@ -27,23 +28,8 @@ import {
 import { ArrayPatternProperty, FunctionType } from './helpers/types';
 import functionVisitor from './visitors/functionVisitor';
 
-export const collectionName = 'var_collection';
-export default function(engine: ParseEngine, db: Lowdb.Lowdb): IPluginCommand {
-  db.set(collectionName, []).write();
-  const createPush = (path: NodePath) => (data: any) => {
-    db
-      .get(collectionName)
-      .push(data)
-      .write();
-    path.traverse(functionVisitor(onFunction));
-  };
-  const insert = (var_id: string) => (data: any) => {
-    db
-      .get(collectionName)
-      .find({ var_id })
-      .assign(data)
-      .write();
-  };
+export const key = 'var';
+export default function(engine: ParseEngine, store: Store): IPluginCommand {
   return {
     visitor: {
       VariableDeclarator: handleDeclarator,
@@ -55,53 +41,58 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): IPluginCommand {
       return;
     }
     const { function_id } = getFunctionMeta(path);
-    insert(var_id)({
+    store.insert(var_id)({
       function_id,
     });
   }
 
   function handleDeclarator(path: NodePath<VariableDeclarator>) {
-    const push = createPush(path as NodePath);
+    const push = store.createPush(path as NodePath);
     const file_id = getFileName(path as NodePath);
+    const afterPush = () => path.traverse(functionVisitor(onFunction));
 
     const id = getVarIdNode(path);
     switch (id.node.type) {
       case 'Identifier':
-        return push({
+        push({
           file_id,
           var_id: id.node.name,
           jsdoc: getDocTagsFromPath(path as NodePath),
-        });
+        }).then(afterPush);
+        break;
       case 'ObjectPattern':
-        return id.node.properties.forEach(prop => {
+        id.node.properties.forEach(prop => {
           if (prop.type === 'ObjectProperty' && isIdentifier(prop.value)) {
             return push({
               file_id,
               var_id: prop.value.name,
               jsdoc: getDocTagsFromPath(path.get('id')),
-            });
+            }).then(afterPush);
           }
         });
+        break;
       case 'ArrayPattern':
-        return id.node.elements.forEach((prop: ArrayPatternProperty) => {
+        id.node.elements.forEach((prop: ArrayPatternProperty) => {
           if (prop.type === 'Identifier') {
             return push({
               file_id,
               var_id: prop.name,
               jsdoc: getDocTagsFromPath(path.get('id')),
-            });
+            }).then(afterPush);
           }
           if (prop.type === 'RestElement' && isIdentifier(prop.argument)) {
             return push({
               file_id,
               var_id: '...' + prop.argument.name,
               jsdoc: getDocTagsFromPath(path.get('id')),
-            });
+            }).then(afterPush);
           }
           return logSkipped(prop.type, prop.loc);
         });
+        break;
       default:
-        return logSkipped(id.node.type, id.node.loc);
+        logSkipped(id.node.type, id.node.loc);
+        break;
     }
   }
 }
