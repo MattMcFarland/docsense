@@ -42,7 +42,7 @@ This project may be debugged with [VSCode](https://code.visualstudio.com/), and 
 IDEs.  You can set breakpoints within the source code, press `F5` and run.  The debug mode will basically run `docs` against this project, generating the `db.json` (and eventually the docs) as if you were to run `docsense` against this project in production.
 
 ### Architecture
-Docsense will eventualy run in the command line against the `process.cwd()` of the project a user has it installed in as a module.  As of now, it only runs against this project, parsing all of the code, then creating a database which may be queried by the document generator.  The document generator is currently unfinished, so after running `yarn docs` - you may run `yarn dev-docs` as you make changes to the generator scripts found in `src/generator`
+Docsense will eventualy run in the command line against the `process.cwd()` of the project a user has it installed in as a module.  As of now, it only runs against this project, parsing all of the code, then creating a database which may be queried by the document generator.  The document generator is currently unfinished, so after running `yarn docs` - you may run `yarn dev-docs` which will runs a local server that hosts the generated documentation, updating automatically as you make changes to the generator scripts found in `src/generator`
 
 ```
 Execution ->
