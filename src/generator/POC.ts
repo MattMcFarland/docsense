@@ -2,7 +2,7 @@ import * as mkdirp from 'mkdirp';
 import { resolve as resolvePath } from 'path';
 import { promisify } from 'util';
 
-import { compile, require_template } from './compiler';
+import { compile } from './compiler';
 
 const mkdir = promisify(mkdirp);
 
@@ -36,32 +36,37 @@ const makeModuleLinks = () =>
   });
 
 const getModuleInfo = (esm: any) => {
-  //console.log(JSON.stringify(esm, null, 2));
-  const exports = esm.exports.map((exm: any) => {
+  const exports = esm.exports.reduce((acc: any, exm: any) => {
     if (exm.function_id) {
       const withFn = function_collection.find(
         (fns: any) => fns.function_id === exm.function_id
       );
-      console.log(withFn);
-      return {
+      acc.push({
         file_id: esm.file_id,
         export_id: exm.export_id,
         function: withFn,
-      };
+      });
     }
-  });
+    // if (esm.file_id && exm.export_id) {
+    //   acc.push({
+    //     file_id: esm.file_id,
+    //     export_id: exm.export_id,
+    //   });
+    // }
+    return acc;
+  }, []);
   return { exports };
 };
 
 makeModuleDirs().then(() => {
   esModules.forEach((esm: any) => {
-    const esModulePage = require_template('./templates/esModule.hbs');
+    const esModulePage = require('./templates/esModule');
     compile(
       esModulePage,
-      { esModule: getModuleInfo(esm), esModules },
+      { file_id: esm.file_id, esModule: getModuleInfo(esm), esModules },
       esm.file_id + '/index.html'
     );
   });
-  const indexPage = require_template('./templates/index.hbs');
+  const indexPage = require('./templates/index');
   compile(indexPage, { esModules }, 'index.html');
 });
