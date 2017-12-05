@@ -54,6 +54,7 @@ Array [
   },
   Object {
     "file_id": "__TEST__",
+    "function_id": "anonymous@7:6",
     "jsdoc": undefined,
     "objectMember_id": "attack",
     "object_id": "superHero",
@@ -110,12 +111,14 @@ Array [
   },
   Object {
     "file_id": "__TEST__",
+    "function_id": "anonymous@4:6",
     "jsdoc": undefined,
     "objectMember_id": "fn",
     "object_id": "obj",
   },
   Object {
     "file_id": "__TEST__",
+    "function_id": "anonymous@5:13",
     "jsdoc": undefined,
     "objectMember_id": "thing",
     "object_id": "obj",
@@ -134,6 +137,7 @@ Array [
   },
   Object {
     "file_id": "__TEST__",
+    "function_id": "anonymous@8:11",
     "jsdoc": undefined,
     "objectMember_id": "dfn",
     "object_id": "obj",

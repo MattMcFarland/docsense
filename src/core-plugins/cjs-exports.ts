@@ -14,23 +14,42 @@ import {
   getDocTagsFromPath,
   getFileName,
   getFunctionMeta,
+  getVariableId,
   isNamedIdentifier,
 } from './helpers/getters';
 import { FunctionType } from './helpers/types';
 import functionVisitor from './visitors/functionVisitor';
 
-export const key = 'cjsExports';
+export const pluginName = 'cjsExports';
+export const collectionName = pluginName + '_collection';
+export const entryId = pluginName + '_id';
 
-export default function(engine: ParseEngine, store: Store): any {
+export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
+  db.set(collectionName, []).write();
+  const createPush = (path: NodePath) => (data: any) => {
+    db
+      .get(collectionName)
+      .push(data)
+      .write();
+    path.traverse(functionVisitor(onFunction), data[entryId]);
+  };
+  const insert = (id_val: string) => (data: any) => {
+    db
+      .get(collectionName)
+      .find({ [entryId]: id_val })
+      .assign(data)
+      .write();
+  };
+
   return {
     visitor: {
       AssignmentExpression(path: NodePath<AssignmentExpression>) {
         if (!validate(path)) return;
         const file_id = getFileName(path);
-        const push = store.createPush(path);
+        const push = createPush(path);
         const leftSide = path.get('left');
         const rightSide = path.get('right');
-        const afterPush = () => path.traverse(functionVisitor(onFunction));
+
         // TODO - once object parsing is finished, we can just re-use object traversal.
         if (rightSide.isObjectExpression()) {
           return rightSide.node.properties.forEach(exportsProperty => {
@@ -39,24 +58,24 @@ export default function(engine: ParseEngine, store: Store): any {
               isNamedIdentifier(exportsProperty.key)
             ) {
               push({
-                [store.entryId]: exportsProperty.key.name,
+                [entryId]: exportsProperty.key.name,
                 file_id: getFileName(path),
                 jsdoc: getDocTagsFromPath(path),
-              }).then(afterPush);
+              });
             }
           });
         }
 
-        const entryId =
+        const cjsExports_id =
           isNamedModuleExports(leftSide.node) || isNamedExport(leftSide.node)
             ? leftSide.node.property.name
             : 'default';
 
         push({
-          [store.entryId]: entryId,
+          cjsExports_id,
           file_id,
           jsdoc: getDocTagsFromPath(path),
-        }).then(afterPush);
+        });
       },
     },
   };
@@ -66,7 +85,7 @@ export default function(engine: ParseEngine, store: Store): any {
       return;
     }
     const { function_id /* params, jsdoc */ } = getFunctionMeta(path);
-    store.insert(id)({
+    insert(id)({
       function_id,
     });
   }

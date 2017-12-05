@@ -29,7 +29,6 @@ export default function(engine: ParseEngine, store: Store) {
     const file_id = getFileName(path);
     const push = store.createPush(path);
     const node = path.node;
-    const afterPush = () => path.traverse(functionVisitor(onFunction));
 
     const object_id =
       getVariableId(path.parentPath.parentPath) ||
@@ -42,7 +41,8 @@ export default function(engine: ParseEngine, store: Store) {
           [store.entryId]: path.node.key.name,
           file_id,
           jsdoc: getDocTagsFromPath(path.get('key')),
-        }).then(afterPush);
+        });
+        path.traverse(functionVisitor(onFunction), path.node.key.name);
       }
     }
     if (path.isObjectMethod()) {
@@ -53,9 +53,12 @@ export default function(engine: ParseEngine, store: Store) {
         object_id,
         [store.entryId]: id,
         file_id,
+        function_id: getFunctionMeta(path).function_id,
         jsdoc: getDocTagsFromPath(path.get('key')),
-      }).then(afterPush);
+      });
+      path.traverse(functionVisitor(onFunction), object_id);
     }
+
     function onFunction(fnPath: NodePath<FunctionType>, _id: string) {
       const { function_id } = getFunctionMeta(fnPath);
       store.insert(_id)({
