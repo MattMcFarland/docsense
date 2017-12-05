@@ -137,6 +137,6 @@ const suites = {
     ],
   ],
 };
-describe.skip('Core Plugin: export', () => {
+describe('Core Plugin: export', () => {
   testFactory({ plugin: exportPlugin, suites });
 });

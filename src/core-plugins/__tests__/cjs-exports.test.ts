@@ -99,7 +99,7 @@ const suites = {
   EMPTY: emptyTests,
   OK: tests,
 };
-describe.skip('Core: common.js', () =>
+describe('Core: common.js', () =>
   testFactory({
     plugin: cjsExportsPlugin,
     suites,

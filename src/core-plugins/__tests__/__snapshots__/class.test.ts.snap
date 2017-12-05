@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Core: class > class Bar {} 1`] = `
+Array [
+  Object {
+    "class_id": "Bar",
+    "file_id": "__TEST__",
+    "jsdoc": undefined,
+  },
+]
+`;
+
+exports[`Core: class > class Baz {} 1`] = `
+Array [
+  Object {
+    "class_id": "Baz",
+    "file_id": "__TEST__",
+    "jsdoc": undefined,
+  },
+]
+`;
+
+exports[`Core: class > class Foo {} 1`] = `
+Array [
+  Object {
+    "class_id": "Foo",
+    "file_id": "__TEST__",
+    "jsdoc": undefined,
+  },
+]
+`;

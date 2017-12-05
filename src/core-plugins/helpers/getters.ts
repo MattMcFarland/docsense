@@ -16,7 +16,12 @@ export const getVariableId = createHelper<t.Node, string | void>(
       ? getIdentifierName(node.id)
       : undefined
 );
-
+export const getObjectId = createHelper<t.Node, string | void>(
+  (node: t.Node) =>
+    t.isObjectProperty(node) && t.isIdentifier(node.key)
+      ? getIdentifierName(node.key)
+      : undefined
+);
 export const getIdentifierName = createHelper<t.Identifier, string | void>(
   (node: t.Identifier) => (isNamedIdentifier(node) && node.name) || undefined
 );
