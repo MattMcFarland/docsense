@@ -1,11 +1,11 @@
 module.exports = (content: any) => {
   const { esModule, file_id } = content;
-  return `<h1>${file_id}</h1><div>${renderExports(esModule.exports)}</div>
+  return `<div><h1>${file_id}</h1><div>${renderExports(esModule.exports)}</div>
   <pre><code class="javascript">${JSON.stringify(
     esModule,
     null,
     2
-  )}</code></pre>
+  )}</code></pre></div>
   `;
 };
 
@@ -47,8 +47,10 @@ function renderFunctionHeader(esm: any) {
     }
 
     return `
-    <a href="#${export_id}">
-      <div class="${export_id === 'default' ? 'f2' : 'f3'}" id= "${export_id}">
+    <a class="pl1 link dim black-50" href="#${export_id}">
+      <div class="${
+        export_id === 'default' ? 'f2' : 'f3'
+      } pl1 link dim black-60" id= "${export_id}">
         <span>${export_id}</span>
         ${applySignature(esm)}
         ${
@@ -61,7 +63,7 @@ function renderFunctionHeader(esm: any) {
         }
       </div>
     </a>
-    <p>
+    <p class="pl3">
     <em>${renderDescription(esm)}</em>
     </p>
     `;
