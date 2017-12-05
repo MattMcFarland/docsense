@@ -43,6 +43,7 @@ export default function(engine: ParseEngine, store: Store) {
         case 'ObjectProperty':
           if (isNamedIdentifier(prop.key)) {
             push({
+              var_id,
               [store.entryId]: prop.key.name,
               file_id,
               jsdoc: getDocTagsFromPath(path),
@@ -55,6 +56,7 @@ export default function(engine: ParseEngine, store: Store) {
             : isNamedIdentifier(prop.key) ? prop.key.name : undefined;
           if (methodId) {
             push({
+              var_id,
               [store.entryId]: methodId,
               file_id,
               jsdoc: getDocTagsFromPath(path),
