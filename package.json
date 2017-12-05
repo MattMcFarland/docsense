@@ -53,6 +53,7 @@
     "handlebars": "^4.0.11",
     "json-query": "^2.2.2",
     "lowdb": "^1.0.0",
+    "mkdirp": "^0.5.1",
     "npmlog": "^4.1.2",
     "ramda": "^0.25.0"
   },
@@ -70,6 +71,7 @@
     "@types/handlebars": "^4.0.36",
     "@types/jest": "^21.1.8",
     "@types/lowdb": "^0.15.0",
+    "@types/mkdirp": "^0.5.2",
     "@types/node": "^8.0.53",
     "@types/ramda": "^0.25.6",
     "browser-sync": "^2.18.13",

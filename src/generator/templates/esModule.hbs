@@ -1,0 +1,53 @@
+<h1>
+  {{esModule.file_id}}</h1>
+<h2>Exports</h2>
+
+
+
+{{#each esModule.exports }}
+  {{#if export_id}}
+    <a href="#{{export_id}}">
+      <h3 id= {{export_id}}>{{export_id}}</h3>
+    </a>
+    {{#if function.jsdoc}}
+      {{#each function.jsdoc}}
+        {{description}}
+      {{/each}}
+    {{/if}}
+    <pre>import { {{export_id}} } from "{{function.file_id}}"</pre>
+    {{#if function.params}}
+      {{export_id}} (
+      {{#each function.params as |param|}}
+        {{#if @last}}
+          {{param}}
+        {{else}}
+          {{param}},&nbsp
+        {{/if}}
+      {{/each}})
+      <h4>Paramaters</h4>
+      <table>
+        <th>
+          <tr>
+            <td>
+              Param
+            </td>
+            <td>
+              Type
+            </td>
+            <td>
+              Description
+            </td>
+          </tr>
+        </th>
+        {{#each function.params as |param|}}
+          <tr>
+            <td>{{param}}</td>
+            <td></td>
+          </tr>
+        {{/each}}
+      </table>
+    {{/if}}
+    </br>
+  {{/if}}
+{{/each}}
+</span>

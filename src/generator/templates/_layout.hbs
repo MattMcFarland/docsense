@@ -20,13 +20,13 @@
     <div class="cf ph2-ns">
       <div class="fl w-100 w-30-ns pa2">
         <div class="bg-dark-gray pv4 pl2">
-          <div class="f2 near-white pa3 pl3 mb1">DocSense</div>
+          <div class="f2 near-white pa3 pl3 mb1">
+            <a class="pa2 pl4 link dim white db" href="#" title="Home">DocSense</a>
+          </div>
           <div class="f3 near-white pa3 pl3 mb2">Modules</div>
-          <a class="pa2 pl4 link dim white db" href="#" title="Home">One</a>
-          <a class="pa2 pl4 link dim white db" href="#" title="Home">Two</a>
-          <a class="pa2 pl4 link dim white db" href="#" title="Home">Three</a>
-          <a class="pa2 pl4 link dim white db" href="#" title="Home">Four</a>
-          <a class="pa2 pl4 link dim white db" href="#" title="Home">Five</a>
+          {{#each esModules }}
+          <a class="pa2 pl4 link dim white db" href="/{{file_id}}/index.html" title="{{file_id}}">{{file_id}}</a>
+          {{/each}}
           <div class="f3 near-white pa3 pl3 mb2">Classes</div>
           <a class="pa2 pl4 link dim white db" href="#" title="Home">One</a>
           <a class="pa2 pl4 link dim white db" href="#" title="Home">Two</a>
