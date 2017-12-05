@@ -46,7 +46,10 @@ const getModuleInfo = (esm: any) => {
         export_id: exm.export_id,
         function: withFn,
       });
+    } else {
+      acc.push(exm);
     }
+
     // if (esm.file_id && exm.export_id) {
     //   acc.push({
     //     file_id: esm.file_id,
