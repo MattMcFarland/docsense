@@ -8,12 +8,14 @@ import {
   Node,
   ObjectPattern,
   RestElement,
+  SourceLocation,
   VariableDeclarator,
 } from 'babel-types';
 
 import ParseEngine from '../parser/ParseEngine';
 import { IPluginCommand } from '../types/Plugin';
 import { log } from '../utils/logger';
+import { logSkipped } from './helpers/effects';
 import {
   assertNever,
   getDocTagsFromPath,
@@ -96,18 +98,10 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): IPluginCommand {
               jsdoc: getDocTagsFromPath(path.get('id')),
             });
           }
-          return log.warn(
-            'skip',
-            prop.type,
-            `${file_id}:${prop.loc.start.line}:${prop.loc.start.column}`
-          );
+          return logSkipped(prop.type, prop.loc);
         });
       default:
-        return log.warn(
-          'skip',
-          id.node.type,
-          `${file_id}:${id.node.loc.start.line}:${id.node.loc.start.column}`
-        );
+        return logSkipped(id.node.type, id.node.loc);
     }
   }
 }

@@ -4,6 +4,7 @@ import {
   ExportDefaultDeclaration,
   ExportNamedDeclaration,
   ExportSpecifier,
+  isIdentifier,
   VariableDeclarator,
 } from 'babel-types';
 import { Annotation } from 'doctrine';
@@ -11,7 +12,9 @@ import { Annotation } from 'doctrine';
 import ParseEngine from '../parser/ParseEngine';
 import { IPluginCommand } from '../types/Plugin';
 import { log } from '../utils/logger';
+import { logSkipped } from './helpers/effects';
 import {
+  assertNever,
   getDocTagsFromPath,
   getFileName,
   getFunctionMeta,
@@ -22,7 +25,7 @@ import functionVisitor from './visitors/functionVisitor';
 
 export const collectionName = 'export_collection';
 interface IExportItem {
-  export_id: string;
+  export_id?: string;
   file_id?: string;
   jsdoc?: Annotation[];
   source_id?: string;
@@ -37,7 +40,7 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
       .write();
     path.traverse(functionVisitor(onFunction), data.export_id);
   };
-  const insert = (export_id: string) => (data: any) => {
+  const insert = (export_id: string) => (data: IExportItem) => {
     db
       .get(collectionName)
       .find({ export_id })
@@ -55,36 +58,35 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
   function handleExportNamedDeclaration(
     path: NodePath<ExportNamedDeclaration>
   ) {
-    const push = createPush(path);
-    if (path.node.specifiers.length) {
+    if (path.node.declaration === null) {
       return;
     }
-    const declaration = path.get('declaration');
-
-    if (declaration.isVariableDeclaration()) {
-      return declaration.node.declarations.forEach(
-        (exportDeclaration: VariableDeclarator) => {
-          if (isNamedIdentifier(exportDeclaration.id)) {
-            push({
-              export_id: exportDeclaration.id.name,
-              file_id: getFileName(path),
-              jsdoc: getDocTagsFromPath(path),
-            });
+    const push = createPush(path);
+    const declaration = path.node.declaration;
+    switch (declaration.type) {
+      case 'VariableDeclaration':
+        return declaration.declarations.forEach(
+          (exportDeclaration: VariableDeclarator) => {
+            if (isNamedIdentifier(exportDeclaration.id)) {
+              push({
+                export_id: exportDeclaration.id.name,
+                file_id: getFileName(path),
+                jsdoc: getDocTagsFromPath(path),
+              });
+            }
           }
+        );
+      case 'FunctionDeclaration':
+        if (isNamedIdentifier(declaration.id)) {
+          return push({
+            export_id: declaration.id.name,
+            file_id: getFileName(path),
+            jsdoc: getDocTagsFromPath(path),
+          });
         }
-      );
+      default:
+        return logSkipped(declaration.type, declaration.loc);
     }
-    if (
-      path.node.declaration &&
-      path.node.declaration.type === 'FunctionDeclaration'
-    ) {
-      return push({
-        export_id: path.node.declaration.id.name,
-        file_id: getFileName(path),
-        jsdoc: getDocTagsFromPath(path),
-      });
-    }
-    log.warn('export', 'skipped ExportNamedDeclaration', getFileName(path));
   }
   function handleExportSpecifier(path: NodePath<ExportSpecifier>) {
     const push = createPush(path);
