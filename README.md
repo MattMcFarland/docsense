@@ -31,7 +31,7 @@ should work independent of developer environments are as follows:
 | `yarn test`  | Runs all unit tests |
 | `yarn build` | Compiles source |
 | `yarn docs`  | Runs the compiled code against this project |
-| `yarn dev-docs` | Watches `src/generator` for changes, building the new documentation on changes. This will not work unless docs have already been built first.
+| `yarn dev-docs` | Watches `src/generator` for changes, building the new documentation on changes. This will not work unless docs have already been built first. |
 
 ### Debugging
 
