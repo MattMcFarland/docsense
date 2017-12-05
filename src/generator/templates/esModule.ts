@@ -1,14 +1,38 @@
+import PascalCase = require('pascal-case');
+
 module.exports = (content: any) => {
   const { esModule, file_id } = content;
-  return `<div><h1>${file_id}</h1><div>${renderExports(esModule.exports)}</div>
-  <pre><code class="javascript">${JSON.stringify(
-    esModule,
-    null,
-    2
-  )}</code></pre></div>
+  return `
+  <div>
+  <header>
+    <h1 class="mb0"><i class="black-50 pr2 fa fa-cubes" aria-hidden="true"></i>${
+      file_id
+    }</h1>
+    <div class="f4">${renderImportHeadingHint(file_id)}</div>
+    </header>
+    <div>${renderExports(esModule.exports)}</div>
+    <hr/>
+    <h5>db info:</h5>
+    ${debugCode(esModule)}
+  </div>
   `;
 };
 
+function debugCode(esModule: any) {
+  return `
+ <pre><code class="javascript">${JSON.stringify(esModule, null, 2)}</code></pre>
+ `;
+}
+
+function identityName(file_id: any) {
+  return file_id
+    ? file_id
+        .split('/')
+        .pop()
+        .split('.')
+        .shift()
+    : '';
+}
 function renderExports(esmExports: any) {
   if (!esmExports) return '';
   return esmExports
@@ -20,20 +44,33 @@ function renderExports(esmExports: any) {
     .join('');
 }
 
-function importType(export_id: string) {
-  return export_id === 'default' ? export_id : `{ ${export_id} }`;
+function importType(export_id: string, file_id: string) {
+  return export_id === 'default'
+    ? `my${PascalCase(identityName(file_id))}`
+    : `{ ${export_id} }`;
 }
+
+function renderImportHeadingHint(file_id: string) {
+  return `<pre>
+  <code class="javascript">import * as my${PascalCase(
+    identityName(file_id)
+  )} from "${file_id}"</code>
+  </pre>`;
+}
+
 function renderImportHint(esm: any) {
   if (!esm) return '';
   if (!esm.export_id) return '';
   if (esm.function) {
     return `<pre><code class="javascript">import ${importType(
-      esm.export_id
+      esm.export_id,
+      esm.function.file_id
     )} from "${esm.function.file_id}"</code></pre>`;
   }
   if (esm.file_id) {
     return `<pre><code class="javascript">import ${importType(
-      esm.export_id
+      esm.export_id,
+      esm.file_id
     )} from "${esm.file_id}"</code></pre>`;
   }
 }
@@ -49,9 +86,11 @@ function renderFunctionHeader(esm: any) {
     return `
     <a class="pl1 link dim black-50" href="#${export_id}">
       <div class="${
-        export_id === 'default' ? 'f2' : 'f3'
+        export_id === 'default' ? 'f3' : 'f4'
       } pl1 link dim black-60" id= "${export_id}">
-        <span>${export_id}</span>
+        <span><i class="fa fa-link black-30 mr2" aria-hidden="true"></i>${
+          export_id
+        }</span>
         ${applySignature(esm)}
         ${
           loc
@@ -72,9 +111,9 @@ function renderFunctionHeader(esm: any) {
 
 function applySignature(esm: any) {
   if (esm.function && esm.function.params) {
-    return '(' + esm.function.params.join(', ') + ')';
+    return '(' + esm.function.params.join(',&nbsp;') + ')';
   }
-  return '';
+  return '()';
 }
 function renderDescription(esm: any) {
   return esm.jsdoc && esm.jsdoc[0].description

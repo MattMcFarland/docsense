@@ -36,28 +36,30 @@ const makeModuleLinks = () =>
   });
 
 const getModuleInfo = (esm: any) => {
-  const exports = esm.exports.reduce((acc: any, exm: any) => {
-    if (exm.function_id) {
-      const withFn = function_collection.find(
-        (fns: any) => fns.function_id === exm.function_id
-      );
-      acc.push({
-        file_id: esm.file_id,
-        export_id: exm.export_id,
-        function: withFn,
-      });
-    } else {
-      acc.push(exm);
-    }
+  const exports = esm.exports
+    .reduce((acc: any, exm: any) => {
+      if (exm.function_id) {
+        const withFn = function_collection.find(
+          (fns: any) => fns.function_id === exm.function_id
+        );
+        acc.push({
+          file_id: esm.file_id,
+          export_id: exm.export_id,
+          function: withFn,
+        });
+      } else {
+        acc.push(exm);
+      }
 
-    // if (esm.file_id && exm.export_id) {
-    //   acc.push({
-    //     file_id: esm.file_id,
-    //     export_id: exm.export_id,
-    //   });
-    // }
-    return acc;
-  }, []);
+      // if (esm.file_id && exm.export_id) {
+      //   acc.push({
+      //     file_id: esm.file_id,
+      //     export_id: exm.export_id,
+      //   });
+      // }
+      return acc;
+    }, [])
+    .sort((a: any, b: any) => (a.export_id === 'default' ? -1 : 1));
   return { exports };
 };
 
