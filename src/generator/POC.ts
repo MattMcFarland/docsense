@@ -14,14 +14,13 @@ const esModules = file_collection.reduce((acc: any, file: any) => {
   const fileExports = export_collection.filter(
     (xp: any) => xp.file_id === file.file_id
   );
-  const exports = fileExports.map((x: any) => x);
-  if (exports.length) {
+  if (fileExports.length) {
     acc.push({
-      function_id: fileExports.function_id,
       file_id: file.file_id,
-      exports,
+      exports: fileExports,
     });
   }
+
   return acc;
 }, []);
 
@@ -43,13 +42,15 @@ const getModuleInfo = (esm: any) => {
         const withFn = function_collection.find(
           (fns: any) => fns.function_id === exm.function_id
         );
-        const withXp = function_collection.find(
-          (fns: any) => fns.export_id === exm.export_id
+        const withXp = export_collection.find(
+          (fns: any) => fns.function_id === exm.function_id
         );
         acc.push({
           file_id: esm.file_id,
           export_id: exm.export_id,
-          function: { ...withFn, ...withXp },
+          function_id: exm.function_id,
+          function: withFn,
+          xp: withXp,
         });
       } else {
         acc.push(exm);

@@ -31,7 +31,7 @@ interface IExportItem {
   source_id?: string;
   function_id?: string;
 }
-export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
+export default (engine: ParseEngine, db: Lowdb): IPluginCommand => {
   db.set(collectionName, []).write();
   const createPush = (path: NodePath) => (data: IExportItem): void => {
     db
@@ -100,9 +100,16 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
     path: NodePath<ExportDefaultDeclaration>
   ) {
     const push = createPush(path);
+    const declarationPath = path.get('declaration').get('declarations');
+    const functionMeta =
+      (declarationPath.node &&
+        declarationPath.node.id &&
+        getFunctionMeta(declarationPath as NodePath<FunctionType>)) ||
+      undefined;
     push({
       export_id: 'default',
       file_id: getFileName(path),
+      function_id: functionMeta ? functionMeta.function_id : undefined,
       jsdoc: getDocTagsFromPath(path),
     });
   }
@@ -121,4 +128,4 @@ export default function(engine: ParseEngine, db: Lowdb): IPluginCommand {
       function_id,
     });
   }
-}
+};
