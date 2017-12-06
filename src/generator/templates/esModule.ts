@@ -1,4 +1,4 @@
-import PascalCase = require('pascal-case');
+const PascalCase = require('pascal-case');
 
 module.exports = (content: any) => {
   const { esModule, file_id } = content;

@@ -17,6 +17,7 @@ const esModules = file_collection.reduce((acc: any, file: any) => {
   const exports = fileExports.map((x: any) => x);
   if (exports.length) {
     acc.push({
+      function_id: fileExports.function_id,
       file_id: file.file_id,
       exports,
     });
@@ -42,10 +43,13 @@ const getModuleInfo = (esm: any) => {
         const withFn = function_collection.find(
           (fns: any) => fns.function_id === exm.function_id
         );
+        const withXp = function_collection.find(
+          (fns: any) => fns.export_id === exm.export_id
+        );
         acc.push({
           file_id: esm.file_id,
           export_id: exm.export_id,
-          function: withFn,
+          function: { ...withFn, ...withXp },
         });
       } else {
         acc.push(exm);

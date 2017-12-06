@@ -20,7 +20,13 @@ export default function(engine: ParseEngine, store: Store): IPluginCommand {
     const file_id = getFileName(path);
     const var_id = getVariableId(path.parent);
     const { function_id, params, jsdoc } = getFunctionMeta(path);
+    const exportParent = path.findParent(n => n.isExportDeclaration());
+    const export_id =
+      exportParent && exportParent.node && exportParent.node.id
+        ? exportParent.node.id.name
+        : undefined;
     store.createPush(path)({
+      export_id,
       [store.entryId]: function_id,
       file_id,
       var_id,

@@ -5,17 +5,19 @@ const sane = require('sane');
 
 const watchPath = path.resolve(process.cwd(), 'src/generator');
 const watcher = sane(watchPath, { glob: ['**/*.ts', '**/*.hbs'] });
+const exec = () => spawn.sync('yarn', ['poc'], { stdio: 'inherit' });
 
+exec();
 watcher.on('change', function(filepath, root, stat) {
-  spawn.sync('yarn', ['poc'], { stdio: 'inherit' });
+  exec();
   console.log('file changed', filepath);
 });
 watcher.on('add', function(filepath, root, stat) {
-  spawn.sync('yarn', ['poc'], { stdio: 'inherit' });
+  exec();
   console.log('file added', filepath);
 });
 watcher.on('delete', function(filepath, root) {
-  spawn.sync('yarn', ['poc'], { stdio: 'inherit' });
+  exec();
   console.log('file deleted', filepath);
 });
 
