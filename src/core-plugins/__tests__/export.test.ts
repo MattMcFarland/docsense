@@ -38,6 +38,13 @@ const suites = {
         function_id: 'anonymous@1:15',
       },
     ],
+    'export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {}': [
+      {
+        export_id: 'default',
+        file_id: '__TEST__',
+        function_id: 'anonymous@1:15',
+      },
+    ],
     'export const foo = function () {}': [
       { export_id: 'foo', file_id: '__TEST__', function_id: 'anonymous@1:19' },
     ],
