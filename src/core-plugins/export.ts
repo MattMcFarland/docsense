@@ -38,12 +38,17 @@ export default (engine: ParseEngine, db: Lowdb): IPluginCommand => {
       .get(collectionName)
       .push(data)
       .write();
-    path.traverse(functionVisitor(onFunction), data.export_id);
+    path.traverse(functionVisitor(onFunction), data);
   };
-  const insert = (export_id: string) => (data: IExportItem) => {
+  const insert = ({ export_id, file_id }: IExportItem) => (
+    data: IExportItem
+  ) => {
     db
       .get(collectionName)
-      .find({ export_id })
+      .find({
+        export_id,
+        file_id,
+      })
       .assign(data)
       .write();
   };
@@ -122,9 +127,9 @@ export default (engine: ParseEngine, db: Lowdb): IPluginCommand => {
       jsdoc: getDocTagsFromPath(path),
     });
   }
-  function onFunction(path: NodePath<FunctionType>, export_id: string) {
+  function onFunction(path: NodePath<FunctionType>, data: any) {
     const { function_id } = getFunctionMeta(path);
-    insert(export_id)({
+    insert(data)({
       function_id,
     });
   }

@@ -15,6 +15,7 @@ export default (initialState: any, fileName: string) => (
 
     const parser = new ParseEngine('babylon', {
       sourceType: 'module',
+      plugins: ['typescript'],
     });
 
     db.setState(initialState);

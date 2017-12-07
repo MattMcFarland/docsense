@@ -110,10 +110,9 @@ function renderFunctionHeader(esm: any) {
 }
 
 function applySignature(esm: any) {
-  if (esm.function && esm.function.params) {
-    return '(' + esm.function.params.join(',&nbsp;') + ')';
-  }
-  return '';
+  return esm.function && esm.function.params
+    ? '(' + esm.function.params.join(',&nbsp;') + ')'
+    : '';
 }
 function renderDescription(esm: any) {
   return esm.jsdoc && esm.jsdoc[0].description
