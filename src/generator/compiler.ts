@@ -15,3 +15,15 @@ export const compile = (
   const targetPath = path.resolve(process.cwd(), 'docs', target);
   writeFileSync(targetPath, withLayout, 'utf8');
 };
+
+export const compileSource = (
+  contentTemplate: Template,
+  data: any,
+  target: string
+) => {
+  const layout: any = require('./templates/_layout');
+  const content = contentTemplate(data);
+  const withLayout = layout({ content, data });
+  const targetPath = path.resolve(process.cwd(), 'docs', target);
+  writeFileSync(targetPath, withLayout, 'utf8');
+};

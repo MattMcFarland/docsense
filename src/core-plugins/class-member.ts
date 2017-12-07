@@ -14,11 +14,13 @@ import {
   getDocTagsFromPath,
   getFileName,
   getFunctionMeta,
+  getMethodMeta,
   getObjectId,
   getVariableId,
 } from './helpers/getters';
 import { FunctionType } from './helpers/types';
 import functionVisitor from './visitors/functionVisitor';
+import methodVisitor from './visitors/methodVisitor';
 
 export const key = 'classMember';
 
@@ -49,7 +51,7 @@ export default function(engine: ParseEngine, store: Store) {
           file_id,
           jsdoc: getDocTagsFromPath(path.get('key')),
         });
-        path.traverse(functionVisitor(onFunction), path.node.key.name);
+        path.traverse(methodVisitor(onMethod), path.node.key.name);
       }
     }
     if (path.isClassMethod()) {
@@ -60,16 +62,16 @@ export default function(engine: ParseEngine, store: Store) {
         object_id,
         [store.entryId]: id,
         file_id,
-        function_id: getFunctionMeta(path).function_id,
+        method_id: getMethodMeta(path).method_id,
         jsdoc: getDocTagsFromPath(path.get('key')),
       });
-      path.traverse(functionVisitor(onFunction), object_id);
+      path.traverse(methodVisitor(onMethod), object_id);
     }
 
-    function onFunction(fnPath: NodePath<FunctionType>, _id: string) {
-      const { function_id } = getFunctionMeta(fnPath);
-      store.insert(_id)({
-        function_id,
+    function onMethod(fnPath: NodePath<ClassMethod>, _id: string) {
+      const { method_id } = getMethodMeta(fnPath);
+      store.insert(_id, file_id)({
+        method_id,
       });
     }
   }

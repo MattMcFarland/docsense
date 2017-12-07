@@ -61,7 +61,7 @@ export default function(engine: ParseEngine, store: Store) {
 
     function onFunction(fnPath: NodePath<FunctionType>, _id: string) {
       const { function_id } = getFunctionMeta(fnPath);
-      store.insert(_id)({
+      store.insert(_id, file_id)({
         function_id,
       });
     }

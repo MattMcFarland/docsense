@@ -7,6 +7,7 @@ import {
   MemberExpression,
   Node,
 } from 'babel-types';
+import { Annotation } from 'doctrine';
 
 import ParseEngine from '../parser/ParseEngine';
 import Store from '../store';
@@ -23,7 +24,13 @@ import functionVisitor from './visitors/functionVisitor';
 export const pluginName = 'cjsExports';
 export const collectionName = pluginName + '_collection';
 export const entryId = pluginName + '_id';
-
+interface IcjsExportItem {
+  cjsExports_id?: string;
+  file_id?: string;
+  jsdoc?: Annotation[];
+  source_id?: string;
+  function_id?: string;
+}
 export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
   db.set(collectionName, []).write();
   const createPush = (path: NodePath) => (data: any) => {
@@ -31,16 +38,20 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
       .get(collectionName)
       .push(data)
       .write();
-    path.traverse(functionVisitor(onFunction), data[entryId]);
+    path.traverse(functionVisitor(onFunction), data);
   };
-  const insert = (id_val: string) => (data: any) => {
+  const insert = ({ cjsExports_id, file_id }: IcjsExportItem) => (
+    data: IcjsExportItem
+  ) => {
     db
       .get(collectionName)
-      .find({ [entryId]: id_val })
+      .find({
+        cjsExports_id,
+        file_id,
+      })
       .assign(data)
       .write();
   };
-
   return {
     visitor: {
       AssignmentExpression(path: NodePath<AssignmentExpression>) {
@@ -80,12 +91,9 @@ export default function(engine: ParseEngine, db: Lowdb.Lowdb): any {
     },
   };
 
-  function onFunction(path: NodePath<FunctionType>, id: string) {
-    if (!id) {
-      return;
-    }
-    const { function_id /* params, jsdoc */ } = getFunctionMeta(path);
-    insert(id)({
+  function onFunction(path: NodePath<FunctionType>, data: any) {
+    const { function_id } = getFunctionMeta(path);
+    insert(data)({
       function_id,
     });
   }

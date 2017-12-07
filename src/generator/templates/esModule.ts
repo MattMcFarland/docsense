@@ -5,9 +5,7 @@ module.exports = (content: any) => {
   return `
   <div>
   <header>
-    <h1 class="mb0"><i class="black-50 pr2 fa fa-cubes" aria-hidden="true"></i>${
-      file_id
-    }</h1>
+    <h1 class="mb0"><i class="black-50 pr2 fa fa-cubes" aria-hidden="true"></i>${file_id}</h1>
     <div class="f4">${renderImportHeadingHint(file_id)}</div>
     </header>
     <div>${renderExports(esModule.exports)}</div>
@@ -88,14 +86,12 @@ function renderFunctionHeader(esm: any) {
       <div class="${
         export_id === 'default' ? 'f3' : 'f4'
       } pl1 link dim black-60" id= "${export_id}">
-        <span><i class="fa fa-link black-30 mr2" aria-hidden="true"></i>${
-          export_id
-        }</span>
+        <span><i class="fa fa-link black-30 mr2" aria-hidden="true"></i>${export_id}</span>
         ${applySignature(esm)}
         ${
           loc
-            ? `<a class="f7" href="${esm.file_id}/source.html?loc=${
-                loc[1]
+            ? `<a class="f7" href="/${esm.file_id}/source.html#${
+                loc[1].split(':')[0]
               }" title="view source">
               ${'&lt;' + loc[0] + ':' + loc[1] + '&gt;'}</a>`
             : ''

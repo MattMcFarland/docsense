@@ -26,7 +26,7 @@ export default class Store {
         return resolve(data[entryId]);
       });
   }
-  public insert(id_val: string) {
+  public insert(id_val: string, file_id: string) {
     const db = this.db;
     const collectionName = this.collectionName;
     const entryId = this.entryId;
@@ -34,7 +34,7 @@ export default class Store {
       new Promise(resolve => {
         db
           .get(collectionName)
-          .find({ [entryId]: id_val })
+          .find({ [entryId]: id_val, file_id })
           .assign(data)
           .write();
         return resolve(data);

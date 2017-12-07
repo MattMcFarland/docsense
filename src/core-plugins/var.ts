@@ -35,13 +35,13 @@ export default function(engine: ParseEngine, store: Store): IPluginCommand {
       VariableDeclarator: handleDeclarator,
     },
   };
-  function onFunction(path: NodePath<FunctionType>) {
+  function onFunction(path: NodePath<FunctionType>, file_id: string) {
     const var_id = getVariableId(path.parentPath);
     if (!var_id) {
       return;
     }
     const { function_id } = getFunctionMeta(path);
-    store.insert(var_id)({
+    store.insert(var_id, file_id)({
       function_id,
     });
   }
@@ -49,7 +49,7 @@ export default function(engine: ParseEngine, store: Store): IPluginCommand {
   function handleDeclarator(path: NodePath<VariableDeclarator>) {
     const push = store.createPush(path as NodePath);
     const file_id = getFileName(path as NodePath);
-    const afterPush = () => path.traverse(functionVisitor(onFunction));
+    const afterPush = () => path.traverse(functionVisitor(onFunction), file_id);
 
     const id = getVarIdNode(path);
     switch (id.node.type) {

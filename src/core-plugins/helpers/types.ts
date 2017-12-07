@@ -46,7 +46,6 @@ export interface IFunctionMeta {
 }
 
 export type FunctionType =
-  | t.ClassMethod
   | t.ObjectMethod
   | t.ArrowFunctionExpression
   | t.FunctionExpression

@@ -1,8 +1,9 @@
+import { readFileSync } from 'fs';
 import * as mkdirp from 'mkdirp';
 import { resolve as resolvePath } from 'path';
 import { promisify } from 'util';
 
-import { compile } from './compiler';
+import { compile, compileSource } from './compiler';
 
 const mkdir = promisify(mkdirp);
 
@@ -26,10 +27,18 @@ const esModules = file_collection.reduce((acc: any, file: any) => {
 
 const distDir = require('path').resolve(__dirname, '../../docs');
 
+const makeSourceDirs = (): Promise<any> =>
+  Promise.all(
+    esModules.map((esm: any) =>
+      mkdir(resolvePath(distDir, esm.file_id + '/source'))
+    )
+  );
+
 const makeModuleDirs = (): Promise<any> =>
   Promise.all(
     esModules.map((esm: any) => mkdir(resolvePath(distDir, esm.file_id)))
   );
+
 const makeModuleLinks = () =>
   esModules.map((esm: any) => {
     return { link: esm.file_id + '/index.html' };
@@ -71,10 +80,16 @@ const getModuleInfo = (esm: any) => {
 makeModuleDirs().then(() => {
   esModules.forEach((esm: any) => {
     const esModulePage = require('./templates/esModule');
+    const sourcePage = require('./templates/sourcePage');
     compile(
       esModulePage,
       { file_id: esm.file_id, esModule: getModuleInfo(esm), esModules },
       esm.file_id + '/index.html'
+    );
+    compileSource(
+      sourcePage,
+      { sourceCode: readFileSync(resolvePath(esm.file_id), 'utf8'), esModules },
+      esm.file_id + '/source.html'
     );
   });
   const indexPage = require('./templates/index');

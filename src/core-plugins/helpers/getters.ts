@@ -37,6 +37,17 @@ export const getFunctionMeta = (path: NodePath<FunctionType>) => {
   return { function_id, params, jsdoc };
 };
 
+export const getMethodMeta = (path: NodePath<t.ClassMethod>) => {
+  const node = path.node;
+  const { line, column } = node.loc.start;
+  const location_id = `${line}:${column}`;
+  const id = t.isIdentifier(node.id) ? node.id.name : 'anonymous';
+  const method_id = id + '@' + location_id;
+  const params = getFunctionParams(path);
+  const jsdoc = getDocTagsFromPath(path);
+  return { method_id, params, jsdoc };
+};
+
 export function getDocTagsFromPath(path: NodePath): Annotation[] | undefined {
   const tags =
     path.node.__doc_tags__ ||
@@ -53,7 +64,9 @@ export function getObjectData(path: NodePath<t.ObjectExpression>) {
     // nothing
   }
 }
-export const getFunctionParamsFromNode = (node: FunctionType): Param[] => {
+export const getFunctionParamsFromNode = (
+  node: FunctionType | t.ClassMethod
+): Param[] => {
   return node.params.map((param: Parameter) => {
     switch (param.type) {
       case 'Identifier':
@@ -101,7 +114,7 @@ export const getRestElementProps = (rest: t.RestElement) => {
 };
 
 export const getFunctionParams = createHelper<
-  FunctionType,
+  FunctionType | t.ClassMethod,
   Array<string | IKeyValueDescriptor[] | string[]>
 >(getFunctionParamsFromNode);
 
