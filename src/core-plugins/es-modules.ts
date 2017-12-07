@@ -46,12 +46,28 @@ export default (engine: ParseEngine, store: Store): any => {
       ExportSpecifier: exportSpecifier,
       ExportDefaultDeclaration: exportDefaultDeclaration,
       ExportAllDeclaration: exportAllDeclaration,
-      ReferencedIdentifier: referencedIdentifier,
+      Identifier: { exit: identifier },
     },
   };
-  function referencedIdentifier(path: NodePath<Identifier>, state: any) {
-    state.foo = 'bar';
-    path.stop();
+  function identifier(path: NodePath<Identifier>, state: any) {
+    if (path.getData('exported')) {
+      path.stop();
+    }
+    if (!state.defaultRef) {
+      path.stop();
+    }
+    if (path.node.name === state.defaultRef) {
+      // but this also gets the wrong thing
+      console.log('I am also exported');
+    }
+    if (path.isReferencedIdentifier()) {
+      state[path.node.name] = {
+        node: path,
+        outerBinding: path.getOuterBindingIdentifiers(),
+        innerBinding: path.getBindingIdentifiers(),
+      };
+      path.stop();
+    }
   }
   function exportNamedDeclaration(path: NodePath<ExportNamedDeclaration>) {}
   function exportSpecifier(path: NodePath<ExportSpecifier>) {}
@@ -73,8 +89,11 @@ export default (engine: ParseEngine, store: Store): any => {
         break;
       case 'Identifier':
         const idPath = path.get('declaration') as NodePath<Identifier>;
-        const refName = idPath.node.name;
-
+        // ????? How do I get the reference to this?
+        const a = idPath.getOuterBindingIdentifiers();
+        const b = idPath.getBindingIdentifiers();
+        path.setData('exported', true);
+        state.defaultRef = idPath.node.name;
         break;
     }
   }
