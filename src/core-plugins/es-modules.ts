@@ -4,6 +4,7 @@ import {
   ExportDefaultDeclaration,
   ExportNamedDeclaration,
   ExportSpecifier,
+  Identifier,
   isIdentifier,
   VariableDeclarator,
 } from 'babel-types';
@@ -38,32 +39,42 @@ interface IExportItem {
   function_id?: string;
 }
 export const key = 'esModule';
-export default (engine: ParseEngine, store: Store): IPluginCommand => {
+export default (engine: ParseEngine, store: Store): any => {
   return {
     visitor: {
       ExportNamedDeclaration: exportNamedDeclaration,
       ExportSpecifier: exportSpecifier,
       ExportDefaultDeclaration: exportDefaultDeclaration,
       ExportAllDeclaration: exportAllDeclaration,
+      ReferencedIdentifier: referencedIdentifier,
     },
   };
+  function referencedIdentifier(path: NodePath<Identifier>, state: any) {
+    state.foo = 'bar';
+    path.stop();
+  }
   function exportNamedDeclaration(path: NodePath<ExportNamedDeclaration>) {}
   function exportSpecifier(path: NodePath<ExportSpecifier>) {}
-  function exportDefaultDeclaration(path: NodePath<ExportDefaultDeclaration>) {
+  function exportDefaultDeclaration(
+    path: NodePath<ExportDefaultDeclaration>,
+    state: any
+  ) {
     const push = store.createPush(path);
     switch (path.node.declaration.type) {
       case 'FunctionDeclaration':
       case 'ArrowFunctionExpression':
         // exporting a function
+        const functionPath = path.get('declaration') as NodePath<FunctionType>;
         push({
           file_id: getFileName(path),
-          function_id: getFunctionMeta(path.get('declaration') as NodePath<
-            FunctionType
-          >),
+          function_id: getFunctionMeta(functionPath).function_id,
           export_id: 'default',
         });
         break;
       case 'Identifier':
+        const idPath = path.get('declaration') as NodePath<Identifier>;
+        const refName = idPath.node.name;
+
         break;
     }
   }
