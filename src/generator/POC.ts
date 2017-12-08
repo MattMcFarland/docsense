@@ -10,13 +10,15 @@ import getConfig from '../config';
 import { DocSenseConfig } from '../config/default-config';
 import { compile, require_md, require_template } from './compiler';
 import { makeNodeModuleStatic } from './file';
+import markedStyle from './marked/renderer';
 
 const mkdir = promisify(mkdirp);
-
 const db = require('../../docs/db.json');
-
 // create index html
 const { esModule_collection, file_collection } = db;
+
+const renderer = markedStyle();
+
 const esModules = file_collection.reduce((acc: any, file: any) => {
   const fileExports = esModule_collection.filter(
     (xp: any) => xp.file_id === file.file_id
@@ -111,8 +113,8 @@ makeModuleDirs()
         'docs/static/highlight.js'
       );
       makeNodeModuleStatic(
-        'highlightjs/styles/github.css',
-        'docs/static/hljs.github.css'
+        'highlightjs/styles/mono-blue.css',
+        'docs/static/hljs.style.css'
       );
     }
 
@@ -135,9 +137,7 @@ makeModuleDirs()
     });
     const mainDoc = require_md(config.main);
     marked.setOptions({
-      highlight: code => {
-        return HighlightJS.highlightAuto(code).value;
-      },
+      renderer,
     });
     const indexPage = require_template('./templates/index.hbs');
     if (mainDoc) {

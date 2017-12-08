@@ -1,11 +1,11 @@
 <div id="{{esModule_id}}">
-  <code><h3 class="black-50">
+  <code><h3 class="lh-solid black-50">
   <a class="link dim black-60" href="#{{esModule_id}}">
     {{esModule_id}}
   </a>
   &nbsp;(
   {{#each function.params as |param|}}
-    <span class="blue">
+    <span class="dark-red">
       {{#if @last}}{{renderParam param}}{{else}}{{renderParam param}}<span class="black-50">,</span>{{/if}}
     </span>
   {{/each}})
@@ -14,7 +14,7 @@
         {{#each tags}}
           {{#eq title 'returns'}}
 
-              <i class="blue fa fa-arrow-right"></i>{{> typeAnnotation }}
+              <i class="dark-red fa fa-arrow-right"></i>{{> typeAnnotation }}
 
           {{/eq}}
         {{/each}}

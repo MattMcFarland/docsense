@@ -2,6 +2,12 @@
 
 This is a work in progress
 
+> Block quotes are
+> written like so.
+>
+> They can span multiple paragraphs,
+> if you like.
+
 ## Docsense
 
 Docsense is a pluggable and customizable AST to documentation generator which

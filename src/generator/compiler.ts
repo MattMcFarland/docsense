@@ -72,9 +72,3 @@ export const compile = (source: string, data: any, target: string) => {
   const targetPath = path.resolve(process.cwd(), 'docs', target);
   writeFileSync(targetPath, withLayout, 'utf8');
 };
-
-export const compileMarkdown = (
-  source: string,
-  data: any,
-  target: string
-) => {};
