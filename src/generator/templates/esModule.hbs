@@ -2,24 +2,18 @@
   <header>
     <h1 class="mb0">
       <i class="black-50 pr2 fa fa-cubes" aria-hidden="true"></i>{{file_id}}</h1>
-    <div class="f4">{{> importHeader filepath = file_id }}</div>
+    <div class="f4">{{> importHeader filepath=file_id }}</div>
   </header>
-  <div class="ml4 mv2">
+  <div class="ml4 mt4">
+    <h2>Exports</h2>
+    {{#each esModule.exports}}
+      {{#eq kind 'ExportingLiteral' }}
+        {{> literalBlock }}
+      {{/eq}}
+    {{/each}}
     {{#each esModule.exports}}
       {{#eq kind 'ExportingFunction' }}
-        <h3 class="black-50">
-          <a class="link dim black-60" href="/{{file_id}}/source.html#{{getLine function.function_id}}">{{esModule_id}}</a>&nbsp;(
-          {{#each function.params as |param|}}
-            <span class="blue">
-              {{#if @last}} {{renderParam param}}
-              {{else}}
-                {{renderParam param}}
-                <span class="black-50">,&nbsp;</span>
-              {{/if}}
-            </span>
-          {{/each}})
-        </h3>
-        {{> importFn name=esModule_id filepath=file_id}} {{> fndoc jsdoc=jsdoc}}
+        {{> functionBlock }}
       {{/eq}}
     {{/each}}
   </div>

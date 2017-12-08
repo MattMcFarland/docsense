@@ -1,0 +1,10 @@
+<code><h3 class="black-50">
+  {{esModule_id}}:
+  {{#eq type 'StringLiteral' }}
+    <code class="dark-red">"{{value}}"</code>
+{{else}}
+  <code class="blue">{{value}}</code>
+  {{/eq}}
+  </h3>
+  </code>
+  {{> importFn name=esModule_id filepath=file_id }} {{> fndoc jsdoc=jsdoc}}
