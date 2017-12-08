@@ -1,0 +1,25 @@
+<div>
+  <header>
+    <h1 class="mb0">
+      <i class="black-50 pr2 fa fa-cubes" aria-hidden="true"></i>{{file_id}}</h1>
+    <div class="f4">{{> importHeader filepath=file_id }}</div>
+  </header>
+  <div class="ml4 mt4">
+    <h2>Exports</h2>
+    {{#each esModule.exports}}
+      {{#eq kind 'ExportingLiteral' }}
+        {{> literalBlock }}
+      {{/eq}}
+    {{/each}}
+    {{#each esModule.exports}}
+      {{#eq kind 'ExportingFunction' }}
+        {{> functionBlock }}
+      {{/eq}}
+    {{/each}}
+  </div>
+  <hr/>
+  <h5>db info:</h5>
+
+  <pre><code>{{json esModule}}</code></pre>
+
+</div>

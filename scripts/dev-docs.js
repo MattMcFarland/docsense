@@ -4,7 +4,7 @@ const spawn = require('cross-spawn');
 const sane = require('sane');
 
 const watchPath = path.resolve(process.cwd(), 'src/generator');
-const watcher = sane(watchPath, { glob: ['**/*.ts', '**/*.hbs'] });
+const watcher = sane(watchPath, { glob: ['**/*.ts', '**/*.hbs', '**/*.js'] });
 const exec = () => spawn.sync('yarn', ['poc'], { stdio: 'inherit' });
 
 exec();

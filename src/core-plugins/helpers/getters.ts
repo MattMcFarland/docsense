@@ -48,12 +48,12 @@ export const getMethodMeta = (path: NodePath<t.ClassMethod>) => {
   return { method_id, params, jsdoc };
 };
 
-export function getDocTagsFromPath(path: NodePath): Annotation[] | undefined {
+export function getDocTagsFromPath(path: NodePath): Annotation[] {
   const tags =
     path.node.__doc_tags__ ||
     path.getStatementParent().node.__doc_tags__ ||
     path.parent.__doc_tags__;
-  return tags && tags.length ? tags : undefined;
+  return tags && tags.length ? tags : [];
 }
 
 export function getObjectData(path: NodePath<t.ObjectExpression>) {

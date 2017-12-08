@@ -1,0 +1,24 @@
+<div id="{{esModule_id}}">
+  <code><h3 class="black-50">
+  <a class="link dim black-60" href="#{{esModule_id}}">
+    {{esModule_id}}
+  </a>
+  &nbsp;(
+  {{#each function.params as |param|}}
+    <span class="blue">
+      {{#if @last}}{{renderParam param}}{{else}}{{renderParam param}}<span class="black-50">,</span>{{/if}}
+    </span>
+  {{/each}})
+  <span>
+    {{#each jsdoc}}
+        {{#each tags}}
+          {{#eq title 'returns'}}
+
+              <i class="blue fa fa-arrow-right"></i>{{> typeAnnotation }}
+
+          {{/eq}}
+        {{/each}}
+    {{/each}}
+  </span>
+</h3></code> {{> importFn name=esModule_id filepath=file_id function_id=function.function_id}} {{> fndoc jsdoc=jsdoc}}
+</div>

@@ -17,27 +17,21 @@ export default class Store {
     const db = this.db;
     const collectionName = this.collectionName;
     const entryId = this.entryId;
-    return (data: any) =>
-      new Promise(resolve => {
-        db
-          .get(collectionName)
-          .push(data)
-          .write();
-        return resolve(data[entryId]);
-      });
+    return <B>(data: B) =>
+      db
+        .get(collectionName)
+        .push(data)
+        .write();
   }
   public insert(id_val: string, file_id: string) {
     const db = this.db;
     const collectionName = this.collectionName;
     const entryId = this.entryId;
-    return (data: any) =>
-      new Promise(resolve => {
-        db
-          .get(collectionName)
-          .find({ [entryId]: id_val, file_id })
-          .assign(data)
-          .write();
-        return resolve(data);
-      });
+    return <B>(data: B) =>
+      db
+        .get(collectionName)
+        .find({ [entryId]: id_val, file_id })
+        .assign(data)
+        .write();
   }
 }

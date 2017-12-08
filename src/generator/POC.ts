@@ -1,18 +1,18 @@
-import { readFileSync } from 'fs';
+import { readdirSync, readFileSync, writeFileSync } from 'fs';
 import * as mkdirp from 'mkdirp';
 import { resolve as resolvePath } from 'path';
 import { promisify } from 'util';
 
-import { compile, compileSource } from './compiler';
+import { compile, require_template } from './compiler';
 
 const mkdir = promisify(mkdirp);
 
 const db = require('../../docs/db.json');
 
 // create index html
-const { file_collection, export_collection, function_collection } = db;
+const { esModule_collection, file_collection } = db;
 const esModules = file_collection.reduce((acc: any, file: any) => {
-  const fileExports = export_collection.filter(
+  const fileExports = esModule_collection.filter(
     (xp: any) => xp.file_id === file.file_id
   );
   if (fileExports.length) {
@@ -44,14 +44,26 @@ const makeModuleLinks = () =>
     return { link: esm.file_id + '/index.html' };
   });
 
+const makeStatic = () => mkdir(resolvePath(distDir, 'static'));
+
+const copyStatic = () => {
+  const files = readdirSync(resolvePath(__dirname, 'static'));
+  files.forEach(file => {
+    const data = readFileSync(resolvePath(__dirname, 'static', file));
+    writeFileSync(resolvePath(distDir, 'static', file), data);
+  });
+
+  return true;
+};
+
 const getModuleInfo = (esm: any) => {
   const exports = esm.exports
     .reduce((acc: any, exm: any) => {
       if (exm.function_id) {
-        const withFn = function_collection.find(
+        const withFn = file_collection.find(
           (fns: any) => fns.function_id === exm.function_id
         );
-        const withXp = export_collection.find(
+        const withXp = esModule_collection.find(
           (fns: any) => fns.function_id === exm.function_id
         );
         acc.push({
@@ -77,21 +89,27 @@ const getModuleInfo = (esm: any) => {
   return { exports };
 };
 
-makeModuleDirs().then(() => {
-  esModules.forEach((esm: any) => {
-    const esModulePage = require('./templates/esModule');
-    const sourcePage = require('./templates/sourcePage');
-    compile(
-      esModulePage,
-      { file_id: esm.file_id, esModule: getModuleInfo(esm), esModules },
-      esm.file_id + '/index.html'
-    );
-    compileSource(
-      sourcePage,
-      { sourceCode: readFileSync(resolvePath(esm.file_id), 'utf8'), esModules },
-      esm.file_id + '/source.html'
-    );
+makeModuleDirs()
+  .then(makeStatic)
+  .then(copyStatic)
+  .then(() => {
+    esModules.forEach((esm: any) => {
+      const esModulePage = require_template('./templates/esModule.hbs');
+      const sourcePage = require_template('./templates/sourcePage.hbs');
+      compile(
+        esModulePage,
+        { file_id: esm.file_id, esModule: getModuleInfo(esm), esModules },
+        esm.file_id + '/index.html'
+      );
+      compile(
+        sourcePage,
+        {
+          sourceCode: readFileSync(resolvePath(esm.file_id), 'utf8'),
+          esModules,
+        },
+        esm.file_id + '/source.html'
+      );
+    });
+    const indexPage = require_template('./templates/index.hbs');
+    compile(indexPage, { esModules }, 'index.html');
   });
-  const indexPage = require('./templates/index');
-  compile(indexPage, { esModules }, 'index.html');
-});

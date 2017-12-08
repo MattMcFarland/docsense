@@ -104,3 +104,41 @@ export type ArrayPatternProperty =
   | t.BindExpression
   | t.DoExpression
   | t.RestElement;
+
+export type VariableDeclaratorInit =
+  | t.ArrayExpression
+  | t.AssignmentExpression
+  | t.BinaryExpression
+  | t.CallExpression
+  | t.ConditionalExpression
+  | t.FunctionExpression
+  | t.Identifier
+  | t.StringLiteral
+  | t.NumericLiteral
+  | t.BooleanLiteral
+  | t.NullLiteral
+  | t.RegExpLiteral
+  | t.LogicalExpression
+  | t.MemberExpression
+  | t.NewExpression
+  | t.ObjectExpression
+  | t.SequenceExpression
+  | t.ThisExpression
+  | t.UnaryExpression
+  | t.UpdateExpression
+  | t.ArrowFunctionExpression
+  | t.ClassExpression
+  | t.MetaProperty
+  | t.Super
+  | t.TaggedTemplateExpression
+  | t.TemplateLiteral
+  | t.YieldExpression
+  | t.TypeCastExpression
+  | t.JSXElement
+  | t.JSXEmptyExpression
+  | t.JSXIdentifier
+  | t.JSXMemberExpression
+  | t.ParenthesizedExpression
+  | t.AwaitExpression
+  | t.BindExpression
+  | t.DoExpression;

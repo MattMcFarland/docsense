@@ -1,0 +1,33 @@
+<code>
+  {{#if type.type}}
+    {{#eq type.type "AllLiteral"}}
+      <i class="blue">any</i>
+    {{/eq}}
+    {{#eq type.type "NameExpression"}}
+      <i class="blue">{{type.name}}</i>
+    {{/eq}}
+    {{#eq type.type "TypeApplication"}}
+    <i>
+      <b class="blue">
+        {{type.expression.name}}
+      &lt;</b>
+        {{#each type.applications}}
+          <span class="blue annotation" >
+          {{#if @last}}
+            {{name}}
+          {{else}}
+            {{name}},&nbsp;
+          {{/if}}
+          </span>
+        {{/each}}
+      <b class="blue">&gt;</b>
+      </i>
+    {{/eq}}
+  {{else}}
+  {{#if type}}
+    <i class="blue">{{type}}</i>
+  {{else}}
+    <i class="blue">any</i>
+  {{/if}}
+{{/if}}
+</code>

@@ -24,7 +24,8 @@
     "no-var-keyword": true,
     "check-else-if": true,
     "cyclomatic-complexity": true,
-    "no-angle-bracket-type-assertion": false
+    "no-angle-bracket-type-assertion": false,
+    "interface-name": false
   },
   "env": {
     "node": true,
