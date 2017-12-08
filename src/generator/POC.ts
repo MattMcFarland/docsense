@@ -4,8 +4,9 @@ import { resolve as resolvePath } from 'path';
 import { promisify } from 'util';
 
 import getConfig from '../config';
-import { compile, require_md, require_template } from './compiler';
 import { DocSenseConfig } from '../config/default-config';
+import { compile, require_md, require_template } from './compiler';
+import { makeNodeModuleStatic } from './file';
 
 const mkdir = promisify(mkdirp);
 
@@ -92,10 +93,26 @@ const getModuleInfo = (esm: any) => {
 };
 
 makeModuleDirs()
+  .then(makeSourceDirs)
   .then(makeStatic)
   .then(copyStatic)
   .then(getConfig)
   .then((config: DocSenseConfig) => {
+    if (!process.env.NO_STATIC) {
+      makeNodeModuleStatic(
+        'tachyons/css/tachyons.min.css',
+        'docs/static/tachyons.min.css'
+      );
+      makeNodeModuleStatic(
+        'highlightjs/highlight.pack.min.js',
+        'docs/static/highlight.js'
+      );
+      makeNodeModuleStatic(
+        'highlightjs/styles/github.css',
+        'docs/static/hljs.github.css'
+      );
+    }
+
     esModules.forEach((esm: any) => {
       const mainDoc = require_md(config.main);
       const esModulePage = require_template('./templates/esModule.hbs');

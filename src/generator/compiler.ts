@@ -49,20 +49,6 @@ withAllFiles(
     }
   }
 );
-if (!process.env.NO_STATIC) {
-  makeNodeModuleStatic(
-    'tachyons/css/tachyons.min.css',
-    'docs/static/tachyons.min.css'
-  );
-  makeNodeModuleStatic(
-    'highlightjs/highlight.pack.min.js',
-    'docs/static/highlight.js'
-  );
-  makeNodeModuleStatic(
-    'highlightjs/styles/github.css',
-    'docs/static/hljs.github.css'
-  );
-}
 
 export const compileLayout = (page: any, data: any) => {
   const layout_source = require_template('./templates/_layout.hbs');
