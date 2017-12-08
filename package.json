@@ -47,11 +47,12 @@
     "deepmerge": "^2.0.1",
     "doctrine": "^2.0.0",
     "glob": "^7.1.2",
-    "json-query": "^2.2.2",
+    "highlightjs": "^9.10.0",
     "lowdb": "^1.0.0",
     "mkdirp": "^0.5.1",
     "npmlog": "^4.1.2",
-    "pascal-case": "^2.0.1"
+    "pascal-case": "^2.0.1",
+    "tachyons": "^4.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.32",
