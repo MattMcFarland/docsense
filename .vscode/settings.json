@@ -42,5 +42,17 @@
   "editor.formatOnSave": true,
   "tslint.enable": true,
   "tslint.packageManager": "yarn",
-  "typescript.useCodeSnippetsOnMethodSuggest": true
+  "typescript.useCodeSnippetsOnMethodSuggest": true,
+  "json.schemas": [
+    {
+      "fileMatch": [".docsenserc", "docsense.config.json"],
+      "url": "./docsense.schema.json"
+    }
+  ],
+  "json.personalSchemas": [
+    {
+      "fileMatch": [".docsenserc", "docsense.config.json"],
+      "url": "./docsense.schema.json"
+    }
+  ]
 }
