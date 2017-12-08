@@ -1,5 +1,7 @@
-export const table = () => {};
+export const table = (header: string, body: string) => {
+  return ``;
+};
 
-export const tableRow = () => {};
+export const tableRow = (content: string) => {};
 
-export const tableCell = () => {};
+export const tableCell = (content: string, flags: any) => {};
