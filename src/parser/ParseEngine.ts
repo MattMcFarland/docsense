@@ -2,34 +2,15 @@ import traverse, { Node, NodePath } from 'babel-traverse';
 import { Comment, CommentBlock } from 'babel-types';
 import { Annotation, parse as docParse } from 'doctrine';
 import { EventEmitter } from 'events';
+import { ConfigParseOptions } from '../config/default-config';
 
 const types = require('babel-types');
-
-/** @interface ParseOptions parseOptions */
-export interface IParseOptions {
-  /** @property {boolean} allowImportExportEverywhere - By default, import and export declarations can only appear at a program's top level. Setting this option to true allows them anywhere where a statement is allowed. */
-  allowImportExportEverywhere?: boolean;
-  /** @property {boolean} allowImportExportEverywhere - By default, a return statement at the top level raises an error. Set this to true to accept such code. */
-  allowReturnOutsideFunction?: boolean;
-  /** @property {SourceType} sourceType - Indicate the mode the code should be parsed in. Can be one of "script", "module", or "unambiguous". Defaults to "script". "unambiguous" will make Babylon attempt to guess, based on the presence of ES6 import or export statements. Files with ES6 imports and exports are considered "module" and are otherwise "script". */
-  sourceType?: 'script' | 'module' | 'unambiguous';
-  /** @property {string} sourceFilename - Correlate output AST nodes with their source filename. Useful when generating code and source maps from the ASTs of multiple input files. */
-  sourceFilename?: string;
-  /** @property {number} startLine -  By default, the first line of code parsed is treated as line 1. You can provide a line number to alternatively start with. Useful for integration with other source tools. */
-  startLine?: number;
-  /** @property {string[]} plugins - Array containing the plugins that you want to enable. */
-  plugins?: string[];
-  /** @property {[number, number]} ranges - Adds a ranges property to each node: [node.start, node.end] */
-  ranges?: [number, number];
-  /** @property {boolean} tokens - Adds all parsed tokens to a tokens property on the File node */
-  tokens?: boolean;
-}
 
 /**
  * Parser
  */
 export interface IParser {
-  parse(str: string, options: IParseOptions): Node;
+  parse(str: string, options: ConfigParseOptions): Node;
 }
 
 /**
@@ -40,15 +21,15 @@ export interface IParser {
 export default class ParseEngine extends EventEmitter {
   private parser: IParser;
   private parserName: string;
-  private parseOptions: IParseOptions;
+  private parseOptions: ConfigParseOptions;
   private doctrine: typeof docParse;
 
   /**
    * @constructor
    * @param {string} parserName parser module to use
-   * @param {IParseOptions} parseOptions options passed to the parser module
+   * @param {ConfigParseOptions} parseOptions options passed to the parser module
    */
-  constructor(parserName: string, parseOptions: IParseOptions = {}) {
+  constructor(parserName: string, parseOptions: ConfigParseOptions = {}) {
     super();
     this.parserName = parserName;
     this.parser = module.require(parserName);
@@ -83,9 +64,9 @@ export default class ParseEngine extends EventEmitter {
   /**
    * Parses source code, used by addFile
    * @param {string} data code
-   * @param {IParseOptions} options
+   * @param {ConfigParseOptions} options
    */
-  private parse(data: string, options?: IParseOptions): Node {
+  private parse(data: string, options?: ConfigParseOptions): Node {
     return this.parser.parse(data, { ...options, ...this.parseOptions });
   }
 

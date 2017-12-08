@@ -1,5 +1,5 @@
 import { IPluginRecord } from '../_types/Plugin';
-import { IConfig } from '../config';
+import { DocSenseConfig } from '../config/default-config';
 import { create } from '../db';
 import ParseEngine from '../parser/ParseEngine';
 import { log } from '../utils/logger';
@@ -16,7 +16,7 @@ export const parseFiles = ({
   config,
   plugins,
 }: {
-  config: IConfig;
+  config: DocSenseConfig;
   plugins: IPluginRecord[];
 }): Promise<Lowdb> => {
   return processAllGlobPatterns(config.files)

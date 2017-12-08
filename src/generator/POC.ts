@@ -3,7 +3,9 @@ import * as mkdirp from 'mkdirp';
 import { resolve as resolvePath } from 'path';
 import { promisify } from 'util';
 
-import { compile, require_template } from './compiler';
+import getConfig from '../config';
+import { compile, require_md, require_template } from './compiler';
+import { DocSenseConfig } from '../config/default-config';
 
 const mkdir = promisify(mkdirp);
 
@@ -92,8 +94,10 @@ const getModuleInfo = (esm: any) => {
 makeModuleDirs()
   .then(makeStatic)
   .then(copyStatic)
-  .then(() => {
+  .then(getConfig)
+  .then((config: DocSenseConfig) => {
     esModules.forEach((esm: any) => {
+      const mainDoc = require_md(config.main);
       const esModulePage = require_template('./templates/esModule.hbs');
       const sourcePage = require_template('./templates/sourcePage.hbs');
       compile(

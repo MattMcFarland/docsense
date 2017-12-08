@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync } from 'fs';
 import * as Handlebars from 'handlebars';
+import * as marked from 'marked';
 import * as path from 'path';
 
 import { makeNodeModuleStatic, withAllFiles } from './file';
@@ -7,6 +8,11 @@ import { makeNodeModuleStatic, withAllFiles } from './file';
 export const require_template = (relPath: string) => {
   const targetPath = require.resolve(relPath);
   return readFileSync(targetPath, 'utf8');
+};
+export const require_md = (cwdPath: string) => {
+  const targetPath = require.resolve(
+    path.resolve(process.cwd(), cwdPath + '.md')
+  );
 };
 
 require('handlebars-helpers')();
@@ -43,19 +49,20 @@ withAllFiles(
     }
   }
 );
-
-makeNodeModuleStatic(
-  'tachyons/css/tachyons.min.css',
-  'docs/static/tachyons.min.css'
-);
-makeNodeModuleStatic(
-  'highlightjs/highlight.pack.min.js',
-  'docs/static/highlight.js'
-);
-makeNodeModuleStatic(
-  'highlightjs/styles/github.css',
-  'docs/static/hljs.github.css'
-);
+if (!process.env.NO_STATIC) {
+  makeNodeModuleStatic(
+    'tachyons/css/tachyons.min.css',
+    'docs/static/tachyons.min.css'
+  );
+  makeNodeModuleStatic(
+    'highlightjs/highlight.pack.min.js',
+    'docs/static/highlight.js'
+  );
+  makeNodeModuleStatic(
+    'highlightjs/styles/github.css',
+    'docs/static/hljs.github.css'
+  );
+}
 
 export const compileLayout = (page: any, data: any) => {
   const layout_source = require_template('./templates/_layout.hbs');
@@ -74,3 +81,9 @@ export const compile = (source: string, data: any, target: string) => {
   const targetPath = path.resolve(process.cwd(), 'docs', target);
   writeFileSync(targetPath, withLayout, 'utf8');
 };
+
+export const compileMarkdown = (
+  source: string,
+  data: any,
+  target: string
+) => {};
