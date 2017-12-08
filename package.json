@@ -8,6 +8,7 @@
   "unpkg": "dist/docsense.js",
   "jsdelivr": "dist/docsense.js",
   "typings": "types/index.d.ts",
+  "schema": "docsense.schema.json",
   "files": ["src", "dist/*.js", "types/*.d.ts"],
   "scripts": {
     "test": "jest",
@@ -15,11 +16,14 @@
     "precommit": "lint-staged",
     "clean": "rm -rf dist",
     "prebuild": "yarn clean && mkdir dist",
+    "build:schema":
+      "typescript-json-schema ./tsconfig.json -o docsense.schema.json --ignoreErrors DocSenseConfig",
     "build:common": "tsc -p tsconfig.common.json",
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:umd": "tsc -p tsconfig.umd.json",
     "build:info": "node scripts/build-info",
-    "build": "yarn build:info && yarn build:common && yarn build:esm",
+    "build":
+      "yarn build:info && yarn build:schema && yarn build:common && yarn build:esm",
     "predocs": "rm -rf docs",
     "docs": "mkdir docs && node dist/common/index.js",
     "debug": "ts-node --inspect-brk --nolazy src/index.ts",
@@ -71,6 +75,7 @@
     "@types/handlebars": "^4.0.36",
     "@types/jest": "^21.1.8",
     "@types/lowdb": "^0.15.0",
+    "@types/marked": "^0.3.0",
     "@types/mkdirp": "^0.5.2",
     "@types/node": "^8.0.53",
     "@types/ramda": "^0.25.6",

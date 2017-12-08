@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "ConfigParseOptions": {
+      "properties": {
+        "allowImportExportEverywhere": {
+          "type": "boolean"
+        },
+        "allowReturnOutsideFunction": {
+          "type": "boolean"
+        },
+        "plugins": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ranges": {
+          "additionalItems": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ]
+          },
+          "items": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "minItems": 2,
+          "type": "array"
+        },
+        "sourceFilename": {
+          "type": "string"
+        },
+        "sourceType": {
+          "enum": ["module", "script", "unambiguous"],
+          "type": "string"
+        },
+        "startLine": {
+          "type": "number"
+        },
+        "tokens": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "properties": {
+    "files": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "main": {
+      "type": "string"
+    },
+    "out": {
+      "type": "string"
+    },
+    "parseOptions": {
+      "$ref": "#/definitions/ConfigParseOptions"
+    },
+    "parser": {
+      "type": "string"
+    },
+    "useCorePlugins": {
+      "type": "boolean"
+    }
+  },
+  "type": "object"
+}
