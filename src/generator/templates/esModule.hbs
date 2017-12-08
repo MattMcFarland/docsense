@@ -1,19 +1,27 @@
 <div>
+  <style>
+    .hljs {
+      margin-left: -0.5em;
+      margin-right: 0.5em;
+    }
+  </style>
   <header>
     <h1 class="mb0">
-      <i class="black-50 pr2 fa fa-cubes" aria-hidden="true"></i>{{file_id}}</h1>
+      <i class="black-50 pr2 fa fa-cube" aria-hidden="true"></i>&nbsp;{{file_id}}</h1>
     <div class="f4">{{> importHeader filepath=file_id }}</div>
   </header>
-  <div class="ml4 mt4">
+  <div class="ml2 mt4">
     <h2>Exports</h2>
     {{#each esModule.exports}}
       {{#eq kind 'ExportingLiteral' }}
         {{> literalBlock }}
+        <br/>
       {{/eq}}
     {{/each}}
     {{#each esModule.exports}}
       {{#eq kind 'ExportingFunction' }}
         {{> functionBlock }}
+        <br/>
       {{/eq}}
     {{/each}}
   </div>

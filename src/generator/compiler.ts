@@ -13,6 +13,11 @@ export const require_md = (cwdPath: string) => {
   const targetPath = require.resolve(
     path.resolve(process.cwd(), cwdPath + '.md')
   );
+  try {
+    return readFileSync(targetPath, 'utf8');
+  } catch (e) {
+    return;
+  }
 };
 
 require('handlebars-helpers')();

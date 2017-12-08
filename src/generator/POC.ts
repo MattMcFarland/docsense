@@ -1,5 +1,8 @@
 import { readdirSync, readFileSync, writeFileSync } from 'fs';
+import * as HighlightJS from 'highlight.js';
+import * as marked from 'marked';
 import * as mkdirp from 'mkdirp';
+
 import { resolve as resolvePath } from 'path';
 import { promisify } from 'util';
 
@@ -114,7 +117,6 @@ makeModuleDirs()
     }
 
     esModules.forEach((esm: any) => {
-      const mainDoc = require_md(config.main);
       const esModulePage = require_template('./templates/esModule.hbs');
       const sourcePage = require_template('./templates/sourcePage.hbs');
       compile(
@@ -131,6 +133,15 @@ makeModuleDirs()
         esm.file_id + '/source.html'
       );
     });
+    const mainDoc = require_md(config.main);
+    marked.setOptions({
+      highlight: code => {
+        return HighlightJS.highlightAuto(code).value;
+      },
+    });
     const indexPage = require_template('./templates/index.hbs');
-    compile(indexPage, { esModules }, 'index.html');
+    if (mainDoc) {
+      const parsed = marked(mainDoc);
+      compile(indexPage, { main: parsed, esModules }, 'index.html');
+    }
   });
