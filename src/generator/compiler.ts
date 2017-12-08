@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import * as Handlebars from 'handlebars';
 import * as marked from 'marked';
+import * as emoji from 'node-emoji';
 import * as path from 'path';
 
 import { makeNodeModuleStatic, withAllFiles } from './file';
@@ -19,7 +20,10 @@ export const require_md = (cwdPath: string) => {
     return;
   }
 };
-
+export function addEmojis(markdown: string) {
+  const replacer = (match: any) => emoji.emojify(match);
+  return markdown.replace(/(:.*:)/g, replacer);
+}
 require('handlebars-helpers')();
 Handlebars.registerHelper('json', (context: any) =>
   JSON.stringify(context, null, 2)

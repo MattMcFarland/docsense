@@ -18,7 +18,7 @@ parses ECMASCIPT 2015+ using
 
 ### Development
 
-Clone the project, then run `yarn` to install all dependencies.
+:muscle: Clone the project, then run `yarn` to install all dependencies.
 
 ```
 git clone https://github.com/MattMcFarland/docsense

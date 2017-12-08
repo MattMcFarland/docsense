@@ -2,13 +2,12 @@ import { readdirSync, readFileSync, writeFileSync } from 'fs';
 import * as HighlightJS from 'highlight.js';
 import * as marked from 'marked';
 import * as mkdirp from 'mkdirp';
-
 import { resolve as resolvePath } from 'path';
 import { promisify } from 'util';
 
 import getConfig from '../config';
 import { DocSenseConfig } from '../config/default-config';
-import { compile, require_md, require_template } from './compiler';
+import { addEmojis, compile, require_md, require_template } from './compiler';
 import { makeNodeModuleStatic } from './file';
 import markedStyle from './marked/renderer';
 
@@ -141,7 +140,7 @@ makeModuleDirs()
     });
     const indexPage = require_template('./templates/index.hbs');
     if (mainDoc) {
-      const parsed = marked(mainDoc);
+      const parsed = marked(addEmojis(mainDoc));
       compile(indexPage, { main: parsed, esModules }, 'index.html');
     }
   });
