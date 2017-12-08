@@ -1,0 +1,31 @@
+<div class="pl4">
+  {{#each jsdoc}}
+    <p>
+      {{#markdown}}{{description}}{{/markdown}}
+    </p>
+    <table class="w-100">
+      <tr>
+        <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">param</th>
+        <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">default</th>
+        <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">description</th>
+      </tr>
+      {{#each tags}}
+        <tr>
+          <td class="pv3 pr3 bb b--black-20">
+            <code>{{name}}
+            {{#if type}}<i>{{type}}</i>{{else}}<i class="blue">any</i></code>
+            {{/if}}
+          </td>
+          <td class="pv3 pr3 bb b--black-20">
+
+          </td>
+          <td class="pv3 pr3 bb b--black-20">
+            {{#if description}}
+              {{description}}
+            {{/if}}
+          </td>
+        </tr>
+      {{/each}}
+    </table>
+  {{/each}}
+</div>

@@ -1,0 +1,7 @@
+<div>
+  {{#eq name 'default'}}
+    <pre><code class="javascript">import {{exportName filepath}} from '{{filepath}}'</code></pre>
+    {{else}}
+      <pre><code class="javascript">import { {{name}} } from '{{filepath}}'</code></pre>
+  {{/eq}}
+</div>
