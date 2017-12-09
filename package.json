@@ -1,8 +1,7 @@
 {
   "name": "docsense",
   "version": "0.0.0-1",
-  "description":
-    "WIP - Beautiful ES Doc generation with or without code comments",
+  "description": "A Super Intelligent Javascript Documentation Generator",
   "main": "dist/common/index.js",
   "module": "dist/esm/index.js",
   "unpkg": "dist/docsense.js",
