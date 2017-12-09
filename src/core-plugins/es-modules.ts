@@ -10,6 +10,7 @@ import {
   VariableDeclarator,
 } from 'babel-types';
 import { Annotation } from 'doctrine';
+import * as Path from 'path';
 
 import { IPluginCommand } from '../_types/Plugin';
 import ParseEngine from '../parser/ParseEngine';
@@ -54,6 +55,12 @@ interface ExportingLiteral extends Exportable {
   value: string | number | boolean;
   jsdoc?: Annotation[];
 }
+interface ExportingImport extends Exportable {
+  kind: 'ExportingImport';
+  source: Exportable;
+  jsdoc?: Annotation[];
+}
+
 type ESModule = ExportingFunction | ExportingLiteral;
 export const key = 'esModule';
 export default (engine: ParseEngine, store: Store): any => {
@@ -68,29 +75,29 @@ export default (engine: ParseEngine, store: Store): any => {
 
   /**
    * Visitor for ExportNamedDeclaration
-   * @param path NodePath
+   * @param nodePath NodePath
    * @see {ExportNamedDeclaration}
    */
-  function namedDeclaration(path: NodePath<ExportNamedDeclaration>) {
+  function namedDeclaration(nodePath: NodePath<ExportNamedDeclaration>) {
     // A named declaration will have a null node.declaration on some occasions,
     // like ExportSpecifier, so we can return and hope the other visitors catch it.
-    if (!path.node.declaration) return;
+    if (!nodePath.node.declaration) return;
 
-    const push = store.createPush(path);
+    const push = store.createPush(nodePath);
 
     //////////////////////////////////////////////////////////////////////////////////
     /* EXPORT NAMED DECLARATION : FUNCTION DECLARATION                              */
     //////////////////////////////////////////////////////////////////////////////////
 
-    if (path.node.declaration.type === 'FunctionDeclaration') {
-      push({
+    if (nodePath.node.declaration.type === 'FunctionDeclaration') {
+      push<ExportingFunction>({
         kind: 'ExportingFunction',
-        file_id: getFileName(path),
-        function: getFunctionMeta(path.get('declaration') as NodePath<
+        file_id: getFileName(nodePath),
+        function: getFunctionMeta(nodePath.get('declaration') as NodePath<
           FunctionDeclaration
         >),
         esModule_id: 'default',
-        jsdoc: getDocTagsFromPath(path),
+        jsdoc: getDocTagsFromPath(nodePath),
       });
     }
 
@@ -98,8 +105,8 @@ export default (engine: ParseEngine, store: Store): any => {
     /* EXPORT NAMED DECLARATION : VARIABLE DECLARATION                              */
     //////////////////////////////////////////////////////////////////////////////////
 
-    if (path.node.declaration.type === 'VariableDeclaration') {
-      const declarations = path.node.declaration.declarations;
+    if (nodePath.node.declaration.type === 'VariableDeclaration') {
+      const declarations = nodePath.node.declaration.declarations;
 
       declarations.forEach((variableDeclarator, index) => {
         // Cannot currently see how this would not be defined, but TypeScript insists
@@ -109,7 +116,7 @@ export default (engine: ParseEngine, store: Store): any => {
         const esModule_id = variableDeclarator.id.name;
 
         // "init" is the thing that this is assigned to
-        const assignment = path.get(
+        const assignment = nodePath.get(
           `declaration.declarations.${index}.init`
         ) as NodePath<VariableDeclaratorInit>;
 
@@ -122,7 +129,7 @@ export default (engine: ParseEngine, store: Store): any => {
           case 'FunctionExpression':
             push<ExportingFunction>({
               kind: 'ExportingFunction',
-              file_id: getFileName(path),
+              file_id: getFileName(nodePath),
               function: getFunctionMeta(assignment as NodePath<FunctionType>),
               jsdoc: getDocTagsFromPath(assignment),
               esModule_id,
@@ -136,7 +143,7 @@ export default (engine: ParseEngine, store: Store): any => {
           case 'ObjectExpression':
             push<ExportingStatic>({
               kind: 'ExportingStatic',
-              file_id: getFileName(path),
+              file_id: getFileName(nodePath),
               jsdoc: getDocTagsFromPath(assignment),
               esModule_id,
             });
@@ -148,7 +155,7 @@ export default (engine: ParseEngine, store: Store): any => {
           case 'BooleanLiteral':
             push<ExportingLiteral>({
               kind: 'ExportingLiteral',
-              file_id: getFileName(path),
+              file_id: getFileName(nodePath),
               type: assignment.node.type,
               value: assignment.node.value,
               jsdoc: getDocTagsFromPath(assignment),
@@ -159,7 +166,7 @@ export default (engine: ParseEngine, store: Store): any => {
           /* Identifier */
           case 'Identifier':
             const refName = assignment.node.name;
-            const bindings: any = path.scope.getAllBindings();
+            const bindings: any = nodePath.scope.getAllBindings();
             const reference: Binding = bindings[refName]
               ? bindings[refName]
               : null;
@@ -167,7 +174,7 @@ export default (engine: ParseEngine, store: Store): any => {
             if (reference && reference.path && reference.path.isFunction()) {
               push<ExportingFunction>({
                 kind: 'ExportingFunction',
-                file_id: getFileName(path),
+                file_id: getFileName(nodePath),
                 function: getFunctionMeta(reference.path as NodePath<
                   FunctionType
                 >),
@@ -214,71 +221,101 @@ export default (engine: ParseEngine, store: Store): any => {
 
   /**
    * Visitor for ExportSpecifier
-   * @param path NodePath
+   * @param nodePath NodePath
    * @see {ExportSpecifier}
    */
-  function specifier(path: NodePath<ExportSpecifier>) {
-    const push = store.createPush(path);
-    const local = path.node.local.name;
-    const esModule_id = path.node.exported.name;
-    const bindings: any = path.scope.getAllBindings();
+  function specifier(nodePath: NodePath<ExportSpecifier>) {
+    const push = store.createPush(nodePath);
+    const local = nodePath.node.local.name;
+    const esModule_id = nodePath.node.exported.name;
+    const bindings: any = nodePath.scope.getAllBindings();
     const reference: Binding = bindings[local] ? bindings[local] : null;
-    push({
-      file_id: getFileName(path),
-      function:
-        reference && reference.path && reference.path.isFunction()
-          ? getFunctionMeta(reference.path as NodePath<FunctionType>)
-          : undefined,
-      esModule_id,
-    });
+
+    // if exporting a previously declared variable
+
+    if (reference && reference.path && reference.path.isFunction()) {
+      push<ExportingFunction>({
+        esModule_id,
+        kind: 'ExportingFunction',
+        file_id: getFileName(nodePath),
+        function: getFunctionMeta(reference.path as NodePath<FunctionType>),
+        jsdoc: getDocTagsFromPath(reference.path),
+      });
+      return;
+    }
+
+    // check for being an exported import from another file
+
+    const parentPath = nodePath.parentPath;
+    if (
+      parentPath.isExportNamedDeclaration() &&
+      parentPath.node.source.type === 'StringLiteral'
+    ) {
+      const file_id = getFileName(nodePath);
+      const file_dir = Path.dirname(file_id);
+      const source = {
+        file_id: Path.posix.join(file_dir, parentPath.node.source.value),
+        esModule_id: local,
+      };
+      push<ExportingImport>({
+        kind: 'ExportingImport',
+        file_id,
+        esModule_id,
+        source,
+      });
+      return;
+    }
+    log.warn('es-modules', 'skipping', nodePath.type, nodePath.node.local.name);
   }
 
   /**
    * Visitor for ExportAllDeclaration
-   * @param path NodePath
+   * @param nodePath NodePath
    * @see {ExportAllDeclaration}
    */
-  function allDeclaration(path: NodePath<ExportAllDeclaration>) {
-    const push = store.createPush(path);
+  function allDeclaration(nodePath: NodePath<ExportAllDeclaration>) {
+    const push = store.createPush(nodePath);
     push({
       kind: 'ExportingAllFromSource',
-      file_id: getFileName(path),
+      file_id: getFileName(nodePath),
       esModule_id: 'all',
-      source_id: path.node.source.value,
+      source_id: nodePath.node.source.value,
     });
   }
 
   /**
    * Visitor for ExportDefaultDeclaration
-   * @param path NodePath
+   * @param nodePath NodePath
    * @see {ExportDefaultDeclaration}
    */
-  function defaultDeclaration(path: NodePath<ExportDefaultDeclaration>) {
-    const push = store.createPush(path);
+  function defaultDeclaration(nodePath: NodePath<ExportDefaultDeclaration>) {
+    const push = store.createPush(nodePath);
 
-    switch (path.node.declaration.type) {
+    switch (nodePath.node.declaration.type) {
       case 'FunctionDeclaration':
       case 'ArrowFunctionExpression':
       case 'FunctionExpression':
-        const functionPath = path.get('declaration') as NodePath<FunctionType>;
+        const functionPath = nodePath.get('declaration') as NodePath<
+          FunctionType
+        >;
         push<ExportingFunction>({
           kind: 'ExportingFunction',
-          file_id: getFileName(path),
+          file_id: getFileName(nodePath),
           function: getFunctionMeta(functionPath),
           jsdoc: getDocTagsFromPath(functionPath),
           esModule_id: 'default',
         });
         break;
       case 'Identifier':
-        const idPath = path.get('declaration') as NodePath<Identifier>;
+        const idPath = nodePath.get('declaration') as NodePath<Identifier>;
         const refName = idPath.node.name;
-        const bindings: any = path.scope.getAllBindings();
+        const bindings: any = nodePath.scope.getAllBindings();
         const reference: Binding = bindings[refName] ? bindings[refName] : null;
 
         if (reference && reference.path && reference.path.isFunction()) {
           push<ExportingFunction>({
             kind: 'ExportingFunction',
-            file_id: getFileName(path),
+            file_id: getFileName(nodePath),
             function: getFunctionMeta(reference.path as NodePath<FunctionType>),
             esModule_id: 'default',
             jsdoc: getDocTagsFromPath(reference.path),
