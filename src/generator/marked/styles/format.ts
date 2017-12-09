@@ -1,15 +1,19 @@
-export const hr = () => {};
+export const strong = (text: string) => `<strong class="fw-9">${text}</strong>`;
 
-export const em = () => {};
+export const hr = () => `<hr/>`;
 
-export const codespan = (str: string) => {
-  return `<code class="nowrap bg-black-05 black-80 pa2">${str}</code>`;
-};
+export const br = () => `<br/>`;
 
-export const br = () => {};
+export const em = (text: string) => `<em>${text}</em>`;
 
-export const del = () => {};
+export const codespan = (str: string) =>
+  `<code class="nowrap bg-black-05 black-80 pa2">${str}</code>`;
 
-export const link = () => {};
+export const del = (text: string) => `<del>${text}</del>`;
 
-export const image = () => {};
+export const link = (href: string, title: string, text: string) =>
+  `<a class="dim blue" href="${href}" target="_blank" title="${title ||
+    ''}">${text}</a>`;
+
+export const image = (href: string, title: string, text: string) =>
+  `<img src="${href}" alt="${text}" title=${title}/>`;

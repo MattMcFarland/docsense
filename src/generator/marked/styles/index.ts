@@ -3,4 +3,4 @@ export { default as code } from './code';
 export { default as paragraph } from './paragraph';
 export { default as heading } from './heading';
 export { table, tableCell, tableRow } from './table';
-export { codespan } from './format';
+export { strong, hr, br, em, codespan, del, link, image } from './format';
