@@ -1,10 +1,10 @@
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync } from 'fs';
 import * as Handlebars from 'handlebars';
 import * as marked from 'marked';
 import * as emoji from 'node-emoji';
 import * as path from 'path';
 
-import { makeNodeModuleStatic, withAllFiles } from './file';
+import { createFile, withAllFiles } from './file';
 
 export const require_template = (relPath: string) => {
   const targetPath = require.resolve(relPath);
@@ -74,5 +74,5 @@ export const compile = (source: string, data: any, target: string) => {
   const content = template(data);
   const withLayout = compileLayout(content, data);
   const targetPath = path.resolve(process.cwd(), 'docs', target);
-  writeFileSync(targetPath, withLayout, 'utf8');
+  createFile(targetPath, withLayout);
 };

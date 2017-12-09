@@ -1,5 +1,6 @@
-import { readdirSync, readFileSync, writeFileSync } from 'fs';
-import { resolve as resolvePath } from 'path';
+import { readdirSync, readFileSync, writeFile } from 'fs';
+import * as mkdirp from 'mkdirp';
+import * as Path from 'path';
 
 export const withAllFiles = (
   path: string,
@@ -7,13 +8,20 @@ export const withAllFiles = (
 ) => {
   const files = readdirSync(path);
   files.forEach((filename, index) => {
-    const data = readFileSync(resolvePath(path, filename), 'utf8');
+    const data = readFileSync(Path.resolve(path, filename), 'utf8');
     fn(data, filename, index);
   });
 };
 
-export const makeNodeModuleStatic = (require_module: string, dist: string) => {
-  const data = readFileSync(require.resolve(require_module), 'utf8');
-  writeFileSync(resolvePath(dist), data, 'utf8');
-  return true;
-};
+export const createFile = (target: string, data: string | Buffer) =>
+  new Promise((resolve, reject) => {
+    const dir = Path.dirname(target);
+
+    mkdirp(dir, mkDirError => {
+      if (mkDirError) return reject(mkDirError);
+      writeFile(target, data, writeError => {
+        if (writeError) return reject(writeError);
+        if (!writeError) return resolve(true);
+      });
+    });
+  });
