@@ -32,36 +32,46 @@ import {
 import functionVisitor from './visitors/functionVisitor';
 
 export const collectionName = 'esModule_collection';
-interface State {
+
+export interface State {
   identifiers: { [index: string]: any };
 }
 
-interface Exportable {
+export interface Exportable {
   file_id: string;
   esModule_id: string;
 }
-interface ExportingStatic extends Exportable {
+
+export interface ExportingStatic extends Exportable {
   kind: 'ExportingStatic';
   jsdoc?: Annotation[];
 }
-interface ExportingFunction extends Exportable {
+
+export interface ExportingFunction extends Exportable {
   kind: 'ExportingFunction';
   function: IFunctionMeta;
   jsdoc?: Annotation[];
 }
-interface ExportingLiteral extends Exportable {
+
+export interface ExportingLiteral extends Exportable {
   kind: 'ExportingLiteral';
   type: 'StringLiteral' | 'NumericLiteral' | 'BooleanLiteral';
   value: string | number | boolean;
   jsdoc?: Annotation[];
 }
-interface ExportingImport extends Exportable {
+
+export interface ExportingImport extends Exportable {
   kind: 'ExportingImport';
   source: Exportable;
   jsdoc?: Annotation[];
 }
 
-type ESModule = ExportingFunction | ExportingLiteral;
+export type ESModule =
+  | ExportingFunction
+  | ExportingLiteral
+  | ExportingImport
+  | ExportingStatic;
+
 export const key = 'esModule';
 export default (engine: ParseEngine, store: Store): any => {
   return {
