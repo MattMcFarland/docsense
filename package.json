@@ -33,7 +33,7 @@
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
     "poc": "ts-node src/generator/POC.ts",
     "predev-docs": "yarn build && yarn docs && yarn poc ",
-    "dev-docs": "NO_STATIC=true node scripts/dev-docs"
+    "dev-docs": "node scripts/dev-docs"
   },
   "lint-staged": {
     "*.{ts,js,json,prettierrc,babelrc,docsenserc}": [

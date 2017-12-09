@@ -1,8 +1,8 @@
 <div>
-  <header>
+  <header class="mb5">
     <h1 class="mb0 black-50">
-      <i class="blue black-50 pr2 fa fa-cube" aria-hidden="true"></i>&nbsp;{{file_id}}</h1>
-    <div class="f4">{{> importHeader filepath=file_id }}</div>
+      <i class="blue black-50 pr2 fa fa-cube" aria-hidden="true"></i>&nbsp;{{modulename file_id}}</h1>
+    <div class="f5">{{> importHeader filepath=file_id }}</div>
   </header>
   <div class="ml2 mt4">
     <h2>Exports</h2>
@@ -21,7 +21,6 @@
   </div>
   <hr/>
   <h5>db info:</h5>
-
   <pre><code>{{json esModule}}</code></pre>
 
 </div>
