@@ -2,7 +2,7 @@ import * as assert from 'assert';
 import { resolve as resolvePath } from 'path';
 
 import { IPluginModule, IPluginRecord } from '../_types/Plugin';
-import { IConfig } from '../config';
+import { DocSenseConfig } from '../config/default-config';
 import ParseEngine from '../parser/ParseEngine';
 import Store from '../store';
 import {
@@ -12,11 +12,11 @@ import {
 } from './file';
 
 type ConfigAndPlugins = Promise<{
-  config: IConfig;
+  config: DocSenseConfig;
   plugins: IPluginRecord[];
 }>;
 
-export const setupCorePlugins = (config: IConfig): ConfigAndPlugins =>
+export const setupCorePlugins = (config: DocSenseConfig): ConfigAndPlugins =>
   scanCorePluginDirectory()
     .then(reduceDirectoryToJSFiles)
     .then(resolveCorePluginPaths)

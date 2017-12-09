@@ -1,16 +1,23 @@
 import { readdirSync, readFileSync, writeFileSync } from 'fs';
+import * as HighlightJS from 'highlight.js';
+import * as marked from 'marked';
 import * as mkdirp from 'mkdirp';
 import { resolve as resolvePath } from 'path';
 import { promisify } from 'util';
 
-import { compile, require_template } from './compiler';
+import getConfig from '../config';
+import { DocSenseConfig } from '../config/default-config';
+import { addEmojis, compile, require_md, require_template } from './compiler';
+import { makeNodeModuleStatic } from './file';
+import markedStyle from './marked/renderer';
 
 const mkdir = promisify(mkdirp);
-
 const db = require('../../docs/db.json');
-
 // create index html
 const { esModule_collection, file_collection } = db;
+
+const renderer = markedStyle();
+
 const esModules = file_collection.reduce((acc: any, file: any) => {
   const fileExports = esModule_collection.filter(
     (xp: any) => xp.file_id === file.file_id
@@ -90,9 +97,26 @@ const getModuleInfo = (esm: any) => {
 };
 
 makeModuleDirs()
+  .then(makeSourceDirs)
   .then(makeStatic)
   .then(copyStatic)
-  .then(() => {
+  .then(getConfig)
+  .then((config: DocSenseConfig) => {
+    if (!process.env.NO_STATIC) {
+      makeNodeModuleStatic(
+        'tachyons/css/tachyons.min.css',
+        'docs/static/tachyons.min.css'
+      );
+      makeNodeModuleStatic(
+        'highlightjs/highlight.pack.min.js',
+        'docs/static/highlight.js'
+      );
+      makeNodeModuleStatic(
+        'highlightjs/styles/mono-blue.css',
+        'docs/static/hljs.style.css'
+      );
+    }
+
     esModules.forEach((esm: any) => {
       const esModulePage = require_template('./templates/esModule.hbs');
       const sourcePage = require_template('./templates/sourcePage.hbs');
@@ -110,6 +134,13 @@ makeModuleDirs()
         esm.file_id + '/source.html'
       );
     });
+    const mainDoc = require_md(config.main);
+    marked.setOptions({
+      renderer,
+    });
     const indexPage = require_template('./templates/index.hbs');
-    compile(indexPage, { esModules }, 'index.html');
+    if (mainDoc) {
+      const parsed = marked(addEmojis(mainDoc));
+      compile(indexPage, { main: parsed, esModules }, 'index.html');
+    }
   });

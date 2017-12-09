@@ -14,6 +14,6 @@ export const withAllFiles = (
 
 export const makeNodeModuleStatic = (require_module: string, dist: string) => {
   const data = readFileSync(require.resolve(require_module), 'utf8');
-  writeFileSync(resolvePath(dist), data);
+  writeFileSync(resolvePath(dist), data, 'utf8');
   return true;
 };

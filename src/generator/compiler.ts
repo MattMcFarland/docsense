@@ -1,5 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import * as Handlebars from 'handlebars';
+import * as marked from 'marked';
+import * as emoji from 'node-emoji';
 import * as path from 'path';
 
 import { makeNodeModuleStatic, withAllFiles } from './file';
@@ -8,7 +10,20 @@ export const require_template = (relPath: string) => {
   const targetPath = require.resolve(relPath);
   return readFileSync(targetPath, 'utf8');
 };
-
+export const require_md = (cwdPath: string) => {
+  const targetPath = require.resolve(
+    path.resolve(process.cwd(), cwdPath + '.md')
+  );
+  try {
+    return readFileSync(targetPath, 'utf8');
+  } catch (e) {
+    return;
+  }
+};
+export function addEmojis(markdown: string) {
+  const replacer = (match: any) => emoji.emojify(match);
+  return markdown.replace(/(:.*:)/g, replacer);
+}
 require('handlebars-helpers')();
 Handlebars.registerHelper('json', (context: any) =>
   JSON.stringify(context, null, 2)
@@ -42,19 +57,6 @@ withAllFiles(
       }
     }
   }
-);
-
-makeNodeModuleStatic(
-  'tachyons/css/tachyons.min.css',
-  'docs/static/tachyons.min.css'
-);
-makeNodeModuleStatic(
-  'highlightjs/highlight.pack.min.js',
-  'docs/static/highlight.js'
-);
-makeNodeModuleStatic(
-  'highlightjs/styles/github.css',
-  'docs/static/hljs.github.css'
 );
 
 export const compileLayout = (page: any, data: any) => {

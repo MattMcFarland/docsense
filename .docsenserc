@@ -3,5 +3,6 @@
   "parseOptions": {
     "sourceType": "module",
     "plugins": ["typescript", "objectRestSpread"]
-  }
+  },
+  "main": "./readme"
 }

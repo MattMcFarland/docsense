@@ -1,18 +1,14 @@
-## WIP
-
-This is a work in progress
-
 ## Docsense
 
 Docsense is a pluggable and customizable AST to documentation generator which
 parses ECMASCIPT 2015+ using
 [Babylon](https://github.com/babel/babel/tree/master/packages/babylon),
 
-**It is still in early development and currently not operational**
+> 🤖 **It is still in early development and currently not operational** 🤖
 
 ### Development
 
-Clone the project, then run `yarn` to install all dependencies.
+:muscle: Clone the project, then run `yarn` to install all dependencies.
 
 ```
 git clone https://github.com/MattMcFarland/docsense
@@ -52,29 +48,6 @@ Execution ->
         Plugin visitors create a database ->
           Static Docs are generated
 ```
-
-### Finished
-
-* [x] variable declarations
-* [x] FunctionExpression, ArrowFunctionExpression, FunctionDeclaration
-* [x] CommonJS Exports
-* [x] ES6 Exports
-* [x] Function Paramaters
-* [x] Object Destructuring
-* [x] Plugin system
-* [x] JSDoc comments for all of the above
-* [x] Memory/File database and caching
-* [x] Objects
-* [x] Classes
-
-### TODO
-
-* [ ] Querying data, UI
-
-### Roadmap
-
-* [ ] STRETCH: Support for prototype based object creation (es5), also perhaps
-      usage of Object.DefineProperty(ies), Object.Create, etc.
 
 ### LICENSE
 

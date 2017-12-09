@@ -8,6 +8,7 @@
   "unpkg": "dist/docsense.js",
   "jsdelivr": "dist/docsense.js",
   "typings": "types/index.d.ts",
+  "schema": "docsense.schema.json",
   "files": ["src", "dist/*.js", "types/*.d.ts"],
   "scripts": {
     "test": "jest",
@@ -15,11 +16,14 @@
     "precommit": "lint-staged",
     "clean": "rm -rf dist",
     "prebuild": "yarn clean && mkdir dist",
+    "build:schema":
+      "typescript-json-schema ./tsconfig.json -o docsense.schema.json --ignoreErrors DocSenseConfig",
     "build:common": "tsc -p tsconfig.common.json",
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:umd": "tsc -p tsconfig.umd.json",
     "build:info": "node scripts/build-info",
-    "build": "yarn build:info && yarn build:common && yarn build:esm",
+    "build":
+      "yarn build:info && yarn build:schema && yarn build:common && yarn build:esm",
     "predocs": "rm -rf docs",
     "docs": "mkdir docs && node dist/common/index.js",
     "debug": "ts-node --inspect-brk --nolazy src/index.ts",
@@ -28,6 +32,7 @@
       "prettier --write src/**/*.{ts,js,json,prettierrc,babelrc,docsenserc}",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
     "poc": "ts-node src/generator/POC.ts",
+    "predev-docs": "yarn build && yarn docs && yarn poc ",
     "dev-docs": "node scripts/dev-docs"
   },
   "lint-staged": {
@@ -46,12 +51,18 @@
     "cosmiconfig": "^3.1.0",
     "deepmerge": "^2.0.1",
     "doctrine": "^2.0.0",
+    "emoji": "^0.3.2",
+    "from": "^0.1.7",
     "glob": "^7.1.2",
     "handlebars": "^4.0.11",
     "handlebars-helpers": "^0.10.0",
+    "highlight.js": "^9.12.0",
     "highlightjs": "^9.10.0",
+    "import": "^0.0.6",
     "lowdb": "^1.0.0",
+    "marked": "^0.3.7",
     "mkdirp": "^0.5.1",
+    "node-emoji": "^1.8.1",
     "npmlog": "^4.1.2",
     "pascal-case": "^2.0.1",
     "tachyons": "^4.9.0"
@@ -68,10 +79,13 @@
     "@types/doctrine": "^0.0.3",
     "@types/glob": "^5.0.33",
     "@types/handlebars": "^4.0.36",
+    "@types/highlight.js": "^9.12.2",
     "@types/jest": "^21.1.8",
     "@types/lowdb": "^0.15.0",
+    "@types/marked": "^0.3.0",
     "@types/mkdirp": "^0.5.2",
     "@types/node": "^8.0.53",
+    "@types/node-emoji": "^1.4.0",
     "@types/ramda": "^0.25.6",
     "browser-sync": "^2.18.13",
     "eslint": "^4.12.0",
@@ -92,7 +106,8 @@
     "tslint-config-prettier": "^1.6.0",
     "tslint-eslint-rules": "^4.1.1",
     "typescript": "^2.6.2",
-    "typescript-babel-jest": "^1.0.5"
+    "typescript-babel-jest": "^1.0.5",
+    "typescript-json-schema": "^0.20.0"
   },
   "jest": {
     "moduleFileExtensions": ["ts", "tsx", "js"],
