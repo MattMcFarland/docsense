@@ -5,6 +5,7 @@ import {
   code,
   codespan,
   heading,
+  link,
   paragraph,
   table,
 } from './styles';
@@ -20,6 +21,6 @@ export default function() {
   renderer.tablecell = tableCell;
   renderer.tablerow = tableRow;
   renderer.codespan = codespan;
-
+  renderer.link = link;
   return renderer;
 }
