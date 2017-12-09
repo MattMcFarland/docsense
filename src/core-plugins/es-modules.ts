@@ -84,6 +84,7 @@ export default (engine: ParseEngine, store: Store): any => {
 
     if (path.node.declaration.type === 'FunctionDeclaration') {
       push({
+        kind: 'ExportingFunction',
         file_id: getFileName(path),
         function: getFunctionMeta(path.get('declaration') as NodePath<
           FunctionDeclaration
@@ -155,6 +156,27 @@ export default (engine: ParseEngine, store: Store): any => {
             });
             break;
 
+          /* Identifier */
+          case 'Identifier':
+            const refName = assignment.node.name;
+            const bindings: any = path.scope.getAllBindings();
+            const reference: Binding = bindings[refName]
+              ? bindings[refName]
+              : null;
+
+            if (reference && reference.path && reference.path.isFunction()) {
+              push<ExportingFunction>({
+                kind: 'ExportingFunction',
+                file_id: getFileName(path),
+                function: getFunctionMeta(reference.path as NodePath<
+                  FunctionType
+                >),
+                esModule_id: 'default',
+                jsdoc: getDocTagsFromPath(reference.path),
+              });
+            }
+            break;
+
           // The following node types are skipped, and a warning will be noted
           // in the console.
           case 'NullLiteral':
@@ -162,7 +184,6 @@ export default (engine: ParseEngine, store: Store): any => {
           case 'AssignmentExpression':
           case 'BinaryExpression':
           case 'ConditionalExpression':
-          case 'Identifier':
           case 'RegExpLiteral':
           case 'LogicalExpression':
           case 'SequenceExpression':
@@ -220,6 +241,7 @@ export default (engine: ParseEngine, store: Store): any => {
   function allDeclaration(path: NodePath<ExportAllDeclaration>) {
     const push = store.createPush(path);
     push({
+      kind: 'ExportingAllFromSource',
       file_id: getFileName(path),
       esModule_id: 'all',
       source_id: path.node.source.value,
