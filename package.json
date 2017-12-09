@@ -18,6 +18,7 @@
     "prebuild": "yarn clean && mkdir dist",
     "build:schema":
       "typescript-json-schema ./tsconfig.json -o docsense.schema.json --ignoreErrors DocSenseConfig",
+    "postbuild:schema": "prettier --write docsense.schema.json",
     "build:common": "tsc -p tsconfig.common.json",
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:umd": "tsc -p tsconfig.umd.json",
