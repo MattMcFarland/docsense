@@ -15,11 +15,14 @@
     "precommit": "lint-staged",
     "clean": "rm -rf dist",
     "prebuild": "yarn clean && mkdir dist",
+    "build:templates": "cp -R src/generator/templates dist/templates",
     "build:schema":
       "typescript-json-schema ./tsconfig.json -o docsense.schema.json --ignoreErrors DocSenseConfig",
     "postbuild:schema": "prettier --write docsense.schema.json",
     "build:common": "tsc -p tsconfig.common.json",
+    "postbuild:common": "cp -R src/generator/templates dist/common/generator",
     "build:esm": "tsc -p tsconfig.esm.json",
+    "postbuild:esm": "cp -R src/generator/templates dist/esm/generator",
     "build:umd": "tsc -p tsconfig.umd.json",
     "build:info": "node scripts/build-info",
     "build":
