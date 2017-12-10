@@ -32,21 +32,21 @@ export const generate = async () => {
     compile(indexPage, { main: parsed, esModules }, 'index.html');
   }
 
-  esModules.forEach((esm: IFileExportsQuery) => {
+  esModules.forEach((esModule: IFileExportsQuery) => {
     const esModulePage = require_template('./templates/esModule.hbs');
     const sourcePage = require_template('./templates/sourcePage.hbs');
     compile(
       esModulePage,
-      { file_id: esm.file_id, esModule: esm, esModules },
-      esm.file_id + '/index.html'
+      { esModule, esModules },
+      esModule.file.path + '/index.html'
     );
     compile(
       sourcePage,
       {
-        sourceCode: readFileSync(resolvePath(esm.file_id), 'utf8'),
+        sourceCode: readFileSync(resolvePath(esModule.file.path), 'utf8'),
         esModules,
       },
-      esm.file_id + '/source.html'
+      esModule.file.path + '/source.html'
     );
   });
 };

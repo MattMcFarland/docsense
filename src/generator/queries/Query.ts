@@ -2,16 +2,16 @@ import getConfig from '../../config';
 import { DocSenseConfig } from '../../config/default-config';
 import { connect as dbConnect } from '../../db';
 
-class Query<A> {
+class Query<A, B> {
   private db: Lowdb;
-  private resolver: (db: Lowdb) => Promise<A>;
+  private resolver: (db: Lowdb, ...args: B[]) => Promise<A>;
 
-  constructor(resolver: (db: Lowdb) => Promise<A>) {
+  constructor(resolver: (db: Lowdb, ...args: B[]) => Promise<A>) {
     this.resolver = resolver;
   }
 
-  public exec(): Promise<A> {
-    return this.connect().then(this.resolver);
+  public exec(...args: B[]): Promise<A> {
+    return this.connect().then(db => this.resolver(db, ...args));
   }
 
   private connect(): Promise<Lowdb> {

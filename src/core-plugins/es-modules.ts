@@ -22,6 +22,7 @@ import {
   assertNever,
   getDocTagsFromPath,
   getFileId,
+  getFileName,
   getFunctionMeta,
   isNamedIdentifier,
 } from './helpers/getters';
@@ -263,7 +264,8 @@ export default (engine: ParseEngine, store: Store): any => {
       parentPath.node.source.type === 'StringLiteral'
     ) {
       const file_id = getFileId(nodePath);
-      const file_dir = Path.dirname(file_id);
+      const file_path = getFileName(nodePath);
+      const file_dir = Path.dirname(file_path);
       const source = {
         file_id: encode(
           Path.posix.join(file_dir, parentPath.node.source.value)

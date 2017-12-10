@@ -16,39 +16,39 @@ export default function(engine: ParseEngine, db: Lowdb) {
       .write();
   });
   const createFileModel = (filepath: string): FileModel => {
-    const file_path = Path.posix.normalize(filepath);
+    const path = Path.posix.normalize(filepath);
     const {
-      dir: file_dir,
-      root: file_root,
-      base: file_base,
-      name: file_name,
-      ext: file_ext,
-    } = Path.posix.parse(file_path);
-    const file_id = encode(`${file_dir}/${file_name}`);
-    const isIndex = file_name === 'index';
+      dir,
+      // root: file_root,
+      base,
+      name,
+      ext,
+    } = Path.posix.parse(path);
+    const id = encode(`${dir}/${name}`);
+    const isIndex = name === 'index';
     const rest = {
-      file_dir,
-      file_root,
-      file_base,
-      file_name,
-      file_ext,
-      file_id,
-      file_path,
+      dir,
+      // file_root,
+      base,
+      name,
+      ext,
+      id,
+      path,
       isIndex,
     };
-    if (kindIsFlowType(file_path)) {
+    if (kindIsFlowType(path)) {
       return {
         kind: FileKind.FlowType,
         ...rest,
       };
     }
-    if (kindIsJavascript(file_path)) {
+    if (kindIsJavascript(path)) {
       return {
         kind: FileKind.JavaScript,
         ...rest,
       };
     }
-    if (kindIsTypeScript(file_path)) {
+    if (kindIsTypeScript(path)) {
       return {
         kind: FileKind.TypeScript,
         ...rest,
@@ -90,14 +90,49 @@ export enum FileKind {
 }
 
 export interface BaseFileModel {
+  /**
+   * Kind of file,
+   * `"TypeScript"`, `"FlowType"`, `"JavaScript"`, or `"Other"`
+   */
   kind: FileKind;
-  file_id: string;
-  file_path: string;
-  file_dir: string;
-  file_root: string;
-  file_base: string;
-  file_name: string;
-  file_ext: string;
+
+  /**
+   * A Unique Identifier for the file, considered its primary key,
+   * e.g.: `xc8v7wsejkfn==`
+   */
+  id: string;
+
+  /**
+   * Full path to the file,
+   * e.g: `foo/bar/myFile.xyz` from `foo/bar/myFile.xyz`
+   */
+  path: string;
+
+  /**
+   * Directory Path to the file,
+   * e.g.: `foo/bar` from `foo/bar/myFile.xyz`
+   */
+  dir: string;
+
+  /**
+   * File name with its extension,
+   * e.g.: `myFile.xyz` from `foo/bar/myFile.xyz`
+   */
+  base: string;
+
+  /**
+   * File name without its extension,
+   * e.g.: `MyFile` from `foo/bar/myFile.xyz`
+   */
+  name: string;
+
+  /**
+   * File name without its extension,
+   * e.g.: `.xyz` from `foo/bar/myFile.xyz`
+   */
+  ext: string;
+
+  /** File with any kind of extension is named `index` */
   isIndex: boolean;
 }
 
