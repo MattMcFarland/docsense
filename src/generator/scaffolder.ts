@@ -5,7 +5,7 @@ import { promisify } from 'util';
 
 import getConfig from '../config';
 import { ESModule } from '../core-plugins/es-modules';
-import { createFile, withAllFiles } from './file';
+import { createFile, withAllFiles } from '../utils/file';
 
 const mkdir = promisify(mkdirp);
 
