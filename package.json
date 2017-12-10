@@ -32,7 +32,7 @@
       "prettier --write src/**/*.{ts,js,json,prettierrc,babelrc,docsenserc}",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
     "poc": "ts-node src/generator/POC.ts",
-    "predev-docs": "yarn build && yarn docs && yarn poc ",
+    "predev-docs": "yarn build && yarn docs",
     "dev-docs": "node scripts/dev-docs"
   },
   "lint-staged": {
