@@ -39,9 +39,6 @@ class Compiler {
   private registerHelpers() {
     const Handlebars = this.Handlebars;
     require('handlebars-helpers')();
-    Handlebars.registerHelper('json', (context: any) =>
-      JSON.stringify(context, null, 2)
-    );
     withAllFiles(
       path.resolve(__dirname, 'templates/helpers'),
       (src: string, filepath: string) => {
