@@ -1,3 +1,3 @@
 module.exports = function(ctx) {
-  JSON.stringify(context, null, 2);
+  return JSON.stringify(ctx, null, 2);
 };

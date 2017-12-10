@@ -19,18 +19,17 @@ export const makeNodeModuleStatic = (
 };
 
 export const copyStaticFiles = (targetDir: string) => {
-  const files = readdirSync(resolvePath(__dirname, 'templates/static'));
-  return Promise.all(
-    files.map(filename => {
-      const data = readFileSync(
-        resolvePath(__dirname, 'templates/static', filename)
-      );
-      return createFile(
-        resolvePath(targetDir, 'templates/static', filename),
-        data
-      );
-    })
-  );
+  // todo: get module definition (d.ts) for `copy-dir` and import it properly.
+  const copydir = require('copy-dir');
+  const from = resolvePath(__dirname, 'templates/static');
+  const to = resolvePath(targetDir, 'static');
+
+  return new Promise((resolve, reject) => {
+    copydir(from, to, (err: Error) => {
+      if (err) return reject(err);
+      return resolve(true);
+    });
+  });
 };
 
 export const scaffoldStaticAssets = (outDir: string) => {
