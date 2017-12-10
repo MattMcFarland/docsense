@@ -1,7 +1,12 @@
 <div class="lh-solid f6">
   {{#eq name 'default'}}
-    <pre class="ba b--black-20 lh-solid"><code class="javascript">import {{exportName filepath}} from '<a class="dim red link" href="/{{filepath}}/source.html{{#if function_id}}#{{getLine function_id}}{{/if}}">{{filepath}}</a>'</code></pre>
+    {{#if file.isIndex}}
+      <pre class="ba b--black-20 lh-solid"><code class="javascript">import {{daam file.path}} from '<a class="dim red link" href="/{{file.path}}/source.html{{#if function_id}}#{{getLine function_id}}{{/if}}">{{file.dir}}</a>'</code></pre>
     {{else}}
-      <pre class="ba b--black-20 lh-solid"><code class="javascript">import { {{name}} } from '<a class="dim red link" href="/{{filepath}}/source.html{{#if function_id}}#{{getLine function_id}}{{/if}}">{{filepath}}</a>'</code></pre>
+      <pre class="ba b--black-20 lh-solid"><code class="javascript">import {{file.name}} from '<a class="dim red link" href="/{{file.path}}/source.html{{#if function_id}}#{{getLine function_id}}{{/if}}">{{file.dir}}/{{file.name}}</a>'</code></pre>
+    {{/if}}
+
+    {{else}}
+      <pre class="ba b--black-20 lh-solid"><code class="javascript">import { {{name}} } from '<a class="dim red link" href="/{{file.path}}/source.html{{#if function_id}}#{{getLine function_id}}{{/if}}">{{file.dir}}/{{file.name}}</a>'</code></pre>
   {{/eq}}
 </div>
