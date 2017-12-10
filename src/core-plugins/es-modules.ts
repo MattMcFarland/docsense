@@ -15,12 +15,13 @@ import * as Path from 'path';
 import { IPluginCommand } from '../_types/Plugin';
 import ParseEngine from '../parser/ParseEngine';
 import Store from '../store';
+import { encode } from '../utils/base64';
 import { log } from '../utils/logger';
 import { logSkipped } from './helpers/effects';
 import {
   assertNever,
   getDocTagsFromPath,
-  getFileName,
+  getFileId,
   getFunctionMeta,
   isNamedIdentifier,
 } from './helpers/getters';
@@ -102,7 +103,7 @@ export default (engine: ParseEngine, store: Store): any => {
     if (nodePath.node.declaration.type === 'FunctionDeclaration') {
       push<ExportingFunction>({
         kind: 'ExportingFunction',
-        file_id: getFileName(nodePath),
+        file_id: getFileId(nodePath),
         function: getFunctionMeta(nodePath.get('declaration') as NodePath<
           FunctionDeclaration
         >),
@@ -139,7 +140,7 @@ export default (engine: ParseEngine, store: Store): any => {
           case 'FunctionExpression':
             push<ExportingFunction>({
               kind: 'ExportingFunction',
-              file_id: getFileName(nodePath),
+              file_id: getFileId(nodePath),
               function: getFunctionMeta(assignment as NodePath<FunctionType>),
               jsdoc: getDocTagsFromPath(assignment),
               esModule_id,
@@ -153,7 +154,7 @@ export default (engine: ParseEngine, store: Store): any => {
           case 'ObjectExpression':
             push<ExportingStatic>({
               kind: 'ExportingStatic',
-              file_id: getFileName(nodePath),
+              file_id: getFileId(nodePath),
               jsdoc: getDocTagsFromPath(assignment),
               esModule_id,
             });
@@ -165,7 +166,7 @@ export default (engine: ParseEngine, store: Store): any => {
           case 'BooleanLiteral':
             push<ExportingLiteral>({
               kind: 'ExportingLiteral',
-              file_id: getFileName(nodePath),
+              file_id: getFileId(nodePath),
               type: assignment.node.type,
               value: assignment.node.value,
               jsdoc: getDocTagsFromPath(assignment),
@@ -184,7 +185,7 @@ export default (engine: ParseEngine, store: Store): any => {
             if (reference && reference.path && reference.path.isFunction()) {
               push<ExportingFunction>({
                 kind: 'ExportingFunction',
-                file_id: getFileName(nodePath),
+                file_id: getFileId(nodePath),
                 function: getFunctionMeta(reference.path as NodePath<
                   FunctionType
                 >),
@@ -247,7 +248,7 @@ export default (engine: ParseEngine, store: Store): any => {
       push<ExportingFunction>({
         esModule_id,
         kind: 'ExportingFunction',
-        file_id: getFileName(nodePath),
+        file_id: getFileId(nodePath),
         function: getFunctionMeta(reference.path as NodePath<FunctionType>),
         jsdoc: getDocTagsFromPath(reference.path),
       });
@@ -261,10 +262,12 @@ export default (engine: ParseEngine, store: Store): any => {
       parentPath.isExportNamedDeclaration() &&
       parentPath.node.source.type === 'StringLiteral'
     ) {
-      const file_id = getFileName(nodePath);
+      const file_id = getFileId(nodePath);
       const file_dir = Path.dirname(file_id);
       const source = {
-        file_id: Path.posix.join(file_dir, parentPath.node.source.value),
+        file_id: encode(
+          Path.posix.join(file_dir, parentPath.node.source.value)
+        ),
         esModule_id: local,
       };
       push<ExportingImport>({
@@ -287,7 +290,7 @@ export default (engine: ParseEngine, store: Store): any => {
     const push = store.createPush(nodePath);
     push({
       kind: 'ExportingAllFromSource',
-      file_id: getFileName(nodePath),
+      file_id: getFileId(nodePath),
       esModule_id: 'all',
       source_id: nodePath.node.source.value,
     });
@@ -310,7 +313,7 @@ export default (engine: ParseEngine, store: Store): any => {
         >;
         push<ExportingFunction>({
           kind: 'ExportingFunction',
-          file_id: getFileName(nodePath),
+          file_id: getFileId(nodePath),
           function: getFunctionMeta(functionPath),
           jsdoc: getDocTagsFromPath(functionPath),
           esModule_id: 'default',
@@ -325,7 +328,7 @@ export default (engine: ParseEngine, store: Store): any => {
         if (reference && reference.path && reference.path.isFunction()) {
           push<ExportingFunction>({
             kind: 'ExportingFunction',
-            file_id: getFileName(nodePath),
+            file_id: getFileId(nodePath),
             function: getFunctionMeta(reference.path as NodePath<FunctionType>),
             esModule_id: 'default',
             jsdoc: getDocTagsFromPath(reference.path),
