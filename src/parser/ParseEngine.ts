@@ -19,9 +19,9 @@ export interface IParser {
  * @extends EventEmitter
  */
 export default class ParseEngine extends EventEmitter {
+  public parseOptions: ConfigParseOptions;
   private parser: IParser;
   private parserName: string;
-  private parseOptions: ConfigParseOptions;
   private doctrine: typeof docParse;
 
   /**
