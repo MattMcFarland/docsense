@@ -1,14 +1,15 @@
 import { NodePath } from 'babel-traverse';
 import * as t from 'babel-types';
 import { Annotation } from 'doctrine';
-
+import * as Path from 'path';
 import { INamedIdentifier, Parameter } from '../../_types/AST';
 import { createHelper } from './HelperFactory';
 import { FunctionType, IKeyValueDescriptor, Param, VarIDNode } from './types';
 
-export const getFileName = createHelper<t.Node, string>(
-  (node: t.Node) => node.loc.filename
-);
+export const getFileName = createHelper<t.Node, string>((node: t.Node) => {
+  const parts = Path.parse(node.loc.filename);
+  return `${parts.dir}/${parts.name}`;
+});
 
 export const getVariableId = createHelper<t.Node, string | void>(
   (node: t.Node) =>
