@@ -13,6 +13,16 @@
       "outFiles": ["${workspaceFolder}/dist/common/**/*.js"],
       "protocol": "inspector",
       "sourceMaps": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run POC",
+      "program": "${workspaceFolder}/src/generator/POC.ts",
+      "preLaunchTask": "build",
+      "outFiles": ["${workspaceFolder}/dist/common/**/*.js"],
+      "protocol": "inspector",
+      "sourceMaps": true
     }
   ]
 }
