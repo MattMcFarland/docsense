@@ -44,7 +44,7 @@ export default function(engine: ParseEngine, db: Lowdb) {
     }
     if (kindIsJavascript(file_path)) {
       return {
-        kind: FileKind.Javascript,
+        kind: FileKind.JavaScript,
         ...rest,
       };
     }
@@ -62,7 +62,7 @@ export default function(engine: ParseEngine, db: Lowdb) {
 
   const getFileKindFromPath = (filepath: string): FileKind => {
     if (kindIsFlowType(filepath)) return FileKind.FlowType;
-    if (kindIsJavascript(filepath)) return FileKind.Javascript;
+    if (kindIsJavascript(filepath)) return FileKind.JavaScript;
     if (kindIsTypeScript(filepath)) return FileKind.TypeScript;
     return FileKind.Other;
   };
@@ -83,10 +83,10 @@ export default function(engine: ParseEngine, db: Lowdb) {
 }
 
 export enum FileKind {
-  TypeScript,
-  FlowType,
-  Javascript,
-  Other,
+  TypeScript = 'TypeScript',
+  FlowType = 'FlowType',
+  JavaScript = 'JavaScript',
+  Other = 'Other',
 }
 
 export interface BaseFileModel {
@@ -110,14 +110,18 @@ export interface FlowTypeFile extends BaseFileModel {
 }
 
 export interface JavascriptFile extends BaseFileModel {
-  kind: FileKind.Javascript;
+  kind: FileKind.JavaScript;
 }
 
 export interface OtherFile extends BaseFileModel {
   kind: FileKind.Other;
 }
 
-type FileModel = TypeScriptFile | FlowTypeFile | JavascriptFile | OtherFile;
+export type FileModel =
+  | TypeScriptFile
+  | FlowTypeFile
+  | JavascriptFile
+  | OtherFile;
 
 export const isTypeScriptFile = (
   fileModel: FileModel
@@ -134,5 +138,5 @@ export const isFlowTypeFile = (
 export const isJavascriptFile = (
   fileModel: FileModel
 ): fileModel is JavascriptFile => {
-  return fileModel.kind === FileKind.Javascript;
+  return fileModel.kind === FileKind.JavaScript;
 };
