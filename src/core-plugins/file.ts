@@ -88,11 +88,7 @@ export enum FileKind {
   Javascript,
   Other,
 }
-type OneOfFileKind =
-  | FileKind.TypeScript
-  | FileKind.FlowType
-  | FileKind.Javascript
-  | FileKind.Other;
+
 export interface BaseFileModel {
   kind: FileKind;
   file_id: string;
