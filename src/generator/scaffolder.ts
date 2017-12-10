@@ -19,11 +19,16 @@ export const makeNodeModuleStatic = (
 };
 
 export const copyStaticFiles = (targetDir: string) => {
-  const files = readdirSync(resolvePath(__dirname, 'static'));
+  const files = readdirSync(resolvePath(__dirname, 'templates/static'));
   return Promise.all(
     files.map(filename => {
-      const data = readFileSync(resolvePath(__dirname, 'static', filename));
-      return createFile(resolvePath(targetDir, 'static', filename), data);
+      const data = readFileSync(
+        resolvePath(__dirname, 'templates/static', filename)
+      );
+      return createFile(
+        resolvePath(targetDir, 'templates/static', filename),
+        data
+      );
     })
   );
 };
