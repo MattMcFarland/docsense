@@ -44,8 +44,8 @@ export interface Exportable {
   esModule_id: string;
 }
 
-export interface ExportingStatic extends Exportable {
-  kind: 'ExportingStatic';
+export interface ExportingReference extends Exportable {
+  kind: 'ExportingReference';
   jsdoc?: Annotation[];
 }
 
@@ -72,7 +72,7 @@ export type ESModule =
   | ExportingFunction
   | ExportingLiteral
   | ExportingImport
-  | ExportingStatic;
+  | ExportingReference;
 
 export const key = 'esModule';
 export default (engine: ParseEngine, store: Store): any => {
@@ -155,8 +155,8 @@ export default (engine: ParseEngine, store: Store): any => {
           case 'NewExpression':
           case 'MemberExpression':
           case 'ObjectExpression':
-            push<ExportingStatic>({
-              kind: 'ExportingStatic',
+            push<ExportingReference>({
+              kind: 'ExportingReference',
               file_id: getFileId(nodePath),
               jsdoc: getDocTagsFromPath(assignment),
               esModule_id,

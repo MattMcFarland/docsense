@@ -36,7 +36,7 @@ const fileExportsQuery = (db: Lowdb): Promise<IFileExportsQuery[]> => {
               };
             case 'ExportingFunction':
             case 'ExportingLiteral':
-            case 'ExportingStatic':
+            case 'ExportingReference':
               return xp;
           }
         }
