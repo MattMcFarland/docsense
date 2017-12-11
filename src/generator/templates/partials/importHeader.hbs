@@ -5,7 +5,7 @@
   {{/code}}
   {{else}}
   {{#code}}
-    import * as {{file.name}} from '<a class="dim red link" title="view source" href="/{{file.path}}/source.html">{{file.dir}}/{{file.name}}'</a>
+    import * as {{camelcase file.name}} from '<a class="dim red link" title="view source" href="/{{file.path}}/source.html">{{file.dir}}/{{file.name}}'</a>
   {{/code}}
   {{/if}}
 </div>

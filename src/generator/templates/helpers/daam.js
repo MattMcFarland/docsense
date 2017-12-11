@@ -1,7 +1,10 @@
 // Directory as a Module (DAAM)
+const camelCase = require('camelcase');
 module.exports = function(ctx) {
-  return ctx
-    .split('/')
-    .slice(0, -1)
-    .pop();
+  return camelCase(
+    ctx
+      .split('/')
+      .slice(0, -1)
+      .pop()
+  );
 };

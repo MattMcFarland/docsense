@@ -3,7 +3,7 @@
     {{#if file.isIndex}}
       <pre class="ba b--black-20 lh-solid"><code class="javascript">import {{daam file.path}} from '<a class="dim red link" href="/{{file.path}}/source.html{{#if function_id}}#{{getLine function_id}}{{/if}}">{{file.dir}}</a>'</code></pre>
     {{else}}
-      <pre class="ba b--black-20 lh-solid"><code class="javascript">import {{file.name}} from '<a class="dim red link" href="/{{file.path}}/source.html{{#if function_id}}#{{getLine function_id}}{{/if}}">{{file.dir}}/{{file.name}}</a>'</code></pre>
+      <pre class="ba b--black-20 lh-solid"><code class="javascript">import {{pascalcase file.name}} from '<a class="dim red link" href="/{{file.path}}/source.html{{#if function_id}}#{{getLine function_id}}{{/if}}">{{file.dir}}/{{file.name}}</a>'</code></pre>
     {{/if}}
 
     {{else}}
