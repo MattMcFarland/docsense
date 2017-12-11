@@ -5,7 +5,8 @@ const DefaultConfig: DocSenseConfig = {
     tokens: false,
   },
   files: [],
-  main: './readme',
+  main: './README',
+  root: './',
 };
 
 export default DefaultConfig;
@@ -74,7 +75,11 @@ export interface DocSenseConfig {
    */
   out: string;
   /**
-   * What markdown file to load for the main page. (e.g., './readme')
+   * What markdown file to load for the main page. (e.g., './README')
    */
   main: string;
+  /**
+   * The root path of the project
+   */
+  root: string;
 }
