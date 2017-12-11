@@ -4,7 +4,7 @@ import { FileKind, FileModel } from '../../core-plugins/file';
 import { decode, encode } from '../../utils/base64';
 import Query from './Query';
 
-const fileExportsQuery = (db: Lowdb): Promise<any[]> => {
+const hierarchyQuery = (db: Lowdb): Promise<any[]> => {
   const { directory_collection, file_collection } = db.getState();
 
   /**
@@ -70,7 +70,9 @@ const fileExportsQuery = (db: Lowdb): Promise<any[]> => {
           nodeList.push(node);
         } else {
           const file_id = encode(subPath);
-          nodeList.push(file_collection.filter({ file_id })[0]);
+
+          const fileInfo = file_collection.find((f: any) => f.id === file_id);
+          nodeList.push({ ...fileInfo });
         }
       });
       return nodeList;
@@ -83,4 +85,4 @@ const fileExportsQuery = (db: Lowdb): Promise<any[]> => {
   return Promise.resolve(explode(directory_collection));
 };
 
-export default new Query<any[], void>(fileExportsQuery);
+export default new Query<any[], void>(hierarchyQuery);

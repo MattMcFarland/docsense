@@ -7,7 +7,7 @@ import { ESModule } from '../core-plugins/es-modules';
 import { connect } from '../db';
 import { addEmojis, compile, require_md, require_template } from './compiler';
 import markedStyle from './marked/renderer';
-import { fileExportsQuery } from './queries';
+import { fileExportsQuery, hierarchyQuery } from './queries';
 import { IFileExportsQuery } from './queries/fileExportsQuery';
 import { copyStaticFiles, scaffoldStaticAssets } from './scaffolder';
 
@@ -19,7 +19,7 @@ export const generate = async () => {
 
   const db = await connect();
   const esModules = await fileExportsQuery.exec();
-
+  const hierarchy = await hierarchyQuery.exec();
   const renderer = markedStyle();
 
   marked.setOptions({ renderer });
@@ -29,7 +29,11 @@ export const generate = async () => {
 
   if (mainDoc) {
     const parsed = marked(addEmojis(mainDoc));
-    compile(indexPage, { main: parsed, esModules, config }, 'index.html');
+    compile(
+      indexPage,
+      { main: parsed, esModules, config, hierarchy },
+      'index.html'
+    );
   }
 
   esModules.forEach((esModule: IFileExportsQuery) => {
@@ -37,7 +41,7 @@ export const generate = async () => {
     const sourcePage = require_template('./templates/sourcePage.hbs');
     compile(
       esModulePage,
-      { esModule, esModules, config },
+      { esModule, esModules, config, hierarchy },
       esModule.file.path + '/index.html'
     );
     compile(
