@@ -1,15 +1,10 @@
 import { DirectoryModel, FileIdRecord } from '../core-plugins/directory';
 import { decode, encode } from './base64';
 
-export interface DirectoryTree {
-  [key: string]: DirectoryTree[] | string[];
-}
 /**
  * Explodes the dir_collection into a tree.
  */
-export default function explode(
-  dir_collection: DirectoryModel[]
-): DirectoryTree {
+export default function explode(dir_collection: DirectoryModel[]): any {
   const ds = dir_collection.map(d => d.directory_id + '/');
   const ps = dir_collection.reduce((acc: string[], dirModel): string[] => {
     if (dirModel.files) {
@@ -59,7 +54,7 @@ export default function explode(
    * @author Stephane Janicaud
    * @link https://stackoverflow.com/questions/43431829/split-array-of-file-paths-into-hierarchical-object-in-javascript/43432913#43432913
    */
-  function buildTree(path: string = ''): DirectoryTree {
+  function buildTree(path: string = ''): any {
     const nodeList: any = [];
     findSubPaths(path).forEach(subPath => {
       const nodeName = getFilename(subPath);
