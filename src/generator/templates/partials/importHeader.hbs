@@ -1,11 +1,17 @@
 <div>
   {{#if file.isIndex}}
-    {{#code}}
-    import * as {{daam file.path}} from '<a class="dim red link" title="view source" href="/{{file.path}}/source.html">{{file.dir}}'</a>
-  {{/code}}
+    {{esImport
+        all=true
+        name=(daam file.path)
+        link=(concat '/' file.path  '/source.html')
+        from=file.dir
+    }}
   {{else}}
-  {{#code}}
-    import * as {{camelcase file.name}} from '<a class="dim red link" title="view source" href="/{{file.path}}/source.html">{{file.dir}}/{{file.name}}'</a>
-  {{/code}}
+    {{esImport
+        all=true
+        name=(pascalcase file.name)
+        link=(concat '/' file.path  '/source.html')
+        from=(concat file.dir '/' file.name)
+    }}
   {{/if}}
 </div>

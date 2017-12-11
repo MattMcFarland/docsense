@@ -1,12 +1,29 @@
 <div class="lh-solid f6">
   {{#eq name 'default'}}
     {{#if file.isIndex}}
-      <pre class="ba b--black-20 lh-solid"><code class="javascript">import {{daam file.path}} from '<a class="dim red link" href="/{{file.path}}/source.html{{#if function_id}}#{{getLine function_id}}{{/if}}">{{file.dir}}</a>'</code></pre>
+      {{esImport
+          all=false
+          name=(daam file.path)
+          link=(concat '/' file.path '/source.html')
+          line=(getLine function_id)
+          from=file.dir
+      }}
     {{else}}
-      <pre class="ba b--black-20 lh-solid"><code class="javascript">import {{pascalcase file.name}} from '<a class="dim red link" href="/{{file.path}}/source.html{{#if function_id}}#{{getLine function_id}}{{/if}}">{{file.dir}}/{{file.name}}</a>'</code></pre>
+      {{esImport
+          all=false
+          name=(camelcase file.name)
+          link=(concat '/' file.path '/source.html')
+          line=(getLine function_id)
+          from=(concat file.dir '/' file.name)
+      }}
     {{/if}}
-
     {{else}}
-      <pre class="ba b--black-20 lh-solid"><code class="javascript">import { {{name}} } from '<a class="dim red link" href="/{{file.path}}/source.html{{#if function_id}}#{{getLine function_id}}{{/if}}">{{file.dir}}/{{file.name}}</a>'</code></pre>
+      {{esImport
+          all=false
+          name=(concat '{ ' name ' }')
+          link=(concat '/' file.path '/source.html')
+          line=(getLine function_id)
+          from=(concat file.dir '/' file.name)
+      }}
   {{/eq}}
 </div>
