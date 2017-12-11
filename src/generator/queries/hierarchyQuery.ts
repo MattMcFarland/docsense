@@ -1,4 +1,3 @@
-import { DirectoryModel, FileIdRecord } from '../../core-plugins/directory';
 import { ESModule } from '../../core-plugins/es-modules';
 import { FileKind, FileModel } from '../../core-plugins/file';
 import { decode, encode } from '../../utils/base64';
