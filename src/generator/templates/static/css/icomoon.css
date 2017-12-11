@@ -7,8 +7,11 @@
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
+  min-height: 1em;
   line-height: 1;
-
+  vertical-align: middle;
+  font-size: inherit;
+  vertical-align: text-bottom;
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

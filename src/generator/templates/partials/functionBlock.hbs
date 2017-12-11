@@ -1,29 +1,19 @@
 <div class="mv4 pa2" id="{{esModule_id}}">
-  <code><h3 class="f5 mb4 lh-solid">
+  <code><h3 class="f5 lh-solid">
   <a class="link dim black-90" href="#{{esModule_id}}">
     {{esModule_id}}
   </a>
-  (
-  {{~#each function.params as |param|~}}
-    <span class="dark-red">
-      {{~#if @last~}}{{~renderParam param~}}{{else}}{{~renderParam param~}}<span class="black-50">,</span>{{~/if~}}
-    </span>
-  {{~/each~}})
-  <span>
-    {{#each jsdoc}}
-        {{#each tags}}
-          {{#eq title 'returns'}}
-
-              <i class="dark-red icon-arrow-right"></i>{{> typeAnnotation }}
-
-          {{/eq}}
-        {{/each}}
-    {{/each}}
-  </span>
+  {{fnSignature function jsdoc}}
+  {{~#each jsdoc~}}
+      {{~#each tags~}}
+        {{~#eq title 'returns'~}}
+            <i class="ml2 icon-long-arrow-alt-right"></i>{{> typeAnnotation }}
+        {{~/eq~}}
+      {{~/each~}}
+  {{~/each~}}
 </h3>
 </code>
   <div>
     {{> importFn name=esModule_id file=@root.esModule.file function_id=function.function_id}} {{> fndoc jsdoc=jsdoc}}
   </div>
-
 </div>

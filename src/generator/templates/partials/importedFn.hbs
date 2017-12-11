@@ -1,3 +1,18 @@
 <div class="lh-solid f6">
-  <pre class="ba b--black-20 lh-solid"><code class="javascript">import { {{name}} } from '<a class="dim red link" href="/{{file.path}}/source.html{{#if function_id}}#{{getLine function_id}}{{/if}}">{{file.dir}}</a>'</code></pre>
+  {{#if function_id}}
+    {{esImport
+        all=false
+        name=(concat '{ ' name ' }')
+        link=(concat '/' file.path  '/source.html')
+        line=(getLine function_id)
+        from=file.dir
+      }}
+  {{else}}
+    {{esImport
+        all=false
+        name=(concat '{ ' name ' }')
+        link=(concat '/' file.path  '/source.html')
+        from=file.dir
+      }}
+  {{/if}}
 </div>
