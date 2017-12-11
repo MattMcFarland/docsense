@@ -79,7 +79,7 @@
     },
     "main": {
       "description":
-        "What markdown file to load for the main page. (e.g., './readme')",
+        "What markdown file to load for the main page. (e.g., './README')",
       "type": "string"
     },
     "out": {
@@ -93,6 +93,10 @@
     "parser": {
       "description": "Parser, currently 'babylon' is only supported",
       "enum": ["babylon"],
+      "type": "string"
+    },
+    "root": {
+      "description": "The root path of the project",
       "type": "string"
     }
   },
