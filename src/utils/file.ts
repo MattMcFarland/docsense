@@ -1,10 +1,12 @@
-import * as fs from 'fs';
-import * as glob from 'glob';
-import { join as joinPath, resolve as resolvePath } from 'path';
+import * as FS from 'fs';
+import * as Glob from 'glob';
+import * as MkDirP from 'mkdirp';
+import * as Path from 'path';
 import { promisify } from 'util';
+
 import { log } from '../utils/logger';
 
-const readFile = promisify(fs.readFile);
+const readFile = promisify(FS.readFile);
 
 /**
  * Processes a glob pattern to an array of files
@@ -14,7 +16,7 @@ const readFile = promisify(fs.readFile);
  */
 export const processGlobPattern = (pattern: string): Promise<string[]> =>
   new Promise((resolve, reject) =>
-    glob(pattern, (err, matches) => (err ? reject(err) : resolve(matches)))
+    Glob(pattern, (err, matches) => (err ? reject(err) : resolve(matches)))
   );
 
 /**
@@ -31,10 +33,9 @@ export const processAllGlobPatterns = (
  * Converts resolves the full path of the filepath relative to the current working directory.
  * @param {string} relativePath filepath to resolve
  * @returns {string} fullpath
- * @uses resolvePath
  */
 export const resolvePathFromCWD = (relativePath: string): string =>
-  resolvePath(process.cwd(), relativePath);
+  Path.posix.resolve(process.cwd(), relativePath);
 
 /**
  * Resolves the full path all file patterns relative to the current working directory.
@@ -65,7 +66,7 @@ export const safelyReadFile = (filepath: string): Promise<string> =>
  */
 export const resolveFile = (filepath: string): Promise<string> => {
   return new Promise((resolve, reject) => {
-    fs.stat(filepath, (err, stats) => {
+    FS.stat(filepath, (err, stats) => {
       if (err) {
         return reject(err);
       }
@@ -114,7 +115,7 @@ export const reduceDirectoryToJSFiles = (directory: string[]) =>
  */
 export const scanDirectory = (directoryPath: string) => (): Promise<string[]> =>
   new Promise((resolve, reject) => {
-    fs.readdir(directoryPath, (err, directory) => {
+    FS.readdir(directoryPath, (err, directory) => {
       if (err) {
         return reject(err);
       }
@@ -131,5 +132,40 @@ export const resolveContextRelativePaths = (...relativePath: string[]) => (
   filenames: string[]
 ): string[] =>
   filenames.map((filename: string): string =>
-    joinPath(...relativePath, filename)
+    Path.posix.join(...relativePath, filename)
   );
+
+/**
+ * Evals the given function over each of the files within the given directoryPath
+ * @param directoryPath path to iterate over
+ * @param fn function called on each file within the directoryPath
+ */
+export const withAllFiles = (
+  directoryPath: string,
+  fn: (data: string, filename: string, index: number) => void
+) => {
+  const files = FS.readdirSync(directoryPath);
+  files.forEach((filename, index) => {
+    const data = FS.readFileSync(Path.resolve(directoryPath, filename), 'utf8');
+    fn(data, filename, index);
+  });
+};
+
+/**
+ * Creates file from the given path, even if the path does not exist
+ * Similar to running `mkdir -p [path] ; touch [path]
+ * @param target target path and file
+ * @param data written to the new file
+ */
+export const createFile = (target: string, data: string | Buffer) =>
+  new Promise((resolve, reject) => {
+    const dir = Path.dirname(target);
+
+    MkDirP(dir, mkDirError => {
+      if (mkDirError) return reject(mkDirError);
+      FS.writeFile(target, data, writeError => {
+        if (writeError) return reject(writeError);
+        if (!writeError) return resolve(true);
+      });
+    });
+  });

@@ -9,34 +9,21 @@
         <div class="bg-navy pv4 pl2">
           <div class="f2 near-white pa3 pl3 mb1">
             <a class="mb2 link dim white db" href="/" title="Home">
-              <i class="white-50 fa fa-book"></i>&nbsp;DocSense</a>
+              <i class="white-50 icon-book"></i>&nbsp;DocSense</a>
           </div>
           <div class="f3 near-white pa3 pl3 mb2">
-            <i class="white-50 fa fa-cubes"></i>&nbsp;Modules</div>
+            <i class="white-50 icon-cubes"></i>&nbsp;Modules</div>
           {{#each esModules }}
-            <div class="mb2">
-              <a class="pa2 pl4 link dim white db" href="/{{file_id}}/index.html" title="{{file_id}}">
-                <i class="white-50 fa fa-cube"></i>&nbsp;{{modulename file_id}}</a>
-            </div>
+            {{#if file.isIndex }}
+              <a class="mb2 pa2 pl4 link dim white db" href="/{{file.path}}/index.html" title="{{file.path}}">
+                <i class="white-40 icon-cubes mr2"></i>{{daam file.path}}
+              </a>
+            {{else}}
+              <a class="mb2 pa2 pl4 link dim white db" href="/{{file.path}}/index.html" title="{{file.path}}">
+                <i class="white-40 icon-cube mr2"></i>{{file.name}}
+              </a>
+            {{/if}}
           {{/each}}
-          <div class=" f3 near-white pa3 pl3 mb2 ">Classes</div>
-          <a class="pa2 pl4 link dim white db " href="# " title="Home ">One</a>
-          <a class="pa2 pl4 link dim white db " href="# " title="Home ">Two</a>
-          <a class="pa2 pl4 link dim white db " href="# " title="Home ">Three</a>
-          <a class="pa2 pl4 link dim white db " href="# " title="Home ">Four</a>
-          <a class="pa2 pl4 link dim white db " href="# " title="Home ">Five</a>
-          <div class="f3 near-white pa3 pl3 mb2 ">Manual</div>
-          <a class="pa2 pl4 link dim white db " href="# " title="Home ">One</a>
-          <a class="pa2 pl4 link dim white db " href="# " title="Home ">Two</a>
-          <a class="pa2 pl4 link dim white db " href="# " title="Home ">Three</a>
-          <a class="pa2 pl4 link dim white db " href="# " title="Home ">Four</a>
-          <a class="pa2 pl4 link dim white db " href="# " title="Home ">Five</a>
-          <div class="f3 near-white pa3 pl3 mb2 ">More</div>
-          <a class="pa2 pl4 link dim white db " href="# " title="Home ">One</a>
-          <a class="pa2 pl4 link dim white db " href="# " title="Home ">Two</a>
-          <a class="pa2 pl4 link dim white db " href="# " title="Home ">Three</a>
-          <a class="pa2 pl4 link dim white db " href="# " title="Home ">Four</a>
-          <a class="pa2 pl4 link dim white db " href="# " title="Home ">Five</a>
         </div>
       </div>
       <div class="fl w-100 w-70-ns pa2 ">

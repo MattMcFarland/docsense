@@ -3,6 +3,7 @@
   <a class="link dim black-90" href="#{{esModule_id}}">
     {{esModule_id}}
   </a>
+  {{~#with sourceModule}}
   (
   {{~#each function.params as |param|~}}
     <span class="dark-red">
@@ -23,7 +24,7 @@
 </h3>
 </code>
   <div>
-    {{> importFn name=esModule_id file=@root.esModule.file function_id=function.function_id}} {{> fndoc jsdoc=jsdoc}}
+    {{> importedFn name=../esModule_id file=@root.esModule.file function_id=function.function_id }} {{> fndoc jsdoc=jsdoc}}
   </div>
-
+  {{/with}}
 </div>

@@ -1,1 +1,11 @@
-<pre class="ba b--black-20 lh-solid"><code class="javascript">import * as {{modulename filepath}} from '<a class="dim red link" title="view source" href="/{{filepath}}/source.html">{{filepath}}'</a></code></pre>
+<div>
+  {{#if file.isIndex}}
+    {{#code}}
+    import * as {{daam file.path}} from '<a class="dim red link" title="view source" href="/{{file.path}}/source.html">{{file.dir}}'</a>
+  {{/code}}
+  {{else}}
+  {{#code}}
+    import * as {{camelcase file.name}} from '<a class="dim red link" title="view source" href="/{{file.path}}/source.html">{{file.dir}}/{{file.name}}'</a>
+  {{/code}}
+  {{/if}}
+</div>

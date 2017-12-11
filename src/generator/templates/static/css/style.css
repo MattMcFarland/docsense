@@ -1,0 +1,27 @@
+html {
+  color: #333;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Abel', 'Verdana', sans-serif;
+}
+
+code * {
+  font-family: 'Lucida Console', 'Courier New', monospace;
+}
+
+.annotation {
+  margin: 0 -8px;
+}
+
+i {
+  display: inline-block;
+  min-width: 1em;
+}

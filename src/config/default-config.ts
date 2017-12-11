@@ -72,7 +72,7 @@ export interface DocSenseConfig {
   /**
    * Path of which the documentation will be generated.
    */
-  out?: string;
+  out: string;
   /**
    * What markdown file to load for the main page. (e.g., './readme')
    */
