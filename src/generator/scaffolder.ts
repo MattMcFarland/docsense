@@ -35,14 +35,18 @@ export const copyStaticFiles = (targetDir: string) => {
 export const scaffoldStaticAssets = (outDir: string) => {
   makeNodeModuleStatic(
     'tachyons/css/tachyons.min.css',
-    outDir + '/static/tachyons.min.css'
-  );
-  makeNodeModuleStatic(
-    'highlightjs/highlight.pack.min.js',
-    outDir + '/static/highlight.js'
+    outDir + '/static/css/tachyons.min.css'
   );
   makeNodeModuleStatic(
     'highlightjs/styles/mono-blue.css',
-    outDir + '/static/hljs.style.css'
+    outDir + '/static/css/hljs.style.css'
+  );
+  makeNodeModuleStatic(
+    'highlightjs/highlight.pack.min.js',
+    outDir + '/static/js/highlight.js'
+  );
+  makeNodeModuleStatic(
+    'highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js',
+    outDir + '/static/js/highlightjs-line-numbers.min.js'
   );
 };

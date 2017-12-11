@@ -2694,6 +2694,10 @@ highlight.js@^9.12.0:
   version "9.12.0"
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.12.0.tgz#e6d9dbe57cbefe60751f02af336195870c90c01e"
 
+highlightjs-line-numbers.js@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/highlightjs-line-numbers.js/-/highlightjs-line-numbers.js-2.1.0.tgz#0ff12368a0a3f86b8dda3bada13ebe377ec7b9df"
+
 highlightjs@^9.10.0:
   version "9.10.0"
   resolved "https://registry.yarnpkg.com/highlightjs/-/highlightjs-9.10.0.tgz#fca9b78ddaa3b1abca89d6c3ee105ad270a80190"
