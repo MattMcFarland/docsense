@@ -11,10 +11,12 @@
         {{> literalBlock }}
         <br/>
       {{/eq}}
-    {{/each}}
-    {{#each esModule.exports}}
       {{#eq kind 'ExportingFunction' }}
         {{> functionBlock }}
+        <br/>
+      {{/eq}}
+      {{#eq kind 'ExportingImport' }}
+        {{> importedBlock }}
         <br/>
       {{/eq}}
     {{/each}}
