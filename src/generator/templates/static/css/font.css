@@ -18,27 +18,3 @@
   font-weight: normal;
   font-style: normal;
 }
-
-@font-face {
-  font-family: 'Fira Mono';
-  font-style: normal;
-  font-display: optional;
-  font-weight: 400;
-  src: local('Fira Mono Regular'), local('FiraMono-Regular'),
-    url(https://fonts.gstatic.com/s/firamono/v6/SlRWfq1zeqXiYWAN-lnG-ltXRa8TVwTICgirnJhmVJw.woff2)
-      format('woff2');
-  unicode-range: U+0000-00ff, U+0131, U+0152-0153, U+02c6, U+02da, U+02dc,
-    U+2000-206f, U+2074, U+20ac, U+2212, U+2215;
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-display: optional;
-  font-weight: 400;
-  src: local('Open Sans Regular'), local('OpenSans-Regular'),
-    url(https://fonts.gstatic.com/s/opensans/v15/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2)
-      format('woff2');
-  unicode-range: U+0000-00ff, U+0131, U+0152-0153, U+02c6, U+02da, U+02dc,
-    U+2000-206f, U+2074, U+20ac, U+2212, U+2215;
-}

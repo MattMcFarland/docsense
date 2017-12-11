@@ -1,6 +1,6 @@
 html {
   color: #333;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Helvetica', 'Arial', sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -10,11 +10,11 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Abel', sans-serif;
+  font-family: 'Abel', 'Verdana', sans-serif;
 }
 
 code * {
-  font-family: 'Fira Mono', monospace;
+  font-family: "Lucida Console", "Courier New", monospace;}
 }
 
 .annotation {
