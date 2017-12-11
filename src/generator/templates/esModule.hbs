@@ -19,14 +19,10 @@
         {{> importedBlock }}
         <br/>
       {{/eq}}
-      {{!-- {{#eq kind 'ExportingStatic' }}
-        {{> functionBlock }}
+      {{#eq kind 'ExportingReference' }}
+        {{> referenceBlock }}
         <br/>
-      {{/eq}} --}}
+      {{/eq}}
     {{/each}}
   </div>
-  <hr/>
-  <h5>db info:</h5>
-  <pre><code>{{json esModule}}</code></pre>
-
 </div>

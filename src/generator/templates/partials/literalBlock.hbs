@@ -1,10 +1,17 @@
-<code><h3 class="fw6 f6 black-50 lh-solid">
-  {{esModule_id}}:
+<div class="mv4 pa2" id="{{esModule_id}}">
+  <code><h3 class="f5 lh-solid">
+  <a class="link dim black-90" href="#{{esModule_id}}">
+    {{esModule_id}}
+  </a>:
   {{#eq type 'StringLiteral' }}
     <code class="dark-red">"{{value}}"</code>
-{{else}}
-  <code class="blue">{{value}}</code>
-  {{/eq}}
-  </h3>
-  </code>
-  {{> importFn name=esModule_id file=@root.esModule.file }} {{> fndoc jsdoc=jsdoc}}
+  {{else}}
+    <code class="blue">{{value}}</code>
+    {{/eq}}
+    </h3>
+    </code>
+    <small class="lh-solid">Literal Export</small>
+    <div>
+      {{> importFn name=esModule_id file=@root.esModule.file }} {{> fndoc jsdoc=jsdoc}}
+    </div>
+</div>
