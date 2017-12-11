@@ -10,10 +10,9 @@ export interface ObjectTree {
 
 const hierarchyQuery = (db: Lowdb): Promise<ObjectTree> => {
   interface Records {
-    directory_collection: DirectoryModel[];
     file_collection: FileModel[];
   }
-  const { directory_collection, file_collection }: Records = db.getState();
+  const { file_collection }: Records = db.getState();
   const treeInject = (obj: ObjectTree, path: string[]): void => {
     if (path.length === 0) return;
     const key = path[0];
