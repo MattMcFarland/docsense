@@ -1,13 +1,17 @@
 const HighlightJS = require('highlight.js');
 const Handlebars = require('handlebars');
+const Path = require('path');
+const pkg = require(Path.resolve(process.cwd(), 'package.json'));
 
 module.exports = function(ctx) {
   const { name, link, from, all, line } = ctx.hash;
+  const fromRootPath = Path.posix.relative(ctx.data.root.config.root, from);
+  const fromProject = Path.posix.join(pkg.name + '/', fromRootPath);
   const href = line ? link + '#' + line : link;
   const code = block(
     makeImport(name, all),
     makeKeyword('from'),
-    makeLink(href, 'view source', `'${from}'`)
+    makeLink(href, 'view source', `'${fromProject}'`)
   );
   return new Handlebars.SafeString(code);
 };

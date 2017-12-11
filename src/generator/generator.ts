@@ -29,7 +29,7 @@ export const generate = async () => {
 
   if (mainDoc) {
     const parsed = marked(addEmojis(mainDoc));
-    compile(indexPage, { main: parsed, esModules }, 'index.html');
+    compile(indexPage, { main: parsed, esModules, config }, 'index.html');
   }
 
   esModules.forEach((esModule: IFileExportsQuery) => {
@@ -37,7 +37,7 @@ export const generate = async () => {
     const sourcePage = require_template('./templates/sourcePage.hbs');
     compile(
       esModulePage,
-      { esModule, esModules },
+      { esModule, esModules, config },
       esModule.file.path + '/index.html'
     );
     compile(

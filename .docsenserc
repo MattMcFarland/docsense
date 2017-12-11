@@ -4,5 +4,6 @@
     "sourceType": "module",
     "plugins": ["typescript", "objectRestSpread"]
   },
-  "main": "./readme"
+  "main": "./readme",
+  "root": "src"
 }
