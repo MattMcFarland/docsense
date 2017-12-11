@@ -108,7 +108,9 @@ export default (engine: ParseEngine, store: Store): any => {
         function: getFunctionMeta(nodePath.get('declaration') as NodePath<
           FunctionDeclaration
         >),
-        esModule_id: 'default',
+        esModule_id: (nodePath.get('declaration') as NodePath<
+          FunctionDeclaration
+        >).node.id.name,
         jsdoc: getDocTagsFromPath(nodePath),
       });
     }
