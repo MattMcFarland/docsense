@@ -16,13 +16,16 @@ interface Records {
 
 const hierarchyQuery = (db: Lowdb): Promise<Traverse<ObjectTree>> => {
   const { file_collection }: Records = db.getState();
+
   const treeInject = (obj: ObjectTree, path: string[]): void => {
     if (path.length === 0) return;
     const key = path[0];
     if (!(key in obj)) obj[key] = {};
     return treeInject(obj[key], path.slice(1));
   };
+
   const hierarchy: ObjectTree = {};
+
   file_collection.forEach(file => {
     treeInject(hierarchy, file.path.split('/'));
   });
@@ -30,8 +33,6 @@ const hierarchyQuery = (db: Lowdb): Promise<Traverse<ObjectTree>> => {
   const tree = traverse(hierarchy);
   // tslint:disable-next-line:only-arrow-functions
   tree.forEach(function(value: ObjectTree) {
-    // tslint:disable-next-line:no-this-assignment
-
     if (this.isLeaf) {
       const fullpath = this.path.join('/');
       const { dir, name } = Path.parse(fullpath);
