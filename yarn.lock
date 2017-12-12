@@ -429,6 +429,10 @@
   version "0.25.8"
   resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.25.8.tgz#d95e7e9a47ed4a0fcb1b4bbb7f6ffac71276c619"
 
+"@types/traverse@^0.6.29":
+  version "0.6.29"
+  resolved "https://registry.yarnpkg.com/@types/traverse/-/traverse-0.6.29.tgz#2e9d1f18bfb009ab26e1cbb130376d1fc2726341"
+
 abab@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"
@@ -5557,6 +5561,10 @@ tough-cookie@^2.3.2, tough-cookie@~2.3.0, tough-cookie@~2.3.3:
 tr46@~0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
+
+traverse@^0.6.6:
+  version "0.6.6"
+  resolved "https://registry.yarnpkg.com/traverse/-/traverse-0.6.6.tgz#cbdf560fd7b9af632502fed40f918c157ea97137"
 
 trim-right@^1.0.1:
   version "1.0.1"
