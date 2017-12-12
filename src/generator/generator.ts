@@ -19,7 +19,7 @@ export const generate = async () => {
 
   const db = await connect();
   const esModules = await fileExportsQuery.exec();
-  const hierarchy = await hierarchyQuery.exec();
+  const moduleHierarchy = await hierarchyQuery.exec();
   const renderer = markedStyle();
 
   marked.setOptions({ renderer });
@@ -31,7 +31,7 @@ export const generate = async () => {
     const parsed = marked(addEmojis(mainDoc));
     compile(
       indexPage,
-      { main: parsed, esModules, config, hierarchy },
+      { main: parsed, esModules, config, moduleHierarchy },
       'index.html'
     );
   }
@@ -41,7 +41,7 @@ export const generate = async () => {
     const sourcePage = require_template('./templates/sourcePage.hbs');
     compile(
       esModulePage,
-      { esModule, esModules, config, hierarchy },
+      { esModule, esModules, config, moduleHierarchy },
       esModule.file.path + '/index.html'
     );
     compile(
