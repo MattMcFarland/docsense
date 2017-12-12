@@ -39,7 +39,7 @@ const hierarchyQuery = (db: Lowdb): Promise<Traverse<ObjectTree>> => {
       const filepath = `${dir}/${name}`;
       const file_id = encode(filepath);
       const filedata = file_collection.find(f => f.id === file_id);
-      this.node = filedata;
+      this.node.filedata = filedata;
     }
   });
 
