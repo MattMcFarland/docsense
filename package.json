@@ -1,7 +1,7 @@
 {
   "name": "docsense",
   "version": "0.0.0-1",
-  "description": "A Super Intelligent Javascript Documentation Generator",
+  "description": "An Intelligent Doc Generator tailored for EcmaScript Modules",
   "main": "dist/common/index.js",
   "module": "dist/esm/index.js",
   "unpkg": "dist/docsense.js",
