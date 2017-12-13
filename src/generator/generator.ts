@@ -19,7 +19,8 @@ export const generate = async () => {
 
   const db = await connect();
   const esModules = await fileExportsQuery.exec();
-  const moduleHierarchy = await hierarchyQuery.exec();
+  const esModuleTree = await hierarchyQuery.exec();
+  const project = require(resolvePath(process.cwd(), 'package.json'));
   const renderer = markedStyle();
 
   marked.setOptions({ renderer });
@@ -31,7 +32,7 @@ export const generate = async () => {
     const parsed = marked(addEmojis(mainDoc));
     compile(
       indexPage,
-      { main: parsed, esModules, config, moduleHierarchy },
+      { main: parsed, esModules, config, esModuleTree, project },
       'index.html'
     );
   }
@@ -41,14 +42,18 @@ export const generate = async () => {
     const sourcePage = require_template('./templates/sourcePage.hbs');
     compile(
       esModulePage,
-      { esModule, esModules, config, moduleHierarchy },
+      { esModule, esModules, config, esModuleTree, project },
       esModule.file.path + '/index.html'
     );
     compile(
       sourcePage,
       {
         sourceCode: readFileSync(resolvePath(esModule.file.path), 'utf8'),
+        esModule,
         esModules,
+        config,
+        esModuleTree,
+        project,
       },
       esModule.file.path + '/source.html'
     );
