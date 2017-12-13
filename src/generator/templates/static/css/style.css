@@ -24,4 +24,15 @@ code * {
 i {
   display: inline-block;
   min-width: 1em;
+  line-height: inherit;
+  vertical-align: middle;
+}
+
+#resizer {
+  height: 100vh;
+  width: 6px;
+  background-color: rgb(221, 221, 221);
+  border-left: thin solid rgb(170, 170, 170);
+  border-right: thin solid rgb(170, 170, 170);
+  cursor: ew-resize;
 }

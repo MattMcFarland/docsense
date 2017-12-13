@@ -3,38 +3,28 @@
 
 {{> _head }}
 
-<body class="bg-black-10">
-  <div class="mw9 center ph6-ns bg-white">
-    <div class="cf ph2-ns">
-      <div class="fl w-100 w-30-ns pa2">
-        <div class="bg-navy pv4 pl2">
-          <div class="f2 near-white pa3 pl3 mb1">
-            <a class="mb2 link dim white db" href="/" title="Home">
-              <i class="white-50 icon-book"></i>&nbsp;DocSense</a>
-          </div>
-          <div class="f3 near-white pa3 pl3 mb2">
-            <i class="white-50 icon-cubes"></i>&nbsp;Modules</div>
-          {{#each esModules }}
-            {{#if file.isIndex }}
-              <a class="mb2 pa2 pl4 link dim white db" href="/{{file.path}}/index.html" title="{{file.path}}">
-                <i class="white-40 icon-cubes mr2"></i>{{daam file.path}}
-              </a>
-            {{else}}
-              <a class="mb2 pa2 pl4 link dim white db" href="/{{file.path}}/index.html" title="{{file.path}}">
-                <i class="white-40 icon-cube mr2"></i>{{file.name}}
-              </a>
-            {{/if}}
-          {{/each}}
-        </div>
-      </div>
-      <div class="fl w-100 w-70-ns pa2 ">
-        <div class="lh-copy bg-white pv4 pl2 ">{{{page}}}</div>
-      </div>
+<body onload="main()" class="bg-white">
+  <header class="w-100 bg-dark-blue fixed h3">
+    <h1 class="f2 ma0 pa0 dib">
+      <a class="pl4 link dim white dib" href="/" title="Home">
+        <i class="icon-book mr2"></i>
+        {{@root.project.name}}
+      </a>
+    </h1>
+  </header>
+  <section class="flex">
+    <div class="w-100 w-30-l" id="sidenav">
+      {{> sidenav }}
     </div>
-  </div>
-  <pre>
-  {{json moduleHierarchy}}
-  </pre>
+    <div id="resizer"></div>
+    <div class="w-100 pa5" id="content">
+      <!-- @XHR-CONTENT-AREA --->
+      <div>
+        {{> content }}
+      </div>
+      <!-- @/XHR-CONTENT-AREA --->
+    </div>
+  </section>
 </body>
 
 </html>
