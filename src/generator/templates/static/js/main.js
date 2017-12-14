@@ -67,10 +67,12 @@ function main() {
 
     resizer.addEventListener('mousedown', initDrag, false);
 
+    const savedWidth = parseInt(localStorage.getItem('sidenavWidth'));
+
     let startX = null;
-    let startWidth = parseInt(
-      document.defaultView.getComputedStyle(sidenav).width
-    );
+    let startWidth = !isNaN(savedWidth)
+      ? savedWidth
+      : document.defaultView.getComputedStyle(sidenav).width;
 
     sidenav.style.width = startWidth + 'px';
 
@@ -78,17 +80,21 @@ function main() {
       startX = e.clientX;
       document.documentElement.addEventListener('mousemove', doDrag, false);
       document.documentElement.addEventListener('mouseup', stopDrag, false);
-      setTimeout(() => {
-        document.documentElement.style.cursor = 'ew-resize';
-        document.documentElement.style.userSelect = 'none';
-        document.documentElement.style.pointerEvents = 'none';
-      }, 0);
+      document.documentElement.style.cursor = 'ew-resize';
+      document.documentElement.style.userSelect = 'none';
+      document.documentElement.style.pointerEvents = 'none';
     }
 
     function doDrag(e) {
-      const calcWidth = startWidth + e.clientX - startX;
+      const calcWidth = clamp(
+        startWidth + e.clientX - startX,
+        200,
+        window.innerWidth / 2
+      );
+      console.log(calcWidth);
       setTimeout(() => {
-        sidenav.style.width = clamp(calcWidth, 200, 860) + 'px';
+        sidenav.style.width = calcWidth + 'px';
+        localStorage.setItem('sidenavWidth', calcWidth);
       }, 0);
     }
 
@@ -106,6 +112,7 @@ function main() {
 }
 
 function clamp(val, min, max) {
+  if (isNaN(val)) return window.innerWidth / 3;
   if (val < min) return min;
   if (val > max) return max;
   return val;
