@@ -1,45 +1,12 @@
 <aside>
   <div class="bg-navy pa2 pt5">
     <nav>
-      {{#traverse esModuleTree}}
-        <span id= {{path}}>
-          {{#if notLeaf}}
-            {{#if isRoot}}
-              <h2 class="f2 near-white">
-                <a class="pa1 mb2 link dim white db" href="/" title="Home">
-                  Modules
-                </a>
-              </h2>
-            {{/if}}
-            {{#if notRoot}}
-              {{#isFalsey node.filedata }}
-                {{#isnt key 'filedata'}}
-                  <div class="pa1 near-white" style="padding-left:{{level}}em">
-                    <a data-path= {{path}} href="#" class="pa1 link dim white db">
-                      <i class="white-40 icon-folder mr2"></i>{{key}}
-                    </a>
-                  </div>
-                {{/isnt}}
-              {{/isFalsey}}
-              {{#isTruthy node.filedata}}
-                <div class="near-white" style="padding-left:{{level}}em">
-                  {{#with node.filedata}}
-                    {{#if isIndex }}
-                      <a data-path= {{path}} class="pa1 link dim white db" href="/{{path}}/index.html" title="{{path}}">
-                        <i class="white-40 icon-cubes mr2"></i>{{daam path}}
-                      </a>
-                    {{else}}
-                      <a class="pa1 link dim white db" href="/{{path}}/index.html" title="{{path}}">
-                        <i class="white-40 icon-cube mr2"></i>{{name}}
-                      </a>
-                    {{/if}}
-                  {{/with}}
-                </div>
-              {{/isTruthy}}
-            {{/if}}
-          {{/if}}
-        </span>
-      {{/traverse}}
+      <h2 class="f2 near-white">
+        <a class="pa1 mb2 link dim white db" href="/" title="Home">
+          Modules
+        </a>
+      </h2>
+      {{ navtree tree=esModuleTree}}
     </nav>
   </div>
 </aside>

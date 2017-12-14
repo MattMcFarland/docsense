@@ -36,3 +36,11 @@ i {
   border-right: thin solid rgb(170, 170, 170);
   cursor: ew-resize;
 }
+
+nav ul,
+nav ul li,
+nav li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
