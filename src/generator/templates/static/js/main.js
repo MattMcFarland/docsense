@@ -29,6 +29,7 @@ function main() {
 
   initRouter();
   initResizable();
+  initToggles();
 
   function initRouter() {
     window.onpopstate = function(e) {
@@ -38,8 +39,10 @@ function main() {
     dom.forEach('#sidenav a', el => {
       el.addEventListener('click', e => {
         e.preventDefault();
-        history.pushState({}, e.target.title, e.target.href);
-        replaceContent(e.target.href);
+        if (e.currentTarget.href && e.currentTarget.href !== '#') {
+          history.pushState({}, e.currentTarget.title, e.currentTarget.href);
+          replaceContent(e.currentTarget.href);
+        }
       });
     });
 
@@ -91,7 +94,6 @@ function main() {
         200,
         window.innerWidth / 2
       );
-      console.log(calcWidth);
       setTimeout(() => {
         sidenav.style.width = calcWidth + 'px';
         localStorage.setItem('sidenavWidth', calcWidth);
@@ -108,6 +110,84 @@ function main() {
         startWidth = parseInt(sidenav.style.width.split('px')[0]);
       }, 0);
     }
+  }
+  function initToggles() {
+    dom.forEach('#sidenav a', el => {
+      el.addEventListener('click', e => {
+        if (e.currentTarget.hasAttribute('data-toggle')) {
+          flipToggler(e.currentTarget);
+        }
+      });
+    });
+
+    function flipToggler(node) {
+      const coordinates = node.getAttribute('data-toggle');
+      const isOpen = localStorage.getItem(`toggle(${coordinates})`) === 'on';
+      if (isOpen) {
+        localStorage.setItem(`toggle(${coordinates})`, 'off');
+      } else {
+        localStorage.setItem(`toggle(${coordinates})`, 'on');
+      }
+      refreshToggles();
+    }
+    function refreshToggles() {
+      dom.forEach('.toggler', toggler => {
+        const coordinates = toggler.getAttribute('data-toggle');
+        const isOpen = localStorage.getItem(`toggle(${coordinates})`) === 'on';
+        return isOpen
+          ? toggleOn(toggler, coordinates)
+          : toggleOff(toggler, coordinates);
+      });
+    }
+    function toggleOff(toggler, coordinates) {
+      const toggleTarget = document.querySelector(
+        `ul[data-coordinates="${coordinates}"]`
+      );
+
+      const iconSlot = toggler.querySelector('span[data-slot="icons"]');
+      const dataType = toggler.getAttribute('data-type');
+      if (dataType === 'folder') {
+        iconSlot.innerHTML = `
+        <i class="white-40 icon-caret-right"></i>
+        <i class="white-40 icon-folder mr2"></i>
+        `;
+      }
+      if (dataType === 'daam') {
+        iconSlot.innerHTML = `
+        <i class="white-40 icon-caret-right"></i>
+        <i class="white-40 icon-cubes mr2"></i>
+        `;
+      }
+      if (toggleTarget) toggleTarget.style.display = 'none';
+    }
+    function toggleOn(toggler, coordinates) {
+      const toggleTarget = document.querySelector(
+        `ul[data-coordinates="${coordinates}"]`
+      );
+      const iconSlot = toggler.querySelector('span[data-slot="icons"]');
+      const dataType = toggler.getAttribute('data-type');
+      if (dataType === 'folder') {
+        iconSlot.innerHTML = `
+        <i class="white-40 icon-caret-down"></i>
+        <i class="white-40 icon-folder-open mr2"></i>
+        `;
+      }
+      if (dataType === 'daam') {
+        iconSlot.innerHTML = `
+        <i class="white-40 icon-caret-down"></i>
+        <i class="white-40 icon-cubes mr2"></i>
+        `;
+      }
+      if (toggleTarget) toggleTarget.style.display = 'block';
+    }
+    refreshToggles();
+    showPage();
+  }
+  function hidePage() {
+    document.querySelector('#page').style.display = 'none';
+  }
+  function showPage() {
+    document.querySelector('#page').style.display = 'block';
   }
 }
 

@@ -44,3 +44,17 @@ nav li {
   padding: 0;
   list-style: none;
 }
+#content,
+#sidenav {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-bottom: 2em;
+}
+#sidenav {
+  overflow-x: auto;
+}
+header > h1 {
+  vertical-align: middle;
+  line-height: 4rem;
+}
