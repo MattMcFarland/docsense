@@ -1,10 +1,12 @@
 import { readFileSync } from 'fs';
-
 import * as marked from 'marked';
 import * as emoji from 'node-emoji';
 import * as path from 'path';
 
 import { createFile, withAllFiles } from '../utils/file';
+import markedStyle from './marked/renderer';
+
+const mdHeadingsRe = new RegExp(/(#+.[\S ]+(?=\n))+([^#]+)/g);
 
 class Compiler {
   private Handlebars: typeof Handlebars;
@@ -89,13 +91,60 @@ export const require_template = (relPath: string) => {
 };
 
 export const require_md = (cwdPath: string) => {
-  const targetPath = require.resolve(
-    path.resolve(process.cwd(), cwdPath + '.md')
-  );
+  const renderer = markedStyle();
+  marked.setOptions({ renderer });
+
   try {
-    return readFileSync(targetPath, 'utf8');
+    const targetPath = require.resolve(
+      path.resolve(process.cwd(), cwdPath + '.md')
+    );
+    const raw = readFileSync(targetPath, 'utf8');
+    let keepParsing = true;
+    const matches = [];
+    // tslint:disable-next-line:no-conditional-assignment
+    while (keepParsing) {
+      const match = mdHeadingsRe.exec(raw);
+      if (match !== null) {
+        matches.push(match);
+      } else {
+        keepParsing = false;
+      }
+    }
+    const chunks = matches.map((match: any) => {
+      const heading = match[1];
+      const content = match[2];
+      const lexer = new marked.Lexer();
+      const tokens = lexer.lex(heading);
+      return {
+        depth: (tokens[0] as marked.Tokens.Heading).depth,
+        content: marked.parse(content),
+        heading: marked.parse(heading),
+      };
+    });
+    const title =
+      chunks !== undefined &&
+      Array.isArray(chunks) &&
+      chunks.find(ch => ch.depth === 1);
+
+    // const chunks = raw
+    //   .split(/#+.[\S ]+(?=\n)/)
+    //   .map(chunk => marked(addEmojis(chunk)));
+    const data = marked(addEmojis(raw));
+    return {
+      title,
+      raw,
+      data,
+      chunks,
+    };
   } catch (e) {
-    return;
+    return {
+      raw: null,
+      data: null,
+      chunks: null,
+      title: null,
+      error: true,
+      errorMessage: e.message,
+    };
   }
 };
 

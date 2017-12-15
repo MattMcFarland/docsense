@@ -1,14 +1,25 @@
 <div>
   <header class="mb5">
-    <h1 class="mb0 black-50">
-      {{~#if esModule.file.isIndex~}}
-      <i class="blue black-50 pr2 icon-cubes" aria-hidden="true"></i>
-      <span>&nbsp;{{ daam esModule.file.path }}</span> {{~else~}}
-      <i class="blue black-50 pr2 icon-cube" aria-hidden="true"></i>
-      <span>&nbsp;{{ esModule.file.name }}</span> {{~/if~}}
-    </h1>
-    <div class="f5">{{> importHeader file=esModule.file }}</div>
+    {{#and hasMarkdownFile markdownFileTitle}}
+      {{{markdownFileTitle.heading}}} {{{markdownFileTitle.content}}}
+      {{else}}
+        <h1 class="mb0 black-50">
+          {{~#if esModule.file.isIndex~}}
+          <i class="blue black-50 pr2 icon-cubes" aria-hidden="true"></i>
+          <span>&nbsp;{{ daam esModule.file.path }}</span> {{~else~}}
+          <i class="blue black-50 pr2 icon-cube" aria-hidden="true"></i>
+          <span>&nbsp;{{ esModule.file.name }}</span> {{~/if~}}
+        </h1>
+        <div class="f5">{{> importHeader file=esModule.file }}</div>
+    {{/and}}
   </header>
+  {{#if hasMarkdownFile}}
+    {{#each markdownFileChunks}}
+      {{#isnt depth '1'}}
+        {{{heading}}} {{{content}}}
+      {{/isnt}}
+    {{/each}}
+  {{/if}}
   <div class="ml2 mt4">
     <h2>Exports</h2>
     {{#each esModule.exports}}
