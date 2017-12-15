@@ -4,8 +4,18 @@ Docsense is a pluggable and customizable AST to documentation generator which
 parses ECMASCIPT 2015+ using
 [Babylon](https://github.com/babel/babel/tree/master/packages/babylon),
 
-> 🤖 **It is still in early development and currently not operational** 🤖
+> 🤖 **It is still in early development, but operational! ** 🤖
 
+### Quick start
+```
+# Add with yarn
+yarn add docsense
+# Run init to create the default config file
+yarn docsense init
+# Run build to see your docs!
+yarn docsense build
+```
+[More info about CLI](src/cli)
 ### Development
 
 :muscle: Clone the project, then run `yarn` to install all dependencies.
