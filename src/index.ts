@@ -4,9 +4,9 @@ import { init as initializeLogger } from './utils/logger';
 import { parseFiles } from './utils/parse';
 import { setupCorePlugins } from './utils/plugin';
 
-initializeLogger();
-
-getConfig()
-  .then(setupCorePlugins)
-  .then(parseFiles)
-  .catch(fatalError);
+export default () => {
+  initializeLogger();
+  return getConfig()
+    .then(setupCorePlugins)
+    .then(parseFiles);
+};

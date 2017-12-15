@@ -5,6 +5,7 @@
     ".docsenserc": "json",
     ".prettierrc": "json"
   },
+  "files.useExperimentalFileWatcher": true,
   "editor.rulers": [90],
   "prettier.disableLanguages": ["md", "markdown", "hbs", "handlebars", "html"],
   "html.format.indentHandlebars": true,

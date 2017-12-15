@@ -5,8 +5,8 @@ import * as Path from 'path';
 import getConfig from '../config';
 import { ESModule } from '../core-plugins/es-modules';
 import { connect } from '../db';
+import { log } from '../utils/logger';
 import { addEmojis, compile, require_md, require_template } from './compiler';
-
 import {
   directoryExportsQuery,
   fileExportsQuery,
@@ -16,7 +16,9 @@ import { IDirectoryExportsQuery } from './queries/directoryExportsQuery';
 import { IFileExportsQuery } from './queries/fileExportsQuery';
 import { copyStaticFiles, scaffoldStaticAssets } from './scaffolder';
 
-export const generate = async () => {
+export default async () => {
+  log.info('generate', 'start');
+
   const config = await getConfig();
 
   await scaffoldStaticAssets(config.out);
@@ -116,9 +118,13 @@ export const generate = async () => {
       Path.join(dirModule.directory, 'directory.html')
     );
   });
+
   function resolveFromProject(pathToResolve: string) {
     return Path.resolve(config.root, pathToResolve);
   }
+
+  log.success('generate', 'complete');
+  return true;
 };
 
 function getMarkdownMeta(text: string) {

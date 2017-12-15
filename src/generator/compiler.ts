@@ -4,6 +4,7 @@ import * as emoji from 'node-emoji';
 import * as path from 'path';
 
 import { createFile, withAllFiles } from '../utils/file';
+import { log } from '../utils/logger';
 import markedStyle from './marked/renderer';
 
 const mdHeadingsRe = new RegExp(/(#+.[\S ]+(?=\n))+([^#]+)/g);
@@ -24,6 +25,7 @@ class Compiler {
     const content = template(data);
     const withLayout = this.compileLayout(content, data);
     const targetPath = path.resolve(process.cwd(), 'docs', target);
+    log.info('compile', targetPath);
     createFile(targetPath, withLayout);
   }
 
@@ -93,6 +95,7 @@ export const require_template = (relPath: string) => {
 export const require_md = (cwdPath: string) => {
   const renderer = markedStyle();
   marked.setOptions({ renderer });
+  log.info('compile markdown', cwdPath);
 
   try {
     const targetPath = require.resolve(
