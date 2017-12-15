@@ -13,9 +13,16 @@ export default (initialState: any, fileName: string) => (
     const low: any = require('lowdb');
     const db: Lowdb = low(new Memory());
 
-    const parser = new ParseEngine('babylon', {
-      sourceType: 'module',
-      plugins: ['typescript'],
+    const parser = new ParseEngine({
+      root: './',
+      main: 'readme',
+      files: ['TEST'],
+      out: 'TEST',
+      parser: 'babylon',
+      parseOptions: {
+        sourceType: 'module',
+        plugins: ['typescript'],
+      },
     });
 
     db.setState(initialState);

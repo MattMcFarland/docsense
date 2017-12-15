@@ -37,6 +37,7 @@ export const generate = async () => {
     );
   }
 
+  // This loop only goes over the modules that plugins found to have exports.
   esModules.forEach((esModule: IFileExportsQuery) => {
     const esModulePage = require_template('./templates/esModule.hbs');
     const sourcePage = require_template('./templates/sourcePage.hbs');
@@ -48,7 +49,10 @@ export const generate = async () => {
     compile(
       sourcePage,
       {
-        sourceCode: readFileSync(resolvePath(esModule.file.path), 'utf8'),
+        sourceCode: readFileSync(
+          resolvePath(config.root, esModule.file.path),
+          'utf8'
+        ),
         esModule,
         esModules,
         config,

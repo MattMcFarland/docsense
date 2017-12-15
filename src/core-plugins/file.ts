@@ -16,7 +16,8 @@ export default function(engine: ParseEngine, db: Lowdb) {
       .write();
   });
   const createFileModel = (filepath: string): FileModel => {
-    const path = Path.posix.normalize(filepath);
+    const normalizedPath = Path.posix.normalize(filepath);
+    const path = Path.posix.relative(engine.config.root, normalizedPath);
     const {
       dir,
       // root: file_root,

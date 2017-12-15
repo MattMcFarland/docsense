@@ -12,11 +12,25 @@ export interface ObjectTree {
 }
 interface Records {
   file_collection: FileModel[];
+  esModule_collection: ESModule[];
 }
 
 const hierarchyQuery = (db: Lowdb): Promise<ObjectTree> => {
-  const { file_collection }: Records = db.getState();
+  const { file_collection, esModule_collection }: Records = db.getState();
 
+  const filesOfConcern = file_collection.reduce(
+    (acc: FileModel[], file: FileModel) => {
+      const hasExports = Boolean(
+        esModule_collection.filter((xp: ESModule) => xp.file_id === file.id)
+          .length
+      );
+      if (hasExports) {
+        acc.push(file);
+      }
+      return acc;
+    },
+    []
+  );
   const treeInject = (obj: ObjectTree, path: string[]): void => {
     if (path.length === 0) return;
     const key = path[0];
@@ -26,7 +40,7 @@ const hierarchyQuery = (db: Lowdb): Promise<ObjectTree> => {
 
   const hierarchy: ObjectTree = {};
 
-  file_collection.forEach(file => {
+  filesOfConcern.forEach(file => {
     treeInject(hierarchy, file.path.split('/'));
   });
 
@@ -59,7 +73,7 @@ const hierarchyQuery = (db: Lowdb): Promise<ObjectTree> => {
     const { dir, name } = Path.parse(fullpath);
     const filepath = `${dir}/${name}`;
     const file_id = encode(filepath);
-    const filedata = file_collection.find(f => f.id === file_id);
+    const filedata = filesOfConcern.find(f => f.id === file_id);
     return filedata;
   }
   return Promise.resolve(tree.clone());

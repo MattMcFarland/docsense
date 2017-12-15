@@ -2,7 +2,7 @@ import traverse, { Node, NodePath } from 'babel-traverse';
 import { Comment, CommentBlock } from 'babel-types';
 import { Annotation, parse as docParse } from 'doctrine';
 import { EventEmitter } from 'events';
-import { ConfigParseOptions } from '../config/default-config';
+import { ConfigParseOptions, DocSenseConfig } from '../config/default-config';
 
 const types = require('babel-types');
 
@@ -20,6 +20,7 @@ export interface IParser {
  */
 export default class ParseEngine extends EventEmitter {
   public parseOptions: ConfigParseOptions;
+  public config: DocSenseConfig;
   private parser: IParser;
   private parserName: string;
   private doctrine: typeof docParse;
@@ -29,11 +30,12 @@ export default class ParseEngine extends EventEmitter {
    * @param {string} parserName parser module to use
    * @param {ConfigParseOptions} parseOptions options passed to the parser module
    */
-  constructor(parserName: string, parseOptions: ConfigParseOptions = {}) {
+  constructor(config: DocSenseConfig) {
     super();
-    this.parserName = parserName;
-    this.parser = module.require(parserName);
-    this.parseOptions = parseOptions;
+    this.parserName = config.parser;
+    this.parser = module.require(config.parser);
+    this.parseOptions = config.parseOptions ? config.parseOptions : {};
+    this.config = config;
   }
 
   /**

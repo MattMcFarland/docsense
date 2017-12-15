@@ -24,10 +24,7 @@ export const parseFiles = ({
     .then(dedupe)
     .then((filepaths: string[]) =>
       readFiles(filepaths).then((filesData: string[]) => {
-        const parser: ParseEngine = new ParseEngine(
-          config.parser,
-          config.parseOptions
-        );
+        const parser: ParseEngine = new ParseEngine(config);
         const db: Lowdb = create(config.out || '');
 
         plugins.forEach((plugin: IPluginRecord) =>

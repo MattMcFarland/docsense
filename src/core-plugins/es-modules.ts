@@ -104,7 +104,7 @@ export default (engine: ParseEngine, store: Store): any => {
     if (nodePath.node.declaration.type === 'FunctionDeclaration') {
       push<ExportingFunction>({
         kind: 'ExportingFunction',
-        file_id: getFileId(nodePath),
+        file_id: getFileId(nodePath, engine.config.root),
         function: getFunctionMeta(nodePath.get('declaration') as NodePath<
           FunctionDeclaration
         >),
@@ -143,7 +143,7 @@ export default (engine: ParseEngine, store: Store): any => {
           case 'FunctionExpression':
             push<ExportingFunction>({
               kind: 'ExportingFunction',
-              file_id: getFileId(nodePath),
+              file_id: getFileId(nodePath, engine.config.root),
               function: getFunctionMeta(assignment as NodePath<FunctionType>),
               jsdoc: getDocTagsFromPath(assignment),
               esModule_id,
@@ -157,7 +157,7 @@ export default (engine: ParseEngine, store: Store): any => {
           case 'ObjectExpression':
             push<ExportingReference>({
               kind: 'ExportingReference',
-              file_id: getFileId(nodePath),
+              file_id: getFileId(nodePath, engine.config.root),
               jsdoc: getDocTagsFromPath(assignment),
               esModule_id,
             });
@@ -169,7 +169,7 @@ export default (engine: ParseEngine, store: Store): any => {
           case 'BooleanLiteral':
             push<ExportingLiteral>({
               kind: 'ExportingLiteral',
-              file_id: getFileId(nodePath),
+              file_id: getFileId(nodePath, engine.config.root),
               type: assignment.node.type,
               value: assignment.node.value,
               jsdoc: getDocTagsFromPath(assignment),
@@ -188,7 +188,7 @@ export default (engine: ParseEngine, store: Store): any => {
             if (reference && reference.path && reference.path.isFunction()) {
               push<ExportingFunction>({
                 kind: 'ExportingFunction',
-                file_id: getFileId(nodePath),
+                file_id: getFileId(nodePath, engine.config.root),
                 function: getFunctionMeta(reference.path as NodePath<
                   FunctionType
                 >),
@@ -251,7 +251,7 @@ export default (engine: ParseEngine, store: Store): any => {
       push<ExportingFunction>({
         esModule_id,
         kind: 'ExportingFunction',
-        file_id: getFileId(nodePath),
+        file_id: getFileId(nodePath, engine.config.root),
         function: getFunctionMeta(reference.path as NodePath<FunctionType>),
         jsdoc: getDocTagsFromPath(reference.path),
       });
@@ -265,7 +265,7 @@ export default (engine: ParseEngine, store: Store): any => {
       parentPath.isExportNamedDeclaration() &&
       parentPath.node.source.type === 'StringLiteral'
     ) {
-      const file_id = getFileId(nodePath);
+      const file_id = getFileId(nodePath, engine.config.root);
       const file_path = getFileName(nodePath);
       const file_dir = Path.dirname(file_path);
       const source = {
@@ -294,7 +294,7 @@ export default (engine: ParseEngine, store: Store): any => {
     const push = store.createPush(nodePath);
     push({
       kind: 'ExportingAllFromSource',
-      file_id: getFileId(nodePath),
+      file_id: getFileId(nodePath, engine.config.root),
       esModule_id: 'all',
       source_id: nodePath.node.source.value,
     });
@@ -317,7 +317,7 @@ export default (engine: ParseEngine, store: Store): any => {
         >;
         push<ExportingFunction>({
           kind: 'ExportingFunction',
-          file_id: getFileId(nodePath),
+          file_id: getFileId(nodePath, engine.config.root),
           function: getFunctionMeta(functionPath),
           jsdoc: getDocTagsFromPath(functionPath),
           esModule_id: 'default',
@@ -332,7 +332,7 @@ export default (engine: ParseEngine, store: Store): any => {
         if (reference && reference.path && reference.path.isFunction()) {
           push<ExportingFunction>({
             kind: 'ExportingFunction',
-            file_id: getFileId(nodePath),
+            file_id: getFileId(nodePath, engine.config.root),
             function: getFunctionMeta(reference.path as NodePath<FunctionType>),
             esModule_id: 'default',
             jsdoc: getDocTagsFromPath(reference.path),

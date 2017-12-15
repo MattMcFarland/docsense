@@ -13,10 +13,11 @@ export const getFileName = createHelper<t.Node, string>((node: t.Node) => {
   return `${parts.dir}/${parts.name}`;
 });
 
-export const getFileId = createHelper<t.Node, string>((node: t.Node) => {
-  const parts = Path.parse(node.loc.filename);
+export const getFileId = (path: NodePath, root?: string) => {
+  const pathFromRoot = Path.posix.relative(root || '', path.node.loc.filename);
+  const parts = Path.parse(pathFromRoot);
   return encode(`${parts.dir}/${parts.name}`);
-});
+};
 
 export const getVariableId = createHelper<t.Node, string | void>(
   (node: t.Node) =>
