@@ -2,6 +2,7 @@ import { readdirSync, readFileSync } from 'fs';
 import * as mkdirp from 'mkdirp';
 import { resolve as resolvePath } from 'path';
 import { promisify } from 'util';
+import { log } from '../utils/logger';
 
 import getConfig from '../config';
 import { ESModule } from '../core-plugins/es-modules';
@@ -23,6 +24,7 @@ export const copyStaticFiles = (targetDir: string) => {
   const copydir = require('copy-dir');
   const from = resolvePath(__dirname, 'templates/static');
   const to = resolvePath(targetDir, 'static');
+  log.info('copy', from, to);
 
   return new Promise((resolve, reject) => {
     copydir(from, to, (err: Error) => {
