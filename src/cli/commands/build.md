@@ -1,3 +1,4 @@
+# `docsense build`
 ### Usage:
 
 ```

@@ -1,10 +1,10 @@
-import { resolve as resolvePath } from 'path';
-
-import getConfig from './config';
-import { DocSenseConfig } from './config/default-config';
-
 // tslint:disable-next-line:no-import-side-effect
 import './_types/global/Globals';
+
+import { resolve as resolvePath } from 'path';
+
+import getConfig, { DocSenseConfig } from './config';
+
 /**
  * @deprecated use connect fn instead.
  * Gets or creates a database file with lowdb

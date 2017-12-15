@@ -1,4 +1,5 @@
-### Usage:
+# `docsense serve`
+## Usage:
 
 ```
 docsense serve [Options]

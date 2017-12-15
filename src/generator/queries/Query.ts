@@ -1,5 +1,4 @@
-import getConfig from '../../config';
-import { DocSenseConfig } from '../../config/default-config';
+import getConfig, { DocSenseConfig } from '../../config';
 import { connect as dbConnect } from '../../db';
 
 class Query<A, B> {

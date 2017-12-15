@@ -2,7 +2,8 @@ import traverse, { Node, NodePath } from 'babel-traverse';
 import { Comment, CommentBlock } from 'babel-types';
 import { Annotation, parse as docParse } from 'doctrine';
 import { EventEmitter } from 'events';
-import { ConfigParseOptions, DocSenseConfig } from '../config/default-config';
+
+import { ConfigParseOptions, DocSenseConfig } from '../config';
 
 const types = require('babel-types');
 

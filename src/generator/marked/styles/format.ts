@@ -7,7 +7,7 @@ export const br = () => `<br/>`;
 export const em = (text: string) => `<em>${text}</em>`;
 
 export const codespan = (str: string) =>
-  `<code class="nowrap bg-black-05 black-80 pa2">${str}</code>`;
+  `<code class="nowrap bg-black-05 black-50 pa0 ma1">${str}</code>`;
 
 export const del = (text: string) => `<del>${text}</del>`;
 

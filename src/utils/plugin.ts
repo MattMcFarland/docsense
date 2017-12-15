@@ -2,7 +2,7 @@ import * as assert from 'assert';
 import { resolve as resolvePath } from 'path';
 
 import { IPluginModule, IPluginRecord } from '../_types/Plugin';
-import { DocSenseConfig } from '../config/default-config';
+import { DocSenseConfig } from '../config';
 import ParseEngine from '../parser/ParseEngine';
 import Store from '../store';
 import {

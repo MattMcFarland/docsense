@@ -1,4 +1,5 @@
-### Usage:
+# `docsense init`
+## Usage:
 
 ```
 Initializes docsense config file (.docsenserc)

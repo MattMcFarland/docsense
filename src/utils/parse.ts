@@ -1,5 +1,5 @@
 import { IPluginRecord } from '../_types/Plugin';
-import { DocSenseConfig } from '../config/default-config';
+import { DocSenseConfig } from '../config';
 import { create } from '../db';
 import ParseEngine from '../parser/ParseEngine';
 import { log } from '../utils/logger';
