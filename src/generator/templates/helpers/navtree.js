@@ -6,6 +6,8 @@ module.exports = function(ctx) {
   return new Handlebars.SafeString(htmlString);
 };
 
+let i = 0;
+
 function collectionToString(
   obj,
   list = '',
@@ -16,7 +18,7 @@ function collectionToString(
 ) {
   const maybeListItems = keysReduce(obj, (build, key, y) => {
     if (key === 'filedata') return build;
-
+    i++;
     const node = obj[key];
 
     const coordinates = [x, y, z];
@@ -31,7 +33,7 @@ function collectionToString(
         `<li><ul data-coordinates="${coordinates}" class="pl3">`,
         '</ul></li>',
         x + 1,
-        y
+        y + i
       );
     }
     return build;
