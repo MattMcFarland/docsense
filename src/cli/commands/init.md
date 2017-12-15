@@ -1,3 +1,5 @@
+### Usage:
+
 ```
 Initializes docsense config file (.docsenserc)
 

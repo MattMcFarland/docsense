@@ -1,13 +1,21 @@
 <div>
-  <header class="mb5">
-    <h1 class="mb0 black-50">
-      <i class="blue black-50 pr2 icon-folder" aria-hidden="true"></i>
-      &nbsp;{{ dirModule.directory }}</h1>
-  </header>
+  {{#and hasMarkdownFile markdownFileTitle}}
+    {{{markdownFileTitle.heading}}} {{{markdownFileTitle.content}}}
+    {{else}}
+      <header class="mb5">
+        <h1 class="mb0 black-50">
+          <i class="blue black-50 pr2 icon-folder" aria-hidden="true"></i>
+          &nbsp;{{ dirModule.directory }}</h1>
+      </header>
+      <div class="f5">{{> importHeader file=esModule.file }}</div>
+  {{/and}}
   {{#if hasMarkdownFile}}
-    {{{markdownFileContent}}}
+    {{#each markdownFileChunks}}
+      {{#isnt depth '1'}}
+        {{{heading}}} {{{content}}}
+      {{/isnt}}
+    {{/each}}
   {{/if}}
-
   <div class="ml2 mt4">
     <h2>Modules</h2>
     <div class="pl4">

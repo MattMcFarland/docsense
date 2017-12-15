@@ -6,6 +6,10 @@ import { init as initializeLogger, log } from '../utils/logger';
 
 initializeLogger();
 
+/**
+ * Command line interface
+ * @returns void
+ */
 getConfig()
   .then(
     config =>

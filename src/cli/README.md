@@ -1,6 +1,6 @@
 # CLI
 
-Docsense has three basic commands to help facilitate the generation of docs.  [init](./commands/init.ts) for bootstrapping your documentation, [build](./commands/build.ts) for running a production build, and [serve]('./commmands/serve.ts) for serving up a dev version that automatically updates as your code changes.
+Docsense has three basic commands to help facilitate the generation of docs.  [init](commands/init.ts/) for bootstrapping your documentation, [build](commands/build.ts/) for running a production build, and [serve](commands/serve.ts/) for serving up a dev version that automatically updates as your code changes.
 
 ## Usage
 
@@ -11,10 +11,8 @@ docsense <command>
 
 Commands:
   docsense build [Options]  Builds static doc site
-  docsense init  [Options]  Initializes docsense config file
-                               (.docsenserc)
-  docsense serve [Options]  Serves up a local docsense app that
-                               watches for changes
+  docsense init  [Options]  Initializes docsense config file (.docsenserc)
+  docsense serve [Options]  Serves up a local docsense app that watches for changes
 
 Options:
   -v, --version  Show version number                       [boolean]
