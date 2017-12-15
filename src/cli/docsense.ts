@@ -2,14 +2,15 @@
 
 import * as yargs from 'yargs';
 import getConfig from '../config';
-
 getConfig()
   .then(
     config =>
       yargs
         .commandDir('commands')
+        .alias('v', 'version')
+        .alias('h', 'help')
         .demandCommand()
-        .config({ settings: config })
+        .config(config)
         .help().argv
   )
   .catch();

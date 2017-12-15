@@ -48,6 +48,9 @@ const hierarchyQuery = (db: Lowdb): Promise<ObjectTree> => {
   });
 
   const tree = traverse(hierarchy);
+  if (Object.keys(tree.nodes()[0]).length === 0) {
+    return Promise.resolve(tree.clone());
+  }
   // tslint:disable-next-line:only-arrow-functions
   tree.forEach(function(value: ObjectTree) {
     const childKeys = Object.keys(value);
