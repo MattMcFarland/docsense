@@ -4,6 +4,7 @@ import * as Sane from 'sane';
 
 import getConfig from '../../config';
 import generator from '../../generator';
+import { fatalError } from '../../utils/common';
 import { log } from '../../utils/logger';
 import { parseFiles } from '../../utils/parse';
 import { setupCorePlugins } from '../../utils/plugin';
@@ -31,5 +32,6 @@ export const handler = (argv: any) => {
     })
     .then(setupCorePlugins)
     .then(parseFiles)
-    .then(generator);
+    .then(generator)
+    .catch(fatalError);
 };
