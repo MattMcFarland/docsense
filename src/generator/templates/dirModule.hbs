@@ -1,14 +1,24 @@
 <div>
   <header class="mb5">
     <h1 class="mb0 black-50">
-      <i class="blue black-50 pr2 icon-folder" aria-hidden="true"></i>&nbsp;{{ dirModule.directory }}</h1>
+      <i class="blue black-50 pr2 icon-folder" aria-hidden="true"></i>
+      &nbsp;{{ dirModule.directory }}</h1>
   </header>
   <div class="ml2 mt4">
     <h1>Modules</h1>
     <div class="pl4">
       {{#each dirModule.exportedModules }}
         <div>
-          <h2>{{file.name}}</h2>
+          <h2>
+            <a class="link dim black-90" href="/{{file.dir}}/{{file.name}}{{file.ext}}/index.html">
+              {{#if file.isIndex }}
+                <i class="blue black-50 icon-cubes" aria-hidden="true"></i>&nbsp;
+              {{else}}
+                <i class="blue black-50 icon-cube" aria-hidden="true"></i>&nbsp;
+              {{/if}}
+              {{file.name}}
+            </a>
+          </h2>
           <div class="f5">{{> importHeader file=file }}</div>
           <h3>Exports</h3>
           <div class="pl4">
