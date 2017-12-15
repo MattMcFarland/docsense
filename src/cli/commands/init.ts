@@ -30,9 +30,9 @@ export const handler = (argv: any) => {
     process.exit(1);
   }
   const initSettings = {
-    out: './docs',
-    main: './README',
-    files: ['./index.js'],
+    out: argv.out,
+    main: argv.main,
+    files: argv.files,
   };
   const initialSettings = JSON.stringify(initSettings, null, 2);
   writeFileSync(Path.join(argv.dir, '.docsenserc'), initialSettings);
