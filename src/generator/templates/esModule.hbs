@@ -8,19 +8,19 @@
     <h2>Exports</h2>
     {{#each esModule.exports}}
       {{#eq kind 'ExportingLiteral' }}
-        {{> literalBlock }}
+        {{> literalBlock file=@root.esModule.file}}
         <br/>
       {{/eq}}
       {{#eq kind 'ExportingFunction' }}
-        {{> functionBlock }}
+        {{> functionBlock file=@root.esModule.file}}
         <br/>
       {{/eq}}
       {{#eq kind 'ExportingImport' }}
-        {{> importedBlock }}
+        {{> importedBlock file=@root.esModule.file}}
         <br/>
       {{/eq}}
       {{#eq kind 'ExportingReference' }}
-        {{> referenceBlock }}
+        {{> referenceBlock file=@root.esModule.file}}
         <br/>
       {{/eq}}
     {{/each}}

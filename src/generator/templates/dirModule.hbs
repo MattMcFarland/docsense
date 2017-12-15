@@ -1,0 +1,39 @@
+<div>
+  <header class="mb5">
+    <h1 class="mb0 black-50">
+      <i class="blue black-50 pr2 icon-folder" aria-hidden="true"></i>&nbsp;{{ dirModule.directory }}</h1>
+  </header>
+  <div class="ml2 mt4">
+    <h1>Modules</h1>
+    <div class="pl4">
+      {{#each dirModule.exportedModules }}
+        <div>
+          <h2>{{file.name}}</h2>
+          <div class="f5">{{> importHeader file=file }}</div>
+          <h3>Exports</h3>
+          <div class="pl4">
+            {{#each fileExports }}
+              {{#eq kind 'ExportingLiteral' }}
+                {{> literalBlock file=../file}}
+                <br/>
+              {{/eq}}
+              {{#eq kind 'ExportingFunction' }}
+                {{> functionBlock file=../file}}
+                <br/>
+              {{/eq}}
+              {{#eq kind 'ExportingImport' }}
+                {{> importedBlock file=../file}}
+                <br/>
+              {{/eq}}
+              {{#eq kind 'ExportingReference' }}
+                {{> referenceBlock file=../file}}
+                <br/>
+              {{/eq}}
+            {{/each}}
+          </div>
+        </div>
+        <hr/>
+      {{/each}}
+    </div>
+  </div>
+</div>

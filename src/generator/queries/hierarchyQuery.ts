@@ -20,10 +20,13 @@ const hierarchyQuery = (db: Lowdb): Promise<ObjectTree> => {
 
   const filesOfConcern = file_collection.reduce(
     (acc: FileModel[], file: FileModel) => {
+      // Add constraints here, like as we add more core-plugins, we can
+      // ask it to also check for other filters
       const hasExports = Boolean(
         esModule_collection.filter((xp: ESModule) => xp.file_id === file.id)
           .length
       );
+
       if (hasExports) {
         acc.push(file);
       }

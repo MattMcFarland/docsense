@@ -1,5 +1,5 @@
 const Handlebars = require('handlebars');
-
+const Path = require('path');
 module.exports = function(ctx) {
   const { tree } = ctx.hash;
   const htmlString = collectionToString(tree);
@@ -14,18 +14,18 @@ function collectionToString(
   prefix = '<ul>',
   suffix = '</ul>',
   x = 0,
-  z = 0
+  z = 0,
+  path = ''
 ) {
   const maybeListItems = keysReduce(obj, (build, key, y) => {
     if (key === 'filedata') return build;
     i++;
     const node = obj[key];
-
     const coordinates = [x, y, z];
 
-    build += makeListItem(node, key, coordinates);
-
+    build += makeListItem(node, key, coordinates, path);
     if (hasKeys(obj[key])) {
+      const newPath = Path.posix.join(path, key);
       // recursively build another list
       return collectionToString(
         obj[key],
@@ -33,7 +33,8 @@ function collectionToString(
         `<li><ul data-coordinates="${coordinates}" class="pl3">`,
         '</ul></li>',
         x + 1,
-        y + i
+        y + i,
+        newPath
       );
     }
     return build;
@@ -42,11 +43,11 @@ function collectionToString(
   return list;
 }
 
-function makeListItem(node, key, coordinates) {
+function makeListItem(node, key, coordinates, path) {
   // if the node does not have a child called .filedata, then it is strictly
   // a directory
   if (!node.filedata) {
-    return makeFolderItem(key, coordinates);
+    return makeFolderItem(key, coordinates, path);
   }
   // files that are index.js are DAAMS (Directory As a Module)
   if (node.filedata.name.startsWith('index')) {
@@ -57,10 +58,13 @@ function makeListItem(node, key, coordinates) {
 }
 
 // Just a Directory
-function makeFolderItem(key, coordinates) {
+function makeFolderItem(key, coordinates, path) {
+  const dirPath = path
+    ? `/${path}/${key}/directory.html`
+    : `/${key}/directory.html`;
   return `
   <li class="pa1 near-white">
-    <a data-type="folder" data-toggle="${coordinates}" href="#" class="toggler pa1 link dim white db">
+    <a data-type="folder" data-toggle="${coordinates}" href="${dirPath}" class="toggler pa1 link dim white db">
       <span data-slot="icons">
         <i class="white-40 icon-caret-down"></i>
         <i class="white-40 icon-folder-open mr2"></i>

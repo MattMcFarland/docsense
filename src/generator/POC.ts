@@ -1,3 +1,3 @@
 import { generate } from './generator';
 
-generate();
+generate().catch(err => console.error(err));

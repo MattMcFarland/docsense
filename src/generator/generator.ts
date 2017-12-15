@@ -1,13 +1,18 @@
 import { readFileSync } from 'fs';
 import * as marked from 'marked';
-import { resolve as resolvePath } from 'path';
+import { join as joinPaths, resolve as resolvePath } from 'path';
 
 import getConfig from '../config';
 import { ESModule } from '../core-plugins/es-modules';
 import { connect } from '../db';
 import { addEmojis, compile, require_md, require_template } from './compiler';
 import markedStyle from './marked/renderer';
-import { fileExportsQuery, hierarchyQuery } from './queries';
+import {
+  directoryExportsQuery,
+  fileExportsQuery,
+  hierarchyQuery,
+} from './queries';
+import { IDirectoryExportsQuery } from './queries/directoryExportsQuery';
 import { IFileExportsQuery } from './queries/fileExportsQuery';
 import { copyStaticFiles, scaffoldStaticAssets } from './scaffolder';
 
@@ -20,6 +25,7 @@ export const generate = async () => {
   const db = await connect();
   const esModules = await fileExportsQuery.exec();
   const esModuleTree = await hierarchyQuery.exec();
+  const dirModules = await directoryExportsQuery.exec();
   const project = require(resolvePath(process.cwd(), 'package.json'));
   const renderer = markedStyle();
 
@@ -43,7 +49,7 @@ export const generate = async () => {
     const sourcePage = require_template('./templates/sourcePage.hbs');
     compile(
       esModulePage,
-      { esModule, esModules, config, esModuleTree, project },
+      { dirModules, esModule, esModules, config, esModuleTree, project },
       esModule.file.path + '/index.html'
     );
     compile(
@@ -60,6 +66,14 @@ export const generate = async () => {
         project,
       },
       esModule.file.path + '/source.html'
+    );
+  });
+  dirModules.forEach((dirModule: IDirectoryExportsQuery) => {
+    const dirModulePage = require_template('./templates/dirModule.hbs');
+    compile(
+      dirModulePage,
+      { dirModule, dirModules, esModules, config, esModuleTree, project },
+      joinPaths(dirModule.directory, 'directory.html')
     );
   });
 };
