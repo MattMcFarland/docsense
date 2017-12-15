@@ -4,8 +4,12 @@
       <i class="blue black-50 pr2 icon-folder" aria-hidden="true"></i>
       &nbsp;{{ dirModule.directory }}</h1>
   </header>
+  {{#if hasMarkdownFile}}
+    {{{markdownFileContent}}}
+  {{/if}}
+
   <div class="ml2 mt4">
-    <h1>Modules</h1>
+    <h2>Modules</h2>
     <div class="pl4">
       {{#each dirModule.exportedModules }}
         <div>

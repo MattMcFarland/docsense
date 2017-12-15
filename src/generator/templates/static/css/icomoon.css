@@ -8,9 +8,9 @@
   font-variant: normal;
   text-transform: none;
   min-height: 1em;
-  vertical-align: middle;
+  vertical-align: inherit;
+  line-height: inherit;
   font-size: inherit;
-  vertical-align: text-bottom;
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
