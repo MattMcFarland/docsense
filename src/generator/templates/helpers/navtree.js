@@ -88,7 +88,8 @@ function makeModuleItem({ path, name }) {
   return `
   <li class="pa1 near-white">
     <a class="pa1 link dim white db" href="/${path}/index.html" title="${path}">
-      <span data-slot="icons">
+      <span data-slot="icons" class="dib">
+        <i>&nbsp;</i>
         <i class="white-40 icon-cube mr2"></i>
       </span>
       <span>${name}</span>
@@ -98,7 +99,27 @@ function makeModuleItem({ path, name }) {
 }
 
 function keysReduce(obj, cb) {
-  return Object.keys(obj).reduce(cb, '');
+  const isIndex = node =>
+    node && node.filedata && node.filedata.name.startsWith('index');
+  const alphaSort = (a, b, w) => {
+    const sorted = [a, b].sort();
+    return sorted.indexOf(a) > sorted.indexOf(b) ? w : -w;
+  };
+  const filesLast = (keyA, keyB) => {
+    const nodeA = obj[keyA];
+    const nodeB = obj[keyB];
+    if (!nodeA.filedata && !nodeB.filedata) return alphaSort(nodeA, nodeB, 10);
+    if (isIndex(nodeA) && isIndex(nodeB))
+      return alphaSort(nodeA.filedata.name, nodeB.filedata.name, 10);
+    if (!nodeA.filedata) return -10;
+    if (isIndex(nodeA)) return -10;
+    if (!nodeB.filedata) return 10;
+    if (isIndex(nodeB)) return 10;
+    return alphaSort(nodeA, nodeB, 1);
+  };
+  return Object.keys(obj)
+    .sort(filesLast)
+    .reduce(cb, '');
 }
 
 function hasKeys(obj) {
