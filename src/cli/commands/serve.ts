@@ -11,19 +11,18 @@ export const builder = {
     desc:
       'directory docs are generated in, when thse change the browser will refresh',
   },
-  files: {
+  glob: {
     desc: 'files matching this glob pattern will trigger a rebuild',
+    default: ['**/*'],
   },
   root: {
-    desc:
-      'path to watch for changes to trigger a rebuild, glob patterns will not be matched against parents of root',
-    default: './',
+    desc: 'root path to watch for file changes that trigger a new doc build',
   },
 };
 export const handler = (argv: any) => {
-  const resolvedWatchPath = Path.resolve(argv.root);
-  const watcher = Sane(resolvedWatchPath, { glob: argv.files });
-
+  const watchPath = Path.resolve(process.cwd(), argv.root);
+  const watcher = Sane(watchPath, { glob: argv.glob });
+  build(argv);
   const bs = require('browser-sync').create();
   watcher.on('change', (filepath: string, root: string, stat: any) => {
     build(argv);
@@ -40,7 +39,6 @@ export const handler = (argv: any) => {
     log.info('serve', 'file delete', filepath);
   });
 
-  // Listen to change events on HTML and reload
   // TODO: use config for directory to watch
   bs.watch(argv.out + '/**/*').on('change', bs.reload);
 

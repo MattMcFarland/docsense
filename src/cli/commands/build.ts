@@ -6,7 +6,7 @@ import * as Sane from 'sane';
 import getConfig from '../../config';
 import generator from '../../generator';
 import { fatalError } from '../../utils/common';
-import { init as initializeLogger, log } from '../../utils/logger';
+
 import { parseFiles } from '../../utils/parse';
 import { setupCorePlugins } from '../../utils/plugin';
 
@@ -26,7 +26,6 @@ export const builder = {
   },
 };
 export const handler = (argv: any) => {
-  initializeLogger();
   getConfig()
     .then(config => {
       const settings = { ...config, ...argv };

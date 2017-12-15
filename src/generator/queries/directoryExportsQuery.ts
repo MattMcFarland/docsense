@@ -26,7 +26,6 @@ const directoryExportsQuery = (
   return Promise.resolve(
     directory_collection.reduce(
       (acc: IDirectoryExportsQuery[], dir: DirectoryModel) => {
-        if (!dir.files) return acc;
         const exportedModules = dir.files.reduce(
           (files: IDirectoryExportedModules[], file: FileIdRecord) => {
             const exportedModulesPerFile = esModule_collection.filter(
@@ -44,12 +43,10 @@ const directoryExportsQuery = (
           },
           []
         );
-        if (exportedModules.length) {
-          acc.push({
-            directory: dir.directory_id,
-            exportedModules,
-          });
-        }
+        acc.push({
+          directory: dir.directory_id,
+          exportedModules,
+        });
         return acc;
       },
       []

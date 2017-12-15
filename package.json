@@ -31,16 +31,10 @@
     "build:info": "node scripts/build-info",
     "build":
       "yarn build:info && yarn build:schema && yarn build:common && yarn build:esm",
-    "predocs": "rm -rf docs",
-    "docs": "mkdir docs && node dist/common/index.js",
-    "debug": "ts-node --inspect-brk --nolazy src/index.ts",
-    "prepublishOnly": "yarn build && yarn docs && pkg-ok",
+    "prepublishOnly": "yarn build && yarn docsense build && pkg-ok",
     "prettier":
       "prettier --write src/**/*.{ts,js,json,prettierrc,babelrc,docsenserc}",
-    "tslint-check": "tslint-config-prettier-check ./tslint.json",
-    "poc": "ts-node src/generator/POC.ts",
-    "predev-docs": "yarn build && yarn docs",
-    "dev-docs": "node scripts/dev-docs",
+    "dev-docs": "yarn docsense serve",
     "docsense": "yarn build:common && ./dist/common/cli/docsense.js"
   },
   "lint-staged": {
