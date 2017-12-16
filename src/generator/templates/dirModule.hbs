@@ -7,7 +7,6 @@
           <i class="blue black-50 pr2 icon-folder" aria-hidden="true"></i>
           &nbsp;{{ dirModule.directory }}</h1>
       </header>
-      <div class="f5">{{> importHeader file=esModule.file }}</div>
   {{/and}}
   {{#if hasMarkdownFile}}
     {{#each markdownFileChunks}}
@@ -17,9 +16,11 @@
     {{/each}}
   {{/if}}
   <div class="ml2 mt4">
-    <h2>Modules</h2>
     <div class="pl4">
       {{#each dirModule.exportedModules }}
+        {{#if @first}}
+          <h2>Modules</h2>
+        {{/if}}
         <div>
           <h2>
             <a class="link dim black-90" href="/{{file.dir}}/{{file.name}}{{file.ext}}/index.html">
