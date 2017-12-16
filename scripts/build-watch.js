@@ -2,7 +2,7 @@ const Path = require('path');
 const OS = require('os');
 const spawn = require('child_process').spawn;
 const mkdirp = require('mkdirp');
-const del = require('delete');
+
 const sane = require('sane');
 const chalk = require('chalk');
 const fs = require('fs');

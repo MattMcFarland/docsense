@@ -1,6 +1,5 @@
 import * as highlightjs from 'highlight.js';
 export default function(code: string, language: string) {
-  console.log(`code: "${code}"`);
   if (!language)
     return `
     <pre><code class="hljs black-60 no-highlight">${code}</code></pre>
