@@ -4,30 +4,55 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Build",
-      "identifier": "build",
+      "label": "Docsense Server",
+      "identifier": "docsense-serve",
       "type": "npm",
-      "script": "build:common:watch",
+      "promptOnClose": true,
+      "script": "dev-docs",
+      "isBackground": true,
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Watch",
+      "identifier": "watch",
+      "type": "process",
+      "dependsOn": "build",
+      "command": "node",
+      "args": ["scripts/build-watch.js"],
       "isBackground": true,
       "group": {
         "kind": "build",
         "isDefault": true
-      }
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "promptOnClose": true,
+      "problemMatcher": []
     },
     {
-      "type": "npm",
-      "script": "test:debug",
-      "group": {
-        "kind": "test",
-        "isDefault": true
-      }
-    },
-    {
-      "label": "Develop Generator",
-      "type": "npm",
       "group": "build",
+      "label": "Build",
+      "identifier": "build",
+      "type": "npm",
+      "script": "build:common",
       "isBackground": true,
-      "script": "dev-docs"
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared"
+      }
     }
   ]
 }
