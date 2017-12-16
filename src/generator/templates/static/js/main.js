@@ -54,7 +54,7 @@ function main() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
           scroll(0, 0);
           if (xhr.status === 200) {
-            const regxp = /<!-- @XHR-CONTENT-AREA --->+[\s\S]*<!-- @\/XHR-CONTENT-AREA --->/;
+            const regxp = /<!-- @XHR-CONTENT-AREA -->+[\s\S]*<!-- @\/XHR-CONTENT-AREA -->/;
             contentElement.innerHTML = xhr.responseText.match(regxp);
           } else {
             contentElement.innerHTML = xhr.status + ' ' + xhr.statusText;
