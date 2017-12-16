@@ -98,10 +98,9 @@ export const require_md = (cwdPath: string) => {
   log.info('compile markdown', cwdPath);
 
   try {
-    const targetPath = require.resolve(
-      path.resolve(process.cwd(), cwdPath + '.md')
-    );
-    const raw = readFileSync(targetPath, 'utf8');
+    const targetPath = cwdPath.endsWith('.md') ? cwdPath : cwdPath + '.md';
+    const resolvedTargetPath = path.resolve(process.cwd(), targetPath);
+    const raw = readFileSync(resolvedTargetPath, 'utf8');
     let keepParsing = true;
     const matches = [];
     // tslint:disable-next-line:no-conditional-assignment

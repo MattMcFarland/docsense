@@ -7,7 +7,8 @@
       "label": "Build",
       "identifier": "build",
       "type": "npm",
-      "script": "build:common",
+      "script": "build:common:watch",
+      "isBackground": true,
       "group": {
         "kind": "build",
         "isDefault": true

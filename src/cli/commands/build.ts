@@ -26,7 +26,7 @@ export const builder = {
   },
 };
 export const handler = (argv: any) => {
-  getConfig()
+  return getConfig()
     .then(config => {
       const settings = { ...config, ...argv };
       mkdirp.sync(settings.out);

@@ -19,31 +19,28 @@ export const builder = {
     desc: 'root path to watch for file changes that trigger a new doc build',
   },
 };
+
 export const handler = (argv: any) => {
   const watchPath = Path.resolve(process.cwd(), argv.root);
   const watcher = Sane(watchPath, { glob: argv.glob });
-  build(argv);
-  const bs = require('browser-sync').create();
-  watcher.on('change', (filepath: string, root: string, stat: any) => {
-    build(argv);
-    log.info('serve', 'file change', filepath);
-  });
+  build(argv).then(() => {
+    const bs = require('browser-sync').create();
 
-  watcher.on('add', (filepath: string, root: string, stat: any) => {
-    build(argv);
-    log.info('serve', 'file add', filepath);
-  });
+    // Start a Browsersync static file server
+    bs.init({ server: argv.out });
 
-  watcher.on('delete', (filepath: string, root: string) => {
-    build(argv);
-    log.info('serve', 'file delete', filepath);
-  });
+    const browserUpdate = () => {
+      setTimeout(bs.reload, 100);
+    };
 
-  // TODO: use config for directory to watch
-  bs.watch(argv.out + '/**/*').on('change', bs.reload);
+    const onFileChange = (filepath: string, root: string) => {
+      log.info('serve', 'file change', filepath);
+      bs.notify('Compiling, please wait!');
+      build(argv).then(browserUpdate);
+    };
 
-  // Start a Browsersync static file server
-  bs.init({
-    server: argv.out,
+    watcher.on('change', onFileChange);
+    watcher.on('add', onFileChange);
+    watcher.on('delete', onFileChange);
   });
 };

@@ -23,6 +23,7 @@
       "typescript-json-schema ./tsconfig.json -o docsense.schema.json --ignoreErrors DocSenseConfig",
     "postbuild:schema": "prettier --write docsense.schema.json",
     "build:common": "tsc -p tsconfig.common.json",
+    "build:common:watch": "tsc -w -p tsconfig.common.json",
     "postbuild:common":
       "cp -R src/generator/templates dist/common/generator && chmod +x dist/common/cli/*",
     "build:esm": "tsc -p tsconfig.esm.json",
