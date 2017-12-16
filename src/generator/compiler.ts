@@ -25,7 +25,7 @@ class Compiler {
     const content = template(data);
     const withLayout = this.compileLayout(content, data);
     const targetPath = path.resolve(process.cwd(), 'docs', target);
-    log.info('compile', targetPath);
+    log.verbose('compile', targetPath);
     createFile(targetPath, withLayout);
   }
 
@@ -95,7 +95,7 @@ export const require_template = (relPath: string) => {
 export const require_md = (cwdPath: string) => {
   const renderer = markedStyle();
   marked.setOptions({ renderer });
-  log.info('compile markdown', cwdPath);
+  log.verbose('compile markdown', cwdPath);
 
   try {
     const targetPath = cwdPath.endsWith('.md') ? cwdPath : cwdPath + '.md';

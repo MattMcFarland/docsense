@@ -71,7 +71,7 @@ export const resolveFile = (filepath: string): Promise<string> => {
         return reject(err);
       }
       if (stats.isFile()) {
-        log.info('read', filepath);
+        log.verbose('read', filepath);
         return resolve(filepath);
       }
       log.warn('skip', filepath);

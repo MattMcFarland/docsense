@@ -12,6 +12,7 @@ import { setupCorePlugins } from '../../utils/plugin';
 
 export const command = 'build [Options]';
 export const desc = 'Builds static doc site';
+
 export const builder = {
   out: {
     desc: 'directory docs are generated in',

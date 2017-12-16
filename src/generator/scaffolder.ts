@@ -24,7 +24,7 @@ export const copyStaticFiles = (targetDir: string) => {
   const copydir = require('copy-dir');
   const from = resolvePath(__dirname, 'templates/static');
   const to = resolvePath(targetDir, 'static');
-  log.info('copy', from, to);
+  log.verbose('copy', from, to);
 
   return new Promise((resolve, reject) => {
     copydir(from, to, (err: Error) => {
@@ -35,6 +35,7 @@ export const copyStaticFiles = (targetDir: string) => {
 };
 
 export const scaffoldStaticAssets = (outDir: string) => {
+  log.info('scaffold', 'static assets');
   makeNodeModuleStatic(
     'tachyons/css/tachyons.min.css',
     outDir + '/static/css/tachyons.min.css'

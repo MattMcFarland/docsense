@@ -26,19 +26,21 @@ export const parseFiles = ({
       readFiles(filepaths).then((filesData: string[]) => {
         const parser: ParseEngine = new ParseEngine(config);
         const db: Lowdb = create(config.out || '');
-
+        log.info('plugin', 'registering plugins');
         plugins.forEach((plugin: IPluginRecord) =>
           registerPlugin(parser, plugin, db)
         );
-
+        log.info('plugin', 'plugins registered');
+        log.info('parse', 'start');
         filesData.forEach((data: string, index) => {
           parser.emit('addFile:before', db.getState());
           const filepath: string = filepaths[index];
+          log.silly('add', filepath);
           parser.addFile(filepath, data.toString());
-          log.log('success', 'parse', filepath);
+          log.verbose('parse', filepath);
           parser.emit('addFile:after', db.getState());
         });
-
+        log.info('parse', 'complete');
         parser.emit('done');
         return db;
       })

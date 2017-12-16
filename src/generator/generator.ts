@@ -34,13 +34,14 @@ export default async () => {
   const indexPage = require_template('./templates/index.hbs');
 
   if (mainDoc) {
+    log.info('generate', 'main page');
     compile(
       indexPage,
       { main: mainDoc.data, esModules, config, esModuleTree, project },
       'index.html'
     );
   }
-
+  log.info('generate', 'module pages');
   // This loop only goes over the modules that plugins found to have exports.
   esModules.forEach((esModule: IFileExportsQuery) => {
     const esModulePage = require_template('./templates/esModule.hbs');
@@ -72,6 +73,7 @@ export default async () => {
       },
       esModule.file.path + '/index.html'
     );
+    log.verbose('compile', 'file', esModule.file.path);
     compile(
       sourcePage,
       {
@@ -90,17 +92,18 @@ export default async () => {
       esModule.file.path + '/source.html'
     );
   });
+  log.success('generate', 'module pages');
+  log.info('generate', 'directory pages');
   dirModules.forEach((dirModule: IDirectoryExportsQuery) => {
     const dirModulePage = require_template('./templates/dirModule.hbs');
     const mdfilePath = `${dirModule.directory}/README`;
     const resolvedMDFilePath = resolveFromProject(mdfilePath);
     const hasMarkdownFile = existsSync(resolvedMDFilePath + '.md');
-
     const md = hasMarkdownFile ? require_md(resolvedMDFilePath) : '';
     const markdownFileContent = (md && md.data) || '';
     const markdownFileChunks = (md && md.chunks) || '';
     const markdownFileTitle = (md && md.title) || '';
-
+    log.verbose('compile', 'directory', dirModule.directory);
     compile(
       dirModulePage,
       {
@@ -118,7 +121,7 @@ export default async () => {
       Path.join(dirModule.directory, 'directory.html')
     );
   });
-
+  log.success('generate', 'directory pages');
   function resolveFromProject(pathToResolve: string) {
     return Path.resolve(config.root, pathToResolve);
   }
