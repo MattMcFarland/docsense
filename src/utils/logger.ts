@@ -11,6 +11,7 @@ export enum LogLevel {
 export const init = (level: LogLevel) => {
   assert(!initialized, 'logger already initialized');
   try {
+    logger.level = level;
     const info = require('../../info.json');
     logger.heading = info.name;
     logger.info('using', `${info.name}@${info.version}`);
