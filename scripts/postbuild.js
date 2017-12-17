@@ -35,7 +35,7 @@ cpr(
   sources.templates,
   targets.templates,
   {
-    filter: /.js$|static/,
+    filter: /.js$|static|.ts$/,
     overwrite: true,
   },
   err => {
