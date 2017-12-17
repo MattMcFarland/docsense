@@ -121,7 +121,7 @@ export const handler = (argv: any) => {
 };
 
 function onBuildFailure(err: any) {
-  console.log(err);
+  log.error(err);
   log.warn(
     'build',
     'Build cancelled, waiting for changes before building again.'
