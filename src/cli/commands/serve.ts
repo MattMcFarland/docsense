@@ -12,7 +12,7 @@ import { log } from '../../utils/logger';
 const exec = promisify(execFn);
 
 export const command = 'serve [Options]';
-export const aliases = ['s'];
+export const aliases = ['s', 'w', 'watch'];
 export const desc = 'Serves up a local docsense app that watches for changes';
 
 export const builder: yargs.CommandBuilder = argv => {
