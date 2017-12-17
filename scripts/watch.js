@@ -59,13 +59,16 @@ const tsc = argv.noTs
 const tscOutput = buffer => {
   if (buffer.length) {
     process.stdout.write(
-      '\n' + chalk.cyan(' TSC -> ') + '\n\n' + buffer.toString().trim() + '\n\n'
+      '\n' + chalk.cyan(' TSC -> ') + '\n\n' + buffer.toString()
     );
   }
 };
 
 const saneOutput = (...args) => {
-  console.log('\n', chalk.magenta('SANE ->'), '\n\n', ...args);
+  process.stdout.write(
+    '\n' + chalk.magenta(' SANE -> ') + '\n\n' + args.join(' ') + '\n\n\n'
+  );
+  return true;
 };
 
 tsc.stderr.on('data', tscOutput);
@@ -100,24 +103,26 @@ const copyFile = (source, dest) => {
 const onFileChange = (filepath, root, stat) => {
   const srcFile = srcDir(filepath);
   const newFile = targetDir(filepath);
-  saneOutput('File change detected. Starting copy...');
+  saneOutput(withTime(), 'File change detected. Starting copy...');
   copyFile(srcFile, newFile)
     .then(file => saneOutput('Copied ' + chalk.yellow('modified file'), file))
+    .then(logCompletion)
     .catch(err => saneOutput(err.message));
 };
 
 const onFileAdd = (filepath, root, stat) => {
   const srcFile = srcDir(filepath);
   const newFile = targetDir(filepath);
-  saneOutput('File addition detected. Starting copy...');
+  saneOutput(withTime(), 'File addition detected. Starting copy...');
   copyFile(srcFile, newFile)
     .then(file => saneOutput('Copied ' + chalk.yellow('new file'), file))
+    .then(logCompletion)
     .catch(err => saneOutput(err.message));
 };
 
 const onFileDelete = (filepath, root, stat) => {
   const targetFile = targetDir(filepath);
-  saneOutput('File removal detected. Deleting...');
+  saneOutput(withTime(), 'File removal detected. Deleting...');
   fs.unlink(Path.resolve(targetFile), err => {
     if (err) return saneOutput(err.message);
     saneOutput(
@@ -125,6 +130,7 @@ const onFileDelete = (filepath, root, stat) => {
       chalk.red('file'),
       Path.relative(projectPath, targetFile)
     );
+    logCompletion();
   });
 };
 
@@ -136,5 +142,23 @@ cliWatcher.on('change', (filepath, root) => {
   fs.chmod(Path.join(root, filepath), 700, err => {
     if (err) return saneOutput(err);
     saneOutput('chmod', filepath);
+    logCompletion();
   });
 });
+function logCompletion() {
+  saneOutput(withTime(), 'Operation complete. Watching for file changes.');
+}
+function withTime() {
+  const time = new Date();
+  const h = withZero(time.getHours());
+  const m = withZero(time.getMinutes());
+  const s = withZero(time.getSeconds());
+
+  return (
+    time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds() + ' - '
+  );
+}
+
+function withZero(unit) {
+  return unit.toString().length === 1 ? `0${unit}` : unit;
+}
