@@ -54,5 +54,15 @@
       "fileMatch": [".docsenserc", "docsense.config.json"],
       "url": "./docsense.schema.json"
     }
+  ],
+  "autolaunch.config": [
+    {
+      "type": "task",
+      "name": "watch"
+    },
+    {
+      "type": "task",
+      "name": "docsense-serve"
+    }
   ]
 }
