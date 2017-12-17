@@ -1,6 +1,6 @@
 {
   "name": "docsense",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "An Intelligent Doc Generator tailored for EcmaScript Modules",
   "main": "dist/common/index.js",
   "bin": {
