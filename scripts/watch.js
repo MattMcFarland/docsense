@@ -11,11 +11,28 @@ const platform = OS.platform();
 
 const projectPath = Path.resolve(__dirname, '..');
 const watchPath = Path.resolve(projectPath, 'src');
-const watcher = sane(watchPath, {
-  glob: ['**/*.css', '**/*.js', '**/*.hbs', '**/*.md'],
-});
 
-const targetDir = path => Path.resolve(projectPath, 'dist', 'common', path);
+const argv = require('yargs')
+  .usage('$0 <target> [extensions..]', 'Watches files for changes', yargs => {
+    yargs.positional('target', {
+      describe: 'target destination',
+      choices: ['esm', 'common'],
+    });
+    yargs.positional('extensions', {
+      describe: 'file extensions to watch for (eg: js, css)',
+      default: ['js', 'css', 'md', 'hbs'],
+    });
+    yargs.option('noTs', {
+      describe: 'disable typescript compile',
+      default: false,
+    });
+  })
+  .version(false)
+  .help(true).argv;
+
+console.log('Executing watcher on', chalk.cyan(platform));
+
+const targetDir = path => Path.resolve(projectPath, 'dist', argv.target, path);
 const srcDir = path => Path.resolve(watchPath, path);
 
 const cli = targetDir('cli');
@@ -28,12 +45,16 @@ const compiler = Path.resolve(
   platform === 'win32' ? 'tsc.cmd' : 'tsc'
 );
 
-console.log('Executing watcher on', chalk.cyan(platform));
-
-const tsc = spawn(compiler, ['-w', '-p', 'tsconfig.common.json'], {
-  env: process.env,
-  cwd: process.cwd(),
+const watcher = sane(watchPath, {
+  glob: argv.extensions.map(ext => `**/*.${ext}`),
 });
+
+const tsc = argv.noTs
+  ? spawn('echo', ['no-tsc flag enabled, skipping tsc!'])
+  : spawn(compiler, ['-w', '-p', 'tsconfig.common.json'], {
+      env: process.env,
+      cwd: process.cwd(),
+    });
 
 const tscOutput = buffer => {
   if (buffer.length) {
@@ -51,11 +72,13 @@ tsc.stderr.on('data', tscOutput);
 tsc.stdout.on('data', tscOutput);
 
 tsc.on('exit', code => {
-  process.exit(code);
+  if (code !== 0) {
+    process.exit(code);
+  }
 });
 
 tsc.stdout.once('data', () => {
-  saneOutput('Watching for .js, .hbs, .md, and .css changes');
+  saneOutput('Watching on', argv.extensions);
 });
 
 const copyFile = (source, dest) => {

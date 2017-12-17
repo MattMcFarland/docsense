@@ -24,7 +24,7 @@
     "postbuild:schema": "prettier --write docsense.schema.json",
     "build:common": "tsc -p tsconfig.common.json",
     "prebuild:common:watch": "yarn build:common",
-    "build:common:watch": "node scripts/build-watch.js",
+    "build:common:watch": "node scripts/watch common",
     "postbuild:common": "node scripts/postbuild common",
     "build:esm": "tsc -p tsconfig.esm.json",
     "postbuild:esm": "node scripts/postbuild common",

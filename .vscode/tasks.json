@@ -54,7 +54,7 @@
         "panel": "shared"
       },
       "promptOnClose": true,
-      "problemMatcher": []
+      "problemMatcher": ["$tsc"]
     },
     {
       "group": "build",
