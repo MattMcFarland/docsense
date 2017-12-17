@@ -1,7 +1,8 @@
 # `docsense serve`
 ## Usage:
 
-```docsense serve [Options]
+```
+docsense serve [Options]
 
 Serves up a local docsense app that watches for changes
 
