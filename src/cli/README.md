@@ -72,5 +72,3 @@ Once you have your `.docsenserc` file, you can run `docsense build` at any time 
 ## Watching for changes
 
 If you would like to develop your documentation and see updates right away, you can use `docsense serve` - this will watch for cahnges and run the `build` step and refresh your browser.
-
-
