@@ -64,5 +64,6 @@
       "type": "task",
       "name": "docsense-serve"
     }
-  ]
+  ],
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }
