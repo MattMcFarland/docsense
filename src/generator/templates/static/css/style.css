@@ -58,3 +58,7 @@ header > h1 {
   vertical-align: middle;
   line-height: 4rem;
 }
+
+.measure-super {
+  max-width: 56em;
+}
