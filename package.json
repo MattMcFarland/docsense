@@ -37,7 +37,8 @@
     "prettier":
       "prettier --write src/**/*.{ts,js,json,prettierrc,babelrc,docsenserc}",
     "dev-docs": "yarn docsense serve",
-    "docsense": "node ./dist/common/cli/docsense.js"
+    "docsense": "node ./dist/common/cli/docsense.js",
+    "docsense:serve:verbose": "yarn docsense --loglevel verbose serve"
   },
   "lint-staged": {
     "*.{ts,js,json,prettierrc,babelrc,docsenserc}": [

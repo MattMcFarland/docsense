@@ -20,6 +20,22 @@
       }
     },
     {
+      "label": "Docsense <Verbose> Server",
+      "identifier": "docsense-serve-verbose",
+      "type": "npm",
+      "promptOnClose": true,
+      "script": "docsense:serve:verbose",
+      "isBackground": true,
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
       "label": "Watch",
       "identifier": "watch",
       "type": "process",
