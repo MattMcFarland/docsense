@@ -5,8 +5,10 @@ let initialized = false;
 
 export enum LogLevel {
   silly = 'silly',
-  info = 'info',
   verbose = 'verbose',
+  info = 'info',
+  warn = 'warn',
+  silent = 'silent',
 }
 export const init = (level: LogLevel) => {
   assert(!initialized, 'logger already initialized');
