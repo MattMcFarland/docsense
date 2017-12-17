@@ -4,25 +4,29 @@ import * as Sane from 'sane';
 import { log } from '../../utils/logger';
 import { handler as build } from './build';
 
-export const command = 'serve [Options]';
+export const command = 'serve [Options|files..]';
+export const aliases = ['s'];
 export const desc = 'Serves up a local docsense app that watches for changes';
 export const builder = {
-  out: {
-    desc:
-      'directory docs are generated in, when thse change the browser will refresh',
+  files: {
+    desc: 'File or glob of files that will be parsed.',
+    default: '[**/*.js]',
   },
-  glob: {
-    desc: 'files matching this glob pattern will trigger a rebuild',
-    default: ['**/*'],
+  out: {
+    alias: 'o',
+    desc: 'Directory your documentation will be generated in',
+    default: 'docs',
   },
   root: {
-    desc: 'root path to watch for file changes that trigger a new doc build',
+    alias: 'r',
+    desc: 'Directory to start parsing in',
+    default: './',
   },
 };
 
 export const handler = (argv: any) => {
   const watchPath = Path.resolve(process.cwd(), argv.root);
-  const watcher = Sane(watchPath, { glob: argv.glob });
+  const watcher = Sane(watchPath, { glob: '**/*' });
   build(argv).then(() => {
     const bs = require('browser-sync').create();
 

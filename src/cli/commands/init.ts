@@ -5,6 +5,7 @@ import { log } from '../../utils/logger';
 
 export const command = 'init [Options]';
 export const desc = 'Initializes docsense config file (.docsenserc)';
+export const aliases = ['i'];
 export const builder = {
   dir: {
     desc: 'directory to add rc file',
@@ -20,7 +21,7 @@ export const builder = {
   },
   files: {
     desc: 'files to generate documentation on (can be glob patterns)',
-    default: ['./src/**/*.js'],
+    default: ['./'],
   },
 };
 export const handler = (argv: any) => {

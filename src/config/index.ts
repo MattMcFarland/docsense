@@ -11,6 +11,8 @@ export default (): Promise<DocSenseConfig> =>
   cosmic('docsense')
     .load(process.cwd())
     .then(state => {
+      if (typeof process.env.DOCSENSE_CONFIG === 'string')
+        return JSON.parse(<string>process.env.DOCSENSE_CONFIG);
       if (!state) return defaultConfig;
       if (!state.config) return defaultConfig;
       return merge(defaultConfig, state.config);

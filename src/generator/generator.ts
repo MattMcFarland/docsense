@@ -6,7 +6,7 @@ import getConfig from '../config';
 import { ESModule } from '../core-plugins/es-modules';
 import { connect } from '../db';
 import { log } from '../utils/logger';
-import { addEmojis, compile, require_md, require_template } from './compiler';
+import Compiler, { addEmojis, require_md, require_template } from './compiler';
 import {
   directoryExportsQuery,
   fileExportsQuery,
@@ -32,6 +32,7 @@ export default async () => {
 
   const mainDoc = require_md(config.main);
   const indexPage = require_template('./templates/index.hbs');
+  const compile = new Compiler(config).compile;
 
   if (mainDoc) {
     log.info('generate', 'main page');

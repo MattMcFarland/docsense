@@ -3,6 +3,7 @@ import * as marked from 'marked';
 import * as emoji from 'node-emoji';
 import * as path from 'path';
 
+import { DocSenseConfig } from '../config/index';
 import { createFile, withAllFiles } from '../utils/file';
 import { log } from '../utils/logger';
 import markedStyle from './marked/renderer';
@@ -11,8 +12,10 @@ const mdHeadingsRe = new RegExp(/(#+.[\S ]+(?=\n))+([^#]+)/g);
 
 class Compiler {
   private Handlebars: typeof Handlebars;
+  private config: DocSenseConfig;
 
-  constructor() {
+  constructor(config: DocSenseConfig) {
+    this.config = config;
     this.Handlebars = require('handlebars');
     this.registerHelpers();
     this.registerPartials();
@@ -24,7 +27,7 @@ class Compiler {
     const template = Handlebars.compile(source);
     const content = template(data);
     const withLayout = this.compileLayout(content, data);
-    const targetPath = path.resolve(process.cwd(), 'docs', target);
+    const targetPath = path.resolve(process.cwd(), this.config.out, target);
     log.verbose('compile', targetPath);
     createFile(targetPath, withLayout);
   }
@@ -82,9 +85,10 @@ class Compiler {
   }
 }
 
-export const compile = (source: string, data: any, target: string) => {
-  const compiler = new Compiler();
-  return compiler.compile(source, data, target);
+export const makeCompile = (config: DocSenseConfig) => {
+  const compiler = new Compiler(config);
+  return (source: string, data: any, target: string) =>
+    compiler.compile(source, data, target);
 };
 
 export const require_template = (relPath: string) => {
@@ -154,3 +158,5 @@ export const addEmojis = (markdown: string) => {
   const replacer = (match: any) => emoji.emojify(match);
   return markdown.replace(/(:.*:)/g, replacer);
 };
+
+export default Compiler;

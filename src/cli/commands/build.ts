@@ -10,29 +10,30 @@ import { fatalError } from '../../utils/common';
 import { parseFiles } from '../../utils/parse';
 import { setupCorePlugins } from '../../utils/plugin';
 
-export const command = 'build [Options]';
+export const command = 'build [Options|files..]';
+export const aliases = ['b'];
 export const desc = 'Builds static doc site';
-
 export const builder = {
-  out: {
-    desc: 'directory docs are generated in',
-  },
   files: {
-    desc: 'files matching this glob pattern will be parsed to documentation',
+    desc: 'File or glob of files that will be parsed.',
+    default: '[**/*.js]',
+  },
+  out: {
+    alias: 'o',
+    desc: 'Directory your documentation will be generated in',
+    default: 'docs',
   },
   root: {
-    desc:
-      'ignores the parent, useful if your code is all in /src and you dont want docs to say "src"',
-    default: './',
+    alias: 'r',
+    desc: 'Directory to start parsing in',
+    default: 'CWD',
   },
 };
 export const handler = (argv: any) => {
-  return getConfig()
-    .then(config => {
-      const settings = { ...config, ...argv };
-      mkdirp.sync(settings.out);
-      return settings;
-    })
+  if (typeof argv.files === 'string') argv.files = [argv.files];
+  process.env.DOCSENSE_CONFIG = JSON.stringify(argv);
+  mkdirp.sync(argv.out);
+  return Promise.resolve(argv)
     .then(setupCorePlugins)
     .then(parseFiles)
     .then(generator)

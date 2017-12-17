@@ -10,27 +10,27 @@ import { init as initializeLogger, log } from '../utils/logger';
 getConfig()
   .then(config => {
     const args = yargs
-      .commandDir('commands')
+      .config(config)
       .option('silent', {
         alias: 's',
-        describe: 'run silent',
+        describe:
+          'Run silently, logging nothing, shorthand for --loglevel=silent',
+        default: false,
       })
       .option('loglevel', {
-        describe: 'set loglevel',
+        describe: 'Set the loglevel',
+        alias: 'll',
         choices: ['silent', 'info', 'verbose', 'silly'],
         default: 'info',
       })
+      .commandDir('commands')
       .demandCommand()
-      .config(config)
+      .epilogue('Thank you for using docsense')
       .help().argv;
 
-    if (args.silent) {
-      args.loglevel = 'silent';
-    }
-    initializeLogger();
-    log.info('loglevel', args.loglevel);
+    const level = args.silent ? 'silent' : args.loglevel;
 
-    log.level = args.loglevel;
+    initializeLogger(level);
 
     log.verbose(JSON.stringify(args));
     return args;
