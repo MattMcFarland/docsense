@@ -17,8 +17,8 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Run POC",
-      "program": "${workspaceFolder}/src/generator/POC.ts",
+      "name": "Debug Generator",
+      "program": "${workspaceFolder}/src/generator/debug.ts",
       "preLaunchTask": "build",
       "outFiles": ["${workspaceFolder}/dist/common/**/*.js"],
       "protocol": "inspector",

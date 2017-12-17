@@ -17,6 +17,10 @@ const watcher = sane(watchPath, {
 
 const targetDir = path => Path.resolve(projectPath, 'dist', 'common', path);
 const srcDir = path => Path.resolve(watchPath, path);
+
+const cli = targetDir('cli');
+const cliWatcher = sane(cli, { glob: ['docsense.js'] });
+
 const compiler = Path.resolve(
   process.cwd(),
   'node_modules',
@@ -104,3 +108,10 @@ const onFileDelete = (filepath, root, stat) => {
 watcher.on('change', onFileChange);
 watcher.on('add', onFileAdd);
 watcher.on('delete', onFileDelete);
+
+cliWatcher.on('change', (filepath, root) => {
+  fs.chmod(Path.join(root, filepath), 700, err => {
+    if (err) return saneOutput(err);
+    saneOutput('chmod', filepath);
+  });
+});
