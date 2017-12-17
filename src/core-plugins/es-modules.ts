@@ -226,7 +226,15 @@ export default (engine: ParseEngine, store: Store): any => {
           case 'AwaitExpression':
           case 'BindExpression':
           case 'DoExpression':
-            log.warn('es-modules', 'skipping', variableDeclarator.init.type);
+            const location = assignment.node.loc;
+            log.warn(
+              'es-modules',
+              'skipping',
+              variableDeclarator.init.type,
+              `${location.filename}@${location.start.line}:${
+                location.start.column
+              }`
+            );
             break;
         }
       });
