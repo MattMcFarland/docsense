@@ -1,6 +1,6 @@
-const Handlebars = require('handlebars');
 const Path = require('path');
-module.exports = function(ctx) {
+module.exports = (ctx: any) => {
+  const Handlebars = require('handlebars');
   const { tree } = ctx.hash;
   const htmlString = collectionToString(tree);
   return new Handlebars.SafeString(htmlString);
@@ -9,7 +9,7 @@ module.exports = function(ctx) {
 let i = 0;
 
 function collectionToString(
-  obj,
+  obj: any,
   list = '',
   prefix = '<ul>',
   suffix = '</ul>',
@@ -17,7 +17,7 @@ function collectionToString(
   z = 0,
   path = ''
 ) {
-  const maybeListItems = keysReduce(obj, (build, key, y) => {
+  const maybeListItems = keysReduce(obj, (build: any, key: any, y: any) => {
     if (key === 'filedata') return build;
     i++;
     const node = obj[key];
@@ -43,7 +43,7 @@ function collectionToString(
   return list;
 }
 
-function makeListItem(node, key, coordinates, path) {
+function makeListItem(node: any, key: any, coordinates: any, path: any) {
   // if the node does not have a child called .filedata, then it is strictly
   // a directory
   if (!node.filedata) {
@@ -54,11 +54,11 @@ function makeListItem(node, key, coordinates, path) {
     return makeDAAMItem(node.filedata, coordinates);
   }
   // anything else should be a module
-  return makeModuleItem(node.filedata, coordinates);
+  return makeModuleItem({ path: node.filedata.path, name: node.filedata.name });
 }
 
 // Just a Directory
-function makeFolderItem(key, coordinates, path) {
+function makeFolderItem(key: any, coordinates: any, path: any) {
   const dirPath = path
     ? `/${path}/${key}/directory.html`
     : `/${key}/directory.html`;
@@ -76,7 +76,7 @@ function makeFolderItem(key, coordinates, path) {
 }
 
 // Make Directory As a Module
-function makeDAAMItem({ path }, coordinates) {
+function makeDAAMItem({ path }: any, coordinates: any) {
   return `
   <li class="pa1 near-white">
     <a data-type="daam" data-toggle="${coordinates}" class="toggler pa1 link dim white db" href="/${path}/index.html" title="${path}">
@@ -90,7 +90,7 @@ function makeDAAMItem({ path }, coordinates) {
   `;
 }
 
-function makeModuleItem({ path, name }) {
+function makeModuleItem({ path, name }: any) {
   return `
   <li class="pa1 near-white">
     <a class="pa1 link dim white db" href="/${path}/index.html" title="${path}">
@@ -104,14 +104,14 @@ function makeModuleItem({ path, name }) {
   `;
 }
 
-function keysReduce(obj, cb) {
-  const isIndex = node =>
+function keysReduce(obj: any, cb: any) {
+  const isIndex = (node: any) =>
     node && node.filedata && node.filedata.name.startsWith('index');
-  const alphaSort = (a, b, w) => {
+  const alphaSort = (a: any, b: any, w: number) => {
     const sorted = [a, b].sort();
     return sorted.indexOf(a) > sorted.indexOf(b) ? w : -w;
   };
-  const filesLast = (keyA, keyB) => {
+  const filesLast = (keyA: any, keyB: any) => {
     const nodeA = obj[keyA];
     const nodeB = obj[keyB];
     if (!nodeA.filedata && !nodeB.filedata) return alphaSort(nodeA, nodeB, 10);
@@ -128,11 +128,11 @@ function keysReduce(obj, cb) {
     .reduce(cb, '');
 }
 
-function hasKeys(obj) {
+function hasKeys(obj: any) {
   return obj && Object.keys(obj).length;
 }
 
-function daam(path) {
+function daam(path: string) {
   return path
     .split('/')
     .slice(0, -1)

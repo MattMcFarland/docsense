@@ -1,9 +1,9 @@
-const HighlightJS = require('highlight.js');
-const Handlebars = require('handlebars');
-const Path = require('path');
+import * as Path from 'path';
+
 const pkg = require(Path.resolve(process.cwd(), 'package.json'));
 
-module.exports = function(ctx) {
+module.exports = (ctx: any) => {
+  const Handlebars = require('handlebars');
   const { name, link, from, all, line } = ctx.hash;
 
   const fromProject = Path.posix.join(pkg.name, from || '');
@@ -17,7 +17,7 @@ module.exports = function(ctx) {
   return new Handlebars.SafeString(code);
 };
 
-function makeImport(name, all) {
+function makeImport(name: string, all: string) {
   if (all) {
     return `${makeKeyword('import')} * ${makeKeyword(
       'as'
@@ -26,19 +26,19 @@ function makeImport(name, all) {
   return `${makeKeyword('import')} <span>${name}</span>`;
 }
 
-function makeString(str) {
+function makeString(str: string) {
   return `<span class="hljs-string">'${str}'</span>`;
 }
 
-function makeKeyword(str) {
+function makeKeyword(str: string) {
   return `<span class="hljs-keyword">${str}</span>`;
 }
 
-function makeLink(href, title, body) {
+function makeLink(href: string, title: string, body: string) {
   return `<a title="${title}" class="dim dark-red link" href="${href}">${body}</a>`;
 }
 
-function block(...strings) {
+function block(...strings: string[]) {
   return (
     '<pre class="ba b--black-20 lh-solid">' +
     '<code class="javascript hljs">' +

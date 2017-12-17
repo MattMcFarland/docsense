@@ -1,4 +1,4 @@
-module.exports = function(param) {
+module.exports = (param: any) => {
   if (typeof param === 'string') return param;
   if (Array.isArray(param)) {
     return (
