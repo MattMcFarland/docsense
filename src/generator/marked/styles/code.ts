@@ -1,6 +1,9 @@
 import * as highlightjs from 'highlight.js';
 export default function(code: string, language: string) {
-  const _code = code.replace('<', '&lt;').replace('>', '&gt;');
+  const _code = code
+    .replace('<', '&lt;')
+    .replace('>', '&gt;')
+    .replace('\t', '  ');
   if (!language)
     return `<pre><code class="hljs black-60 no-highlight">${_code}</code></pre>`;
 
