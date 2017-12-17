@@ -12,7 +12,23 @@ import { init as initializeLogger, log } from '../utils/logger';
  */
 getConfig()
   .then(config => {
+    require('yargonaut')
+      .style('blue')
+      .style('yellow', 'required')
+      .helpStyle('green.underline')
+      .errorsStyle('red.bold');
     const args = yargs
+      .wrap(yargs.terminalWidth())
+      .usage('$0 <command> [Options]')
+
+      .example(
+        '$0 init',
+        'Creates a config file for your project (recommended)'
+      )
+      .example('$0 init --help', 'See options and examples for using init')
+      .example('$0 build --help', 'See options and examples for using build')
+      .example('$0 serve --help', 'See options and examples for using serve')
+
       .config(config)
       .option('silent', {
         alias: 's',
@@ -23,7 +39,7 @@ getConfig()
       .option('loglevel', {
         describe: 'Set the loglevel',
         alias: 'll',
-        choices: ['silent', 'info', 'verbose', 'silly'],
+        choices: ['silent', 'info', 'verbose', 'silly', 'warn'],
         default: 'info',
       })
       .commandDir('commands')
