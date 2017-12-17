@@ -11,7 +11,7 @@ import { fatalError } from '../../utils/common';
 import { parseFiles } from '../../utils/parse';
 import { setupCorePlugins } from '../../utils/plugin';
 
-export const command = 'build [Options|files..]';
+export const command = 'build [Options]';
 export const aliases = ['b'];
 export const desc = 'Builds static doc site';
 

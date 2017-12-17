@@ -18,7 +18,6 @@ getConfig()
       .helpStyle('green.underline')
       .errorsStyle('red.bold');
     const args = yargs
-      .wrap(yargs.terminalWidth())
       .usage('$0 <command> [Options]')
 
       .example(

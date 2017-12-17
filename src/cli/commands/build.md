@@ -1,20 +1,33 @@
 # `docsense build`
 ### Usage:
 
+
 ```
+docsense build [Options]
+
 Builds static doc site
 
 Options:
-  --out          directory docs are generated in
+  --version         Show version number                                [boolean]
+  --silent, -s      Run silently, logging nothing, shorthand for
+                    --loglevel=silent                           [default: false]
+  --loglevel, --ll  Set the loglevel
+       [choices: "silent", "info", "verbose", "silly", "warn"] [default: "info"]
+  --help            Show help                                          [boolean]
+  --files           File or glob of files that will be parsed.
+                                                          [default: "[**/*.js]"]
+  --out, -o         Directory your documentation will be generated in
+                                                               [default: "docs"]
+  --root, -r        Directory to start parsing in               [default: "CWD"]
 
-  --files        files matching this glob pattern will be
-                 parsed to documentation
-
-  --root         ignores the parent, useful if your code is
-                 all in /src and you dont want docs to say
-                 "src"                      [default: "./"]
-
-  -v, --version  Show version number              [boolean]
-  -h, --help     Show help                        [boolean]
+Examples:
+  docsense build                            builds docs using your config file
+                                            instead of options (recommended)
+  docsense build --out foo                  Docs are generated into the foo
+                                            directory
+  docsense build --root lib --files         Files matching the glob pattern will
+  "**/*.js"                                 be parsed for document generation
+  docsense build --loglevel silly           Oververbose logging, useful for
+                                            debugging!
 
 ```
