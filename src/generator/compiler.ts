@@ -24,7 +24,7 @@ class Compiler {
 
   public compile(source: string, data: any, target: string) {
     const Handlebars = this.Handlebars;
-    const template = Handlebars.compile(source);
+    const template = Handlebars.compile(source, { preventIndent: true });
     const content = template(data);
     const withLayout = this.compileLayout(content, data);
     const targetPath = path.resolve(process.cwd(), this.config.out, target);
@@ -35,7 +35,7 @@ class Compiler {
   private compileLayout(page: any, data: any) {
     const Handlebars = this.Handlebars;
     const layout_source = require_template('./templates/_layout.hbs');
-    const template = Handlebars.compile(layout_source);
+    const template = Handlebars.compile(layout_source, { preventIndent: true });
     const result = template({
       page,
       ...data,
@@ -103,58 +103,44 @@ export const require_md = (cwdPath: string) => {
   const renderer = markedStyle();
   marked.setOptions({ renderer });
   log.silly('markdown', cwdPath);
+  const targetPath = cwdPath.endsWith('.md') ? cwdPath : cwdPath + '.md';
+  const resolvedTargetPath = path.resolve(process.cwd(), targetPath);
+  const raw = readFileSync(resolvedTargetPath, 'utf8');
+  const data = marked(addEmojis(raw));
 
-  try {
-    const targetPath = cwdPath.endsWith('.md') ? cwdPath : cwdPath + '.md';
-    const resolvedTargetPath = path.resolve(process.cwd(), targetPath);
-    const raw = readFileSync(resolvedTargetPath, 'utf8');
-    let keepParsing = true;
-    const matches = [];
-    // tslint:disable-next-line:no-conditional-assignment
-    while (keepParsing) {
-      const match = mdHeadingsRe.exec(raw);
-      if (match !== null) {
-        matches.push(match);
-      } else {
-        keepParsing = false;
-      }
+  let keepParsing = true;
+  const matches = [];
+  // tslint:disable-next-line:no-conditional-assignment
+  while (keepParsing) {
+    const match = mdHeadingsRe.exec(raw);
+    if (match !== null) {
+      matches.push(match);
+    } else {
+      keepParsing = false;
     }
-    const chunks = matches.map((match: any) => {
-      const heading = match[1];
-      const content = match[2];
-      const lexer = new marked.Lexer();
-      const tokens = lexer.lex(heading);
-      return {
-        depth: (tokens[0] as marked.Tokens.Heading).depth,
-        content: marked.parse(content),
-        heading: marked.parse(heading),
-      };
-    });
-    const title =
-      chunks !== undefined &&
-      Array.isArray(chunks) &&
-      chunks.find(ch => ch.depth === 1);
-
-    // const chunks = raw
-    //   .split(/#+.[\S ]+(?=\n)/)
-    //   .map(chunk => marked(addEmojis(chunk)));
-    const data = marked(addEmojis(raw));
-    return {
-      title,
-      raw,
-      data,
-      chunks,
-    };
-  } catch (e) {
-    return {
-      raw: null,
-      data: null,
-      chunks: null,
-      title: null,
-      error: true,
-      errorMessage: e.message,
-    };
   }
+  const chunks = matches.map((match: any) => {
+    const heading = match[1];
+    const content = match[2];
+    const lexer = new marked.Lexer();
+    const tokens = lexer.lex(heading);
+    return {
+      depth: (tokens[0] as marked.Tokens.Heading).depth,
+      content: marked.parse(content),
+      heading: marked.parse(heading),
+    };
+  });
+  const title =
+    chunks !== undefined &&
+    Array.isArray(chunks) &&
+    chunks.find(ch => ch.depth === 1);
+
+  return {
+    title,
+    raw,
+    data,
+    chunks,
+  };
 };
 
 export const addEmojis = (markdown: string) => {
