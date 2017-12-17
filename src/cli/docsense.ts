@@ -1,8 +1,11 @@
 #!/usr/bin/env node
+
+import { inspect } from 'util';
 import * as yargs from 'yargs';
 
 import getConfig from '../config';
 import { init as initializeLogger, log } from '../utils/logger';
+
 /**
  * Command line interface
  * @returns void
@@ -32,7 +35,7 @@ getConfig()
 
     initializeLogger(level);
 
-    log.verbose(JSON.stringify(args));
+    log.verbose('config', inspect(args, false, 9, true));
     return args;
   })
   .catch();

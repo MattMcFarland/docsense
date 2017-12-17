@@ -28,7 +28,7 @@ class Compiler {
     const content = template(data);
     const withLayout = this.compileLayout(content, data);
     const targetPath = path.resolve(process.cwd(), this.config.out, target);
-    log.verbose('compile', targetPath);
+    log.silly('write', targetPath);
     createFile(targetPath, withLayout);
   }
 
@@ -56,6 +56,7 @@ class Compiler {
             .pop();
           const helperName = filename ? filename.split('.').shift() : undefined;
           if (helperName) {
+            log.silly('hbs registerHelper', helperName, filepath);
             Handlebars.registerHelper(
               helperName,
               require(`./templates/helpers/${filename}`)
@@ -77,6 +78,7 @@ class Compiler {
             ? filename.split('.').shift()
             : undefined;
           if (partialName) {
+            log.silly('hbs registerPartial', partialName, filepath);
             Handlebars.registerPartial(partialName, src);
           }
         }
@@ -92,6 +94,7 @@ export const makeCompile = (config: DocSenseConfig) => {
 };
 
 export const require_template = (relPath: string) => {
+  log.silly('read template', relPath);
   const targetPath = require.resolve(relPath);
   return readFileSync(targetPath, 'utf8');
 };
@@ -99,7 +102,7 @@ export const require_template = (relPath: string) => {
 export const require_md = (cwdPath: string) => {
   const renderer = markedStyle();
   marked.setOptions({ renderer });
-  log.verbose('compile markdown', cwdPath);
+  log.silly('markdown', cwdPath);
 
   try {
     const targetPath = cwdPath.endsWith('.md') ? cwdPath : cwdPath + '.md';
