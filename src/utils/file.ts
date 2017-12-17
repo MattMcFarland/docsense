@@ -165,7 +165,7 @@ export const createFile = (target: string, data: string | Buffer) =>
       if (mkDirError) return reject(mkDirError);
       FS.writeFile(target, data, writeError => {
         if (writeError) return reject(writeError);
-        if (!writeError) return resolve(true);
+        if (!writeError) return resolve(target);
       });
     });
   });

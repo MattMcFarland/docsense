@@ -58,6 +58,7 @@ export const builder: yargs.CommandBuilder = argv => {
 export const handler = (argv: any) => {
   const watchPath = Path.resolve(process.cwd(), argv.root);
   const watcher = Sane(watchPath, { glob: '**/*' });
+  log.on('error', onBuildFailure);
   build(argv)
     .then(firstBuildResults => {
       log.success('serve', 'Finished intial build, firing up Browsersync.');
@@ -120,9 +121,23 @@ export const handler = (argv: any) => {
   }
 };
 
-function onBuildFailure(err: any) {
-  log.error(err);
-  log.warn(
+function onBuildFailure(err: Error) {
+  if (err && err.message) {
+    const msg = err.message.replace(/docsense.ERR!.[\S]+/g, '');
+    const msgs = msg.split('\n');
+    msgs.forEach(m => {
+      if (m.indexOf('docsense info') > -1)
+        return log.error('build', chalk.grey(m));
+      if (m.indexOf('docsense WARN') > -1)
+        return log.error('build', chalk.grey(m));
+      if (m.indexOf('docsense verb') > -1)
+        return log.error('build', chalk.grey(m));
+      if (m.indexOf('docsense SILL') > -1)
+        return log.error('build', chalk.grey(m));
+      process.stdout.write('  ' + m + '\n');
+    });
+  }
+  log.error(
     'build',
     'Build cancelled, waiting for changes before building again.'
   );

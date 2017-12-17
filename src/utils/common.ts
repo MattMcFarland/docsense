@@ -1,4 +1,8 @@
+import * as Path from 'path';
+import { inspect } from 'util';
+
 import { log } from '../utils/logger';
+import { createFile } from './file';
 
 type Entry = [string, any];
 /**
@@ -56,8 +60,23 @@ export const convertEntriesToObject = (entries: Entry[]) =>
  * @returns {void}
  */
 export const fatalError = (err: Error): void => {
-  log.error('ERR', err);
-  process.exit(1);
+  log.error('fatal', err.message ? err.message : err);
+  if (err.stack) {
+    log.error('stack', err.stack);
+  }
+  const logData: Buffer = Buffer.from(JSON.stringify(log.record, null, 2));
+  const logFilePath = Path.resolve(process.cwd(), 'docsense-debug.log');
+  createFile('docsense-debug.log', logData)
+    .then(() => {
+      log.error('info', 'for more information see the log file');
+      log.error('info', 'located at ' + logFilePath);
+      process.exit(1);
+    })
+    .catch(e => {
+      log.error('fatal', 'couldnt create docsense-debug.log');
+      log.error(e.message);
+      process.exit(1);
+    });
 };
 /**
  * Logs the current context to the console

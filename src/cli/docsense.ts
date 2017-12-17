@@ -4,7 +4,11 @@ import { inspect } from 'util';
 import * as yargs from 'yargs';
 
 import getConfig from '../config';
+import { fatalError } from '../utils/common';
 import { init as initializeLogger, log } from '../utils/logger';
+
+process.on('unhandledRejection', fatalError);
+process.on('uncaughtException', fatalError);
 
 /**
  * Command line interface
@@ -51,6 +55,7 @@ getConfig()
     initializeLogger(level);
 
     log.verbose('config', inspect(args, false, 9, true));
+
     return args;
   })
-  .catch();
+  .catch(fatalError);
