@@ -41,7 +41,7 @@
       "type": "process",
       "dependsOn": "build",
       "command": "node",
-      "args": ["scripts/build-watch.js"],
+      "args": ["scripts/watch", "common"],
       "isBackground": true,
       "group": {
         "kind": "build",
