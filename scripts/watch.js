@@ -59,13 +59,13 @@ const tsc = argv.noTs
 const tscOutput = buffer => {
   if (buffer.length) {
     process.stdout.write(
-      chalk.cyan(' TSC -> ') + buffer.toString().trim() + '\n'
+      '\n' + chalk.cyan(' TSC -> ') + '\n\n' + buffer.toString().trim() + '\n\n'
     );
   }
 };
 
 const saneOutput = (...args) => {
-  console.log(chalk.magenta('SANE ->'), ...args);
+  console.log('\n', chalk.magenta('SANE ->'), '\n\n', ...args);
 };
 
 tsc.stderr.on('data', tscOutput);

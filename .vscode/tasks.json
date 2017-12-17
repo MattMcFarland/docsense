@@ -6,9 +6,10 @@
     {
       "label": "Docsense Server",
       "identifier": "docsense-serve",
-      "type": "npm",
+      "type": "process",
       "promptOnClose": true,
-      "script": "dev-docs",
+      "command": "node",
+      "args": ["dist/common/cli/docsense", "serve"],
       "isBackground": true,
       "group": "build",
       "problemMatcher": [],
@@ -49,12 +50,12 @@
       },
       "presentation": {
         "echo": true,
-        "reveal": "always",
+        "reveal": "silent",
         "focus": false,
         "panel": "shared"
       },
       "promptOnClose": true,
-      "problemMatcher": ["$tsc"]
+      "problemMatcher": ["$tsc-watch"]
     },
     {
       "group": "build",
@@ -68,7 +69,8 @@
         "reveal": "silent",
         "focus": false,
         "panel": "shared"
-      }
+      },
+      "problemMatcher": []
     }
   ]
 }
