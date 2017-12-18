@@ -14,15 +14,15 @@ Commands:
   docsense init [Options]   Initializes docsense config file (.docsenserc)
                                                                     [aliases: i]
   docsense serve [Options]  Serves up a local docsense app that watches for
-                            changes                                 [aliases: s]
+                            changes                       [aliases: s, w, watch]
 
 Options:
-  --version         Show version number                                [boolean]
-  --silent, -s      Run silently, logging nothing, shorthand for
-                    --loglevel=silent                           [default: false]
-  --loglevel, --ll  Set the loglevel
-       [choices: "silent", "info", "verbose", "silly", "warn"] [default: "info"]
-  --help            Show help                                          [boolean]
+  --silent, -s   Run silently, logging nothing
+  --quiet, -q    Run quietly, logging only warnings
+  --verbose, -V  enables verbose logging
+  --debug, -D    logs all debug messages, more verbose than verbose.
+  -v, --version  Show version number                                   [boolean]
+  -h, --help     Show help                                             [boolean]
 
 Examples:
   docsense init          Creates a config file for your project (recommended)
@@ -30,7 +30,6 @@ Examples:
   docsense build --help  See options and examples for using build
   docsense serve --help  See options and examples for using serve
 
-Thank you for using docsense
 
 ```
 You may also run `--help` with every command to get more information.

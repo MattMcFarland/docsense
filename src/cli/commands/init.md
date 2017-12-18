@@ -7,19 +7,18 @@ docsense init [Options]
 Initializes docsense config file (.docsenserc)
 
 Options:
-  --version         Show version number                                [boolean]
-  --silent, -s      Run silently, logging nothing, shorthand for
-                    --loglevel=silent                           [default: false]
-  --loglevel, --ll  Set the loglevel
-       [choices: "silent", "info", "verbose", "silly", "warn"] [default: "info"]
-  --help            Show help                                          [boolean]
-  --dir             directory to add rc file                      [default: "."]
-  --out             where docs will be written when using docsense build
+  --silent, -s   Run silently, logging nothing
+  --quiet, -q    Run quietly, logging only warnings
+  --verbose, -V  enables verbose logging
+  --debug, -D    logs all debug messages, more verbose than verbose.
+  --dir          directory to add rc file                         [default: "."]
+  --out          where docs will be written when using docsense build
                                                              [default: "./docs"]
-  --main            main markdown file (without .md extension)
-                                                           [default: "./README"]
-  --files           files to generate documentation on (can be glob patterns)
+  --main         main markdown file (without .md extension)[default: "./README"]
+  --files        files to generate documentation on (can be glob patterns)
                                                                [default: ["./"]]
+  -v, --version  Show version number                                   [boolean]
+  -h, --help     Show help                                             [boolean]
 
 Examples:
   mkdir foo && docsense init --dir foo  puts config file in the foo dir
