@@ -37,25 +37,21 @@ getConfig()
       .option('silent', {
         alias: 's',
         describe: 'Run silently, logging nothing',
-        default: false,
         conflicts: ['quiet', 'verbose', 'debug'],
       })
       .option('quiet', {
         alias: 'q',
         describe: 'Run quietly, logging only warnings',
-        default: false,
         conflicts: ['silent', 'verbose', 'debug'],
       })
       .option('verbose', {
         alias: 'V',
         describe: 'enables verbose logging',
-        default: false,
         conflicts: ['silent', 'quiet', 'debug'],
       })
       .option('debug', {
         alias: 'D',
         describe: 'logs all debug messages, more verbose than verbose.',
-        default: false,
         conflicts: ['silent', 'quiet', 'verbose'],
       })
 
@@ -65,7 +61,6 @@ getConfig()
       .commandDir('commands')
       .demandCommand()
 
-      .conflicts('silent', ['quiet, verbose, debug'])
       .epilogue('Thank you for using docsense')
       .help().argv;
 

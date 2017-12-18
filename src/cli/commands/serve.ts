@@ -133,7 +133,7 @@ function onBuildFailure(err: Error) {
         return log.error('build', chalk.grey(m));
       if (m.indexOf('docsense verb') > -1)
         return log.error('build', chalk.grey(m));
-      if (m.indexOf('docsense SILL') > -1)
+      if (m.indexOf('docsense sill') > -1)
         return log.error('build', chalk.grey(m));
       process.stdout.write('  ' + m + '\n');
     });

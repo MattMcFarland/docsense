@@ -43,10 +43,7 @@ export const builder: yargs.CommandBuilder = argv => {
       '$0 build --root lib --files "**/*.js"',
       'Files matching the glob pattern will be parsed for document generation'
     )
-    .example(
-      '$0 build --loglevel silly',
-      'Oververbose logging, useful for debugging!'
-    );
+    .example('$0 build --debug', 'Oververbose logging');
 };
 
 export const handler = (argv: any) => {
