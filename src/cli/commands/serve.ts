@@ -19,6 +19,7 @@ export const builder: yargs.CommandBuilder = argv => {
   return yargs
     .options({
       files: {
+        alias: 'f',
         desc: 'File or glob of files that will be parsed.',
         default: '[**/*.js]',
       },
@@ -43,7 +44,7 @@ export const builder: yargs.CommandBuilder = argv => {
       'Hosts a local server, builds docs, and watches for changes based on the configuration file (which can be generated with the init command) '
     )
     .example(
-      '$0 serve --out out --root lib',
+      '$0 serve -o out -r lib',
       'Treats the folder "lib" as root. So all docs are generated from "lib", replacing "myPackage/lib" with "myPackage"'
     )
     .example(
@@ -145,10 +146,15 @@ function onBuildFailure(err: Error) {
 
 async function build(argv: any) {
   const bin = Path.resolve(__dirname, '..', 'docsense');
-  const ll = argv.log ? argv.ll : 'warn';
-  const cmd = `node ${bin} build -ll ${ll} --files ${argv.files} -o ${
-    argv.o
-  } -r ${argv.r}`;
+
+  let argString = `-f ${argv.files} -o ${argv.o} -r ${argv.r}`;
+
+  if (argv.silent) argString += ' -s';
+  if (argv.quiet) argString += ' -q';
+  if (argv.verbose) argString += ' -V';
+  if (argv.debug) argString += ' -D';
+
+  const cmd = `node ${bin} ${argString}`;
   const options = {
     cwd: process.cwd(),
     env: process.env,

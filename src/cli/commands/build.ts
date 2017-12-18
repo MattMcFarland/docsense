@@ -19,6 +19,7 @@ export const builder: yargs.CommandBuilder = argv => {
   return yargs
     .options({
       files: {
+        alias: 'f',
         desc: 'File or glob of files that will be parsed.',
         default: '[**/*.js]',
       },
