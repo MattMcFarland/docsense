@@ -62,7 +62,7 @@
       "label": "Build",
       "identifier": "build",
       "type": "npm",
-      "script": "build:common",
+      "script": "build",
       "isBackground": false,
       "presentation": {
         "echo": true,
