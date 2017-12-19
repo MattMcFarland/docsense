@@ -25,7 +25,8 @@
     "check-else-if": true,
     "cyclomatic-complexity": true,
     "no-angle-bracket-type-assertion": false,
-    "interface-name": false
+    "interface-name": false,
+    "no-unused-variable": true
   },
   "env": {
     "node": true,

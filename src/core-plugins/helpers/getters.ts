@@ -3,76 +3,50 @@ import * as t from 'babel-types';
 import { Annotation } from 'doctrine';
 import * as Path from 'path';
 
-import { INamedIdentifier, Parameter } from '../../_types/AST';
 import { encode } from '../../utils/base64';
-import { createHelper } from './HelperFactory';
-import { FunctionType, IKeyValueDescriptor, Param, VarIDNode } from './types';
 
-export const getFileName = createHelper<t.Node, string>((node: t.Node) => {
-  const parts = Path.parse(node.loc.filename);
+import {
+  FunctionType,
+  IKeyValueDescriptor,
+  INamedIdentifier,
+  Param,
+  Parameter,
+  VarIDNode,
+} from './types';
+
+export const getFileName = (nodePath: NodePath) => {
+  const parts = Path.parse(nodePath.node.loc.filename);
   return `${parts.dir}/${parts.name}`;
-});
+};
 
-export const getFileId = (path: NodePath, root?: string) => {
-  const pathFromRoot = Path.posix.relative(root || '', path.node.loc.filename);
+export const getFileId = (nodePath: NodePath, root?: string) => {
+  const pathFromRoot = Path.posix.relative(
+    root || '',
+    nodePath.node.loc.filename
+  );
   const parts = Path.parse(pathFromRoot);
   return encode(`${parts.dir}/${parts.name}`);
 };
 
-export const getVariableId = createHelper<t.Node, string | void>(
-  (node: t.Node) =>
-    t.isVariableDeclarator(node) && t.isIdentifier(node.id)
-      ? getIdentifierName(node.id)
-      : undefined
-);
-export const getObjectId = createHelper<t.Node, string | void>(
-  (node: t.Node) =>
-    t.isObjectProperty(node) && t.isIdentifier(node.key)
-      ? getIdentifierName(node.key)
-      : undefined
-);
-export const getIdentifierName = createHelper<t.Identifier, string | void>(
-  (node: t.Identifier) => (isNamedIdentifier(node) && node.name) || undefined
-);
-
-export const getFunctionMeta = (path: NodePath<FunctionType>) => {
-  const node = path.node;
+export const getFunctionMeta = (nodePath: NodePath<FunctionType>) => {
+  const node = nodePath.node;
   const { line, column } = node.loc.start;
   const location_id = `${line}:${column}`;
   const id = t.isIdentifier(node.id) ? node.id.name : 'anonymous';
   const function_id = id + '@' + location_id;
-  const params = getFunctionParams(path);
-  const jsdoc = getDocTagsFromPath(path);
+  const params = getFunctionParamsFromNode(nodePath.node);
+  const jsdoc = getDocTagsFromPath(nodePath);
   return { function_id, params, jsdoc };
 };
 
-export const getMethodMeta = (path: NodePath<t.ClassMethod>) => {
-  const node = path.node;
-  const { line, column } = node.loc.start;
-  const location_id = `${line}:${column}`;
-  const id = t.isIdentifier(node.id) ? node.id.name : 'anonymous';
-  const method_id = id + '@' + location_id;
-  const params = getFunctionParams(path);
-  const jsdoc = getDocTagsFromPath(path);
-  return { method_id, params, jsdoc };
-};
-
-export function getDocTagsFromPath(path: NodePath): Annotation[] {
+export function getDocTagsFromPath(nodePath: NodePath): Annotation[] {
   const tags =
-    path.node.__doc_tags__ ||
-    path.getStatementParent().node.__doc_tags__ ||
-    path.parent.__doc_tags__;
+    nodePath.node.__doc_tags__ ||
+    nodePath.getStatementParent().node.__doc_tags__ ||
+    nodePath.parent.__doc_tags__;
   return tags && tags.length ? tags : [];
 }
 
-export function getObjectData(path: NodePath<t.ObjectExpression>) {
-  if (path.parentPath.isAssignmentExpression()) {
-    // nothing
-  }
-  if (path.parentPath.isVariableDeclarator()) {
-    // nothing
-  }
-}
 export const getFunctionParamsFromNode = (
   node: FunctionType | t.ClassMethod
 ): Param[] => {
@@ -101,6 +75,7 @@ export const getFunctionParamsFromNode = (
     }
   });
 };
+
 export const getRestElementProps = (rest: t.RestElement) => {
   switch (rest.argument.type) {
     case 'MemberExpression':
@@ -122,16 +97,12 @@ export const getRestElementProps = (rest: t.RestElement) => {
   }
 };
 
-export const getFunctionParams = createHelper<
-  FunctionType | t.ClassMethod,
-  Array<string | IKeyValueDescriptor[] | string[]>
->(getFunctionParamsFromNode);
-
 type ObjectPatternProperty = t.AssignmentProperty | t.RestProperty;
 
 export const getObjectPatternProperties = (node: t.ObjectPattern) => {
   return node.properties.map(getObjectPatternProp);
 };
+
 export const getObjectPatternProp = (
   prop: ObjectPatternProperty
 ): IKeyValueDescriptor => {
@@ -157,7 +128,3 @@ export function isNamedIdentifier(node: t.Node): node is INamedIdentifier {
 export function assertNever(x: never): never {
   throw new Error('Unexpected object: ' + x);
 }
-
-export const getVarIdNode = (varPath: NodePath<t.VariableDeclarator>) => {
-  return varPath.get('id') as NodePath<VarIDNode>;
-};
