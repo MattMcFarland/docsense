@@ -3,8 +3,8 @@ import * as marked from 'marked';
 import * as Path from 'path';
 
 import getConfig from '../config';
-import { ESModule } from '../core-plugins/es-modules';
-import { connect } from '../db';
+import { ESModule } from '../parser/core-plugins/es-modules';
+import { connect } from '../storage/db';
 import { log } from '../utils/logger';
 import Compiler, { addEmojis, require_md, require_template } from './compiler';
 import {
@@ -31,7 +31,7 @@ export default async () => {
   const project = require(Path.resolve(process.cwd(), 'package.json'));
 
   const mainDoc = require_md(config.main);
-  const indexPage = require_template('./templates/index.hbs');
+  const indexPage = require_template('./default-template/index.hbs');
   const compile = new Compiler(config).compile;
 
   if (mainDoc) {
@@ -45,8 +45,8 @@ export default async () => {
   log.info('generate', 'module pages');
   // This loop only goes over the modules that plugins found to have exports.
   esModules.forEach((esModule: IFileExportsQuery) => {
-    const esModulePage = require_template('./templates/esModule.hbs');
-    const sourcePage = require_template('./templates/sourcePage.hbs');
+    const esModulePage = require_template('./default-template/esModule.hbs');
+    const sourcePage = require_template('./default-template/sourcePage.hbs');
     const mdfilePath = esModule.file.isIndex
       ? `${esModule.file.dir}/README`
       : `${esModule.file.dir}/${esModule.file.name}`;
@@ -96,7 +96,7 @@ export default async () => {
   log.success('generate', 'module pages');
   log.info('generate', 'directory pages');
   dirModules.forEach((dirModule: IDirectoryExportsQuery) => {
-    const dirModulePage = require_template('./templates/dirModule.hbs');
+    const dirModulePage = require_template('./default-template/dirModule.hbs');
     const mdfilePath = `${dirModule.directory}/README`;
     const resolvedMDFilePath = resolveFromProject(mdfilePath);
     const hasMarkdownFile = existsSync(resolvedMDFilePath + '.md');

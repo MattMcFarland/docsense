@@ -1,6 +1,7 @@
-import { DirectoryModel } from '../../core-plugins/directory';
-import { ESModule } from '../../core-plugins/es-modules';
-import { FileKind, FileModel } from '../../core-plugins/file';
+import { DirectoryModel } from '../../parser/core-plugins/directory';
+import { ESModule } from '../../parser/core-plugins/es-modules';
+import { FileKind, FileModel } from '../../parser/core-plugins/file';
+import { Lowdb } from '../../storage/db';
 import Query from './Query';
 
 export interface FileIdRecord {

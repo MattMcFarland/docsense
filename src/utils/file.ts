@@ -124,18 +124,6 @@ export const scanDirectory = (directoryPath: string) => (): Promise<string[]> =>
   });
 
 /**
- * Given the current promise chain context, resolve the paths from the relativePath
- * arguments
- * @param {arguments} relativePath
- */
-export const resolveContextRelativePaths = (...relativePath: string[]) => (
-  filenames: string[]
-): string[] =>
-  filenames.map((filename: string): string =>
-    Path.posix.join(...relativePath, filename)
-  );
-
-/**
  * Evals the given function over each of the files within the given directoryPath
  * @param directoryPath path to iterate over
  * @param fn function called on each file within the directoryPath

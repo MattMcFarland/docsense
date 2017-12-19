@@ -1,9 +1,6 @@
-// tslint:disable-next-line:no-import-side-effect
-import './_types/global/Globals';
-
 import { resolve as resolvePath } from 'path';
 
-import getConfig, { DocSenseConfig } from './config';
+import getConfig, { DocSenseConfig } from '../config';
 
 /**
  * @deprecated use connect fn instead.
@@ -28,3 +25,5 @@ export const connect = (): Promise<Lowdb> =>
   getConfig().then(config => {
     return create(config.out);
   });
+
+export type Lowdb = Lowdb.Lowdb;

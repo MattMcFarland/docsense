@@ -17,23 +17,23 @@ const argv = require('yargs')
   .help(false).argv;
 
 const cliFile = `dist/${argv.target}/cli/docsense.js`;
-const staticDir = 'generator/templates/static';
-const templatesDir = 'generator/templates';
+const staticDir = 'generator/default-template/static';
+const templateDir = 'generator/default-template';
 
 const sources = {
   static: `src/${staticDir}`,
-  templates: `src/${templatesDir}`,
+  defaultTemplate: `src/${templateDir}`,
 };
 
 const targets = {
   static: `dist/${argv.target}/${staticDir}`,
-  templates: `dist/${argv.target}/${templatesDir}`,
+  defaultTemplate: `dist/${argv.target}/${templateDir}`,
 };
 
 let errors = [];
 cpr(
-  sources.templates,
-  targets.templates,
+  sources.defaultTemplate,
+  targets.defaultTemplate,
   {
     filter: /.js$|static|.ts$/,
     overwrite: true,
@@ -42,9 +42,9 @@ cpr(
     if (err) errors.push(err);
     console.log(
       'Copied from',
-      cyan(sources.templates),
+      cyan(sources.defaultTemplate),
       'to',
-      yellow(targets.templates)
+      yellow(targets.defaultTemplate)
     );
     cpr(
       sources.static,

@@ -1,11 +1,10 @@
-import { IPluginRecord } from '../_types/Plugin';
 import { DocSenseConfig } from '../config';
-import { create } from '../db';
-import ParseEngine from '../parser/ParseEngine';
+import { create, Lowdb } from '../storage/db';
+import { dedupe, flatten } from '../utils/common';
+import { processAllGlobPatterns, readFiles } from '../utils/file';
 import { log } from '../utils/logger';
-import { dedupe, flatten } from './common';
-import { processAllGlobPatterns, readFiles } from './file';
-import { registerPlugin } from './plugin';
+import ParseEngine from './ParseEngine';
+import { IPluginRecord, registerPlugin } from './plugin-loader';
 
 /**
  * Parse files using config options

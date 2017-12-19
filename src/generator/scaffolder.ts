@@ -5,7 +5,7 @@ import { promisify } from 'util';
 import { log } from '../utils/logger';
 
 import getConfig from '../config';
-import { ESModule } from '../core-plugins/es-modules';
+import { ESModule } from '../parser/core-plugins/es-modules';
 import { createFile, withAllFiles } from '../utils/file';
 
 const mkdir = promisify(mkdirp);
@@ -22,7 +22,7 @@ export const makeNodeModuleStatic = (
 export const copyStaticFiles = (targetDir: string) => {
   // todo: get module definition (d.ts) for `copy-dir` and import it properly.
   const copydir = require('copy-dir');
-  const from = resolvePath(__dirname, 'templates/static');
+  const from = resolvePath(__dirname, 'default-template/static');
   const to = resolvePath(targetDir, 'static');
   log.verbose('copy', from, to);
 

@@ -1,15 +1,12 @@
 import * as assert from 'assert';
+import { Visitor } from 'babel-traverse';
 import { resolve as resolvePath } from 'path';
 
-import { IPluginModule, IPluginRecord } from '../_types/Plugin';
-import { DocSenseConfig } from '../config';
-import ParseEngine from '../parser/ParseEngine';
-import Store from '../store';
-import {
-  reduceDirectoryToJSFiles,
-  resolveContextRelativePaths,
-  scanDirectory,
-} from './file';
+import { DocSenseConfig } from './../config';
+import { Lowdb } from './../storage/db';
+import Store from './../storage/store';
+import { reduceDirectoryToJSFiles, scanDirectory } from './../utils/file';
+import ParseEngine from './ParseEngine';
 
 type ConfigAndPlugins = Promise<{
   config: DocSenseConfig;
@@ -23,11 +20,13 @@ export const setupCorePlugins = (config: DocSenseConfig): ConfigAndPlugins =>
     .then(setupPlugins)
     .then((plugins: IPluginRecord[]) => ({ config, plugins }));
 
-export const resolveCorePluginPaths = resolveContextRelativePaths(
-  '../core-plugins'
-);
+export const resolveCorePluginPaths = (pluginPaths: string[]) => {
+  return pluginPaths.map(pluginPath =>
+    resolvePath(__dirname, './core-plugins', pluginPath)
+  );
+};
 export const scanCorePluginDirectory = scanDirectory(
-  resolvePath(__dirname, '../core-plugins')
+  resolvePath(__dirname, './core-plugins')
 );
 
 export const resolvePluginModule = (id: string): IPluginModule => {
@@ -73,3 +72,47 @@ export const registerPlugin = (
     }
   }
 };
+
+/**
+ * The signature of the plugin module which is evaluated at run time
+ */
+export interface IPluginModuleFn {
+  // tslint:disable-next-line:callable-types
+  (engine: ParseEngine, db: Lowdb | Store): void | IPluginCommand;
+  key: string;
+}
+
+export interface IPluginMetaData {
+  collectionName: string;
+  key: string;
+  pluginKey: string;
+}
+export interface IObjectWithDefault {
+  default: IPluginModuleFn;
+}
+
+export type IPluginModule = IPluginModuleFn &
+  IPluginMetaData &
+  IObjectWithDefault;
+
+/**
+ * The returned object when a plugin module has been evaluated,
+ * so the plugin can parse using the visitor api, etc.
+ */
+export interface IPluginCommand {
+  visitor: Visitor;
+  pre?: (state: any) => void;
+  post?: (state: any) => void;
+}
+
+/**
+ * Plugins are queued up for evaluation by a simple interface
+ */
+export interface IPluginRecord {
+  id: string;
+  eval: IPluginModuleFn;
+}
+
+export type IPluginModuleAndRecord = IPluginRecord & IPluginModule;
+
+export default IPluginModule;

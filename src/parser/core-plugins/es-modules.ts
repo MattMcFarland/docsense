@@ -12,13 +12,12 @@ import {
 import { Annotation } from 'doctrine';
 import * as Path from 'path';
 
-import { IPluginCommand } from '../_types/Plugin';
-import ParseEngine from '../parser/ParseEngine';
-import Store from '../store';
-import { encode } from '../utils/base64';
-import { log } from '../utils/logger';
+import Store from '../../storage/store';
+import { encode } from '../../utils/base64';
+import { log } from '../../utils/logger';
+import ParseEngine from '../ParseEngine';
+import { IPluginCommand } from './../plugin-loader';
 import {
-  assertNever,
   getDocTagsFromPath,
   getFileId,
   getFileName,

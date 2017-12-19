@@ -1,5 +1,5 @@
 import getConfig, { DocSenseConfig } from '../../config';
-import { connect as dbConnect } from '../../db';
+import { connect as dbConnect, Lowdb } from '../../storage/db';
 
 class Query<A, B> {
   private db: Lowdb;

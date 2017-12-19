@@ -18,7 +18,6 @@
     "precommit": "lint-staged",
     "clean": "rm -rf dist",
     "prebuild": "yarn clean && mkdir dist",
-    "build:templates": "cp -R src/generator/templates dist/templates",
     "build:schema":
       "typescript-json-schema ./tsconfig.json -o docsense.schema.json --ignoreErrors DocSenseConfig",
     "postbuild:schema": "prettier --write docsense.schema.json",

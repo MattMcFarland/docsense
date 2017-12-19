@@ -6,10 +6,9 @@ import * as yargs from 'yargs';
 
 import getConfig from '../../config';
 import generator from '../../generator';
+import { parseFiles } from '../../parser/parse';
+import { setupCorePlugins } from '../../parser/plugin-loader';
 import { fatalError } from '../../utils/common';
-
-import { parseFiles } from '../../utils/parse';
-import { setupCorePlugins } from '../../utils/plugin';
 
 export const command = 'build [Options]';
 export const aliases = ['b'];

@@ -3,8 +3,8 @@ import * as t from 'babel-types';
 import { Annotation } from 'doctrine';
 import * as Path from 'path';
 
-import { encode } from '../../utils/base64';
-
+import { encode } from '../../../utils/base64';
+import { assertNever } from '../../../utils/common';
 import {
   FunctionType,
   IKeyValueDescriptor,
@@ -123,8 +123,4 @@ export const getObjectPatternProp = (
 
 export function isNamedIdentifier(node: t.Node): node is INamedIdentifier {
   return t.isIdentifier(node) && node.name !== undefined;
-}
-
-export function assertNever(x: never): never {
-  throw new Error('Unexpected object: ' + x);
 }

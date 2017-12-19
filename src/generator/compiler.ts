@@ -34,7 +34,7 @@ class Compiler {
 
   private compileLayout(page: any, data: any) {
     const Handlebars = this.Handlebars;
-    const layout_source = require_template('./templates/_layout.hbs');
+    const layout_source = require_template('./default-template/_layout.hbs');
     const template = Handlebars.compile(layout_source, { preventIndent: true });
     const result = template({
       page,
@@ -47,7 +47,7 @@ class Compiler {
     const Handlebars = this.Handlebars;
     require('handlebars-helpers')();
     withAllFiles(
-      path.resolve(__dirname, 'templates/helpers'),
+      path.resolve(__dirname, 'default-template/helpers'),
       (src: string, filepath: string) => {
         if (filepath !== undefined) {
           const filename = filepath
@@ -59,7 +59,7 @@ class Compiler {
             log.silly('hbs registerHelper', helperName, filepath);
             Handlebars.registerHelper(
               helperName,
-              require(`./templates/helpers/${filename}`)
+              require(`./default-template/helpers/${filename}`)
             );
           }
         }
@@ -70,7 +70,7 @@ class Compiler {
   private registerPartials() {
     const Handlebars = this.Handlebars;
     withAllFiles(
-      path.resolve(__dirname, 'templates/partials'),
+      path.resolve(__dirname, 'default-template/partials'),
       (src: string, filepath: string) => {
         if (filepath !== undefined) {
           const filename = filepath.split('/').pop();

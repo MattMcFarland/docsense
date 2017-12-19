@@ -1,12 +1,13 @@
 import { NodePath } from 'babel-traverse';
 import { Node } from 'babel-types';
+import { Lowdb } from './db';
 
 export default class Store {
-  public db: Lowdb.Lowdb;
+  public db: Lowdb;
   public entryId: string;
   public collectionName: string;
   public id: string;
-  constructor(db: Lowdb.Lowdb, id: string) {
+  constructor(db: Lowdb, id: string) {
     this.entryId = `${id}_id`;
     this.collectionName = `${id}_collection`;
     this.db = db;

@@ -102,3 +102,7 @@ export const dedupe = (arr: any[]): any[] =>
  * @returns {Array} deduped
  */
 export const flatten = (arr: any[]): any[] => [].concat(...arr);
+
+export function assertNever(x: never): never {
+  throw new Error('Unexpected object: ' + x);
+}
