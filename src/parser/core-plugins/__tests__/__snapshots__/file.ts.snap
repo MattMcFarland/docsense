@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`core-plugin: file matches snapshot 1`] = `
+Object {
+  "file_collection": Array [
+    Object {
+      "base": "__TEST__",
+      "dir": "",
+      "ext": "",
+      "id": "L19fVEVTVF9f",
+      "isIndex": false,
+      "kind": "Other",
+      "name": "__TEST__",
+      "path": "__TEST__",
+    },
+  ],
+  "sourceCode": "foo()",
+}
+`;

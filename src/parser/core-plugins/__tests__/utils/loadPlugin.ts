@@ -24,7 +24,7 @@ export default (initialState: any, fileName: string) => (
       },
     });
 
-    db.setState(initialState);
+    db.setState({ sourceCode, ...initialState });
 
     parser.on('done', () => resolve(db.getState()));
     plugin.eval = plugin;

@@ -1,17 +1,84 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Core Plugin: esModules export function foo () {} 1`] = `
-Array [
-  Object {
-    "esModule_id": "foo",
-    "file_id": "L19fVEVTVF9f",
-    "function": Object {
-      "function_id": "foo@1:7",
+exports[`core-plugin: es-modules matches snapshots 1`] = `
+Object {
+  "esModule_collection": Array [
+    Object {
+      "esModule_id": "foo",
+      "file_id": "L19fVEVTVF9f",
+      "function": Object {
+        "function_id": "foo@1:7",
+        "jsdoc": Array [],
+        "params": Array [],
+      },
       "jsdoc": Array [],
-      "params": Array [],
+      "kind": "ExportingFunction",
     },
-    "jsdoc": Array [],
-    "kind": "ExportingFunction",
-  },
-]
+  ],
+  "sourceCode": "export function foo () {}",
+}
+`;
+
+exports[`core-plugin: es-modules matches snapshots 2`] = `
+Object {
+  "esModule_collection": Array [
+    Object {
+      "esModule_id": "default",
+      "file_id": "L19fVEVTVF9f",
+      "function": Object {
+        "function_id": "anonymous@1:15",
+        "jsdoc": Array [],
+        "params": Array [],
+      },
+      "jsdoc": Array [],
+      "kind": "ExportingFunction",
+    },
+  ],
+  "sourceCode": "export default function () {}",
+}
+`;
+
+exports[`core-plugin: es-modules matches snapshots 3`] = `
+Object {
+  "esModule_collection": Array [
+    Object {
+      "esModule_id": "foo",
+      "file_id": "L19fVEVTVF9f",
+      "kind": "ExportingImport",
+      "source": Object {
+        "esModule_id": "default",
+        "file_id": "L2Jhcg==",
+      },
+    },
+  ],
+  "sourceCode": "export { default as foo } from \\"bar\\"",
+}
+`;
+
+exports[`core-plugin: es-modules matches snapshots 4`] = `
+Object {
+  "esModule_collection": Array [],
+  "sourceCode": "const foo = function () {}; export default foo;",
+}
+`;
+
+exports[`core-plugin: es-modules matches snapshots 5`] = `
+Object {
+  "esModule_collection": Array [],
+  "sourceCode": "const ahoy = \\"bar\\"; export { ahoy };",
+}
+`;
+
+exports[`core-plugin: es-modules matches snapshots 6`] = `
+Object {
+  "esModule_collection": Array [],
+  "sourceCode": "export { bar, baz };",
+}
+`;
+
+exports[`core-plugin: es-modules matches snapshots 7`] = `
+Object {
+  "esModule_collection": Array [],
+  "sourceCode": "const name = \\"bar\\"; export { name as default};",
+}
 `;

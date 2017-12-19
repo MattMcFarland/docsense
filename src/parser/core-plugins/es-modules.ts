@@ -264,10 +264,10 @@ export default (engine: ParseEngine, store: Store): any => {
     }
 
     // check for being an exported import from another file
-
     const parentPath = nodePath.parentPath;
     if (
       parentPath.isExportNamedDeclaration() &&
+      parentPath.node.source &&
       parentPath.node.source.type === 'StringLiteral'
     ) {
       const file_id = getFileId(nodePath, engine.config.root);
