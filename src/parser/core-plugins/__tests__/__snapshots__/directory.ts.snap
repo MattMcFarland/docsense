@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Core Plugin: files matches snapshot 1`] = `
+Array [
+  Object {
+    "directory_id": "",
+    "files": Array [
+      Object {
+        "file_id": "L19fVEVTVF9f",
+      },
+    ],
+  },
+]
+`;

@@ -49,6 +49,7 @@ export const registerPlugin = (
   db: Lowdb
 ) => {
   const pluginExec = plugin.eval as IPluginModule;
+
   const store = pluginExec.key ? new Store(db, pluginExec.key) : undefined;
   const runPlugin = pluginExec.default ? pluginExec.default : pluginExec;
   const pluginCommand = store

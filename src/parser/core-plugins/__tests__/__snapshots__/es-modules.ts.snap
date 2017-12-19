@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Core Plugin: esModules export function foo () {} 1`] = `
+Array [
+  Object {
+    "esModule_id": "foo",
+    "file_id": "L19fVEVTVF9f",
+    "function": Object {
+      "function_id": "foo@1:7",
+      "jsdoc": Array [],
+      "params": Array [],
+    },
+    "jsdoc": Array [],
+    "kind": "ExportingFunction",
+  },
+]
+`;
