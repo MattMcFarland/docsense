@@ -130,9 +130,20 @@
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
     "testMatch": ["**/__tests__/*.ts"],
-    "testPathIgnorePatterns": ["/node_modules/", "/dist/", "/.history/"],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/",
+      "/types/",
+      "/.history/",
+      "/.d.ts$/"
+    ],
     "verbose": false,
-    "reporters": ["jest-spec-reporter"]
+    "reporters": ["jest-spec-reporter"],
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.test.json"
+      }
+    }
   },
   "repository": {
     "type": "git",

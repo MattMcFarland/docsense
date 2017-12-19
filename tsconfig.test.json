@@ -1,12 +1,12 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
+    "outDir": "dev/null",
     "listEmittedFiles": false,
     "inlineSourceMap": true,
-    "declarationDir": "types",
     "alwaysStrict": true,
     "strict": true,
-    "declaration": true,
+    "declaration": false,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
     "lib": ["es2015", "es2016", "es2017", "esnext"],
@@ -14,9 +14,6 @@
     "newLine": "LF",
     "skipLibCheck": true
   },
-  "exclude": ["node_modules", "dist", "types", "__tests__"],
-  "include": ["./src/**/*"],
-  "typeAcquisition": {
-    "enable": true
-  }
+  "exclude": ["node_modules", "dist", "types"],
+  "include": ["./src/**/*"]
 }
