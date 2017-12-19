@@ -17,7 +17,6 @@ import ParseEngine from '../parser/ParseEngine';
 import Store from '../store';
 import { encode } from '../utils/base64';
 import { log } from '../utils/logger';
-import { logSkipped } from './helpers/effects';
 import {
   assertNever,
   getDocTagsFromPath,
@@ -31,7 +30,6 @@ import {
   IFunctionMeta,
   VariableDeclaratorInit,
 } from './helpers/types';
-import functionVisitor from './visitors/functionVisitor';
 
 export const collectionName = 'esModule_collection';
 
