@@ -154,7 +154,7 @@ async function build(argv: any) {
   if (argv.verbose) argString += ' -V';
   if (argv.debug) argString += ' -D';
 
-  const cmd = `node ${bin} ${argString}`;
+  const cmd = `node ${bin} build ${argString}`;
   const options = {
     cwd: process.cwd(),
     env: process.env,
