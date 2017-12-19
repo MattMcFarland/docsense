@@ -132,7 +132,8 @@
     },
     "testMatch": ["**/__tests__/*.ts"],
     "testPathIgnorePatterns": ["/node_modules/", "/dist/", "/.history/"],
-    "verbose": false
+    "verbose": false,
+    "reporters": ["jest-spec-reporter"]
   },
   "repository": {
     "type": "git",
