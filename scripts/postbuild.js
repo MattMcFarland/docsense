@@ -61,7 +61,7 @@ cpr(
           'to',
           yellow(targets.static)
         );
-        fs.chmod(cliFile, 700, err => {
+        fs.chmod(cliFile, 777, err => {
           if (err) errors.push(err);
           console.log('chmod +x', cyan(cliFile));
           if (errors.length) {
