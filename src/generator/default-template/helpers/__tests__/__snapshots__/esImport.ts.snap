@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`hbs helpers > esImport when all is false > matches snapshot 1`] = `
+"
+    <pre class=\\"ba b--black-20 lh-solid\\"><code class=\\"javascript hljs\\"><span class=\\"hljs-keyword\\">import</span> <span>foo</span> <span class=\\"hljs-keyword\\">from</span> <a title=\\"view source\\" class=\\"dim dark-red link\\" href=\\"/bar/baz/source.html#99\\">'docsense/bar/baz'</a></code></pre>
+    "
+`;
+
+exports[`hbs helpers > esImport when all is true > matches snapshot 1`] = `
+"
+    <pre class=\\"ba b--black-20 lh-solid\\"><code class=\\"javascript hljs\\"><span class=\\"hljs-keyword\\">import</span> * <span class=\\"hljs-keyword\\">as</span> <span>foo</span> <span class=\\"hljs-keyword\\">from</span> <a title=\\"view source\\" class=\\"dim dark-red link\\" href=\\"/bar/baz/source.html#99\\">'docsense/bar/baz'</a></code></pre>
+    "
+`;

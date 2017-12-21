@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`hbs helpers > fnSignature matches snapshot 1`] = `"<div>(<span class=\\"dark-red\\">a, b, c</span>)</div>"`;

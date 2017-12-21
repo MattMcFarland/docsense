@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`hbs helpers > json matches snapshot 1`] = `
+"<div>{
+  &quot;foo&quot;: {
+    &quot;bar&quot;: &quot;baz &quot;
+  }
+}</div>"
+`;
