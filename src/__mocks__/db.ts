@@ -1,0 +1,1 @@
+jest.genMockFromModule('db.ts');

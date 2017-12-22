@@ -132,7 +132,7 @@
     "testMatch": ["**/__tests__/*.ts"],
     "testPathIgnorePatterns": [
       "/node_modules/",
-      "/dist/",
+      "/dist[\\s\\S]+/",
       "/types/",
       "/.history/",
       "/.d.ts$/"
