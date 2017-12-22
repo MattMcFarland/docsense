@@ -59,7 +59,7 @@ class Compiler {
             log.silly('hbs registerHelper', helperName, filepath);
             Handlebars.registerHelper(
               helperName,
-              require(`./default-template/helpers/${filename}`)
+              require(`./default-template/helpers/${filename}`).default
             );
           }
         }

@@ -1,6 +1,6 @@
 // Directory as a Module (DAAM)
 
-module.exports = (ctx: string) =>
+export default (ctx: string) =>
   ctx
     .split('/')
     .slice(0, -1)

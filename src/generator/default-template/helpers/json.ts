@@ -1,1 +1,1 @@
-module.exports = (ctx: any) => JSON.stringify(ctx, null, 2);
+export default (ctx: any) => JSON.stringify(ctx, null, 2);

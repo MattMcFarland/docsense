@@ -5,9 +5,9 @@ const renderer = markedStyle();
 
 marked.setOptions({ renderer });
 
-module.exports = function(ctx: any) {
+export default function(ctx: any) {
   const Handlebars = require('handlebars');
   const str = ctx.fn(this);
   const parsed = marked(addEmojis(str));
   return new Handlebars.SafeString(parsed);
-};
+}

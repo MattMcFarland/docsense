@@ -1,4 +1,4 @@
-module.exports = (param: any) => {
+export default (param: any) => {
   if (typeof param === 'string') return param;
   if (Array.isArray(param)) {
     return (

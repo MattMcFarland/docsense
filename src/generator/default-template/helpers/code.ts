@@ -1,4 +1,4 @@
-module.exports = function(options: any) {
+export default function(options: any) {
   const HighlightJS = require('highlight.js');
   const Handlebars = require('handlebars');
   const code = options.fn(this);
@@ -6,4 +6,4 @@ module.exports = function(options: any) {
   const html = `<pre class="ba b--black-20 lh-solid"><code class="javascript">${highlighted}</code></pre>`;
 
   return new Handlebars.SafeString(html);
-};
+}

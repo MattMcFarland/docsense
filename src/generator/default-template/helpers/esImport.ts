@@ -2,7 +2,7 @@ import * as Path from 'path';
 
 const pkg = require(Path.resolve(process.cwd(), 'package.json'));
 
-module.exports = (ctx: any) => {
+export default (ctx: any) => {
   const Handlebars = require('handlebars');
   const { name, link, from, all, line } = ctx.hash;
 
