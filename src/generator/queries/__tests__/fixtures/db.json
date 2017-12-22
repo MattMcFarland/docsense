@@ -1,0 +1,3963 @@
+{
+  "directory_collection": [
+    {
+      "directory_id": "_types/external/_plugins/babel-traverse",
+      "files": [
+        {
+          "file_id":
+            "X3R5cGVzL2V4dGVybmFsL19wbHVnaW5zL2JhYmVsLXRyYXZlcnNlL2luZGV4LmQ="
+        }
+      ]
+    },
+    {
+      "directory_id": "_types/external/_plugins/babel-types",
+      "files": [
+        {
+          "file_id":
+            "X3R5cGVzL2V4dGVybmFsL19wbHVnaW5zL2JhYmVsLXR5cGVzL2luZGV4LmQ="
+        }
+      ]
+    },
+    {
+      "directory_id": "_types/external/cosmiconfig",
+      "files": [
+        {
+          "file_id": "X3R5cGVzL2V4dGVybmFsL2Nvc21pY29uZmlnL2luZGV4LmQ="
+        }
+      ]
+    },
+    {
+      "directory_id": "_types/external/lowdb/adapters",
+      "files": [
+        {
+          "file_id": "X3R5cGVzL2V4dGVybmFsL2xvd2RiL2FkYXB0ZXJzL01lbW9yeS5k"
+        }
+      ]
+    },
+    {
+      "directory_id": "_types/external/npmlog",
+      "files": [
+        {
+          "file_id": "X3R5cGVzL2V4dGVybmFsL25wbWxvZy9pbmRleC5k"
+        }
+      ]
+    },
+    {
+      "directory_id": "_types/external/traverse",
+      "files": [
+        {
+          "file_id": "X3R5cGVzL2V4dGVybmFsL3RyYXZlcnNlL2luZGV4LmQ="
+        }
+      ]
+    },
+    {
+      "directory_id": "_types/global",
+      "files": [
+        {
+          "file_id": "X3R5cGVzL2dsb2JhbC9HbG9iYWxz"
+        }
+      ]
+    },
+    {
+      "directory_id": "cli/commands",
+      "files": [
+        {
+          "file_id": "Y2xpL2NvbW1hbmRzL2J1aWxk"
+        },
+        {
+          "file_id": "Y2xpL2NvbW1hbmRzL2luaXQ="
+        },
+        {
+          "file_id": "Y2xpL2NvbW1hbmRzL3NlcnZl"
+        }
+      ]
+    },
+    {
+      "directory_id": "cli",
+      "files": [
+        {
+          "file_id": "Y2xpL2RvY3NlbnNl"
+        }
+      ]
+    },
+    {
+      "directory_id": "config/__tests__",
+      "files": [
+        {
+          "file_id": "Y29uZmlnL19fdGVzdHNfXy9jb25maWc="
+        }
+      ]
+    },
+    {
+      "directory_id": "config",
+      "files": [
+        {
+          "file_id": "Y29uZmlnL2RlZmF1bHQtY29uZmln"
+        },
+        {
+          "file_id": "Y29uZmlnL2luZGV4"
+        }
+      ]
+    },
+    {
+      "directory_id": "generator",
+      "files": [
+        {
+          "file_id": "Z2VuZXJhdG9yL2NvbXBpbGVy"
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL2RlYnVn"
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL2dlbmVyYXRvcg=="
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL2luZGV4"
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL3NjYWZmb2xkZXI="
+        }
+      ]
+    },
+    {
+      "directory_id": "generator/default-template/_types",
+      "files": [
+        {
+          "file_id":
+            "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvX3R5cGVzL2hhbmRsZWJhcnM="
+        }
+      ]
+    },
+    {
+      "directory_id": "generator/default-template/helpers/__tests__",
+      "files": [
+        {
+          "file_id":
+            "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vY29kZQ=="
+        },
+        {
+          "file_id":
+            "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vY29uY2F0"
+        },
+        {
+          "file_id":
+            "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vZGFhbQ=="
+        },
+        {
+          "file_id":
+            "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vZXNJbXBvcnQ="
+        },
+        {
+          "file_id":
+            "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vZmlsZW5hbWU="
+        },
+        {
+          "file_id":
+            "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vZm5TaWduYXR1cmU="
+        },
+        {
+          "file_id":
+            "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vZ2V0bGluZQ=="
+        },
+        {
+          "file_id":
+            "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vanNvbg=="
+        },
+        {
+          "file_id":
+            "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vbWQ="
+        },
+        {
+          "file_id":
+            "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vbmF2dHJlZQ=="
+        }
+      ]
+    },
+    {
+      "directory_id": "generator/default-template/helpers",
+      "files": [
+        {
+          "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9jb2Rl"
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9jb25jYXQ="
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9kYWFt"
+        },
+        {
+          "file_id":
+            "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9lc0ltcG9ydA=="
+        },
+        {
+          "file_id":
+            "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9maWxlbmFtZQ=="
+        },
+        {
+          "file_id":
+            "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9mblNpZ25hdHVyZQ=="
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9nZXRMaW5l"
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9qc29u"
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9tZA=="
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9uYXZ0cmVl"
+        },
+        {
+          "file_id":
+            "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9yZW5kZXJQYXJhbQ=="
+        }
+      ]
+    },
+    {
+      "directory_id": "generator/marked",
+      "files": [
+        {
+          "file_id": "Z2VuZXJhdG9yL21hcmtlZC9yZW5kZXJlcg=="
+        }
+      ]
+    },
+    {
+      "directory_id": "generator/marked/styles",
+      "files": [
+        {
+          "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvYmxvY2txdW90ZQ=="
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvY29kZQ=="
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvZm9ybWF0"
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaGVhZGluZw=="
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaW5kZXg="
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvbGlzdA=="
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvcGFyYWdyYXBo"
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvdGFibGU="
+        }
+      ]
+    },
+    {
+      "directory_id": "generator/queries",
+      "files": [
+        {
+          "file_id": "Z2VuZXJhdG9yL3F1ZXJpZXMvZGlyZWN0b3J5RXhwb3J0c1F1ZXJ5"
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL3F1ZXJpZXMvZmlsZUV4cG9ydHNRdWVyeQ=="
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL3F1ZXJpZXMvZmlsZUlkUXVlcnk="
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL3F1ZXJpZXMvaGllcmFyY2h5UXVlcnk="
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL3F1ZXJpZXMvaW5kZXg="
+        },
+        {
+          "file_id": "Z2VuZXJhdG9yL3F1ZXJpZXMvUXVlcnk="
+        }
+      ]
+    },
+    {
+      "directory_id": "",
+      "files": [
+        {
+          "file_id": "L2luZGV4"
+        }
+      ]
+    },
+    {
+      "directory_id": "parser/core-plugins/__tests__",
+      "files": [
+        {
+          "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9fX3Rlc3RzX18vZGlyZWN0b3J5"
+        },
+        {
+          "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9fX3Rlc3RzX18vZXMtbW9kdWxlcw=="
+        },
+        {
+          "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9fX3Rlc3RzX18vZmlsZQ=="
+        }
+      ]
+    },
+    {
+      "directory_id": "parser/core-plugins/__tests__/utils",
+      "files": [
+        {
+          "file_id":
+            "cGFyc2VyL2NvcmUtcGx1Z2lucy9fX3Rlc3RzX18vdXRpbHMvbG9hZFBsdWdpbg=="
+        }
+      ]
+    },
+    {
+      "directory_id": "parser/core-plugins",
+      "files": [
+        {
+          "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9kaXJlY3Rvcnk="
+        },
+        {
+          "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9lcy1tb2R1bGVz"
+        },
+        {
+          "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9maWxl"
+        }
+      ]
+    },
+    {
+      "directory_id": "parser/core-plugins/helpers",
+      "files": [
+        {
+          "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9oZWxwZXJzL2dldHRlcnM="
+        },
+        {
+          "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9oZWxwZXJzL3R5cGVz"
+        }
+      ]
+    },
+    {
+      "directory_id": "parser",
+      "files": [
+        {
+          "file_id": "cGFyc2VyL3BhcnNl"
+        },
+        {
+          "file_id": "cGFyc2VyL1BhcnNlRW5naW5l"
+        },
+        {
+          "file_id": "cGFyc2VyL3BsdWdpbi1sb2FkZXI="
+        }
+      ]
+    },
+    {
+      "directory_id": "storage",
+      "files": [
+        {
+          "file_id": "c3RvcmFnZS9kYg=="
+        },
+        {
+          "file_id": "c3RvcmFnZS9zdG9yZQ=="
+        }
+      ]
+    },
+    {
+      "directory_id": "utils",
+      "files": [
+        {
+          "file_id": "dXRpbHMvYmFzZTY0"
+        },
+        {
+          "file_id": "dXRpbHMvY29tbW9u"
+        },
+        {
+          "file_id": "dXRpbHMvZmlsZQ=="
+        },
+        {
+          "file_id": "dXRpbHMvbG9nZ2Vy"
+        }
+      ]
+    }
+  ],
+  "esModule_collection": [
+    {
+      "kind": "ExportingLiteral",
+      "file_id": "Y2xpL2NvbW1hbmRzL2J1aWxk",
+      "type": "StringLiteral",
+      "value": "build [Options]",
+      "jsdoc": [],
+      "esModule_id": "command"
+    },
+    {
+      "kind": "ExportingLiteral",
+      "file_id": "Y2xpL2NvbW1hbmRzL2J1aWxk",
+      "type": "StringLiteral",
+      "value": "Builds static doc site",
+      "jsdoc": [],
+      "esModule_id": "desc"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Y2xpL2NvbW1hbmRzL2J1aWxk",
+      "function": {
+        "function_id": "anonymous@17:45",
+        "params": ["argv"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "builder"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Y2xpL2NvbW1hbmRzL2J1aWxk",
+      "function": {
+        "function_id": "anonymous@48:23",
+        "params": ["argv"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "handler"
+    },
+    {
+      "kind": "ExportingLiteral",
+      "file_id": "Y2xpL2NvbW1hbmRzL2luaXQ=",
+      "type": "StringLiteral",
+      "value": "init [Options]",
+      "jsdoc": [],
+      "esModule_id": "command"
+    },
+    {
+      "kind": "ExportingLiteral",
+      "file_id": "Y2xpL2NvbW1hbmRzL2luaXQ=",
+      "type": "StringLiteral",
+      "value": "Initializes docsense config file (.docsenserc)",
+      "jsdoc": [],
+      "esModule_id": "desc"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Y2xpL2NvbW1hbmRzL2luaXQ=",
+      "function": {
+        "function_id": "anonymous@11:45",
+        "params": ["argv"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "builder"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Y2xpL2NvbW1hbmRzL2luaXQ=",
+      "function": {
+        "function_id": "anonymous@46:23",
+        "params": ["argv"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "handler"
+    },
+    {
+      "kind": "ExportingLiteral",
+      "file_id": "Y2xpL2NvbW1hbmRzL3NlcnZl",
+      "type": "StringLiteral",
+      "value": "serve [Options]",
+      "jsdoc": [],
+      "esModule_id": "command"
+    },
+    {
+      "kind": "ExportingLiteral",
+      "file_id": "Y2xpL2NvbW1hbmRzL3NlcnZl",
+      "type": "StringLiteral",
+      "value": "Serves up a local docsense app that watches for changes",
+      "jsdoc": [],
+      "esModule_id": "desc"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Y2xpL2NvbW1hbmRzL3NlcnZl",
+      "function": {
+        "function_id": "anonymous@18:45",
+        "params": ["argv"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "builder"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Y2xpL2NvbW1hbmRzL3NlcnZl",
+      "function": {
+        "function_id": "anonymous@59:23",
+        "params": ["argv"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "handler"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Y29uZmlnL2luZGV4",
+      "function": {
+        "function_id": "anonymous@10:15",
+        "params": [],
+        "jsdoc": [
+          {
+            "description": "",
+            "tags": [
+              {
+                "title": "returns",
+                "description": "Configuration",
+                "type": {
+                  "type": "TypeApplication",
+                  "expression": {
+                    "type": "NameExpression",
+                    "name": "Promise"
+                  },
+                  "applications": [
+                    {
+                      "type": "NameExpression",
+                      "name": "DocSenseConfig"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description": "",
+          "tags": [
+            {
+              "title": "returns",
+              "description": "Configuration",
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Promise"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "DocSenseConfig"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2NvbXBpbGVy",
+      "function": {
+        "function_id": "anonymous@90:27",
+        "params": ["config"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "makeCompile"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2NvbXBpbGVy",
+      "function": {
+        "function_id": "anonymous@96:32",
+        "params": ["relPath"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "require_template"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2NvbXBpbGVy",
+      "function": {
+        "function_id": "anonymous@102:26",
+        "params": ["cwdPath"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "require_md"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2NvbXBpbGVy",
+      "function": {
+        "function_id": "anonymous@146:25",
+        "params": ["markdown"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "addEmojis"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9jb2Rl",
+      "function": {
+        "function_id": "anonymous@3:15",
+        "params": ["this", "options"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9jb25jYXQ=",
+      "function": {
+        "function_id": "anonymous@1:15",
+        "params": ["...args"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9kYWFt",
+      "function": {
+        "function_id": "anonymous@3:15",
+        "params": ["ctx"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9lc0ltcG9ydA==",
+      "function": {
+        "function_id": "anonymous@5:15",
+        "params": ["ctx"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9maWxlbmFtZQ==",
+      "function": {
+        "function_id": "anonymous@1:15",
+        "params": ["str"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id":
+        "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9mblNpZ25hdHVyZQ==",
+      "function": {
+        "function_id": "anonymous@3:15",
+        "params": ["fn", "jsdoc"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9nZXRMaW5l",
+      "function": {
+        "function_id": "anonymous@1:15",
+        "params": ["function_id"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9qc29u",
+      "function": {
+        "function_id": "anonymous@1:15",
+        "params": ["ctx"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9tZA==",
+      "function": {
+        "function_id": "anonymous@14:15",
+        "params": ["this", "ctx"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9uYXZ0cmVl",
+      "function": {
+        "function_id": "anonymous@2:15",
+        "params": ["ctx"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9uYXZ0cmVl",
+      "function": {
+        "function_id": "collectionToString@11:7",
+        "params": [
+          "obj",
+          "AssignmentPattern",
+          "AssignmentPattern",
+          "AssignmentPattern",
+          "AssignmentPattern",
+          "AssignmentPattern",
+          "AssignmentPattern"
+        ],
+        "jsdoc": []
+      },
+      "esModule_id": "collectionToString",
+      "jsdoc": []
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9uYXZ0cmVl",
+      "function": {
+        "function_id": "makeListItem@48:7",
+        "params": ["node", "key", "coordinates", "path"],
+        "jsdoc": []
+      },
+      "esModule_id": "makeListItem",
+      "jsdoc": []
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9uYXZ0cmVl",
+      "function": {
+        "function_id": "makeFolderItem@63:7",
+        "params": ["key", "coordinates", "path"],
+        "jsdoc": []
+      },
+      "esModule_id": "makeFolderItem",
+      "jsdoc": []
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9uYXZ0cmVl",
+      "function": {
+        "function_id": "makeDAAMItem@81:7",
+        "params": [
+          [
+            {
+              "key": "path",
+              "value": "path"
+            }
+          ],
+          "coordinates"
+        ],
+        "jsdoc": []
+      },
+      "esModule_id": "makeDAAMItem",
+      "jsdoc": []
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9uYXZ0cmVl",
+      "function": {
+        "function_id": "makeModuleItem@95:7",
+        "params": [
+          [
+            {
+              "key": "path",
+              "value": "path"
+            },
+            {
+              "key": "name",
+              "value": "name"
+            }
+          ]
+        ],
+        "jsdoc": []
+      },
+      "esModule_id": "makeModuleItem",
+      "jsdoc": []
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9uYXZ0cmVl",
+      "function": {
+        "function_id": "keysReduce@109:7",
+        "params": ["obj", "cb"],
+        "jsdoc": []
+      },
+      "esModule_id": "keysReduce",
+      "jsdoc": []
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9uYXZ0cmVl",
+      "function": {
+        "function_id": "hasKeys@133:7",
+        "params": ["obj"],
+        "jsdoc": []
+      },
+      "esModule_id": "hasKeys",
+      "jsdoc": []
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9uYXZ0cmVl",
+      "function": {
+        "function_id": "daam@137:7",
+        "params": ["path"],
+        "jsdoc": []
+      },
+      "esModule_id": "daam",
+      "jsdoc": []
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id":
+        "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9yZW5kZXJQYXJhbQ==",
+      "function": {
+        "function_id": "anonymous@1:15",
+        "params": ["param"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL2dlbmVyYXRvcg==",
+      "function": {
+        "function_id": "anonymous@19:15",
+        "params": [],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL2luZGV4",
+      "esModule_id": "default",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9nZW5lcmF0b3I=",
+        "esModule_id": "default"
+      }
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9yZW5kZXJlcg==",
+      "function": {
+        "function_id": "anonymous@14:15",
+        "params": [],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvYmxvY2txdW90ZQ==",
+      "function": {
+        "function_id": "anonymous@1:15",
+        "params": ["quote"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvY29kZQ==",
+      "function": {
+        "function_id": "anonymous@2:15",
+        "params": ["code", "language"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvZm9ybWF0",
+      "function": {
+        "function_id": "anonymous@1:22",
+        "params": ["text"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "strong"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvZm9ybWF0",
+      "function": {
+        "function_id": "anonymous@3:18",
+        "params": [],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "hr"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvZm9ybWF0",
+      "function": {
+        "function_id": "anonymous@5:18",
+        "params": [],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "br"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvZm9ybWF0",
+      "function": {
+        "function_id": "anonymous@7:18",
+        "params": ["text"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "em"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvZm9ybWF0",
+      "function": {
+        "function_id": "anonymous@9:24",
+        "params": ["str"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "codespan"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvZm9ybWF0",
+      "function": {
+        "function_id": "anonymous@12:19",
+        "params": ["text"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "del"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvZm9ybWF0",
+      "function": {
+        "function_id": "anonymous@14:20",
+        "params": ["href", "title", "text"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "link"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvZm9ybWF0",
+      "function": {
+        "function_id": "anonymous@18:21",
+        "params": ["href", "title", "text"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "image"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaGVhZGluZw==",
+      "function": {
+        "function_id": "anonymous@1:15",
+        "params": ["heading", "level"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaW5kZXg=",
+      "esModule_id": "blockquote",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9tYXJrZWQvc3R5bGVzL2Jsb2NrcXVvdGU=",
+        "esModule_id": "default"
+      }
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaW5kZXg=",
+      "esModule_id": "code",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9tYXJrZWQvc3R5bGVzL2NvZGU=",
+        "esModule_id": "default"
+      }
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaW5kZXg=",
+      "esModule_id": "paragraph",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9tYXJrZWQvc3R5bGVzL3BhcmFncmFwaA==",
+        "esModule_id": "default"
+      }
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaW5kZXg=",
+      "esModule_id": "heading",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9tYXJrZWQvc3R5bGVzL2hlYWRpbmc=",
+        "esModule_id": "default"
+      }
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaW5kZXg=",
+      "esModule_id": "table",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9tYXJrZWQvc3R5bGVzL3RhYmxl",
+        "esModule_id": "table"
+      }
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaW5kZXg=",
+      "esModule_id": "tableCell",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9tYXJrZWQvc3R5bGVzL3RhYmxl",
+        "esModule_id": "tableCell"
+      }
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaW5kZXg=",
+      "esModule_id": "tableRow",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9tYXJrZWQvc3R5bGVzL3RhYmxl",
+        "esModule_id": "tableRow"
+      }
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaW5kZXg=",
+      "esModule_id": "strong",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9tYXJrZWQvc3R5bGVzL2Zvcm1hdA==",
+        "esModule_id": "strong"
+      }
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaW5kZXg=",
+      "esModule_id": "hr",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9tYXJrZWQvc3R5bGVzL2Zvcm1hdA==",
+        "esModule_id": "hr"
+      }
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaW5kZXg=",
+      "esModule_id": "br",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9tYXJrZWQvc3R5bGVzL2Zvcm1hdA==",
+        "esModule_id": "br"
+      }
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaW5kZXg=",
+      "esModule_id": "em",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9tYXJrZWQvc3R5bGVzL2Zvcm1hdA==",
+        "esModule_id": "em"
+      }
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaW5kZXg=",
+      "esModule_id": "codespan",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9tYXJrZWQvc3R5bGVzL2Zvcm1hdA==",
+        "esModule_id": "codespan"
+      }
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaW5kZXg=",
+      "esModule_id": "del",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9tYXJrZWQvc3R5bGVzL2Zvcm1hdA==",
+        "esModule_id": "del"
+      }
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaW5kZXg=",
+      "esModule_id": "link",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9tYXJrZWQvc3R5bGVzL2Zvcm1hdA==",
+        "esModule_id": "link"
+      }
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaW5kZXg=",
+      "esModule_id": "image",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9tYXJrZWQvc3R5bGVzL2Zvcm1hdA==",
+        "esModule_id": "image"
+      }
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvcGFyYWdyYXBo",
+      "function": {
+        "function_id": "anonymous@1:15",
+        "params": ["paragraph"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvdGFibGU=",
+      "function": {
+        "function_id": "anonymous@1:21",
+        "params": ["header", "body"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "table"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvdGFibGU=",
+      "function": {
+        "function_id": "anonymous@14:24",
+        "params": ["content"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "tableRow"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvdGFibGU=",
+      "function": {
+        "function_id": "anonymous@18:25",
+        "params": ["content", "flags"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "tableCell"
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL3F1ZXJpZXMvaW5kZXg=",
+      "esModule_id": "directoryExportsQuery",
+      "source": {
+        "file_id":
+          "c3JjL2dlbmVyYXRvci9xdWVyaWVzL2RpcmVjdG9yeUV4cG9ydHNRdWVyeQ==",
+        "esModule_id": "default"
+      }
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL3F1ZXJpZXMvaW5kZXg=",
+      "esModule_id": "fileExportsQuery",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9xdWVyaWVzL2ZpbGVFeHBvcnRzUXVlcnk=",
+        "esModule_id": "default"
+      }
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL3F1ZXJpZXMvaW5kZXg=",
+      "esModule_id": "fileIdQuery",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9xdWVyaWVzL2ZpbGVJZFF1ZXJ5",
+        "esModule_id": "default"
+      }
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL3F1ZXJpZXMvaW5kZXg=",
+      "esModule_id": "hierarchyQuery",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9xdWVyaWVzL2hpZXJhcmNoeVF1ZXJ5",
+        "esModule_id": "default"
+      }
+    },
+    {
+      "kind": "ExportingImport",
+      "file_id": "Z2VuZXJhdG9yL3F1ZXJpZXMvaW5kZXg=",
+      "esModule_id": "Query",
+      "source": {
+        "file_id": "c3JjL2dlbmVyYXRvci9xdWVyaWVzL1F1ZXJ5",
+        "esModule_id": "default"
+      }
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL3NjYWZmb2xkZXI=",
+      "function": {
+        "function_id": "anonymous@14:36",
+        "params": ["require_module", "target"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "makeNodeModuleStatic"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL3NjYWZmb2xkZXI=",
+      "function": {
+        "function_id": "anonymous@22:31",
+        "params": ["targetDir"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "copyStaticFiles"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "Z2VuZXJhdG9yL3NjYWZmb2xkZXI=",
+      "function": {
+        "function_id": "anonymous@37:36",
+        "params": ["outDir"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "scaffoldStaticAssets"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "L2luZGV4",
+      "function": {
+        "function_id": "anonymous@7:15",
+        "params": [],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id":
+        "cGFyc2VyL2NvcmUtcGx1Z2lucy9fX3Rlc3RzX18vdXRpbHMvbG9hZFBsdWdpbg==",
+      "function": {
+        "function_id": "anonymous@7:15",
+        "params": ["initialState", "fileName"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingLiteral",
+      "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9kaXJlY3Rvcnk=",
+      "type": "StringLiteral",
+      "value": "directory_collection",
+      "jsdoc": [],
+      "esModule_id": "collectionName"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9kaXJlY3Rvcnk=",
+      "function": {
+        "function_id": "anonymous@24:15",
+        "params": ["engine", "db"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingLiteral",
+      "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9lcy1tb2R1bGVz",
+      "type": "StringLiteral",
+      "value": "esModule_collection",
+      "jsdoc": [],
+      "esModule_id": "collectionName"
+    },
+    {
+      "kind": "ExportingLiteral",
+      "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9lcy1tb2R1bGVz",
+      "type": "StringLiteral",
+      "value": "esModule",
+      "jsdoc": [],
+      "esModule_id": "key"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9lcy1tb2R1bGVz",
+      "function": {
+        "function_id": "anonymous@75:15",
+        "params": ["engine", "store"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingLiteral",
+      "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9maWxl",
+      "type": "StringLiteral",
+      "value": "file_collection",
+      "jsdoc": [],
+      "esModule_id": "collectionName"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9maWxl",
+      "function": {
+        "function_id": "anonymous@9:15",
+        "params": ["engine", "db"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "default"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9maWxl",
+      "function": {
+        "function_id": "anonymous@162:32",
+        "params": ["fileModel"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "isTypeScriptFile"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9maWxl",
+      "function": {
+        "function_id": "anonymous@168:30",
+        "params": ["fileModel"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "isFlowTypeFile"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9maWxl",
+      "function": {
+        "function_id": "anonymous@174:32",
+        "params": ["fileModel"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "isJavascriptFile"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9oZWxwZXJzL2dldHRlcnM=",
+      "function": {
+        "function_id": "anonymous@17:27",
+        "params": ["nodePath"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "getFileName"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9oZWxwZXJzL2dldHRlcnM=",
+      "function": {
+        "function_id": "anonymous@22:25",
+        "params": ["nodePath", "root"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "getFileId"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9oZWxwZXJzL2dldHRlcnM=",
+      "function": {
+        "function_id": "anonymous@31:31",
+        "params": ["nodePath"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "getFunctionMeta"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9oZWxwZXJzL2dldHRlcnM=",
+      "function": {
+        "function_id": "getDocTagsFromPath@42:7",
+        "params": ["nodePath"],
+        "jsdoc": []
+      },
+      "esModule_id": "getDocTagsFromPath",
+      "jsdoc": []
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9oZWxwZXJzL2dldHRlcnM=",
+      "function": {
+        "function_id": "anonymous@50:41",
+        "params": ["node"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "getFunctionParamsFromNode"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9oZWxwZXJzL2dldHRlcnM=",
+      "function": {
+        "function_id": "anonymous@79:35",
+        "params": ["rest"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "getRestElementProps"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9oZWxwZXJzL2dldHRlcnM=",
+      "function": {
+        "function_id": "anonymous@102:42",
+        "params": ["node"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "getObjectPatternProperties"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9oZWxwZXJzL2dldHRlcnM=",
+      "function": {
+        "function_id": "anonymous@106:36",
+        "params": ["prop"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "getObjectPatternProp"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9oZWxwZXJzL2dldHRlcnM=",
+      "function": {
+        "function_id": "isNamedIdentifier@124:7",
+        "params": ["node"],
+        "jsdoc": []
+      },
+      "esModule_id": "isNamedIdentifier",
+      "jsdoc": []
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL3BhcnNl",
+      "function": {
+        "function_id": "anonymous@14:26",
+        "params": [
+          [
+            {
+              "key": "config",
+              "value": "config"
+            },
+            {
+              "key": "plugins",
+              "value": "plugins"
+            }
+          ]
+        ],
+        "jsdoc": [
+          {
+            "description": "Parse files using config options",
+            "tags": [
+              {
+                "title": "param",
+                "description": "options",
+                "type": {
+                  "type": "NameExpression",
+                  "name": "DocSenseConfig"
+                },
+                "name": "config"
+              },
+              {
+                "title": "returns",
+                "description": "Updated database",
+                "type": {
+                  "type": "TypeApplication",
+                  "expression": {
+                    "type": "NameExpression",
+                    "name": "Promise"
+                  },
+                  "applications": [
+                    {
+                      "type": "NameExpression",
+                      "name": "Lowdb"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description": "Parse files using config options",
+          "tags": [
+            {
+              "title": "param",
+              "description": "options",
+              "type": {
+                "type": "NameExpression",
+                "name": "DocSenseConfig"
+              },
+              "name": "config"
+            },
+            {
+              "title": "returns",
+              "description": "Updated database",
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Promise"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "Lowdb"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "esModule_id": "parseFiles"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL3BsdWdpbi1sb2FkZXI=",
+      "function": {
+        "function_id": "anonymous@16:32",
+        "params": ["config"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "setupCorePlugins"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL3BsdWdpbi1sb2FkZXI=",
+      "function": {
+        "function_id": "anonymous@23:38",
+        "params": ["pluginPaths"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "resolveCorePluginPaths"
+    },
+    {
+      "kind": "ExportingReference",
+      "file_id": "cGFyc2VyL3BsdWdpbi1sb2FkZXI=",
+      "jsdoc": [],
+      "esModule_id": "scanCorePluginDirectory"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL3BsdWdpbi1sb2FkZXI=",
+      "function": {
+        "function_id": "anonymous@32:35",
+        "params": ["id"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "resolvePluginModule"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL3BsdWdpbi1sb2FkZXI=",
+      "function": {
+        "function_id": "anonymous@38:27",
+        "params": ["id"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "setupPlugin"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL3BsdWdpbi1sb2FkZXI=",
+      "function": {
+        "function_id": "anonymous@43:28",
+        "params": ["filepaths"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "setupPlugins"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "cGFyc2VyL3BsdWdpbi1sb2FkZXI=",
+      "function": {
+        "function_id": "anonymous@46:30",
+        "params": ["parser", "plugin", "db"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "registerPlugin"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "c3RvcmFnZS9kYg==",
+      "function": {
+        "function_id": "anonymous@11:22",
+        "params": ["outDir"],
+        "jsdoc": [
+          {
+            "description": "",
+            "tags": [
+              {
+                "title": "deprecated",
+                "description":
+                  "use connect fn instead.\nGets or creates a database file with lowdb"
+              },
+              {
+                "title": "param",
+                "description": "where the database file should be locaed",
+                "type": null,
+                "name": "outDir"
+              },
+              {
+                "title": "returns",
+                "description": "lowdb instance",
+                "type": {
+                  "type": "NameExpression",
+                  "name": "Lowdb"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description": "",
+          "tags": [
+            {
+              "title": "deprecated",
+              "description":
+                "use connect fn instead.\nGets or creates a database file with lowdb"
+            },
+            {
+              "title": "param",
+              "description": "where the database file should be locaed",
+              "type": null,
+              "name": "outDir"
+            },
+            {
+              "title": "returns",
+              "description": "lowdb instance",
+              "type": {
+                "type": "NameExpression",
+                "name": "Lowdb"
+              }
+            }
+          ]
+        }
+      ],
+      "esModule_id": "create"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "c3RvcmFnZS9kYg==",
+      "function": {
+        "function_id": "anonymous@24:23",
+        "params": [],
+        "jsdoc": [
+          {
+            "description":
+              "Creates or connects to the local database located in the folder dictated by\nthe config.",
+            "tags": [
+              {
+                "title": "returns",
+                "description": "lowdb instance",
+                "type": {
+                  "type": "TypeApplication",
+                  "expression": {
+                    "type": "NameExpression",
+                    "name": "Promise"
+                  },
+                  "applications": [
+                    {
+                      "type": "NameExpression",
+                      "name": "Lowdb"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description":
+            "Creates or connects to the local database located in the folder dictated by\nthe config.",
+          "tags": [
+            {
+              "title": "returns",
+              "description": "lowdb instance",
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Promise"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "Lowdb"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "esModule_id": "connect"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvYmFzZTY0",
+      "function": {
+        "function_id": "anonymous@1:22",
+        "params": ["str"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "encode"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvYmFzZTY0",
+      "function": {
+        "function_id": "anonymous@5:22",
+        "params": ["str"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "decode"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvY29tbW9u",
+      "function": {
+        "function_id": "anonymous@13:22",
+        "params": ["msg"],
+        "jsdoc": [
+          {
+            "description": "Send a status message while in a promise chain",
+            "tags": [
+              {
+                "title": "param",
+                "description": null,
+                "type": {
+                  "type": "NameExpression",
+                  "name": "string"
+                },
+                "name": "msg"
+              },
+              {
+                "title": "returns",
+                "description": "context of the promise chain is unchanged.",
+                "type": {
+                  "type": "NameExpression",
+                  "name": "Passthrough"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description": "Send a status message while in a promise chain",
+          "tags": [
+            {
+              "title": "param",
+              "description": null,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "msg"
+            },
+            {
+              "title": "returns",
+              "description": "context of the promise chain is unchanged.",
+              "type": {
+                "type": "NameExpression",
+                "name": "Passthrough"
+              }
+            }
+          ]
+        }
+      ],
+      "esModule_id": "status"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvY29tbW9u",
+      "function": {
+        "function_id": "anonymous@18:22",
+        "params": ["prefix"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "logMap"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvY29tbW9u",
+      "function": {
+        "function_id": "anonymous@27:26",
+        "params": ["newContext"],
+        "jsdoc": [
+          {
+            "description": "Changes context in promise chain",
+            "tags": [
+              {
+                "title": "param",
+                "description": "next thing in promise chain will focus on this",
+                "type": {
+                  "type": "AllLiteral"
+                },
+                "name": "newContext"
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description": "Changes context in promise chain",
+          "tags": [
+            {
+              "title": "param",
+              "description": "next thing in promise chain will focus on this",
+              "type": {
+                "type": "AllLiteral"
+              },
+              "name": "newContext"
+            }
+          ]
+        }
+      ],
+      "esModule_id": "setContext"
+    },
+    {
+      "kind": "ExportingReference",
+      "file_id": "dXRpbHMvY29tbW9u",
+      "jsdoc": [
+        {
+          "description":
+            "Wipes the context to undefined, useful for controlling flow",
+          "tags": [
+            {
+              "title": "returns",
+              "description": null,
+              "type": {
+                "type": "NameExpression",
+                "name": "void"
+              }
+            }
+          ]
+        }
+      ],
+      "esModule_id": "voidContext"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvY29tbW9u",
+      "function": {
+        "function_id": "anonymous@41:30",
+        "params": ["key"],
+        "jsdoc": [
+          {
+            "description":
+              "Writes the context of a promise chain to the given key as an entry ( [key, context] )",
+            "tags": [
+              {
+                "title": "param",
+                "description": null,
+                "type": {
+                  "type": "NameExpression",
+                  "name": "string"
+                },
+                "name": "key"
+              },
+              {
+                "title": "returns",
+                "description": null,
+                "type": {
+                  "type": "NameExpression",
+                  "name": "entry"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description":
+            "Writes the context of a promise chain to the given key as an entry ( [key, context] )",
+          "tags": [
+            {
+              "title": "param",
+              "description": null,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "key"
+            },
+            {
+              "title": "returns",
+              "description": null,
+              "type": {
+                "type": "NameExpression",
+                "name": "entry"
+              }
+            }
+          ]
+        }
+      ],
+      "esModule_id": "contextAsEntry"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvY29tbW9u",
+      "function": {
+        "function_id": "anonymous@51:38",
+        "params": ["entries"],
+        "jsdoc": [
+          {
+            "description": "Converts entries to a POJO",
+            "tags": [
+              {
+                "title": "param",
+                "description": null,
+                "type": {
+                  "type": "TypeApplication",
+                  "expression": {
+                    "type": "NameExpression",
+                    "name": "Array"
+                  },
+                  "applications": [
+                    {
+                      "type": "NameExpression",
+                      "name": "entry"
+                    }
+                  ]
+                },
+                "name": "entries"
+              },
+              {
+                "title": "returns",
+                "description": "converted entries",
+                "type": {
+                  "type": "NameExpression",
+                  "name": "POJO"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description": "Converts entries to a POJO",
+          "tags": [
+            {
+              "title": "param",
+              "description": null,
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "entry"
+                  }
+                ]
+              },
+              "name": "entries"
+            },
+            {
+              "title": "returns",
+              "description": "converted entries",
+              "type": {
+                "type": "NameExpression",
+                "name": "POJO"
+              }
+            }
+          ]
+        }
+      ],
+      "esModule_id": "convertEntriesToObject"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvY29tbW9u",
+      "function": {
+        "function_id": "anonymous@62:26",
+        "params": ["err"],
+        "jsdoc": [
+          {
+            "description": "Logs error, exits 1",
+            "tags": [
+              {
+                "title": "param",
+                "description": "error object",
+                "type": {
+                  "type": "NameExpression",
+                  "name": "Error"
+                },
+                "name": "err"
+              },
+              {
+                "title": "returns",
+                "description": null,
+                "type": {
+                  "type": "NameExpression",
+                  "name": "void"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description": "Logs error, exits 1",
+          "tags": [
+            {
+              "title": "param",
+              "description": "error object",
+              "type": {
+                "type": "NameExpression",
+                "name": "Error"
+              },
+              "name": "err"
+            },
+            {
+              "title": "returns",
+              "description": null,
+              "type": {
+                "type": "NameExpression",
+                "name": "void"
+              }
+            }
+          ]
+        }
+      ],
+      "esModule_id": "fatalError"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvY29tbW9u",
+      "function": {
+        "function_id": "anonymous@86:26",
+        "params": ["context"],
+        "jsdoc": [
+          {
+            "description": "Logs the current context to the console",
+            "tags": [
+              {
+                "title": "param",
+                "description": "log this",
+                "type": {
+                  "type": "AllLiteral"
+                },
+                "name": "context"
+              },
+              {
+                "title": "returns",
+                "description": "context",
+                "type": {
+                  "type": "AllLiteral"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description": "Logs the current context to the console",
+          "tags": [
+            {
+              "title": "param",
+              "description": "log this",
+              "type": {
+                "type": "AllLiteral"
+              },
+              "name": "context"
+            },
+            {
+              "title": "returns",
+              "description": "context",
+              "type": {
+                "type": "AllLiteral"
+              }
+            }
+          ]
+        }
+      ],
+      "esModule_id": "logContext"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvY29tbW9u",
+      "function": {
+        "function_id": "anonymous@96:22",
+        "params": ["arr"],
+        "jsdoc": [
+          {
+            "description": "Removes duplicates from the given array",
+            "tags": [
+              {
+                "title": "param",
+                "description": "dedupe this array",
+                "type": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "name": "arr"
+              },
+              {
+                "title": "returns",
+                "description": "deduped",
+                "type": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description": "Removes duplicates from the given array",
+          "tags": [
+            {
+              "title": "param",
+              "description": "dedupe this array",
+              "type": {
+                "type": "NameExpression",
+                "name": "Array"
+              },
+              "name": "arr"
+            },
+            {
+              "title": "returns",
+              "description": "deduped",
+              "type": {
+                "type": "NameExpression",
+                "name": "Array"
+              }
+            }
+          ]
+        }
+      ],
+      "esModule_id": "dedupe"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvY29tbW9u",
+      "function": {
+        "function_id": "anonymous@104:23",
+        "params": ["arr"],
+        "jsdoc": [
+          {
+            "description": "Flattens an array that is one level deep.",
+            "tags": [
+              {
+                "title": "param",
+                "description": "flatten this array",
+                "type": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "name": "arr"
+              },
+              {
+                "title": "returns",
+                "description": "deduped",
+                "type": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description": "Flattens an array that is one level deep.",
+          "tags": [
+            {
+              "title": "param",
+              "description": "flatten this array",
+              "type": {
+                "type": "NameExpression",
+                "name": "Array"
+              },
+              "name": "arr"
+            },
+            {
+              "title": "returns",
+              "description": "deduped",
+              "type": {
+                "type": "NameExpression",
+                "name": "Array"
+              }
+            }
+          ]
+        }
+      ],
+      "esModule_id": "flatten"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvY29tbW9u",
+      "function": {
+        "function_id": "assertNever@106:7",
+        "params": ["x"],
+        "jsdoc": []
+      },
+      "esModule_id": "assertNever",
+      "jsdoc": []
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvZmlsZQ==",
+      "function": {
+        "function_id": "anonymous@17:34",
+        "params": ["pattern"],
+        "jsdoc": [
+          {
+            "description": "Processes a glob pattern to an array of files",
+            "tags": [
+              {
+                "title": "param",
+                "description": "pattern to resolve",
+                "type": {
+                  "type": "NameExpression",
+                  "name": "string"
+                },
+                "name": "pattern"
+              },
+              {
+                "title": "returns",
+                "description": "all matches found from the pattern",
+                "type": {
+                  "type": "TypeApplication",
+                  "expression": {
+                    "type": "NameExpression",
+                    "name": "Promise"
+                  },
+                  "applications": [
+                    {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  ]
+                }
+              },
+              {
+                "title": "see",
+                "description": "processAllGlobPatterns"
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description": "Processes a glob pattern to an array of files",
+          "tags": [
+            {
+              "title": "param",
+              "description": "pattern to resolve",
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "pattern"
+            },
+            {
+              "title": "returns",
+              "description": "all matches found from the pattern",
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Promise"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                ]
+              }
+            },
+            {
+              "title": "see",
+              "description": "processAllGlobPatterns"
+            }
+          ]
+        }
+      ],
+      "esModule_id": "processGlobPattern"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvZmlsZQ==",
+      "function": {
+        "function_id": "anonymous@28:38",
+        "params": ["patterns"],
+        "jsdoc": [
+          {
+            "description":
+              "Processes an array of glob patterns to an array of files",
+            "tags": [
+              {
+                "title": "param",
+                "description": "patterns to resolve",
+                "type": {
+                  "type": "TypeApplication",
+                  "expression": {
+                    "type": "NameExpression",
+                    "name": "Array"
+                  },
+                  "applications": [
+                    {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  ]
+                },
+                "name": "patterns"
+              },
+              {
+                "title": "returns",
+                "description": "all matches found from the pattern",
+                "type": {
+                  "type": "TypeApplication",
+                  "expression": {
+                    "type": "NameExpression",
+                    "name": "Promise"
+                  },
+                  "applications": [
+                    {
+                      "type": "TypeApplication",
+                      "expression": {
+                        "type": "NameExpression",
+                        "name": "Array"
+                      },
+                      "applications": [
+                        {
+                          "type": "NameExpression",
+                          "name": "string"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "title": "uses",
+                "description": "processGlobPattern"
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description":
+            "Processes an array of glob patterns to an array of files",
+          "tags": [
+            {
+              "title": "param",
+              "description": "patterns to resolve",
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                ]
+              },
+              "name": "patterns"
+            },
+            {
+              "title": "returns",
+              "description": "all matches found from the pattern",
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Promise"
+                },
+                "applications": [
+                  {
+                    "type": "TypeApplication",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "Array"
+                    },
+                    "applications": [
+                      {
+                        "type": "NameExpression",
+                        "name": "string"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "title": "uses",
+              "description": "processGlobPattern"
+            }
+          ]
+        }
+      ],
+      "esModule_id": "processAllGlobPatterns"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvZmlsZQ==",
+      "function": {
+        "function_id": "anonymous@37:34",
+        "params": ["relativePath"],
+        "jsdoc": [
+          {
+            "description":
+              "Converts resolves the full path of the filepath relative to the current working directory.",
+            "tags": [
+              {
+                "title": "param",
+                "description": "filepath to resolve",
+                "type": {
+                  "type": "NameExpression",
+                  "name": "string"
+                },
+                "name": "relativePath"
+              },
+              {
+                "title": "returns",
+                "description": "fullpath",
+                "type": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description":
+            "Converts resolves the full path of the filepath relative to the current working directory.",
+          "tags": [
+            {
+              "title": "param",
+              "description": "filepath to resolve",
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "relativePath"
+            },
+            {
+              "title": "returns",
+              "description": "fullpath",
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "esModule_id": "resolvePathFromCWD"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvZmlsZQ==",
+      "function": {
+        "function_id": "anonymous@46:42",
+        "params": ["relativePaths"],
+        "jsdoc": [
+          {
+            "description":
+              "Resolves the full path all file patterns relative to the current working directory.",
+            "tags": [
+              {
+                "title": "param",
+                "description": "array of relative filepaths to resolve",
+                "type": {
+                  "type": "TypeApplication",
+                  "expression": {
+                    "type": "NameExpression",
+                    "name": "Array"
+                  },
+                  "applications": [
+                    {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  ]
+                },
+                "name": "relativePaths"
+              },
+              {
+                "title": "returns",
+                "description": "fullpaths",
+                "type": {
+                  "type": "TypeApplication",
+                  "expression": {
+                    "type": "NameExpression",
+                    "name": "Array"
+                  },
+                  "applications": [
+                    {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  ]
+                }
+              },
+              {
+                "title": "uses",
+                "description": "resolvePathFromCWD"
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description":
+            "Resolves the full path all file patterns relative to the current working directory.",
+          "tags": [
+            {
+              "title": "param",
+              "description": "array of relative filepaths to resolve",
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                ]
+              },
+              "name": "relativePaths"
+            },
+            {
+              "title": "returns",
+              "description": "fullpaths",
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                ]
+              }
+            },
+            {
+              "title": "uses",
+              "description": "resolvePathFromCWD"
+            }
+          ]
+        }
+      ],
+      "esModule_id": "resolveAllFilePathsFromCWD"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvZmlsZQ==",
+      "function": {
+        "function_id": "anonymous@57:30",
+        "params": ["filepath"],
+        "jsdoc": [
+          {
+            "description":
+              "Opens file, reads it, then creates an entry where the\nfilepath is key, and the raw data is the value.",
+            "tags": [
+              {
+                "title": "param",
+                "description": "path to be read by fs.readFile",
+                "type": {
+                  "type": "NameExpression",
+                  "name": "string"
+                },
+                "name": "filepath"
+              },
+              {
+                "title": "returns",
+                "description": "[filepath, ast]",
+                "type": {
+                  "type": "TypeApplication",
+                  "expression": {
+                    "type": "NameExpression",
+                    "name": "Promise"
+                  },
+                  "applications": [
+                    {
+                      "type": "NameExpression",
+                      "name": "entry"
+                    }
+                  ]
+                }
+              },
+              {
+                "title": "uses",
+                "description": "openFileForReading"
+              },
+              {
+                "title": "uses",
+                "description": "contextAsEntry"
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description":
+            "Opens file, reads it, then creates an entry where the\nfilepath is key, and the raw data is the value.",
+          "tags": [
+            {
+              "title": "param",
+              "description": "path to be read by fs.readFile",
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "filepath"
+            },
+            {
+              "title": "returns",
+              "description": "[filepath, ast]",
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Promise"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "entry"
+                  }
+                ]
+              }
+            },
+            {
+              "title": "uses",
+              "description": "openFileForReading"
+            },
+            {
+              "title": "uses",
+              "description": "contextAsEntry"
+            }
+          ]
+        }
+      ],
+      "esModule_id": "safelyReadFile"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvZmlsZQ==",
+      "function": {
+        "function_id": "anonymous@67:27",
+        "params": ["filepath"],
+        "jsdoc": [
+          {
+            "description":
+              "Only attempts to read real files, discarding directories, etc.",
+            "tags": [
+              {
+                "title": "param",
+                "description": "path to be read by fs.readFile",
+                "type": {
+                  "type": "NameExpression",
+                  "name": "string"
+                },
+                "name": "filepath"
+              },
+              {
+                "title": "returns",
+                "description": "The resolved file path",
+                "type": {
+                  "type": "TypeApplication",
+                  "expression": {
+                    "type": "NameExpression",
+                    "name": "Promise"
+                  },
+                  "applications": [
+                    {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  ]
+                }
+              },
+              {
+                "title": "see",
+                "description": "readFiles"
+              },
+              {
+                "title": "see",
+                "description": "parseFiles"
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description":
+            "Only attempts to read real files, discarding directories, etc.",
+          "tags": [
+            {
+              "title": "param",
+              "description": "path to be read by fs.readFile",
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "filepath"
+            },
+            {
+              "title": "returns",
+              "description": "The resolved file path",
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Promise"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                ]
+              }
+            },
+            {
+              "title": "see",
+              "description": "readFiles"
+            },
+            {
+              "title": "see",
+              "description": "parseFiles"
+            }
+          ]
+        }
+      ],
+      "esModule_id": "resolveFile"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvZmlsZQ==",
+      "function": {
+        "function_id": "anonymous@87:34",
+        "params": ["filepath"],
+        "jsdoc": [
+          {
+            "description":
+              "performs fs.readfile at utf-8 encoding on the given filepath",
+            "tags": [
+              {
+                "title": "param",
+                "description": "fs.readfile this",
+                "type": {
+                  "type": "NameExpression",
+                  "name": "string"
+                },
+                "name": "filepath"
+              },
+              {
+                "title": "returns",
+                "description": "utf-8 content",
+                "type": {
+                  "type": "NameExpression",
+                  "name": "string"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description":
+            "performs fs.readfile at utf-8 encoding on the given filepath",
+          "tags": [
+            {
+              "title": "param",
+              "description": "fs.readfile this",
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "filepath"
+            },
+            {
+              "title": "returns",
+              "description": "utf-8 content",
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "esModule_id": "openFileForReading"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvZmlsZQ==",
+      "function": {
+        "function_id": "anonymous@96:25",
+        "params": ["filesArray"],
+        "jsdoc": [
+          {
+            "description": "Read the contents of all files in the given array",
+            "tags": [
+              {
+                "title": "param",
+                "description": "array of full paths to files",
+                "type": {
+                  "type": "TypeApplication",
+                  "expression": {
+                    "type": "NameExpression",
+                    "name": "Array"
+                  },
+                  "applications": [
+                    {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  ]
+                },
+                "name": "filesArray"
+              },
+              {
+                "title": "returns",
+                "description": "A promise when all files have been read",
+                "type": {
+                  "type": "TypeApplication",
+                  "expression": {
+                    "type": "NameExpression",
+                    "name": "Promise"
+                  },
+                  "applications": [
+                    {
+                      "type": "TypeApplication",
+                      "expression": {
+                        "type": "NameExpression",
+                        "name": "Array"
+                      },
+                      "applications": [
+                        {
+                          "type": "NameExpression",
+                          "name": "entry"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "title": "uses",
+                "description": "safelyReadFile"
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description": "Read the contents of all files in the given array",
+          "tags": [
+            {
+              "title": "param",
+              "description": "array of full paths to files",
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                ]
+              },
+              "name": "filesArray"
+            },
+            {
+              "title": "returns",
+              "description": "A promise when all files have been read",
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Promise"
+                },
+                "applications": [
+                  {
+                    "type": "TypeApplication",
+                    "expression": {
+                      "type": "NameExpression",
+                      "name": "Array"
+                    },
+                    "applications": [
+                      {
+                        "type": "NameExpression",
+                        "name": "entry"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "title": "uses",
+              "description": "safelyReadFile"
+            }
+          ]
+        }
+      ],
+      "esModule_id": "readFiles"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvZmlsZQ==",
+      "function": {
+        "function_id": "anonymous@104:40",
+        "params": ["directory"],
+        "jsdoc": [
+          {
+            "description":
+              "Given an array of directory items (typically from fs.readdir), reduce it\ndown to just js files",
+            "tags": [
+              {
+                "title": "param",
+                "description": null,
+                "type": {
+                  "type": "TypeApplication",
+                  "expression": {
+                    "type": "NameExpression",
+                    "name": "Array"
+                  },
+                  "applications": [
+                    {
+                      "type": "NameExpression",
+                      "name": "string"
+                    }
+                  ]
+                },
+                "name": "directory"
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description":
+            "Given an array of directory items (typically from fs.readdir), reduce it\ndown to just js files",
+          "tags": [
+            {
+              "title": "param",
+              "description": null,
+              "type": {
+                "type": "TypeApplication",
+                "expression": {
+                  "type": "NameExpression",
+                  "name": "Array"
+                },
+                "applications": [
+                  {
+                    "type": "NameExpression",
+                    "name": "string"
+                  }
+                ]
+              },
+              "name": "directory"
+            }
+          ]
+        }
+      ],
+      "esModule_id": "reduceDirectoryToJSFiles"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvZmlsZQ==",
+      "function": {
+        "function_id": "anonymous@116:29",
+        "params": ["directoryPath"],
+        "jsdoc": [
+          {
+            "description": "scan a directory using fs.readdir",
+            "tags": [
+              {
+                "title": "param",
+                "description": null,
+                "type": {
+                  "type": "NameExpression",
+                  "name": "string"
+                },
+                "name": "directoryPath"
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description": "scan a directory using fs.readdir",
+          "tags": [
+            {
+              "title": "param",
+              "description": null,
+              "type": {
+                "type": "NameExpression",
+                "name": "string"
+              },
+              "name": "directoryPath"
+            }
+          ]
+        }
+      ],
+      "esModule_id": "scanDirectory"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvZmlsZQ==",
+      "function": {
+        "function_id": "anonymous@131:28",
+        "params": ["directoryPath", "fn"],
+        "jsdoc": [
+          {
+            "description":
+              "Evals the given function over each of the files within the given directoryPath",
+            "tags": [
+              {
+                "title": "param",
+                "description": "path to iterate over",
+                "type": null,
+                "name": "directoryPath"
+              },
+              {
+                "title": "param",
+                "description":
+                  "function called on each file within the directoryPath",
+                "type": null,
+                "name": "fn"
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description":
+            "Evals the given function over each of the files within the given directoryPath",
+          "tags": [
+            {
+              "title": "param",
+              "description": "path to iterate over",
+              "type": null,
+              "name": "directoryPath"
+            },
+            {
+              "title": "param",
+              "description":
+                "function called on each file within the directoryPath",
+              "type": null,
+              "name": "fn"
+            }
+          ]
+        }
+      ],
+      "esModule_id": "withAllFiles"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvZmlsZQ==",
+      "function": {
+        "function_id": "anonymous@159:26",
+        "params": ["target", "data"],
+        "jsdoc": [
+          {
+            "description":
+              "Creates file from the given path, even if the path does not exist\nSimilar to running `mkdir -p [path] ; touch [path]",
+            "tags": [
+              {
+                "title": "param",
+                "description": "target path and file",
+                "type": null,
+                "name": "target"
+              },
+              {
+                "title": "param",
+                "description": "written to the new file",
+                "type": null,
+                "name": "data"
+              }
+            ]
+          }
+        ]
+      },
+      "jsdoc": [
+        {
+          "description":
+            "Creates file from the given path, even if the path does not exist\nSimilar to running `mkdir -p [path] ; touch [path]",
+          "tags": [
+            {
+              "title": "param",
+              "description": "target path and file",
+              "type": null,
+              "name": "target"
+            },
+            {
+              "title": "param",
+              "description": "written to the new file",
+              "type": null,
+              "name": "data"
+            }
+          ]
+        }
+      ],
+      "esModule_id": "createFile"
+    },
+    {
+      "kind": "ExportingFunction",
+      "file_id": "dXRpbHMvbG9nZ2Vy",
+      "function": {
+        "function_id": "anonymous@13:20",
+        "params": ["level"],
+        "jsdoc": []
+      },
+      "jsdoc": [],
+      "esModule_id": "init"
+    }
+  ],
+  "file_collection": [
+    {
+      "kind": "TypeScript",
+      "dir": "_types/external/_plugins/babel-traverse",
+      "base": "index.d.ts",
+      "name": "index.d",
+      "ext": ".ts",
+      "id": "X3R5cGVzL2V4dGVybmFsL19wbHVnaW5zL2JhYmVsLXRyYXZlcnNlL2luZGV4LmQ=",
+      "path": "_types/external/_plugins/babel-traverse/index.d.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "_types/external/_plugins/babel-types",
+      "base": "index.d.ts",
+      "name": "index.d",
+      "ext": ".ts",
+      "id": "X3R5cGVzL2V4dGVybmFsL19wbHVnaW5zL2JhYmVsLXR5cGVzL2luZGV4LmQ=",
+      "path": "_types/external/_plugins/babel-types/index.d.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "_types/external/cosmiconfig",
+      "base": "index.d.ts",
+      "name": "index.d",
+      "ext": ".ts",
+      "id": "X3R5cGVzL2V4dGVybmFsL2Nvc21pY29uZmlnL2luZGV4LmQ=",
+      "path": "_types/external/cosmiconfig/index.d.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "_types/external/lowdb/adapters",
+      "base": "Memory.d.ts",
+      "name": "Memory.d",
+      "ext": ".ts",
+      "id": "X3R5cGVzL2V4dGVybmFsL2xvd2RiL2FkYXB0ZXJzL01lbW9yeS5k",
+      "path": "_types/external/lowdb/adapters/Memory.d.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "_types/external/npmlog",
+      "base": "index.d.ts",
+      "name": "index.d",
+      "ext": ".ts",
+      "id": "X3R5cGVzL2V4dGVybmFsL25wbWxvZy9pbmRleC5k",
+      "path": "_types/external/npmlog/index.d.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "_types/external/traverse",
+      "base": "index.d.ts",
+      "name": "index.d",
+      "ext": ".ts",
+      "id": "X3R5cGVzL2V4dGVybmFsL3RyYXZlcnNlL2luZGV4LmQ=",
+      "path": "_types/external/traverse/index.d.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "_types/global",
+      "base": "Globals.ts",
+      "name": "Globals",
+      "ext": ".ts",
+      "id": "X3R5cGVzL2dsb2JhbC9HbG9iYWxz",
+      "path": "_types/global/Globals.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "cli/commands",
+      "base": "build.ts",
+      "name": "build",
+      "ext": ".ts",
+      "id": "Y2xpL2NvbW1hbmRzL2J1aWxk",
+      "path": "cli/commands/build.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "cli/commands",
+      "base": "init.ts",
+      "name": "init",
+      "ext": ".ts",
+      "id": "Y2xpL2NvbW1hbmRzL2luaXQ=",
+      "path": "cli/commands/init.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "cli/commands",
+      "base": "serve.ts",
+      "name": "serve",
+      "ext": ".ts",
+      "id": "Y2xpL2NvbW1hbmRzL3NlcnZl",
+      "path": "cli/commands/serve.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "cli",
+      "base": "docsense.ts",
+      "name": "docsense",
+      "ext": ".ts",
+      "id": "Y2xpL2RvY3NlbnNl",
+      "path": "cli/docsense.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "config/__tests__",
+      "base": "config.ts",
+      "name": "config",
+      "ext": ".ts",
+      "id": "Y29uZmlnL19fdGVzdHNfXy9jb25maWc=",
+      "path": "config/__tests__/config.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "config",
+      "base": "default-config.ts",
+      "name": "default-config",
+      "ext": ".ts",
+      "id": "Y29uZmlnL2RlZmF1bHQtY29uZmln",
+      "path": "config/default-config.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "config",
+      "base": "index.ts",
+      "name": "index",
+      "ext": ".ts",
+      "id": "Y29uZmlnL2luZGV4",
+      "path": "config/index.ts",
+      "isIndex": true
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator",
+      "base": "compiler.ts",
+      "name": "compiler",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL2NvbXBpbGVy",
+      "path": "generator/compiler.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator",
+      "base": "debug.ts",
+      "name": "debug",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL2RlYnVn",
+      "path": "generator/debug.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/_types",
+      "base": "handlebars.ts",
+      "name": "handlebars",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvX3R5cGVzL2hhbmRsZWJhcnM=",
+      "path": "generator/default-template/_types/handlebars.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers/__tests__",
+      "base": "code.ts",
+      "name": "code",
+      "ext": ".ts",
+      "id":
+        "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vY29kZQ==",
+      "path": "generator/default-template/helpers/__tests__/code.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers/__tests__",
+      "base": "concat.ts",
+      "name": "concat",
+      "ext": ".ts",
+      "id":
+        "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vY29uY2F0",
+      "path": "generator/default-template/helpers/__tests__/concat.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers/__tests__",
+      "base": "daam.ts",
+      "name": "daam",
+      "ext": ".ts",
+      "id":
+        "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vZGFhbQ==",
+      "path": "generator/default-template/helpers/__tests__/daam.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers/__tests__",
+      "base": "esImport.ts",
+      "name": "esImport",
+      "ext": ".ts",
+      "id":
+        "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vZXNJbXBvcnQ=",
+      "path": "generator/default-template/helpers/__tests__/esImport.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers/__tests__",
+      "base": "filename.ts",
+      "name": "filename",
+      "ext": ".ts",
+      "id":
+        "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vZmlsZW5hbWU=",
+      "path": "generator/default-template/helpers/__tests__/filename.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers/__tests__",
+      "base": "fnSignature.ts",
+      "name": "fnSignature",
+      "ext": ".ts",
+      "id":
+        "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vZm5TaWduYXR1cmU=",
+      "path": "generator/default-template/helpers/__tests__/fnSignature.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers/__tests__",
+      "base": "getline.ts",
+      "name": "getline",
+      "ext": ".ts",
+      "id":
+        "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vZ2V0bGluZQ==",
+      "path": "generator/default-template/helpers/__tests__/getline.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers/__tests__",
+      "base": "json.ts",
+      "name": "json",
+      "ext": ".ts",
+      "id":
+        "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vanNvbg==",
+      "path": "generator/default-template/helpers/__tests__/json.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers/__tests__",
+      "base": "md.ts",
+      "name": "md",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vbWQ=",
+      "path": "generator/default-template/helpers/__tests__/md.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers/__tests__",
+      "base": "navtree.ts",
+      "name": "navtree",
+      "ext": ".ts",
+      "id":
+        "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9fX3Rlc3RzX18vbmF2dHJlZQ==",
+      "path": "generator/default-template/helpers/__tests__/navtree.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers",
+      "base": "code.ts",
+      "name": "code",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9jb2Rl",
+      "path": "generator/default-template/helpers/code.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers",
+      "base": "concat.ts",
+      "name": "concat",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9jb25jYXQ=",
+      "path": "generator/default-template/helpers/concat.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers",
+      "base": "daam.ts",
+      "name": "daam",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9kYWFt",
+      "path": "generator/default-template/helpers/daam.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers",
+      "base": "esImport.ts",
+      "name": "esImport",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9lc0ltcG9ydA==",
+      "path": "generator/default-template/helpers/esImport.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers",
+      "base": "filename.ts",
+      "name": "filename",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9maWxlbmFtZQ==",
+      "path": "generator/default-template/helpers/filename.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers",
+      "base": "fnSignature.ts",
+      "name": "fnSignature",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9mblNpZ25hdHVyZQ==",
+      "path": "generator/default-template/helpers/fnSignature.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers",
+      "base": "getLine.ts",
+      "name": "getLine",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9nZXRMaW5l",
+      "path": "generator/default-template/helpers/getLine.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers",
+      "base": "json.ts",
+      "name": "json",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9qc29u",
+      "path": "generator/default-template/helpers/json.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers",
+      "base": "md.ts",
+      "name": "md",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9tZA==",
+      "path": "generator/default-template/helpers/md.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers",
+      "base": "navtree.ts",
+      "name": "navtree",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9uYXZ0cmVl",
+      "path": "generator/default-template/helpers/navtree.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/default-template/helpers",
+      "base": "renderParam.ts",
+      "name": "renderParam",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9yZW5kZXJQYXJhbQ==",
+      "path": "generator/default-template/helpers/renderParam.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator",
+      "base": "generator.ts",
+      "name": "generator",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL2dlbmVyYXRvcg==",
+      "path": "generator/generator.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator",
+      "base": "index.ts",
+      "name": "index",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL2luZGV4",
+      "path": "generator/index.ts",
+      "isIndex": true
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/marked",
+      "base": "renderer.ts",
+      "name": "renderer",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL21hcmtlZC9yZW5kZXJlcg==",
+      "path": "generator/marked/renderer.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/marked/styles",
+      "base": "blockquote.ts",
+      "name": "blockquote",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvYmxvY2txdW90ZQ==",
+      "path": "generator/marked/styles/blockquote.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/marked/styles",
+      "base": "code.ts",
+      "name": "code",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvY29kZQ==",
+      "path": "generator/marked/styles/code.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/marked/styles",
+      "base": "format.ts",
+      "name": "format",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvZm9ybWF0",
+      "path": "generator/marked/styles/format.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/marked/styles",
+      "base": "heading.ts",
+      "name": "heading",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaGVhZGluZw==",
+      "path": "generator/marked/styles/heading.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/marked/styles",
+      "base": "index.ts",
+      "name": "index",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaW5kZXg=",
+      "path": "generator/marked/styles/index.ts",
+      "isIndex": true
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/marked/styles",
+      "base": "list.ts",
+      "name": "list",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvbGlzdA==",
+      "path": "generator/marked/styles/list.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/marked/styles",
+      "base": "paragraph.ts",
+      "name": "paragraph",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvcGFyYWdyYXBo",
+      "path": "generator/marked/styles/paragraph.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/marked/styles",
+      "base": "table.ts",
+      "name": "table",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvdGFibGU=",
+      "path": "generator/marked/styles/table.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/queries",
+      "base": "directoryExportsQuery.ts",
+      "name": "directoryExportsQuery",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL3F1ZXJpZXMvZGlyZWN0b3J5RXhwb3J0c1F1ZXJ5",
+      "path": "generator/queries/directoryExportsQuery.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/queries",
+      "base": "fileExportsQuery.ts",
+      "name": "fileExportsQuery",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL3F1ZXJpZXMvZmlsZUV4cG9ydHNRdWVyeQ==",
+      "path": "generator/queries/fileExportsQuery.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/queries",
+      "base": "fileIdQuery.ts",
+      "name": "fileIdQuery",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL3F1ZXJpZXMvZmlsZUlkUXVlcnk=",
+      "path": "generator/queries/fileIdQuery.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/queries",
+      "base": "hierarchyQuery.ts",
+      "name": "hierarchyQuery",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL3F1ZXJpZXMvaGllcmFyY2h5UXVlcnk=",
+      "path": "generator/queries/hierarchyQuery.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/queries",
+      "base": "index.ts",
+      "name": "index",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL3F1ZXJpZXMvaW5kZXg=",
+      "path": "generator/queries/index.ts",
+      "isIndex": true
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator/queries",
+      "base": "Query.ts",
+      "name": "Query",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL3F1ZXJpZXMvUXVlcnk=",
+      "path": "generator/queries/Query.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "generator",
+      "base": "scaffolder.ts",
+      "name": "scaffolder",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL3NjYWZmb2xkZXI=",
+      "path": "generator/scaffolder.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "",
+      "base": "index.ts",
+      "name": "index",
+      "ext": ".ts",
+      "id": "L2luZGV4",
+      "path": "index.ts",
+      "isIndex": true
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "parser/core-plugins/__tests__",
+      "base": "directory.ts",
+      "name": "directory",
+      "ext": ".ts",
+      "id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9fX3Rlc3RzX18vZGlyZWN0b3J5",
+      "path": "parser/core-plugins/__tests__/directory.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "parser/core-plugins/__tests__",
+      "base": "es-modules.ts",
+      "name": "es-modules",
+      "ext": ".ts",
+      "id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9fX3Rlc3RzX18vZXMtbW9kdWxlcw==",
+      "path": "parser/core-plugins/__tests__/es-modules.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "parser/core-plugins/__tests__",
+      "base": "file.ts",
+      "name": "file",
+      "ext": ".ts",
+      "id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9fX3Rlc3RzX18vZmlsZQ==",
+      "path": "parser/core-plugins/__tests__/file.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "parser/core-plugins/__tests__/utils",
+      "base": "loadPlugin.ts",
+      "name": "loadPlugin",
+      "ext": ".ts",
+      "id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9fX3Rlc3RzX18vdXRpbHMvbG9hZFBsdWdpbg==",
+      "path": "parser/core-plugins/__tests__/utils/loadPlugin.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "parser/core-plugins",
+      "base": "directory.ts",
+      "name": "directory",
+      "ext": ".ts",
+      "id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9kaXJlY3Rvcnk=",
+      "path": "parser/core-plugins/directory.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "parser/core-plugins",
+      "base": "es-modules.ts",
+      "name": "es-modules",
+      "ext": ".ts",
+      "id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9lcy1tb2R1bGVz",
+      "path": "parser/core-plugins/es-modules.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "parser/core-plugins",
+      "base": "file.ts",
+      "name": "file",
+      "ext": ".ts",
+      "id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9maWxl",
+      "path": "parser/core-plugins/file.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "parser/core-plugins/helpers",
+      "base": "getters.ts",
+      "name": "getters",
+      "ext": ".ts",
+      "id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9oZWxwZXJzL2dldHRlcnM=",
+      "path": "parser/core-plugins/helpers/getters.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "parser/core-plugins/helpers",
+      "base": "types.ts",
+      "name": "types",
+      "ext": ".ts",
+      "id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9oZWxwZXJzL3R5cGVz",
+      "path": "parser/core-plugins/helpers/types.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "parser",
+      "base": "parse.ts",
+      "name": "parse",
+      "ext": ".ts",
+      "id": "cGFyc2VyL3BhcnNl",
+      "path": "parser/parse.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "parser",
+      "base": "ParseEngine.ts",
+      "name": "ParseEngine",
+      "ext": ".ts",
+      "id": "cGFyc2VyL1BhcnNlRW5naW5l",
+      "path": "parser/ParseEngine.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "parser",
+      "base": "plugin-loader.ts",
+      "name": "plugin-loader",
+      "ext": ".ts",
+      "id": "cGFyc2VyL3BsdWdpbi1sb2FkZXI=",
+      "path": "parser/plugin-loader.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "storage",
+      "base": "db.ts",
+      "name": "db",
+      "ext": ".ts",
+      "id": "c3RvcmFnZS9kYg==",
+      "path": "storage/db.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "storage",
+      "base": "store.ts",
+      "name": "store",
+      "ext": ".ts",
+      "id": "c3RvcmFnZS9zdG9yZQ==",
+      "path": "storage/store.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "utils",
+      "base": "base64.ts",
+      "name": "base64",
+      "ext": ".ts",
+      "id": "dXRpbHMvYmFzZTY0",
+      "path": "utils/base64.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "utils",
+      "base": "common.ts",
+      "name": "common",
+      "ext": ".ts",
+      "id": "dXRpbHMvY29tbW9u",
+      "path": "utils/common.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "utils",
+      "base": "file.ts",
+      "name": "file",
+      "ext": ".ts",
+      "id": "dXRpbHMvZmlsZQ==",
+      "path": "utils/file.ts",
+      "isIndex": false
+    },
+    {
+      "kind": "TypeScript",
+      "dir": "utils",
+      "base": "logger.ts",
+      "name": "logger",
+      "ext": ".ts",
+      "id": "dXRpbHMvbG9nZ2Vy",
+      "path": "utils/logger.ts",
+      "isIndex": false
+    }
+  ]
+}
