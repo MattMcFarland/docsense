@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`marked renderer matches snapshot 1`] = `
+"<h1 class=\\"f1 lh-title\\">h1 Heading 8-)</h1><h2 class=\\"f2 lh-title\\">h2 Heading</h2><h3 class=\\"f3 lh-title\\">h3 Heading</h3><h4 class=\\"f4 lh-title\\">h4 Heading</h4><h5 class=\\"f5 lh-title\\">h5 Heading</h5><h6 class=\\"f6 lh-title\\">h6 Heading</h6><h2 class=\\"f2 lh-title\\">Horizontal Rules</h2><hr>
+<hr>
+<hr>
+<h2 class=\\"f2 lh-title\\">Typographic replacements</h2><p class=\\"lh-copy\\">Enable typographer option to see result.</p><p class=\\"lh-copy\\">(c) (C) (r) (R) (tm) (TM) (p) (P) +-</p><p class=\\"lh-copy\\">test.. test... test..... test?..... test!....</p><p class=\\"lh-copy\\">!!!!!! ???? ,,  -- ---</p><p class=\\"lh-copy\\">&quot;Smartypants, double quotes&quot; and &#39;single quotes&#39;</p><h2 class=\\"f2 lh-title\\">Emphasis</h2><p class=\\"lh-copy\\"><strong>This is bold text</strong></p><p class=\\"lh-copy\\"><strong>This is bold text</strong></p><p class=\\"lh-copy\\"><em>This is italic text</em></p><p class=\\"lh-copy\\"><em>This is italic text</em></p><p class=\\"lh-copy\\"><del>Strikethrough</del></p><h2 class=\\"f2 lh-title\\">Blockquotes</h2>
+  <div class=\\"pv1 pl1\\">
+  <blockquote class=\\"ml0 mt0 pl4 black-80 bl bw2 b--blue\\">
+    <p class=\\"f3 f2-m f1-l lh-copy measure mt0\\">
+    <p class=\\"lh-copy\\">Blockquotes can also be nested...</p>
+  <div class=\\"pv1 pl1\\">
+  <blockquote class=\\"ml0 mt0 pl4 black-80 bl bw2 b--blue\\">
+    <p class=\\"f3 f2-m f1-l lh-copy measure mt0\\">
+    <p class=\\"lh-copy\\">...by using additional greater-than signs right next to each other...</p>
+  <div class=\\"pv1 pl1\\">
+  <blockquote class=\\"ml0 mt0 pl4 black-80 bl bw2 b--blue\\">
+    <p class=\\"f3 f2-m f1-l lh-copy measure mt0\\">
+    <p class=\\"lh-copy\\">...or with spaces between arrows.</p>
+    </p>
+  </blockquote>
+</div>
+  
+    </p>
+  </blockquote>
+</div>
+  
+    </p>
+  </blockquote>
+</div>
+  <h2 class=\\"f2 lh-title\\">Lists</h2><p class=\\"lh-copy\\">Unordered</p><ul>
+<li>Create a list by starting a line with <code class=\\"nowrap bg-black-05 black-50 pa0 ma1\\">+</code>, <code class=\\"nowrap bg-black-05 black-50 pa0 ma1\\">-</code>, or <code class=\\"nowrap bg-black-05 black-50 pa0 ma1\\">*</code></li>
+<li>Sub-lists are made by indenting 2 spaces:<ul>
+<li>Marker character change forces new list start:<ul>
+<li>Ac tristique libero volutpat at</li>
+<li>Facilisis in pretium nisl aliquet</li>
+<li>Nulla volutpat aliquam velit</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Very easy!</li>
+</ul>
+<p class=\\"lh-copy\\">Ordered</p><ol>
+<li>Lorem ipsum dolor sit amet</li>
+<li>Consectetur adipiscing elit</li>
+<li>Integer molestie lorem at massa</li>
+</ol>
+<ol>
+<li>You can use sequential numbers...</li>
+<li>...or keep all the numbers as <code class=\\"nowrap bg-black-05 black-50 pa0 ma1\\">1.</code></li>
+</ol>
+<p class=\\"lh-copy\\">Start numbering with offset:</p><ol>
+<li>foo</li>
+<li>bar</li>
+</ol>
+<h2 class=\\"f2 lh-title\\">Code</h2><p class=\\"lh-copy\\">Inline <code class=\\"nowrap bg-black-05 black-50 pa0 ma1\\">code</code></p><p class=\\"lh-copy\\">Indented code</p><pre><code class=\\"hljs black-60 no-highlight\\">// Some comments
+line 1 of code
+line 2 of code
+line 3 of code</code></pre><p class=\\"lh-copy\\">Block code &quot;fences&quot;</p><pre><code class=\\"hljs black-60 no-highlight\\">Sample text here...</code></pre><p class=\\"lh-copy\\">Syntax highlighting</p><pre><code class=\\"hljs js\\"><span class=\\"hljs-keyword\\">var</span> foo = <span class=\\"hljs-function\\"><span class=\\"hljs-keyword\\">function</span> (<span class=\\"hljs-params\\">bar</span>) </span>{
+  <span class=\\"hljs-keyword\\">return</span> bar++;
+};
+
+<span class=\\"hljs-built_in\\">console</span>.log(foo(<span class=\\"hljs-number\\">5</span>));</code></pre><h2 class=\\"f2 lh-title\\">Tables</h2>
+  <div>
+  <div class=\\"overflow-auto\\">
+  <table class=\\"w-100 mw8 left\\" cellspacing=\\"0\\">
+  <thead class=\\"f5 fw6 left th-solid\\" style=\\"text-align: left\\"><tr><td class=\\"pv3 pr3 bb b--black-20\\"><p class=\\"measure-wide\\">Option</p></td><td class=\\"pv3 pr3 bb b--black-20\\"><p class=\\"measure-wide\\">Description</p></td></tr></thead>
+  <tbody class=\\"lh-copy\\"><tr><td class=\\"pv3 pr3 bb b--black-20\\"><p class=\\"measure-wide\\">data</p></td><td class=\\"pv3 pr3 bb b--black-20\\"><p class=\\"measure-wide\\">path to data files to supply the data that will be passed into templates.</p></td></tr><tr><td class=\\"pv3 pr3 bb b--black-20\\"><p class=\\"measure-wide\\">engine</p></td><td class=\\"pv3 pr3 bb b--black-20\\"><p class=\\"measure-wide\\">engine to be used for processing templates. Handlebars is the default.</p></td></tr><tr><td class=\\"pv3 pr3 bb b--black-20\\"><p class=\\"measure-wide\\">ext</p></td><td class=\\"pv3 pr3 bb b--black-20\\"><p class=\\"measure-wide\\">extension to be used for dest files.</p></td></tr></tbody>
+  </table>
+  </div>
+  </div>
+  <p class=\\"lh-copy\\">Right aligned columns</p>
+  <div>
+  <div class=\\"overflow-auto\\">
+  <table class=\\"w-100 mw8 left\\" cellspacing=\\"0\\">
+  <thead class=\\"f5 fw6 left th-solid\\" style=\\"text-align: left\\"><tr><td class=\\"pv3 pr3 bb b--black-20\\"><p class=\\"measure-wide\\">Option</p></td><td class=\\"pv3 pr3 bb b--black-20\\"><p class=\\"measure-wide\\">Description</p></td></tr></thead>
+  <tbody class=\\"lh-copy\\"><tr><td class=\\"pv3 pr3 bb b--black-20\\"><p class=\\"measure-wide\\">data</p></td><td class=\\"pv3 pr3 bb b--black-20\\"><p class=\\"measure-wide\\">path to data files to supply the data that will be passed into templates.</p></td></tr><tr><td class=\\"pv3 pr3 bb b--black-20\\"><p class=\\"measure-wide\\">engine</p></td><td class=\\"pv3 pr3 bb b--black-20\\"><p class=\\"measure-wide\\">engine to be used for processing templates. Handlebars is the default.</p></td></tr><tr><td class=\\"pv3 pr3 bb b--black-20\\"><p class=\\"measure-wide\\">ext</p></td><td class=\\"pv3 pr3 bb b--black-20\\"><p class=\\"measure-wide\\">extension to be used for dest files.</p></td></tr></tbody>
+  </table>
+  </div>
+  </div>
+  <h2 class=\\"f2 lh-title\\">Links</h2><p class=\\"lh-copy\\"><a class=\\"dim blue\\" href=\\"http://dev.nodeca.com\\" target=\\"_blank\\" title=\\"\\">link text</a></p><p class=\\"lh-copy\\"><a class=\\"dim blue\\" href=\\"http://nodeca.github.io/pica/demo/\\" target=\\"_blank\\" title=\\"title text!\\">link with title</a></p><p class=\\"lh-copy\\">Autoconverted link <a class=\\"dim blue\\" href=\\"https://github.com/nodeca/pica\\" target=\\"_blank\\" title=\\"\\">https://github.com/nodeca/pica</a> (enable linkify to see)</p><h2 class=\\"f2 lh-title\\">Images</h2><p class=\\"lh-copy\\"><img src=\\"https://octodex.github.com/images/minion.png\\" alt=\\"Minion\\">
+<img src=\\"https://octodex.github.com/images/stormtroopocat.jpg\\" alt=\\"Stormtroopocat\\" title=\\"The Stormtroopocat\\"></p><p class=\\"lh-copy\\">Like links, Images also have a footnote style syntax</p><p class=\\"lh-copy\\"><img src=\\"https://octodex.github.com/images/dojocat.jpg\\" alt=\\"Alt text\\" title=\\"The Dojocat\\"></p><p class=\\"lh-copy\\">With a reference later in the document defining the URL location:</p><h2 class=\\"f2 lh-title\\">Plugins</h2><p class=\\"lh-copy\\">The killer feature of <code class=\\"nowrap bg-black-05 black-50 pa0 ma1\\">markdown-it</code> is very effective support of
+<a class=\\"dim blue\\" href=\\"https://www.npmjs.org/browse/keyword/markdown-it-plugin\\" target=\\"_blank\\" title=\\"\\">syntax plugins</a>.</p><h3 class=\\"f3 lh-title\\"><a class=\\"dim blue\\" href=\\"https://github.com/markdown-it/markdown-it-emoji\\" target=\\"_blank\\" title=\\"\\">Emojies</a></h3>
+  <div class=\\"pv1 pl1\\">
+  <blockquote class=\\"ml0 mt0 pl4 black-80 bl bw2 b--blue\\">
+    <p class=\\"f3 f2-m f1-l lh-copy measure mt0\\">
+    <p class=\\"lh-copy\\">Classic markup: :wink: :crush: :cry: :tear: :laughing: :yum:</p><p class=\\"lh-copy\\">Shortcuts (emoticons): :-) :-( 8-) ;)</p>
+    </p>
+  </blockquote>
+</div>
+  <p class=\\"lh-copy\\">see <a class=\\"dim blue\\" href=\\"https://github.com/markdown-it/markdown-it-emoji#change-output\\" target=\\"_blank\\" title=\\"\\">how to change output</a> with twemoji.</p><h3 class=\\"f3 lh-title\\"><a class=\\"dim blue\\" href=\\"https://github.com/markdown-it/markdown-it-sub\\" target=\\"_blank\\" title=\\"\\">Subscript</a> / <a class=\\"dim blue\\" href=\\"https://github.com/markdown-it/markdown-it-sup\\" target=\\"_blank\\" title=\\"\\">Superscript</a></h3><ul>
+<li>19^th^</li>
+<li>H~2~O</li>
+</ul>
+<h3 class=\\"f3 lh-title\\"><a class=\\"dim blue\\" href=\\"https://github.com/markdown-it/markdown-it-ins\\" target=\\"_blank\\" title=\\"\\">\\\\<ins></a></h3><p class=\\"lh-copy\\">++Inserted text++</p><h3 class=\\"f3 lh-title\\"><a class=\\"dim blue\\" href=\\"https://github.com/markdown-it/markdown-it-mark\\" target=\\"_blank\\" title=\\"\\">\\\\<mark></a></h3><p class=\\"lh-copy\\">==Marked text==</p><h3 class=\\"f3 lh-title\\"><a class=\\"dim blue\\" href=\\"https://github.com/markdown-it/markdown-it-footnote\\" target=\\"_blank\\" title=\\"\\">Footnotes</a></h3><p class=\\"lh-copy\\">Footnote 1 link[^first].</p><p class=\\"lh-copy\\">Footnote 2 link[^second].</p><p class=\\"lh-copy\\">Inline footnote^[Text of inline footnote] definition.</p><p class=\\"lh-copy\\">Duplicated footnote reference[^second].</p><p class=\\"lh-copy\\">[^first]: Footnote <strong>can have markup</strong></p><pre><code class=\\"hljs black-60 no-highlight\\">and multiple paragraphs.</code></pre><p class=\\"lh-copy\\">[^second]: Footnote text.</p><h3 class=\\"f3 lh-title\\"><a class=\\"dim blue\\" href=\\"https://github.com/markdown-it/markdown-it-deflist\\" target=\\"_blank\\" title=\\"\\">Definition lists</a></h3><p class=\\"lh-copy\\">Term 1</p><p class=\\"lh-copy\\">:   Definition 1
+with lazy continuation.</p><p class=\\"lh-copy\\">Term 2 with <em>inline markup</em></p><p class=\\"lh-copy\\">:   Definition 2</p><pre><code class=\\"hljs black-60 no-highlight\\">    { some code, part of Definition 2 }
+
+Third paragraph of definition 2.</code></pre><p class=\\"lh-copy\\"><em>Compact style:</em></p><p class=\\"lh-copy\\">Term 1
+  ~ Definition 1</p><p class=\\"lh-copy\\">Term 2
+  ~ Definition 2a
+  ~ Definition 2b</p><h3 class=\\"f3 lh-title\\"><a class=\\"dim blue\\" href=\\"https://github.com/markdown-it/markdown-it-abbr\\" target=\\"_blank\\" title=\\"\\">Abbreviations</a></h3><p class=\\"lh-copy\\">This is HTML abbreviation example.</p><p class=\\"lh-copy\\">It converts &quot;HTML&quot;, but keep intact partial entries like &quot;xxxHTMLyyy&quot; and so on.</p><p class=\\"lh-copy\\">*[HTML]: Hyper Text Markup Language</p><h3 class=\\"f3 lh-title\\"><a class=\\"dim blue\\" href=\\"https://github.com/markdown-it/markdown-it-container\\" target=\\"_blank\\" title=\\"\\">Custom containers</a></h3><p class=\\"lh-copy\\">::: warning
+<em>here be dragons</em>
+:::</p>"
+`;
