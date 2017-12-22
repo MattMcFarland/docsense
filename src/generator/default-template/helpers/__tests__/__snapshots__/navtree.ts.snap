@@ -1,0 +1,567 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+"
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/foo/bar/index.html\\" title=\\"foo/bar\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>baz</span>
+    </a>
+  </li>
+  "
+`;
+
+exports[`navtree collectionToString matches snapshot 1`] = `
+"<ul>
+  <li class=\\"pa1 near-white\\">
+    <a data-type=\\"folder\\" data-toggle=\\"0,0,0\\" href=\\"/cli/directory.html\\" class=\\"toggler pa1 link dim white db\\">
+      <span data-slot=\\"icons\\">
+        <i class=\\"white-40 icon-caret-down\\"></i>
+        <i class=\\"white-40 icon-folder-open mr2\\"></i>
+      </span>
+      <span>cli</span>
+    </a>
+  </li>
+  <li><ul data-coordinates=\\"0,0,0\\" class=\\"pl3\\">
+  <li class=\\"pa1 near-white\\">
+    <a data-type=\\"folder\\" data-toggle=\\"1,0,1\\" href=\\"/cli/commands/directory.html\\" class=\\"toggler pa1 link dim white db\\">
+      <span data-slot=\\"icons\\">
+        <i class=\\"white-40 icon-caret-down\\"></i>
+        <i class=\\"white-40 icon-folder-open mr2\\"></i>
+      </span>
+      <span>commands</span>
+    </a>
+  </li>
+  <li><ul data-coordinates=\\"1,0,1\\" class=\\"pl3\\">
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/cli/commands/build.ts/index.html\\" title=\\"cli/commands/build.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>build</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/cli/commands/init.ts/index.html\\" title=\\"cli/commands/init.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>init</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/cli/commands/serve.ts/index.html\\" title=\\"cli/commands/serve.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>serve</span>
+    </a>
+  </li>
+  </ul></li></ul></li>
+  <li class=\\"pa1 near-white\\">
+    <a data-type=\\"daam\\" data-toggle=\\"0,1,0\\" class=\\"toggler pa1 link dim white db\\" href=\\"/config/index.ts/index.html\\" title=\\"config/index.ts\\">
+      <span data-slot=\\"icons\\">
+        <i class=\\"white-40 icon-caret-down\\"></i>
+        <i class=\\"white-40 icon-cubes mr2\\"></i>
+      </span>
+      <span>config</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a data-type=\\"daam\\" data-toggle=\\"0,2,0\\" class=\\"toggler pa1 link dim white db\\" href=\\"/generator/index.ts/index.html\\" title=\\"generator/index.ts\\">
+      <span data-slot=\\"icons\\">
+        <i class=\\"white-40 icon-caret-down\\"></i>
+        <i class=\\"white-40 icon-cubes mr2\\"></i>
+      </span>
+      <span>generator</span>
+    </a>
+  </li>
+  <li><ul data-coordinates=\\"0,2,0\\" class=\\"pl3\\">
+  <li class=\\"pa1 near-white\\">
+    <a data-type=\\"folder\\" data-toggle=\\"1,0,9\\" href=\\"/generator/default-template/directory.html\\" class=\\"toggler pa1 link dim white db\\">
+      <span data-slot=\\"icons\\">
+        <i class=\\"white-40 icon-caret-down\\"></i>
+        <i class=\\"white-40 icon-folder-open mr2\\"></i>
+      </span>
+      <span>default-template</span>
+    </a>
+  </li>
+  <li><ul data-coordinates=\\"1,0,9\\" class=\\"pl3\\">
+  <li class=\\"pa1 near-white\\">
+    <a data-type=\\"folder\\" data-toggle=\\"2,0,8\\" href=\\"/generator/default-template/helpers/directory.html\\" class=\\"toggler pa1 link dim white db\\">
+      <span data-slot=\\"icons\\">
+        <i class=\\"white-40 icon-caret-down\\"></i>
+        <i class=\\"white-40 icon-folder-open mr2\\"></i>
+      </span>
+      <span>helpers</span>
+    </a>
+  </li>
+  <li><ul data-coordinates=\\"2,0,8\\" class=\\"pl3\\">
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/default-template/helpers/code.ts/index.html\\" title=\\"generator/default-template/helpers/code.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>code</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/default-template/helpers/daam.ts/index.html\\" title=\\"generator/default-template/helpers/daam.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>daam</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/default-template/helpers/esImport.ts/index.html\\" title=\\"generator/default-template/helpers/esImport.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>esImport</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/default-template/helpers/filename.ts/index.html\\" title=\\"generator/default-template/helpers/filename.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>filename</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/default-template/helpers/concat.ts/index.html\\" title=\\"generator/default-template/helpers/concat.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>concat</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/default-template/helpers/getLine.ts/index.html\\" title=\\"generator/default-template/helpers/getLine.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>getLine</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/default-template/helpers/json.ts/index.html\\" title=\\"generator/default-template/helpers/json.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>json</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/default-template/helpers/md.ts/index.html\\" title=\\"generator/default-template/helpers/md.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>md</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/default-template/helpers/navtree.ts/index.html\\" title=\\"generator/default-template/helpers/navtree.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>navtree</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/default-template/helpers/renderParam.ts/index.html\\" title=\\"generator/default-template/helpers/renderParam.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>renderParam</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/default-template/helpers/fnSignature.ts/index.html\\" title=\\"generator/default-template/helpers/fnSignature.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>fnSignature</span>
+    </a>
+  </li>
+  </ul></li></ul></li>
+  <li class=\\"pa1 near-white\\">
+    <a data-type=\\"folder\\" data-toggle=\\"1,1,9\\" href=\\"/generator/marked/directory.html\\" class=\\"toggler pa1 link dim white db\\">
+      <span data-slot=\\"icons\\">
+        <i class=\\"white-40 icon-caret-down\\"></i>
+        <i class=\\"white-40 icon-folder-open mr2\\"></i>
+      </span>
+      <span>marked</span>
+    </a>
+  </li>
+  <li><ul data-coordinates=\\"1,1,9\\" class=\\"pl3\\">
+  <li class=\\"pa1 near-white\\">
+    <a data-type=\\"daam\\" data-toggle=\\"2,0,22\\" class=\\"toggler pa1 link dim white db\\" href=\\"/generator/marked/styles/index.ts/index.html\\" title=\\"generator/marked/styles/index.ts\\">
+      <span data-slot=\\"icons\\">
+        <i class=\\"white-40 icon-caret-down\\"></i>
+        <i class=\\"white-40 icon-cubes mr2\\"></i>
+      </span>
+      <span>styles</span>
+    </a>
+  </li>
+  <li><ul data-coordinates=\\"2,0,22\\" class=\\"pl3\\">
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/marked/styles/blockquote.ts/index.html\\" title=\\"generator/marked/styles/blockquote.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>blockquote</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/marked/styles/code.ts/index.html\\" title=\\"generator/marked/styles/code.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>code</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/marked/styles/format.ts/index.html\\" title=\\"generator/marked/styles/format.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>format</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/marked/styles/heading.ts/index.html\\" title=\\"generator/marked/styles/heading.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>heading</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/marked/styles/paragraph.ts/index.html\\" title=\\"generator/marked/styles/paragraph.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>paragraph</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/marked/styles/table.ts/index.html\\" title=\\"generator/marked/styles/table.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>table</span>
+    </a>
+  </li>
+  </ul></li>
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/marked/renderer.ts/index.html\\" title=\\"generator/marked/renderer.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>renderer</span>
+    </a>
+  </li>
+  </ul></li>
+  <li class=\\"pa1 near-white\\">
+    <a data-type=\\"daam\\" data-toggle=\\"1,2,9\\" class=\\"toggler pa1 link dim white db\\" href=\\"/generator/queries/index.ts/index.html\\" title=\\"generator/queries/index.ts\\">
+      <span data-slot=\\"icons\\">
+        <i class=\\"white-40 icon-caret-down\\"></i>
+        <i class=\\"white-40 icon-cubes mr2\\"></i>
+      </span>
+      <span>queries</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/compiler.ts/index.html\\" title=\\"generator/compiler.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>compiler</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/generator.ts/index.html\\" title=\\"generator/generator.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>generator</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/generator/scaffolder.ts/index.html\\" title=\\"generator/scaffolder.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>scaffolder</span>
+    </a>
+  </li>
+  </ul></li>
+  <li class=\\"pa1 near-white\\">
+    <a data-type=\\"folder\\" data-toggle=\\"0,3,0\\" href=\\"/parser/directory.html\\" class=\\"toggler pa1 link dim white db\\">
+      <span data-slot=\\"icons\\">
+        <i class=\\"white-40 icon-caret-down\\"></i>
+        <i class=\\"white-40 icon-folder-open mr2\\"></i>
+      </span>
+      <span>parser</span>
+    </a>
+  </li>
+  <li><ul data-coordinates=\\"0,3,0\\" class=\\"pl3\\">
+  <li class=\\"pa1 near-white\\">
+    <a data-type=\\"folder\\" data-toggle=\\"1,0,37\\" href=\\"/parser/core-plugins/directory.html\\" class=\\"toggler pa1 link dim white db\\">
+      <span data-slot=\\"icons\\">
+        <i class=\\"white-40 icon-caret-down\\"></i>
+        <i class=\\"white-40 icon-folder-open mr2\\"></i>
+      </span>
+      <span>core-plugins</span>
+    </a>
+  </li>
+  <li><ul data-coordinates=\\"1,0,37\\" class=\\"pl3\\">
+  <li class=\\"pa1 near-white\\">
+    <a data-type=\\"folder\\" data-toggle=\\"2,0,35\\" href=\\"/parser/core-plugins/__tests__/directory.html\\" class=\\"toggler pa1 link dim white db\\">
+      <span data-slot=\\"icons\\">
+        <i class=\\"white-40 icon-caret-down\\"></i>
+        <i class=\\"white-40 icon-folder-open mr2\\"></i>
+      </span>
+      <span>__tests__</span>
+    </a>
+  </li>
+  <li><ul data-coordinates=\\"2,0,35\\" class=\\"pl3\\">
+  <li class=\\"pa1 near-white\\">
+    <a data-type=\\"folder\\" data-toggle=\\"3,0,36\\" href=\\"/parser/core-plugins/__tests__/utils/directory.html\\" class=\\"toggler pa1 link dim white db\\">
+      <span data-slot=\\"icons\\">
+        <i class=\\"white-40 icon-caret-down\\"></i>
+        <i class=\\"white-40 icon-folder-open mr2\\"></i>
+      </span>
+      <span>utils</span>
+    </a>
+  </li>
+  <li><ul data-coordinates=\\"3,0,36\\" class=\\"pl3\\">
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/parser/core-plugins/__tests__/utils/loadPlugin.ts/index.html\\" title=\\"parser/core-plugins/__tests__/utils/loadPlugin.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>loadPlugin</span>
+    </a>
+  </li>
+  </ul></li></ul></li>
+  <li class=\\"pa1 near-white\\">
+    <a data-type=\\"folder\\" data-toggle=\\"2,1,35\\" href=\\"/parser/core-plugins/helpers/directory.html\\" class=\\"toggler pa1 link dim white db\\">
+      <span data-slot=\\"icons\\">
+        <i class=\\"white-40 icon-caret-down\\"></i>
+        <i class=\\"white-40 icon-folder-open mr2\\"></i>
+      </span>
+      <span>helpers</span>
+    </a>
+  </li>
+  <li><ul data-coordinates=\\"2,1,35\\" class=\\"pl3\\">
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/parser/core-plugins/helpers/getters.ts/index.html\\" title=\\"parser/core-plugins/helpers/getters.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>getters</span>
+    </a>
+  </li>
+  </ul></li>
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/parser/core-plugins/directory.ts/index.html\\" title=\\"parser/core-plugins/directory.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>directory</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/parser/core-plugins/es-modules.ts/index.html\\" title=\\"parser/core-plugins/es-modules.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>es-modules</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/parser/core-plugins/file.ts/index.html\\" title=\\"parser/core-plugins/file.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>file</span>
+    </a>
+  </li>
+  </ul></li>
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/parser/parse.ts/index.html\\" title=\\"parser/parse.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>parse</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/parser/plugin-loader.ts/index.html\\" title=\\"parser/plugin-loader.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>plugin-loader</span>
+    </a>
+  </li>
+  </ul></li>
+  <li class=\\"pa1 near-white\\">
+    <a data-type=\\"folder\\" data-toggle=\\"0,4,0\\" href=\\"/storage/directory.html\\" class=\\"toggler pa1 link dim white db\\">
+      <span data-slot=\\"icons\\">
+        <i class=\\"white-40 icon-caret-down\\"></i>
+        <i class=\\"white-40 icon-folder-open mr2\\"></i>
+      </span>
+      <span>storage</span>
+    </a>
+  </li>
+  <li><ul data-coordinates=\\"0,4,0\\" class=\\"pl3\\">
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/storage/db.ts/index.html\\" title=\\"storage/db.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>db</span>
+    </a>
+  </li>
+  </ul></li>
+  <li class=\\"pa1 near-white\\">
+    <a data-type=\\"folder\\" data-toggle=\\"0,5,0\\" href=\\"/utils/directory.html\\" class=\\"toggler pa1 link dim white db\\">
+      <span data-slot=\\"icons\\">
+        <i class=\\"white-40 icon-caret-down\\"></i>
+        <i class=\\"white-40 icon-folder-open mr2\\"></i>
+      </span>
+      <span>utils</span>
+    </a>
+  </li>
+  <li><ul data-coordinates=\\"0,5,0\\" class=\\"pl3\\">
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/utils/base64.ts/index.html\\" title=\\"utils/base64.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>base64</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/utils/common.ts/index.html\\" title=\\"utils/common.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>common</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/utils/file.ts/index.html\\" title=\\"utils/file.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>file</span>
+    </a>
+  </li>
+  
+  <li class=\\"pa1 near-white\\">
+    <a class=\\"pa1 link dim white db\\" href=\\"/utils/logger.ts/index.html\\" title=\\"utils/logger.ts\\">
+      <span data-slot=\\"icons\\" class=\\"dib\\">
+        <i>&nbsp;</i>
+        <i class=\\"white-40 icon-cube mr2\\"></i>
+      </span>
+      <span>logger</span>
+    </a>
+  </li>
+  </ul></li></ul>"
+`;
+
+exports[`navtree makeFolderItem matches snapshot 1`] = `
+"
+  <li class=\\"pa1 near-white\\">
+    <a data-type=\\"folder\\" data-toggle=\\"0,1,2\\" href=\\"/foo/bar/baz/foo/directory.html\\" class=\\"toggler pa1 link dim white db\\">
+      <span data-slot=\\"icons\\">
+        <i class=\\"white-40 icon-caret-down\\"></i>
+        <i class=\\"white-40 icon-folder-open mr2\\"></i>
+      </span>
+      <span>foo</span>
+    </a>
+  </li>
+  "
+`;
+
+exports[`navtree makeListItem matches snapshot 1`] = `
+"
+  <li class=\\"pa1 near-white\\">
+    <a data-type=\\"folder\\" data-toggle=\\"0,1,2\\" href=\\"//foo/bar/baz/foo/directory.html\\" class=\\"toggler pa1 link dim white db\\">
+      <span data-slot=\\"icons\\">
+        <i class=\\"white-40 icon-caret-down\\"></i>
+        <i class=\\"white-40 icon-folder-open mr2\\"></i>
+      </span>
+      <span>foo</span>
+    </a>
+  </li>
+  "
+`;

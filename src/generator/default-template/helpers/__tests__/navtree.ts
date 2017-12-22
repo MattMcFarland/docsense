@@ -1,16 +1,12 @@
 import * as NavTree from '../navtree';
 
-// NavTree.daam(path)
-// NavTree.hasKeys(obj)
-// NavTree.keysReduce(obj, cb)
-// NavTree.makeDAAMItem(coordinates)
-// NavTree.makeFolderItem(key, coordinates, path)
-// NavTree.makeListItem(node, key, coordinates, path)
-// NavTree.makeModuleItem()
+const navtreeCollection = require('./__fixtures__/navtree-collection.json');
 
 describe('navtree', () => {
   describe('collectionToString', () => {
-    NavTree.collectionToString(obj);
+    it('matches snapshot', () => {
+      expect(NavTree.collectionToString(navtreeCollection)).toMatchSnapshot();
+    });
   });
   describe('daam', () => {
     it('removes the last item from path', () => {
@@ -27,8 +23,28 @@ describe('navtree', () => {
       expect(NavTree.hasKeys(noKeys)).toBe(false);
     });
   });
-  describe('keysReduce', () => {});
-  describe('makeFolderItem', () => {});
-  describe('makeListItem', () => {});
-  describe('makeModuleItem', () => {});
+  describe('makeFolderItem', () => {
+    it('matches snapshot', () => {
+      expect(
+        NavTree.makeFolderItem('foo', [0, 1, 2], 'foo/bar/baz')
+      ).toMatchSnapshot();
+    });
+  });
+  describe('makeListItem', () => {
+    it('matches snapshot', () => {
+      expect(
+        NavTree.makeListItem(
+          navtreeCollection,
+          'foo',
+          [0, 1, 2],
+          '/foo/bar/baz'
+        )
+      ).toMatchSnapshot();
+    });
+  });
+  describe('makeModuleItem', () => {
+    expect(
+      NavTree.makeModuleItem({ path: 'foo/bar', name: 'baz' })
+    ).toMatchSnapshot();
+  });
 });

@@ -1,4 +1,6 @@
-export default function(options: any) {
+import { BlockHelper } from '../_types/handlebars';
+
+export default function(this: any, options: BlockHelper) {
   const HighlightJS = require('highlight.js');
   const Handlebars = require('handlebars');
   const code = options.fn(this);

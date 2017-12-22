@@ -10,41 +10,48 @@ let i = 0;
 
 export function collectionToString(
   obj: any,
-  list = '',
-  prefix = '<ul>',
-  suffix = '</ul>',
-  x = 0,
-  z = 0,
-  path = ''
+  list: string = '',
+  prefix: string = '<ul>',
+  suffix: string = '</ul>',
+  x: number = 0,
+  z: number = 0,
+  path: string = ''
 ) {
-  process.exit(0);
-  const maybeListItems = keysReduce(obj, (build: any, key: any, y: any) => {
-    if (key === 'filedata') return build;
-    i++;
-    const node = obj[key];
-    const coordinates = [x, y, z];
+  const maybeListItems = keysReduce(
+    obj,
+    (build: any, key: string, y: number) => {
+      if (key === 'filedata') return build;
+      i++;
+      const node = obj[key];
+      const coordinates = [x, y, z];
 
-    build += makeListItem(node, key, coordinates, path);
-    if (hasKeys(obj[key])) {
-      const newPath = Path.posix.join(path, key);
-      // recursively build another list
-      return collectionToString(
-        obj[key],
-        build,
-        `<li><ul data-coordinates="${coordinates}" class="pl3">`,
-        '</ul></li>',
-        x + 1,
-        y + i,
-        newPath
-      );
+      build += makeListItem(node, key, coordinates, path);
+      if (hasKeys(obj[key])) {
+        const newPath = Path.posix.join(path, key);
+        // recursively build another list
+        return collectionToString(
+          obj[key],
+          build,
+          `<li><ul data-coordinates="${coordinates}" class="pl3">`,
+          '</ul></li>',
+          x + 1,
+          y + i,
+          newPath
+        );
+      }
+      return build;
     }
-    return build;
-  });
+  );
   if (maybeListItems) list += prefix + maybeListItems + suffix;
   return list;
 }
 
-export function makeListItem(node: any, key: any, coordinates: any, path: any) {
+export function makeListItem(
+  node: any,
+  key: string,
+  coordinates: number[],
+  path: string
+): string {
   // if the node does not have a child called .filedata, then it is strictly
   // a directory
   if (!node.filedata) {
@@ -59,7 +66,11 @@ export function makeListItem(node: any, key: any, coordinates: any, path: any) {
 }
 
 // Just a Directory
-export function makeFolderItem(key: any, coordinates: any, path: any) {
+export function makeFolderItem(
+  key: string,
+  coordinates: number[],
+  path: string
+) {
   const dirPath = path
     ? `/${path}/${key}/directory.html`
     : `/${key}/directory.html`;
@@ -77,7 +88,7 @@ export function makeFolderItem(key: any, coordinates: any, path: any) {
 }
 
 // Make Directory As a Module
-export function makeDAAMItem({ path }: any, coordinates: any) {
+export function makeDAAMItem({ path }: any, coordinates: number[]) {
   return `
   <li class="pa1 near-white">
     <a data-type="daam" data-toggle="${coordinates}" class="toggler pa1 link dim white db" href="/${path}/index.html" title="${path}">
@@ -105,14 +116,22 @@ export function makeModuleItem({ path, name }: any) {
   `;
 }
 
-export function keysReduce(obj: any, cb: any) {
+export function keysReduce<T>(
+  obj: { [key: string]: any },
+  cb: (
+    previousValue: any,
+    currentValue: string,
+    currentIndex: number,
+    array: string[]
+  ) => any
+) {
   const isIndex = (node: any) =>
     node && node.filedata && node.filedata.name.startsWith('index');
-  const alphaSort = (a: any, b: any, w: number) => {
+  const alphaSort = (a: string, b: string, w: number) => {
     const sorted = [a, b].sort();
     return sorted.indexOf(a) > sorted.indexOf(b) ? w : -w;
   };
-  const filesLast = (keyA: any, keyB: any) => {
+  const filesLast = (keyA: string, keyB: string) => {
     const nodeA = obj[keyA];
     const nodeB = obj[keyB];
     if (!nodeA.filedata && !nodeB.filedata) return alphaSort(nodeA, nodeB, 10);

@@ -1,0 +1,511 @@
+{
+  "cli": {
+    "commands": {
+      "build.ts": {
+        "filedata": {
+          "kind": "TypeScript",
+          "dir": "cli/commands",
+          "base": "build.ts",
+          "name": "build",
+          "ext": ".ts",
+          "id": "Y2xpL2NvbW1hbmRzL2J1aWxk",
+          "path": "cli/commands/build.ts",
+          "isIndex": false
+        }
+      },
+      "init.ts": {
+        "filedata": {
+          "kind": "TypeScript",
+          "dir": "cli/commands",
+          "base": "init.ts",
+          "name": "init",
+          "ext": ".ts",
+          "id": "Y2xpL2NvbW1hbmRzL2luaXQ=",
+          "path": "cli/commands/init.ts",
+          "isIndex": false
+        }
+      },
+      "serve.ts": {
+        "filedata": {
+          "kind": "TypeScript",
+          "dir": "cli/commands",
+          "base": "serve.ts",
+          "name": "serve",
+          "ext": ".ts",
+          "id": "Y2xpL2NvbW1hbmRzL3NlcnZl",
+          "path": "cli/commands/serve.ts",
+          "isIndex": false
+        }
+      }
+    }
+  },
+  "config": {
+    "filedata": {
+      "kind": "TypeScript",
+      "dir": "config",
+      "base": "index.ts",
+      "name": "index",
+      "ext": ".ts",
+      "id": "Y29uZmlnL2luZGV4",
+      "path": "config/index.ts",
+      "isIndex": true
+    }
+  },
+  "generator": {
+    "compiler.ts": {
+      "filedata": {
+        "kind": "TypeScript",
+        "dir": "generator",
+        "base": "compiler.ts",
+        "name": "compiler",
+        "ext": ".ts",
+        "id": "Z2VuZXJhdG9yL2NvbXBpbGVy",
+        "path": "generator/compiler.ts",
+        "isIndex": false
+      }
+    },
+    "default-template": {
+      "helpers": {
+        "code.ts": {
+          "filedata": {
+            "kind": "TypeScript",
+            "dir": "generator/default-template/helpers",
+            "base": "code.ts",
+            "name": "code",
+            "ext": ".ts",
+            "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9jb2Rl",
+            "path": "generator/default-template/helpers/code.ts",
+            "isIndex": false
+          }
+        },
+        "concat.ts": {
+          "filedata": {
+            "kind": "TypeScript",
+            "dir": "generator/default-template/helpers",
+            "base": "concat.ts",
+            "name": "concat",
+            "ext": ".ts",
+            "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9jb25jYXQ=",
+            "path": "generator/default-template/helpers/concat.ts",
+            "isIndex": false
+          }
+        },
+        "daam.ts": {
+          "filedata": {
+            "kind": "TypeScript",
+            "dir": "generator/default-template/helpers",
+            "base": "daam.ts",
+            "name": "daam",
+            "ext": ".ts",
+            "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9kYWFt",
+            "path": "generator/default-template/helpers/daam.ts",
+            "isIndex": false
+          }
+        },
+        "esImport.ts": {
+          "filedata": {
+            "kind": "TypeScript",
+            "dir": "generator/default-template/helpers",
+            "base": "esImport.ts",
+            "name": "esImport",
+            "ext": ".ts",
+            "id":
+              "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9lc0ltcG9ydA==",
+            "path": "generator/default-template/helpers/esImport.ts",
+            "isIndex": false
+          }
+        },
+        "filename.ts": {
+          "filedata": {
+            "kind": "TypeScript",
+            "dir": "generator/default-template/helpers",
+            "base": "filename.ts",
+            "name": "filename",
+            "ext": ".ts",
+            "id":
+              "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9maWxlbmFtZQ==",
+            "path": "generator/default-template/helpers/filename.ts",
+            "isIndex": false
+          }
+        },
+        "fnSignature.ts": {
+          "filedata": {
+            "kind": "TypeScript",
+            "dir": "generator/default-template/helpers",
+            "base": "fnSignature.ts",
+            "name": "fnSignature",
+            "ext": ".ts",
+            "id":
+              "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9mblNpZ25hdHVyZQ==",
+            "path": "generator/default-template/helpers/fnSignature.ts",
+            "isIndex": false
+          }
+        },
+        "getLine.ts": {
+          "filedata": {
+            "kind": "TypeScript",
+            "dir": "generator/default-template/helpers",
+            "base": "getLine.ts",
+            "name": "getLine",
+            "ext": ".ts",
+            "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9nZXRMaW5l",
+            "path": "generator/default-template/helpers/getLine.ts",
+            "isIndex": false
+          }
+        },
+        "json.ts": {
+          "filedata": {
+            "kind": "TypeScript",
+            "dir": "generator/default-template/helpers",
+            "base": "json.ts",
+            "name": "json",
+            "ext": ".ts",
+            "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9qc29u",
+            "path": "generator/default-template/helpers/json.ts",
+            "isIndex": false
+          }
+        },
+        "md.ts": {
+          "filedata": {
+            "kind": "TypeScript",
+            "dir": "generator/default-template/helpers",
+            "base": "md.ts",
+            "name": "md",
+            "ext": ".ts",
+            "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9tZA==",
+            "path": "generator/default-template/helpers/md.ts",
+            "isIndex": false
+          }
+        },
+        "navtree.ts": {
+          "filedata": {
+            "kind": "TypeScript",
+            "dir": "generator/default-template/helpers",
+            "base": "navtree.ts",
+            "name": "navtree",
+            "ext": ".ts",
+            "id": "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9uYXZ0cmVl",
+            "path": "generator/default-template/helpers/navtree.ts",
+            "isIndex": false
+          }
+        },
+        "renderParam.ts": {
+          "filedata": {
+            "kind": "TypeScript",
+            "dir": "generator/default-template/helpers",
+            "base": "renderParam.ts",
+            "name": "renderParam",
+            "ext": ".ts",
+            "id":
+              "Z2VuZXJhdG9yL2RlZmF1bHQtdGVtcGxhdGUvaGVscGVycy9yZW5kZXJQYXJhbQ==",
+            "path": "generator/default-template/helpers/renderParam.ts",
+            "isIndex": false
+          }
+        }
+      }
+    },
+    "generator.ts": {
+      "filedata": {
+        "kind": "TypeScript",
+        "dir": "generator",
+        "base": "generator.ts",
+        "name": "generator",
+        "ext": ".ts",
+        "id": "Z2VuZXJhdG9yL2dlbmVyYXRvcg==",
+        "path": "generator/generator.ts",
+        "isIndex": false
+      }
+    },
+    "marked": {
+      "renderer.ts": {
+        "filedata": {
+          "kind": "TypeScript",
+          "dir": "generator/marked",
+          "base": "renderer.ts",
+          "name": "renderer",
+          "ext": ".ts",
+          "id": "Z2VuZXJhdG9yL21hcmtlZC9yZW5kZXJlcg==",
+          "path": "generator/marked/renderer.ts",
+          "isIndex": false
+        }
+      },
+      "styles": {
+        "blockquote.ts": {
+          "filedata": {
+            "kind": "TypeScript",
+            "dir": "generator/marked/styles",
+            "base": "blockquote.ts",
+            "name": "blockquote",
+            "ext": ".ts",
+            "id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvYmxvY2txdW90ZQ==",
+            "path": "generator/marked/styles/blockquote.ts",
+            "isIndex": false
+          }
+        },
+        "code.ts": {
+          "filedata": {
+            "kind": "TypeScript",
+            "dir": "generator/marked/styles",
+            "base": "code.ts",
+            "name": "code",
+            "ext": ".ts",
+            "id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvY29kZQ==",
+            "path": "generator/marked/styles/code.ts",
+            "isIndex": false
+          }
+        },
+        "format.ts": {
+          "filedata": {
+            "kind": "TypeScript",
+            "dir": "generator/marked/styles",
+            "base": "format.ts",
+            "name": "format",
+            "ext": ".ts",
+            "id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvZm9ybWF0",
+            "path": "generator/marked/styles/format.ts",
+            "isIndex": false
+          }
+        },
+        "heading.ts": {
+          "filedata": {
+            "kind": "TypeScript",
+            "dir": "generator/marked/styles",
+            "base": "heading.ts",
+            "name": "heading",
+            "ext": ".ts",
+            "id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaGVhZGluZw==",
+            "path": "generator/marked/styles/heading.ts",
+            "isIndex": false
+          }
+        },
+        "paragraph.ts": {
+          "filedata": {
+            "kind": "TypeScript",
+            "dir": "generator/marked/styles",
+            "base": "paragraph.ts",
+            "name": "paragraph",
+            "ext": ".ts",
+            "id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvcGFyYWdyYXBo",
+            "path": "generator/marked/styles/paragraph.ts",
+            "isIndex": false
+          }
+        },
+        "table.ts": {
+          "filedata": {
+            "kind": "TypeScript",
+            "dir": "generator/marked/styles",
+            "base": "table.ts",
+            "name": "table",
+            "ext": ".ts",
+            "id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvdGFibGU=",
+            "path": "generator/marked/styles/table.ts",
+            "isIndex": false
+          }
+        },
+        "filedata": {
+          "kind": "TypeScript",
+          "dir": "generator/marked/styles",
+          "base": "index.ts",
+          "name": "index",
+          "ext": ".ts",
+          "id": "Z2VuZXJhdG9yL21hcmtlZC9zdHlsZXMvaW5kZXg=",
+          "path": "generator/marked/styles/index.ts",
+          "isIndex": true
+        }
+      }
+    },
+    "queries": {
+      "filedata": {
+        "kind": "TypeScript",
+        "dir": "generator/queries",
+        "base": "index.ts",
+        "name": "index",
+        "ext": ".ts",
+        "id": "Z2VuZXJhdG9yL3F1ZXJpZXMvaW5kZXg=",
+        "path": "generator/queries/index.ts",
+        "isIndex": true
+      }
+    },
+    "scaffolder.ts": {
+      "filedata": {
+        "kind": "TypeScript",
+        "dir": "generator",
+        "base": "scaffolder.ts",
+        "name": "scaffolder",
+        "ext": ".ts",
+        "id": "Z2VuZXJhdG9yL3NjYWZmb2xkZXI=",
+        "path": "generator/scaffolder.ts",
+        "isIndex": false
+      }
+    },
+    "filedata": {
+      "kind": "TypeScript",
+      "dir": "generator",
+      "base": "index.ts",
+      "name": "index",
+      "ext": ".ts",
+      "id": "Z2VuZXJhdG9yL2luZGV4",
+      "path": "generator/index.ts",
+      "isIndex": true
+    }
+  },
+  "parser": {
+    "core-plugins": {
+      "__tests__": {
+        "utils": {
+          "loadPlugin.ts": {
+            "filedata": {
+              "kind": "TypeScript",
+              "dir": "parser/core-plugins/__tests__/utils",
+              "base": "loadPlugin.ts",
+              "name": "loadPlugin",
+              "ext": ".ts",
+              "id":
+                "cGFyc2VyL2NvcmUtcGx1Z2lucy9fX3Rlc3RzX18vdXRpbHMvbG9hZFBsdWdpbg==",
+              "path": "parser/core-plugins/__tests__/utils/loadPlugin.ts",
+              "isIndex": false
+            }
+          }
+        }
+      },
+      "directory.ts": {
+        "filedata": {
+          "kind": "TypeScript",
+          "dir": "parser/core-plugins",
+          "base": "directory.ts",
+          "name": "directory",
+          "ext": ".ts",
+          "id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9kaXJlY3Rvcnk=",
+          "path": "parser/core-plugins/directory.ts",
+          "isIndex": false
+        }
+      },
+      "es-modules.ts": {
+        "filedata": {
+          "kind": "TypeScript",
+          "dir": "parser/core-plugins",
+          "base": "es-modules.ts",
+          "name": "es-modules",
+          "ext": ".ts",
+          "id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9lcy1tb2R1bGVz",
+          "path": "parser/core-plugins/es-modules.ts",
+          "isIndex": false
+        }
+      },
+      "file.ts": {
+        "filedata": {
+          "kind": "TypeScript",
+          "dir": "parser/core-plugins",
+          "base": "file.ts",
+          "name": "file",
+          "ext": ".ts",
+          "id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9maWxl",
+          "path": "parser/core-plugins/file.ts",
+          "isIndex": false
+        }
+      },
+      "helpers": {
+        "getters.ts": {
+          "filedata": {
+            "kind": "TypeScript",
+            "dir": "parser/core-plugins/helpers",
+            "base": "getters.ts",
+            "name": "getters",
+            "ext": ".ts",
+            "id": "cGFyc2VyL2NvcmUtcGx1Z2lucy9oZWxwZXJzL2dldHRlcnM=",
+            "path": "parser/core-plugins/helpers/getters.ts",
+            "isIndex": false
+          }
+        }
+      }
+    },
+    "parse.ts": {
+      "filedata": {
+        "kind": "TypeScript",
+        "dir": "parser",
+        "base": "parse.ts",
+        "name": "parse",
+        "ext": ".ts",
+        "id": "cGFyc2VyL3BhcnNl",
+        "path": "parser/parse.ts",
+        "isIndex": false
+      }
+    },
+    "plugin-loader.ts": {
+      "filedata": {
+        "kind": "TypeScript",
+        "dir": "parser",
+        "base": "plugin-loader.ts",
+        "name": "plugin-loader",
+        "ext": ".ts",
+        "id": "cGFyc2VyL3BsdWdpbi1sb2FkZXI=",
+        "path": "parser/plugin-loader.ts",
+        "isIndex": false
+      }
+    }
+  },
+  "storage": {
+    "db.ts": {
+      "filedata": {
+        "kind": "TypeScript",
+        "dir": "storage",
+        "base": "db.ts",
+        "name": "db",
+        "ext": ".ts",
+        "id": "c3RvcmFnZS9kYg==",
+        "path": "storage/db.ts",
+        "isIndex": false
+      }
+    }
+  },
+  "utils": {
+    "base64.ts": {
+      "filedata": {
+        "kind": "TypeScript",
+        "dir": "utils",
+        "base": "base64.ts",
+        "name": "base64",
+        "ext": ".ts",
+        "id": "dXRpbHMvYmFzZTY0",
+        "path": "utils/base64.ts",
+        "isIndex": false
+      }
+    },
+    "common.ts": {
+      "filedata": {
+        "kind": "TypeScript",
+        "dir": "utils",
+        "base": "common.ts",
+        "name": "common",
+        "ext": ".ts",
+        "id": "dXRpbHMvY29tbW9u",
+        "path": "utils/common.ts",
+        "isIndex": false
+      }
+    },
+    "file.ts": {
+      "filedata": {
+        "kind": "TypeScript",
+        "dir": "utils",
+        "base": "file.ts",
+        "name": "file",
+        "ext": ".ts",
+        "id": "dXRpbHMvZmlsZQ==",
+        "path": "utils/file.ts",
+        "isIndex": false
+      }
+    },
+    "logger.ts": {
+      "filedata": {
+        "kind": "TypeScript",
+        "dir": "utils",
+        "base": "logger.ts",
+        "name": "logger",
+        "ext": ".ts",
+        "id": "dXRpbHMvbG9nZ2Vy",
+        "path": "utils/logger.ts",
+        "isIndex": false
+      }
+    }
+  }
+}

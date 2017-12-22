@@ -1,4 +1,4 @@
-const renderParam = require('./renderParam');
+const renderParam = require('./renderParam').default;
 
 export default (fn: any, jsdoc: any) => {
   const Handlebars = require('handlebars');

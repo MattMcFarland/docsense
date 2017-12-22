@@ -2,7 +2,7 @@ import * as Handlebars from 'handlebars';
 
 describe('hbs helpers > esImport', () => {
   test('when all is false > matches snapshot', () => {
-    Handlebars.registerHelper('esImport', require('../esImport'));
+    Handlebars.registerHelper('esImport', require('../esImport').default);
     const template = Handlebars.compile(`
     {{ esImport
       all=false
@@ -16,7 +16,7 @@ describe('hbs helpers > esImport', () => {
     expect(result).toMatchSnapshot();
   });
   test('when all is true > matches snapshot', () => {
-    Handlebars.registerHelper('esImport', require('../esImport'));
+    Handlebars.registerHelper('esImport', require('../esImport').default);
     const template = Handlebars.compile(`
     {{ esImport
       all=true
