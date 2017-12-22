@@ -134,8 +134,19 @@ export const withAllFiles = (
 ) => {
   const files = FS.readdirSync(directoryPath);
   files.forEach((filename, index) => {
-    const data = FS.readFileSync(Path.resolve(directoryPath, filename), 'utf8');
-    fn(data, filename, index);
+    try {
+      if (FS.statSync(Path.resolve(directoryPath, filename)).isDirectory()) {
+        return;
+      }
+      const data = FS.readFileSync(
+        Path.resolve(directoryPath, filename),
+        'utf8'
+      );
+      fn(data, filename, index);
+    } catch (e) {
+      log.warn('skipped', filename, 'in', directoryPath);
+      log.verbose(e);
+    }
   });
 };
 
