@@ -1,6 +1,6 @@
 {
   "name": "docsense",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "An Intelligent Doc Generator tailored for EcmaScript Modules",
   "main": "dist/common/index.js",
   "bin": {
@@ -11,7 +11,11 @@
   "jsdelivr": "dist/docsense.js",
   "typings": "types/index.d.ts",
   "schema": "docsense.schema.json",
-  "files": ["src", "dist", "types"],
+  "files": [
+    "src",
+    "dist",
+    "types"
+  ],
   "scripts": {
     "test": "jest",
     "test:debug": "node --inspect-brk --nolazy node_modules/jest/bin/jest.js",
@@ -19,8 +23,7 @@
     "clean": "rm -rf dist",
     "prebuild": "yarn clean && mkdir dist",
     "build:templates": "cp -R src/generator/templates dist/templates",
-    "build:schema":
-      "typescript-json-schema ./tsconfig.json -o docsense.schema.json --ignoreErrors DocSenseConfig",
+    "build:schema": "typescript-json-schema ./tsconfig.json -o docsense.schema.json --ignoreErrors DocSenseConfig",
     "postbuild:schema": "prettier --write docsense.schema.json",
     "build:common": "tsc -p tsconfig.common.json",
     "prebuild:common:watch": "yarn build:common",
@@ -30,15 +33,11 @@
     "postbuild:esm": "node scripts/postbuild esm",
     "build:umd": "tsc -p tsconfig.umd.json",
     "build:info": "node scripts/build-info",
-    "build":
-      "yarn build:info && yarn build:schema && yarn build:common && yarn build:esm",
-    "prepublishOnly":
-      "yarn build && chmod -R 777 ./dist/* && yarn docsense build && pkg-ok",
-    "prettier":
-      "prettier --write src/**/*.{ts,js,json,prettierrc,babelrc,docsenserc}",
+    "build": "yarn build:info && yarn build:schema && yarn build:common && yarn build:esm",
+    "prepublishOnly": "yarn build && chmod -R 777 ./dist/* && yarn docsense build && pkg-ok",
+    "prettier": "prettier --write src/**/*.{ts,js,json,prettierrc,babelrc,docsenserc}",
     "dev-docs": "yarn docsense serve",
-    "docsense":
-      "chmod +x ./dist/common/cli/docsense.js && node ./dist/common/cli/docsense",
+    "docsense": "chmod +x ./dist/common/cli/docsense.js && node ./dist/common/cli/docsense",
     "docsense:serve:verbose": "yarn docsense --loglevel verbose serve"
   },
   "lint-staged": {
@@ -128,12 +127,22 @@
     "typescript-json-schema": "^0.20.0"
   },
   "jest": {
-    "moduleFileExtensions": ["ts", "tsx", "js"],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
-    "testMatch": ["**/__tests__/*.ts"],
-    "testPathIgnorePatterns": ["/node_modules/", "/dist/", "/.history/"],
+    "testMatch": [
+      "**/__tests__/*.ts"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/",
+      "/.history/"
+    ],
     "verbose": false
   },
   "repository": {
