@@ -9,6 +9,7 @@ const DefaultConfig: DocSenseConfig = {
   files: [],
   main: './README',
   root: './',
+  manual: undefined,
 };
 
 export default DefaultConfig;

@@ -46,3 +46,12 @@ export const parseFiles = ({
       })
     );
 };
+
+// export const parseMarkdownFiles = (globPattern: string) => {
+//   return processAllGlobPatterns(globPattern)
+//     .then(flatten)
+//     .then(dedupe)
+//     .then((filepaths: string[]) => {
+//       readFiles(filepaths).then((filesData: string[]) => {});
+//     });
+// };

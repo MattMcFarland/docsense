@@ -82,6 +82,10 @@
         "What markdown file to load for the main page. (e.g., './README')",
       "type": "string"
     },
+    "manual": {
+      "description": "Path to manual documentation",
+      "type": "string"
+    },
     "out": {
       "description": "Path of which the documentation will be generated.",
       "type": "string"

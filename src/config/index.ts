@@ -103,4 +103,9 @@ export interface DocSenseConfig {
    * @property {string} root
    */
   root: string;
+  /**
+   * Path to manual documentation
+   * @property {string} manual
+   */
+  manual?: string;
 }
