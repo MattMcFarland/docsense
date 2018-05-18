@@ -238,10 +238,8 @@ function startWatching() {
         sourceFileWatcher.on('delete', onFileDelete);
 
         destBinWatcher.on('change', (filepath, root) => {
-          saneOutput(
-            'Detected a new docsense.js file. Changing permissions mode to 700...'
-          );
-          fs.chmod(Path.join(root, filepath), 700, err => {
+          saneOutput('Detected a new docsense.js file. Applying chmod 777...');
+          fs.chmod(Path.join(root, filepath), 777, err => {
             if (err) return saneOutput(err);
             logCompletion();
           });

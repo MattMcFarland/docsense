@@ -63,7 +63,7 @@ cpr(
         );
         fs.chmod(cliFile, 777, err => {
           if (err) errors.push(err);
-          console.log('chmod +x', cyan(cliFile));
+          console.log('chmod 777', cyan(cliFile));
           if (errors.length) {
             console.log('Done! (With Errors)');
             errors.forEach(msg => console.log(msg));
