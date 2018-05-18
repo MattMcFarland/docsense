@@ -1,5 +1,5 @@
+import { FileKind, FileModel } from '../../_types/File';
 import { ESModule } from '../../core-plugins/es-modules';
-import { FileKind, FileModel } from '../../core-plugins/file';
 import Query from './Query';
 
 export interface IFileExportsQuery {

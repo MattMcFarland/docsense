@@ -1,9 +1,9 @@
 import * as Path from 'path';
 import * as traverse from 'traverse';
 
-import { Traverse, TraverseContext } from '../../_types/external/traverse';
+import { FileKind, FileModel } from '../../_types/File';
+
 import { ESModule } from '../../core-plugins/es-modules';
-import { FileKind, FileModel } from '../../core-plugins/file';
 import { decode, encode } from '../../utils/base64';
 import Query from './Query';
 

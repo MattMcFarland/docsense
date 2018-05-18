@@ -1,14 +1,18 @@
-import { FileKind, FileModel } from '../_types/fileModel';
+import * as Path from 'path';
+
+import { FileKind, FileModel } from '../_types/File';
 import getConfig from '../config';
 import { encode } from './base64';
 import { dedupe, flatten } from './common';
 import { processGlobPattern, readFiles } from './file';
 
-export const addMarkdownFiles = async (globPattern: string, db: Lowdb) => {
+export const addMarkdownFiles = async (db: Lowdb): Promise<Lowdb> => {
   const collectionName = 'manual_collection';
   const config = await getConfig();
 
-  return processGlobPattern(globPattern)
+  if (!config.manual) return db;
+
+  return processGlobPattern(config.manual)
     .then(flatten)
     .then(dedupe)
     .then((filepaths: string[]) => {
@@ -22,7 +26,8 @@ export const addMarkdownFiles = async (globPattern: string, db: Lowdb) => {
             .write();
         });
       });
-    });
+    })
+    .then(() => db);
 
   function createFileModel(filepath: string): FileModel {
     const normalizedPath = Path.posix.normalize(filepath);

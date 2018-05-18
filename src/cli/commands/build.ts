@@ -7,7 +7,7 @@ import * as yargs from 'yargs';
 import getConfig from '../../config';
 import generator from '../../generator';
 import { fatalError } from '../../utils/common';
-
+import { addMarkdownFiles } from '../../utils/manual';
 import { parseFiles } from '../../utils/parse';
 import { setupCorePlugins } from '../../utils/plugin';
 
@@ -53,6 +53,7 @@ export const handler = (argv: any) => {
   return Promise.resolve(argv)
     .then(setupCorePlugins)
     .then(parseFiles)
+    .then(addMarkdownFiles)
     .then(generator)
     .catch(fatalError);
 };

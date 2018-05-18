@@ -1,5 +1,4 @@
-import { ESModule } from '../../core-plugins/es-modules';
-import { FileKind, FileModel } from '../../core-plugins/file';
+import { FileKind, FileModel } from '../../_types/File';
 import Query from './Query';
 
 const fileQuery = (db: Lowdb, id: string): Promise<FileModel> => {

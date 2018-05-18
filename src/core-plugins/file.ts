@@ -1,6 +1,6 @@
 import * as Path from 'path';
 
-import { FileKind, FileModel } from '../_types/fileModel';
+import { FileKind, FileModel } from '../_types/File';
 import ParseEngine from '../parser/ParseEngine';
 import { encode } from '../utils/base64';
 
