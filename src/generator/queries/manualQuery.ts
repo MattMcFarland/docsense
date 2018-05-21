@@ -20,6 +20,12 @@ interface ManualData {
   source: string;
 }
 
+interface ManualRecord {
+  id: string;
+  fileData: FileModel;
+  source: string;
+}
+
 const manualQuery = (db: Lowdb): Promise<ObjectTree> => {
   const {
     manual_file_collection,
@@ -27,16 +33,19 @@ const manualQuery = (db: Lowdb): Promise<ObjectTree> => {
   }: Records = db.getState();
 
   const filesOfConcern = manual_file_collection.reduce(
-    (acc: FileModel[], file: FileModel) => {
+    (acc: ManualRecord[], file: FileModel) => {
       // Add constraints here, like as we add more core-plugins, we can
       // ask it to also check for other filters
-      const hasData = Boolean(
-        manual_data_collection.filter((man: ManualData) => man.id === file.id)
-          .length
+      const withSource = manual_data_collection.filter(
+        (man: ManualData) => man.id === file.id
       );
 
-      if (hasData) {
-        acc.push(file);
+      if (withSource.length) {
+        acc.push({
+          id: file.id,
+          fileData: file,
+          source: withSource[0].source,
+        });
       }
       return acc;
     },
@@ -52,7 +61,7 @@ const manualQuery = (db: Lowdb): Promise<ObjectTree> => {
   const hierarchy: ObjectTree = {};
 
   filesOfConcern.forEach(file => {
-    treeInject(hierarchy, file.path.split('/'));
+    treeInject(hierarchy, file.fileData.path.split('/'));
   });
 
   const tree = traverse(hierarchy);
