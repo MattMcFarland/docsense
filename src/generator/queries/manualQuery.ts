@@ -1,0 +1,66 @@
+import * as Path from 'path';
+import * as traverse from 'traverse';
+
+import { FileKind, FileModel } from '../../_types/File';
+
+import { ESModule } from '../../core-plugins/es-modules';
+import { decode, encode } from '../../utils/base64';
+import Query from './Query';
+
+export interface ObjectTree {
+  [key: string]: ObjectTree;
+}
+interface Records {
+  manual_file_collection: FileModel[];
+  manual_data_collection: ManualData[];
+}
+
+interface ManualData {
+  id: string;
+  source: string;
+}
+
+const manualQuery = (db: Lowdb): Promise<ObjectTree> => {
+  const {
+    manual_file_collection,
+    manual_data_collection,
+  }: Records = db.getState();
+
+  const filesOfConcern = manual_file_collection.reduce(
+    (acc: FileModel[], file: FileModel) => {
+      // Add constraints here, like as we add more core-plugins, we can
+      // ask it to also check for other filters
+      const hasData = Boolean(
+        manual_data_collection.filter((man: ManualData) => man.id === file.id)
+          .length
+      );
+
+      if (hasData) {
+        acc.push(file);
+      }
+      return acc;
+    },
+    []
+  );
+  const treeInject = (obj: ObjectTree, path: string[]): void => {
+    if (path.length === 0) return;
+    const key = path[0];
+    if (!(key in obj)) obj[key] = {};
+    return treeInject(obj[key], path.slice(1));
+  };
+
+  const hierarchy: ObjectTree = {};
+
+  filesOfConcern.forEach(file => {
+    treeInject(hierarchy, file.path.split('/'));
+  });
+
+  const tree = traverse(hierarchy);
+  if (Object.keys(tree.nodes()[0]).length === 0) {
+    return Promise.resolve(tree.clone());
+  }
+
+  return Promise.resolve(tree.clone());
+};
+
+export default new Query<ObjectTree, void>(manualQuery);
