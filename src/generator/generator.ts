@@ -11,6 +11,7 @@ import {
   directoryExportsQuery,
   fileExportsQuery,
   hierarchyQuery,
+  manualQuery,
 } from './queries';
 import { IDirectoryExportsQuery } from './queries/directoryExportsQuery';
 import { IFileExportsQuery } from './queries/fileExportsQuery';
@@ -28,6 +29,7 @@ export default async () => {
   const esModules = await fileExportsQuery.exec();
   const esModuleTree = await hierarchyQuery.exec();
   const dirModules = await directoryExportsQuery.exec();
+  const manualTree = await manualQuery.exec();
   const project = require(Path.resolve(process.cwd(), 'package.json'));
 
   const mainDoc = require_md(config.main);
@@ -38,7 +40,14 @@ export default async () => {
     log.info('generate', 'main page');
     compile(
       indexPage,
-      { main: mainDoc.data, esModules, config, esModuleTree, project },
+      {
+        main: mainDoc.data,
+        esModules,
+        config,
+        esModuleTree,
+        project,
+        manualTree,
+      },
       'index.html'
     );
   }

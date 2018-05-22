@@ -65,6 +65,37 @@ const manualQuery = (db: Lowdb): Promise<ObjectTree> => {
   });
 
   const tree = traverse(hierarchy);
+  tree.forEach(function(value: ObjectTree) {
+    const childKeys = Object.keys(value);
+    const maybeIndex = childKeys.find(childKey => {
+      return childKey.startsWith('index.');
+    });
+    if (maybeIndex) {
+      const filedata = maybeFileData(this.path.join('/') + `/${maybeIndex}`);
+      if (filedata) {
+        this.node.filedata = filedata;
+      }
+    }
+    if (this.isLeaf) {
+      const filedata =
+        this.key &&
+        !this.key.startsWith('index.') &&
+        maybeFileData(this.path.join('/'));
+      if (filedata) {
+        this.node.filedata = filedata;
+      } else {
+        this.delete(false);
+      }
+    }
+  });
+  function maybeFileData(fullpath: string) {
+    const { dir, name } = Path.parse(fullpath);
+    const filepath = `${dir}/${name}`;
+    const file_id = encode(filepath);
+    const filedata = filesOfConcern.find(f => f.id === file_id);
+    return filedata;
+  }
+
   if (Object.keys(tree.nodes()[0]).length === 0) {
     return Promise.resolve(tree.clone());
   }
