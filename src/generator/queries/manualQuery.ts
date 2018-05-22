@@ -32,6 +32,9 @@ const manualQuery = (db: Lowdb): Promise<ObjectTree> => {
     manual_data_collection,
   }: Records = db.getState();
 
+  if (!Array.isArray(manual_file_collection)) {
+    return Promise.resolve({});
+  }
   const filesOfConcern = manual_file_collection.reduce(
     (acc: ManualRecord[], file: FileModel) => {
       // Add constraints here, like as we add more core-plugins, we can

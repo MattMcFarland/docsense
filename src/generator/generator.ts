@@ -147,26 +147,27 @@ export default async () => {
   });
   log.success('generate', 'directory pages');
   log.info('generate', 'manual pages');
-
-  db.getState().manual_data_collection.forEach((docfile: any) => {
-    const filePath = decode(docfile.id);
-    const docPage = require_template('./templates/docFile.hbs');
-    const writePath = Path.join('m', filePath + '.md.html');
-    log.info('generate', writePath);
-    compile(
-      docPage,
-      {
-        dirModules,
-        esModules,
-        config,
-        esModuleTree,
-        project,
-        manualTree,
-        source: docfile.source,
-      },
-      writePath
-    );
-  });
+  // tslint:disable-next-line:no-unused-expression
+  db.getState().manual_data_collection &&
+    db.getState().manual_data_collection.forEach((docfile: any) => {
+      const filePath = decode(docfile.id);
+      const docPage = require_template('./templates/docFile.hbs');
+      const writePath = Path.join('m', filePath + '.md.html');
+      log.info('generate', writePath);
+      compile(
+        docPage,
+        {
+          dirModules,
+          esModules,
+          config,
+          esModuleTree,
+          project,
+          manualTree,
+          source: docfile.source,
+        },
+        writePath
+      );
+    });
 
   function resolveFromProject(pathToResolve: string) {
     return Path.resolve(config.root, pathToResolve);
