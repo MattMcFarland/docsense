@@ -70,10 +70,13 @@ const manualQuery = (db: Lowdb): Promise<ObjectTree> => {
     const maybeIndex = childKeys.find(childKey => {
       return childKey.startsWith('index.');
     });
+    if (!this.node.type) {
+      this.node.type = 'path';
+    }
     if (maybeIndex) {
       const filedata = maybeFileData(this.path.join('/') + `/${maybeIndex}`);
       if (filedata) {
-        this.node.filedata = filedata;
+        this.node.meta = filedata;
       }
     }
     if (this.isLeaf) {
@@ -82,10 +85,14 @@ const manualQuery = (db: Lowdb): Promise<ObjectTree> => {
         !this.key.startsWith('index.') &&
         maybeFileData(this.path.join('/'));
       if (filedata) {
-        this.node.filedata = filedata;
+        this.node.meta = filedata;
+        this.node.type = 'file';
       } else {
         this.delete(false);
       }
+    }
+    if (this.level === 1) {
+      this.node.type = 'root';
     }
   });
   function maybeFileData(fullpath: string) {

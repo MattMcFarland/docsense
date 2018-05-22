@@ -16,6 +16,7 @@ import {
 import { IDirectoryExportsQuery } from './queries/directoryExportsQuery';
 import { IFileExportsQuery } from './queries/fileExportsQuery';
 import { copyStaticFiles, scaffoldStaticAssets } from './scaffolder';
+import { decode } from '../utils/base64';
 
 export default async () => {
   log.info('generate', 'start');
@@ -80,6 +81,7 @@ export default async () => {
         config,
         esModuleTree,
         project,
+        manualTree,
       },
       esModule.file.path + '/index.html'
     );
@@ -98,6 +100,7 @@ export default async () => {
         config,
         esModuleTree,
         project,
+        manualTree,
       },
       esModule.file.path + '/source.html'
     );
@@ -127,11 +130,34 @@ export default async () => {
         config,
         esModuleTree,
         project,
+        manualTree,
       },
       Path.join(dirModule.directory, 'directory.html')
     );
   });
   log.success('generate', 'directory pages');
+  log.info('generate', 'manual pages');
+
+  db.getState().manual_data_collection.forEach((docfile: any) => {
+    const filePath = decode(docfile.id);
+    const docPage = require_template('./templates/docFile.hbs');
+    const writePath = Path.join('m', filePath + '.md.html');
+    log.info('generate', writePath);
+    compile(
+      docPage,
+      {
+        dirModules,
+        esModules,
+        config,
+        esModuleTree,
+        project,
+        manualTree,
+        source: docfile.source,
+      },
+      writePath
+    );
+  });
+
   function resolveFromProject(pathToResolve: string) {
     return Path.resolve(config.root, pathToResolve);
   }

@@ -1,6 +1,15 @@
 <aside>
   <div class="pa2 pt5">
     <nav>
+      {{#isEmpty manualTree}}
+        {{else}}
+          <h2 class="f2">
+            <a class="pa1 mb2 link dim white db" href="/" title="Home">
+              Manual
+            </a>
+          </h2>
+          {{ navlist manualTree }}
+      {{/isEmpty}}
       {{#isEmpty esModuleTree}}
         {{else}}
           <h2 class="f2">
