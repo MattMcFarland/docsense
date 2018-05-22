@@ -19,12 +19,14 @@ export const makeNodeModuleStatic = (
   return createFile(target, data);
 };
 
-export const copyStaticFiles = (targetDir: string) => {
-  // todo: get module definition (d.ts) for `copy-dir` and import it properly.
+export const copyFiles = (
+  sourceDir: string,
+  targetDir: string,
+  alias?: string
+) => {
   const copydir = require('copy-dir');
-  const from = resolvePath(__dirname, 'templates/static');
-  const to = resolvePath(targetDir, 'static');
-  log.verbose('copy', from, to);
+  const from = resolvePath(__dirname, sourceDir);
+  const to = resolvePath(targetDir, alias || 'static');
 
   return new Promise((resolve, reject) => {
     copydir(from, to, (err: Error) => {

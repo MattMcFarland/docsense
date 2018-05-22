@@ -102,6 +102,10 @@
     "root": {
       "description": "The root path of the project",
       "type": "string"
+    },
+    "static": {
+      "description": "Path to static files",
+      "type": "string"
     }
   },
   "type": "object"

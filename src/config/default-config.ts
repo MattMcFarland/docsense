@@ -10,6 +10,7 @@ const DefaultConfig: DocSenseConfig = {
   main: './README',
   root: './',
   manual: undefined,
+  static: undefined,
 };
 
 export default DefaultConfig;

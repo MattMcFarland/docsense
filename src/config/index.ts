@@ -108,4 +108,9 @@ export interface DocSenseConfig {
    * @property {string} manual
    */
   manual?: string;
+  /**
+   * Path to static files
+   * @property {string} manual
+   */
+  static?: string;
 }

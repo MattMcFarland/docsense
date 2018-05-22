@@ -5,6 +5,7 @@ import * as Path from 'path';
 import getConfig from '../config';
 import { ESModule } from '../core-plugins/es-modules';
 import { connect } from '../db';
+import { decode } from '../utils/base64';
 import { log } from '../utils/logger';
 import Compiler, { addEmojis, require_md, require_template } from './compiler';
 import {
@@ -15,8 +16,7 @@ import {
 } from './queries';
 import { IDirectoryExportsQuery } from './queries/directoryExportsQuery';
 import { IFileExportsQuery } from './queries/fileExportsQuery';
-import { copyStaticFiles, scaffoldStaticAssets } from './scaffolder';
-import { decode } from '../utils/base64';
+import { copyFiles, scaffoldStaticAssets } from './scaffolder';
 
 export default async () => {
   log.info('generate', 'start');
@@ -24,8 +24,18 @@ export default async () => {
   const config = await getConfig();
 
   await scaffoldStaticAssets(config.out);
-  await copyStaticFiles(config.out);
-
+  await copyFiles(
+    Path.resolve(__dirname, 'templates/static'),
+    Path.resolve(config.out, 'static'),
+    'static'
+  );
+  if (config.static) {
+    await copyFiles(
+      Path.resolve(process.cwd(), config.static),
+      Path.resolve(process.cwd(), config.out),
+      config.static
+    );
+  }
   const db = await connect();
   const esModules = await fileExportsQuery.exec();
   const esModuleTree = await hierarchyQuery.exec();
